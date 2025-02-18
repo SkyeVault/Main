@@ -1,11 +1,11 @@
 # SkyeVault Security Lab - AWS & Linux Command Documentation
 
-## 📌 Overview
+## Overview
 Welcome to the SkyeVault Security Lab! This repo is my personal documentation of setting up an AWS security lab from scratch. The goal is to gain hands-on experience with AWS security tools, IAM management, SSH authentication, and firewall rules. This is a real-world learning process, complete with troubleshooting, fixes, and improvements.
 
 ---
 
-## **1️⃣ AWS CLI Commands**
+## **AWS CLI Commands**
 ### **🔹 Configuring AWS CLI**
 ```bash
 aws configure
@@ -31,7 +31,7 @@ aws iam list-policies
 
 ---
 
-## **2️⃣ SSH & Key Authentication Commands**
+## **SSH & Key Authentication Commands**
 ### **🔹 Connecting to EC2 via SSH**
 ```bash
 ssh -i ~/Downloads/skyvault.pem ubuntu@44.222.212.40
@@ -71,7 +71,7 @@ ssh-keygen -y -f ~/Downloads/skyvault.pem
 
 ---
 
-## **3️⃣ Firewall (UFW) Security Rules**
+## **Firewall (UFW) Security Rules**
 ### **🔹 Checking Firewall Rules**
 ```bash
 sudo ufw status
@@ -96,7 +96,7 @@ sudo ufw enable
 
 ---
 
-## **4️⃣ Fixing Permissions for Secure Authentication**
+## **Fixing Permissions for Secure Authentication**
 ### **🔹 Adjusting SSH Directory Permissions**
 ```bash
 chmod 600 ~/.ssh/authorized_keys
