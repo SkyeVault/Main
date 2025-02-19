@@ -40,12 +40,12 @@ ssh -i ~/Downloads/skyvault.pem ubuntu@44.222.212.40
 
 ### **🔹 Troubleshooting SSH Issues**
 ```bash
-ls -l ~/Downloads/skyvault.pem
+ls -l ~/Downloads/skyevault.pem
 ```
 - **Why?** Checks whether the private key exists and has the correct file permissions.
 
 ```bash
-chmod 400 ~/Downloads/skyvault.pem
+chmod 400 ~/Downloads/skyevault.pem
 ```
 - **Why?** AWS requires strict read-only permissions for private keys.
 
@@ -65,7 +65,7 @@ cat /var/log/auth.log | grep ssh
 - **Why?** Checks log files for authentication errors when troubleshooting SSH failures.
 
 ```bash
-ssh-keygen -y -f ~/Downloads/skyvault.pem
+ssh-keygen -y -f ~/Downloads/skyevault.pem
 ```
 - **Why?** Extracts the public key from the private **.pem** file to ensure they match.
 
