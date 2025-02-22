@@ -72,5 +72,8 @@ This lab will guide you through the process of creating and managing an AWS KMS 
    - **Linux:** Use the `PrtScn` key or a screenshot tool.
 3. **Edit if Necessary:**  
    - Crop the image to focus on key details and remove any sensitive information.
+  
+   - *Note: I captured screenshots during this lab to verify that everything worked as expected. However, I have not published these screenshots in the repository for privacy reasons.*
+
 
 
