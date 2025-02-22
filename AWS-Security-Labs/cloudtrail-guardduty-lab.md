@@ -103,3 +103,26 @@ This lab will guide you through the steps of configuring AWS CloudTrail and Guar
 ## Conclusion
 
 By completing this lab, you've gained hands-on experience in setting up CloudTrail and GuardDuty. These tools are vital for monitoring AWS activity and detecting potential security issues, forming a key part of your AWS security strategy.
+
+## Note on Updating the KMS Key Policy
+
+During this lab, I encountered an `InsufficientEncryptionPolicyException` error. This error occurred because CloudTrail did not have the necessary permissions to use the KMS key for encrypting log files.
+
+To resolve the issue, I updated the KMS key policy by adding a JSON statement that explicitly grants CloudTrail permission to perform encryption operations. The added policy allowed CloudTrail to encrypt, decrypt, generate data keys, and describe the key.
+
+The JSON snippet added to the key policy was:
+
+```json
+{
+  "Sid": "AllowCloudTrailToUseKMSKey",
+  "Effect": "Allow",
+  "Principal": { "Service": "cloudtrail.amazonaws.com" },
+  "Action": [
+    "kms:Encrypt",
+    "kms:Decrypt",
+    "kms:GenerateDataKey*",
+    "kms:DescribeKey"
+  ],
+  "Resource": "*"
+}
+
