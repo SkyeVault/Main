@@ -125,4 +125,5 @@ The JSON snippet added to the key policy was:
   ],
   "Resource": "*"
 }
-
+```
+After updating the key policy with this snippet, CloudTrail was able to access the KMS key correctly, and the error was resolved. This exercise highlighted the importance of ensuring that all necessary permissions are properly set when configuring AWS services.
