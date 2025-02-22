@@ -130,3 +130,19 @@ After updating the key policy with this snippet, CloudTrail was able to access t
 
 *Note: I captured screenshots during this lab to verify that everything worked as expected. However, I have not published these screenshots in the repository for privacy reasons.*
 
+# Lab Completion Summary
+
+Today, I successfully completed the following AWS labs:
+
+- **AWS KMS Key Lab:**  
+  Created a Customer Managed Key, updated the key policy to allow CloudTrail to use the key, and enabled automatic key rotation.
+
+- **AWS CloudTrail Lab:**  
+  Configured a multi-region CloudTrail trail, verified that logs were being delivered to the designated S3 bucket, and resolved any encryption permission issues.
+
+- **AWS GuardDuty Lab:**  
+  Enabled GuardDuty, reviewed its dashboard to verify active threat detection, and ensured the service was properly integrated with CloudTrail.
+
+These exercises have helped solidify my understanding of AWS security best practices related to key management, logging, and threat detection. I look forward to tackling more labs and expanding my AWS security skills in future sessions.
+
+
