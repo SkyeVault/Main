@@ -16,7 +16,8 @@ GitHub supports various file types for **code, documentation, and configurations
 # This is a Heading
 **Bold text** and *italic text*  
 - Bullet list item  
-1. Numbered list item  
+1. Numbered list item
+`This creates a box around text`
 ```
 
  **Where `.md` is Used:**
