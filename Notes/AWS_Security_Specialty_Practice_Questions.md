@@ -120,4 +120,142 @@ This document contains **practice questions** covering key topics from the AWS S
 
 ---
 
-This practice question bank covers **all key topics** for the AWS Security Specialty exam. **Review these questions regularly** and test your knowledge using real-world AWS scenarios!
+# Answers
+
+# AWS Certified Security – Specialty (SCS-C02) Practice Questions & Answers
+
+This document contains **practice questions** covering key topics from the AWS Security Specialty exam. Each question is followed by its corresponding answer.
+
+---
+
+## **1. Identity and Access Management (IAM)**
+### **1.1 IAM Users, Groups, and Roles**
+1. **What is the difference between an IAM role and an IAM user?**  
+   - **IAM User**: A permanent identity with credentials (username, password, access keys).  
+   - **IAM Role**: A temporary identity assigned to entities like EC2 instances or AWS services.  
+
+2. **What is the purpose of IAM permission boundaries?**  
+   - They **limit the maximum permissions** an IAM user or role can have, regardless of assigned policies.
+
+3. **How can you enforce multi-factor authentication (MFA) for IAM users?**  
+   - Use **IAM policies** or **AWS Organizations SCPs** to enforce MFA on login.
+
+4. **What is the benefit of using IAM Access Analyzer?**  
+   - It helps identify **overly permissive** IAM policies and access risks.
+
+5. **How do IAM policies evaluate explicit deny, explicit allow, and implicit deny?**  
+   - **Explicit Deny** overrides everything.  
+   - **Explicit Allow** grants access unless an explicit deny exists.  
+   - **Implicit Deny** applies by default unless explicitly allowed.
+
+---
+
+## **2. Encryption & Data Protection**
+### **2.1 AWS KMS (Key Management Service)**
+6. **What is the difference between a Customer Managed Key (CMK) and an AWS Managed Key?**  
+   - **CMK**: Fully controlled by the customer, including key rotation and policies.  
+   - **AWS Managed Key**: Automatically managed by AWS and used for default encryption.
+
+7. **How do you restrict KMS key access using policies?**  
+   - Use **KMS key policies** and **IAM policies** with explicit allow/deny statements.
+
+8. **What is the impact of enabling automatic key rotation for a CMK?**  
+   - AWS rotates the **underlying key material** annually without changing the key ID.
+
+9. **How can you securely share an encrypted S3 object with another AWS account?**  
+   - **Grant cross-account KMS key access** and configure the **S3 bucket policy**.
+
+10. **How do KMS grants work, and why would you use them?**  
+   - KMS grants allow **temporary, fine-grained permissions** on a key without changing policies.
+
+---
+
+## **3. Logging & Monitoring**
+### **3.1 AWS CloudTrail**
+11. **What are the different types of CloudTrail events?**  
+   - **Management Events** (e.g., IAM changes, EC2 launches)  
+   - **Data Events** (e.g., S3 object access, Lambda invocation)  
+   - **Insight Events** (e.g., unusual API activity)
+
+12. **How do you enforce CloudTrail logging across all AWS regions?**  
+   - Enable **multi-region trails** in CloudTrail settings.
+
+13. **How do you secure CloudTrail logs in S3 to prevent tampering?**  
+   - Enable **S3 Bucket Policies**, **MFA Delete**, and **Object Lock**.
+
+14. **What AWS services integrate with CloudTrail for security monitoring?**  
+   - **GuardDuty, Security Hub, AWS Config, CloudWatch**.
+
+15. **How can you monitor CloudTrail logs for specific API calls?**  
+   - Use **CloudWatch Alarms** and **Amazon SNS notifications**.
+
+---
+
+## **4. Incident Response**
+16. **What are the six phases of AWS’s Incident Response Lifecycle?**  
+   - Preparation, Detection, Analysis, Containment, Eradication, and Recovery.
+
+17. **How do you use AWS Lambda for automated security response?**  
+   - Trigger **Lambda functions** to isolate instances, revoke IAM credentials, or update security groups.
+
+18. **What is the best way to contain a compromised EC2 instance?**  
+   - **Detach from Auto Scaling**, **stop instance**, and **isolate it in a quarantined security group**.
+
+19. **How can you isolate a compromised IAM user?**  
+   - **Detach all policies**, **revoke sessions**, and **rotate credentials**.
+
+20. **How do you detect and respond to suspicious AWS API activity?**  
+   - Use **CloudTrail insights, GuardDuty findings, and Security Hub alerts**.
+
+---
+
+## **5. Networking & Firewall Security**
+### **5.1 VPC Security**
+21. **What is the difference between Security Groups and Network ACLs?**  
+   - **Security Groups**: **Stateful**, applies at **instance level**.  
+   - **Network ACLs**: **Stateless**, applies at **subnet level**.
+
+22. **How do you enforce VPC flow logs to monitor network activity?**  
+   - Enable **VPC Flow Logs** and send logs to **CloudWatch or S3**.
+
+23. **What is AWS PrivateLink, and how does it improve security?**  
+   - It allows secure access to **AWS services and private apps** without internet exposure.
+
+24. **How do you prevent publicly accessible EC2 instances?**  
+   - Use **security group rules** and enforce **VPC default deny-all policy**.
+
+25. **How do you restrict outbound internet access from a VPC?**  
+   - Use **NAT Gateways**, **Egress-only Internet Gateways**, and **firewall rules**.
+
+---
+
+## **6. Compliance & Governance**
+26. **What is the AWS Shared Responsibility Model?**  
+   - **AWS secures the cloud infrastructure**, while **customers secure their data and apps**.
+
+27. **What AWS service can detect compliance violations in real-time?**  
+   - **AWS Config**.
+
+28. **What is the difference between AWS Config and AWS Audit Manager?**  
+   - **AWS Config** tracks resource configurations.  
+   - **Audit Manager** continuously assesses compliance against frameworks.
+
+29. **How do you enforce compliance using AWS Organizations SCPs?**  
+   - Apply **SCPs** to **restrict actions** across multiple AWS accounts.
+
+30. **What is the difference between SOC 2 and ISO 27001 compliance?**  
+   - **SOC 2**: Focuses on **data security and privacy** for SaaS providers.  
+   - **ISO 27001**: A **global security framework** for managing IT risks.
+
+---
+
+# **Final Exam Tips**
+- **Master IAM concepts**: Roles, policies, SCPs, permission boundaries.
+- **Understand encryption best practices**: KMS, S3 encryption, Secrets Manager.
+- **Know AWS security monitoring tools**: GuardDuty, CloudTrail, Security Hub.
+- **Familiarize yourself with VPC security**: Security Groups, Network ACLs, PrivateLink.
+- **Review compliance frameworks**: Shared Responsibility Model, SOC 2, ISO 27001.
+
+---
+
+This **AWS Security Specialty (SCS-C02) Q&A** guide provides a structured way to review key exam topics. **Use this to reinforce your learning and track your progress!**
