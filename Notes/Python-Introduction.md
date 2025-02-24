@@ -15,67 +15,22 @@ Python is a **high-level, general-purpose programming language** known for its *
 
 ## **Basic Python Rules (Syntax)**
 
-### **1. Python Uses Indentation**
-Python uses **whitespace (indentation)** to structure code instead of `{}` or `;`.
-```python
-if True:
-    print("Hello, Python!")  # Indented code runs inside the block
-```
-
-### **2. Variables are Dynamically Typed**
-```python
-x = 10       # Integer
-name = "AWS" # String
-pi = 3.14    # Float
-```
-
-### **3. Print Statements**
-```python
-print("Hello, world!")
-```
-
-### **4. Conditional Statements**
-```python
-x = 10
-
-if x > 5:
-    print("X is greater than 5")
-elif x == 5:
-    print("X is exactly 5")
-else:
-    print("X is less than 5")
-```
-
-### **5. Loops**
-#### **For Loop**
-```python
-for i in range(5):
-    print(i)  # Prints numbers 0 to 4
-```
-#### **While Loop**
-```python
-count = 0
-while count < 3:
-    print(count)
-    count += 1
-```
-
-### **6. Functions**
-```python
-def greet(name):
-    return "Hello, " + name
-
-print(greet("Lorelei"))  # Output: Hello, Lorelei
-```
-
-### **7. Lists & Dictionaries**
-```python
-fruits = ["Apple", "Banana", "Cherry"]
-print(fruits[1])  # Output: Banana
-
-aws_services = {"compute": "EC2", "storage": "S3", "database": "RDS"}
-print(aws_services["compute"])  # Output: EC2
-```
+| **Keyword**  | **Usage**  | **Example**  |
+|-------------|-----------|-------------|
+| `import`    | Import a module | `import os`  |
+| `print`     | Display output | `print("Hello, World!")` |
+| `for`       | Loop through a sequence | `for i in range(5): print(i)` |
+| `while`     | Loop while condition is true | `while x < 5: x += 1` |
+| `if` / `elif` / `else` | Conditional statements | `if x > 5: print("Greater")` |
+| `def`       | Define a function | `def greet(): return "Hello"` |
+| `return`    | Return a value from function | `return x + y` |
+| `list`      | Collection of elements | `fruits = ["apple", "banana"]` |
+| `dict`      | Key-value pair storage | `aws = {"compute": "EC2"}` |
+| `try` / `except` | Handle errors | `try: x = 5/0 except: print("Error")` |
+| `class`     | Define a class (OOP) | `class Dog:` |
+| `with`      | Context manager for resources | `with open("file.txt") as f:` |
+| `lambda`    | Anonymous function | `square = lambda x: x * x` |
+| `yield`     | Pause and resume function execution | `yield x * 2` |
 
 ---
 
