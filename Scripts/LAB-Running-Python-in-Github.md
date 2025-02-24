@@ -19,6 +19,39 @@ Before starting, ensure you have:
 - Python **installed locally** (`python --version` to check).
 - A GitHub repository to store your Python scripts.
 
+### **Installing Python Locally**
+If Python is not installed on your system, follow these steps:
+
+#### **Windows**
+1. Download the latest Python installer from the official site: [Python Downloads](https://www.python.org/downloads/)
+2. Run the installer and **check the box** that says **"Add Python to PATH"**.
+3. Click **Install Now** and follow the prompts.
+4. Verify installation by running:
+   ```sh
+   python --version
+   ```
+
+#### **macOS**
+1. Open **Terminal**.
+2. Install Python using Homebrew:
+   ```sh
+   brew install python
+   ```
+3. Verify installation:
+   ```sh
+   python3 --version
+   ```
+
+#### **Linux (Ubuntu/Debian)**
+1. Open a terminal and run:
+   ```sh
+   sudo apt update && sudo apt install python3
+   ```
+2. Verify installation:
+   ```sh
+   python3 --version
+   ```
+
 ---
 
 ## **2. Running Python Scripts Using GitHub Actions**
