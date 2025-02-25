@@ -11,10 +11,20 @@ This lab documents all the steps taken to set up AWS CLI, troubleshoot macOS iss
 - **Cause:** AWS CLI was not installed.
 
 ### **Solution: Installing AWS CLI**
-Run the following command to install AWS CLI via Homebrew:
+#### **Initial Attempt: Homebrew Installation (Very Slow on macOS 12)**
+Initially, AWS CLI was installed via Homebrew:
 ```bash
 brew install awscli
 ```
+However, on **macOS 12**, Homebrew installation was **extremely slow**, taking over 45 minutes due to dependency resolution issues.
+
+#### **Alternative Solution: Manual AWS CLI Installation (Faster)**
+To bypass Homebrew's slow dependency management, AWS CLI was installed manually using the official installer:
+```bash
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+```
+This method significantly reduced installation time.
 
 ### **Verifying Installation**
 After installation, check if AWS CLI is properly installed:
