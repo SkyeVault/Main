@@ -1,11 +1,12 @@
 import boto3
 from datetime import datetime, timezone, timedelta
+from database import save_report  # Import database functions
 
 # Initialize AWS IAM client
 iam = boto3.client('iam')
 
 def list_users_without_mfa():
-    """Check IAM users who do not have MFA enabled"""
+    """Check IAM users who do not have MFA enabled and save to database"""
     users = iam.list_users()
     users_without_mfa = []
 
@@ -15,11 +16,12 @@ def list_users_without_mfa():
 
         if not mfa_devices['MFADevices']:
             users_without_mfa.append(user_name)
+            save_report("IAM", f"User {user_name} has no MFA enabled")
 
     return users_without_mfa
 
 def list_inactive_users(days=90):
-    """Find IAM users who haven't logged in for a set number of days"""
+    """Find IAM users who haven't logged in for a set number of days and save to database"""
     users = iam.list_users()
     inactive_users = []
     threshold_date = datetime.now(timezone.utc) - timedelta(days=days)
@@ -29,6 +31,7 @@ def list_inactive_users(days=90):
             last_used = user['PasswordLastUsed']
             if last_used < threshold_date:
                 inactive_users.append(user['UserName'])
+                save_report("IAM", f"User {user['UserName']} is inactive (last login {last_used})")
 
     return inactive_users
 
