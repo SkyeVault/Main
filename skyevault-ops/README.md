@@ -91,3 +91,21 @@ skyevault-ops/
 │── README.md  (Project overview & setup instructions)
 │── requirements.txt  (Python dependencies)
 │── .gitignore
+
+📝 Ethical Hacking Guidelines
+
+✅ Allowed Penetration Tests (No AWS Approval Needed)
+	•	EC2 Instances
+	•	RDS (Databases)
+	•	S3 Buckets
+	•	CloudFront
+	•	API Gateway
+	•	AWS Aurora
+	•	AWS Lightsail
+	•	Elastic Beanstalk
+
+🚫 Prohibited Without AWS Permission
+	•	Denial of Service (DoS) Attacks
+	•	Port Flooding
+	•	DNS Zone Walking
+	•	Stress Testing AWS Infrastructure
