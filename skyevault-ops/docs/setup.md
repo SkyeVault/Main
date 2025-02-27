@@ -1,46 +1,32 @@
-# Setup Guide
-# SkyeVault Ops Security Dashboard Setup Guide
+# AWS Security Dashboard Integration Guide
 
-## Directory Structure
+## Project Structure
 ```
-SkyeVault-Ops/
-│── backend/
-│   │── app.py
-│   │── database.py
-│   ├── security/
-│   │   ├── iam_security_check.py
-│   │   ├── s3_security_check.py
-│   │   ├── cloudtrail_check.py
-│   │   ├── guardduty_check.py
-│── templates/
-│   ├── index.html
-│── static/
-│   ├── css/
-│   │   ├── style.css
-│   ├── js/
-│   │   ├── main.js
-│── security_reports.db
-│── .gitignore
-│── requirements.txt
+Main/
+│── skyevault-ops/
+│   ├── backend/
+│   │   ├── app.py  # Flask application
+│   │   ├── database.py  # SQLite database handling
+│   │   ├── config.py  # Configuration settings
+│   │   ├── security/
+│   │   │   ├── iam_security_check.py  # IAM security script
+│   │   │   ├── s3_security_check.py  # S3 security script
+│   │   │   ├── guardduty_check.py  # GuardDuty security script
+│   │   │   ├── cloudtrail_check.py  # CloudTrail security script
+│   │   ├── static/
+│   │   │   ├── css/style.css  # Frontend styling
+│   │   │   ├── js/main.js  # Frontend interactivity
+│   │   ├── templates/
+│   │   │   ├── index.html  # Frontend layout
 ```
 
-## **1️⃣ Backend Files**
-
-### **`backend/app.py`**
-This is the Flask app that serves the security dashboard.
+## 1️⃣ Backend (Flask App)
+**File:** `backend/app.py`
 ```python
 from flask import Flask, render_template, jsonify
-import sqlite3
+from database import get_reports
 
 app = Flask(__name__)
-
-def get_security_logs():
-    conn = sqlite3.connect("security_reports.db")
-    c = conn.cursor()
-    c.execute("SELECT service, findings, timestamp FROM reports ORDER BY timestamp DESC LIMIT 10")
-    logs = [{"service": row[0], "status": "ALERT", "message": row[1], "timestamp": row[2]} for row in c.fetchall()]
-    conn.close()
-    return logs
 
 @app.route('/')
 def index():
@@ -48,14 +34,14 @@ def index():
 
 @app.route('/logs')
 def logs():
-    return jsonify(get_security_logs())
+    return jsonify(get_reports())
 
 if __name__ == '__main__':
     app.run(debug=True)
 ```
 
-### **`backend/database.py`**
-Handles storing security reports in SQLite.
+## 2️⃣ Database Handling
+**File:** `backend/database.py`
 ```python
 import sqlite3
 
@@ -88,86 +74,26 @@ def get_reports():
     c.execute("SELECT * FROM reports ORDER BY timestamp DESC")
     rows = c.fetchall()
     conn.close()
-    return rows
+    return [{"service": row[1], "status": "ALERT", "message": row[2]} for row in rows]
 
 init_db()
 ```
 
-### **Security Checks (`backend/security/`)
-
-Each security check script gathers AWS security data and saves it to the database.
-
-#### **`backend/security/iam_security_check.py`**
-```python
-import boto3
-from database import save_report
-
-iam = boto3.client('iam')
-
-def list_users_without_mfa():
-    users = iam.list_users()
-    users_without_mfa = []
-    
-    for user in users['Users']:
-        user_name = user['UserName']
-        mfa_devices = iam.list_mfa_devices(UserName=user_name)
-        if not mfa_devices['MFADevices']:
-            users_without_mfa.append(user_name)
-            save_report("IAM", f"User {user_name} has no MFA enabled")
-
-    return users_without_mfa
-
-list_users_without_mfa()
-```
-
-#### **`backend/security/cloudtrail_check.py`**
-```python
-import boto3
-from database import save_report
-
-cloudtrail = boto3.client('cloudtrail')
-
-def check_cloudtrail_events():
-    response = cloudtrail.lookup_events(MaxResults=5)
-    for event in response['Events']:
-        save_report("CloudTrail", f"🚨 Security Alert: {event['EventName']} by {event.get('Username', 'Unknown')} at {event['EventTime']}")
-
-check_cloudtrail_events()
-```
-
-#### **`backend/security/s3_security_check.py`**
-```python
-import boto3
-from database import save_report
-
-s3 = boto3.client('s3')
-
-def check_s3_buckets():
-    buckets = s3.list_buckets()
-    for bucket in buckets['Buckets']:
-        save_report("S3", f"Checked bucket {bucket['Name']} for security vulnerabilities.")
-
-check_s3_buckets()
-```
-
----
-
-## **2️⃣ Frontend Files**
-
-### **`templates/index.html`**
+## 3️⃣ Frontend (HTML)
+**File:** `backend/templates/index.html`
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyeVault Ops Security Dashboard</title>
+    <title>SkyeVault Security Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </head>
 <body>
     <div class="container">
-        <h1>SkyeVault Ops Security Dashboard</h1>
+        <h1>SkyeVault Security Dashboard</h1>
         <div id="terminal">
             <pre id="log-output">Loading security logs...</pre>
         </div>
@@ -176,13 +102,19 @@ check_s3_buckets()
 </html>
 ```
 
-### **`static/css/style.css`**
+## 4️⃣ CSS (Cyberpunk Styling)
+**File:** `backend/static/css/style.css`
 ```css
 body {
     background-color: black;
     color: #00ffcc;
     font-family: 'Courier New', monospace;
     text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    text-shadow: 0 0 10px #00ffcc;
 }
 
 #terminal {
@@ -194,10 +126,17 @@ body {
     text-align: left;
     min-height: 300px;
     overflow-y: auto;
+    font-size: 16px;
+    box-shadow: 0 0 15px #00ffcc;
+}
+
+pre {
+    white-space: pre-wrap;
 }
 ```
 
-### **`static/js/main.js`**
+## 5️⃣ JavaScript (Logs Fetching)
+**File:** `backend/static/js/main.js`
 ```javascript
 document.addEventListener('DOMContentLoaded', function () {
     function fetchLogs() {
@@ -207,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let logOutput = document.getElementById('log-output');
                 logOutput.innerHTML = "";
                 data.forEach(log => {
-                    logOutput.innerHTML += `[${log.timestamp}] [${log.service}] ${log.status} - ${log.message}\n`;
+                    logOutput.innerHTML += `[${log.service}] ${log.status} - ${log.message}\n`;
                 });
             })
             .catch(error => console.error('Error fetching logs:', error));
@@ -218,29 +157,22 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 ```
 
----
-
-## **3️⃣ Running the Dashboard**
-### **Install Dependencies:**
+## 6️⃣ Running the Project
+### Install Flask:
 ```sh
-pip install flask boto3
+pip install flask
 ```
-### **Run the Flask App:**
+
+### Run Flask App:
 ```sh
 python backend/app.py
 ```
-### **View in Browser:**
-- Open **http://127.0.0.1:5000/** in your browser.
 
----
+### Open in Browser:
+Go to `http://127.0.0.1:5000/`
 
-## **4️⃣ Upload to GitHub**
+## 7️⃣ Upload to GitHub
 ```sh
-git init
 git add .
-git commit -m "Initial commit for SkyeVault Ops Security Dashboard"
-git branch -M main
-git remote add origin https://github.com/SkyeVault/Main.git
-git push -u origin main
-```
-
+git commit -m "Integrated SkyeVault AWS Security Dashboard"
+git push origin main
