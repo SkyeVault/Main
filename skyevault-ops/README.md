@@ -1,34 +1,93 @@
-# SkyeVault-Ops
+# 🔥 SkyeVault Ops: Ethical Hacking & Cloud Security Lab Guide  
+📌 *A Complete Guide to My AWS Security & Penetration Testing Project*  
 
-## Mission
+---
 
-SkyeVault-Ops is focused on building a secure, scalable, and efficient cloud security framework with AWS. Our goal is to simplify cloud security operations while improving visibility, automation, and compliance.
+## **🔍 Introduction**  
+Welcome to **SkyeVault Ops**, a security automation and penetration testing framework designed for **ethical hacking, cloud security auditing, and AWS penetration testing**.  
 
-We believe in practical security solutions that bridge the gap between learning and real-world application. Through structured documentation, hands-on labs, and best-practice implementations, SkyeVault-Ops provides clear, actionable steps to help individuals and organizations secure their AWS environments.
+This repository is a **live demonstration of my AWS security journey**, showing **real-world security automation, penetration testing, and ethical hacking workflows**.  
 
-This project is built with the idea that security should be accessible and well-documented, making it easier to understand the risks and protections available within AWS.
+---
 
-## Final Product
+## **🎯 Mission: Ethical Hacking & Cloud Security Testing**  
+The goal of **SkyeVault Ops** is to create a **self-sufficient security testing framework** that enables:  
+✅ **Continuous AWS security monitoring**  
+✅ **Automated penetration testing & Red Team exercises**  
+✅ **Real-world vulnerability assessment & ethical hacking simulations**  
 
-SkyeVault-Ops will deliver a comprehensive AWS security toolkit with three core components:
+This project will grow as I continue **expanding my cybersecurity expertise** and developing **automation tools for AWS security**.
 
-### 1. SkyeVault Security Toolkit  
-A collection of automated AWS security scripts and configurations designed to:  
-- Strengthen AWS security (IAM, S3, EC2, VPC, CloudTrail, GuardDuty, and more)  
-- Detect and prevent common misconfigurations  
-- Implement best-practice security policies  
-- Automate compliance monitoring  
+---
 
-### 2. AWS Security Labs & Documentation  
-A structured knowledge base that includes:  
-- Step-by-step AWS security guides  
-- Real-world security case studies  
-- Practical walkthroughs for securing AWS environments  
+## **🛠️ Features & Capabilities**  
 
-### 3. SkyeCloud Sandbox Environment (Planned Development)  
-A deployable AWS security lab for hands-on learning, featuring:  
-- Pre-configured AWS services with intentional security vulnerabilities  
-- Interactive challenges and security testing exercises  
-- A safe environment to practice real-world cloud security techniques  
+| **Feature**        | **Description** |
+|--------------------|----------------|
+| ✅ **Security Monitoring (Blue Team)**  | Automates AWS security audits (IAM, S3, EC2, CloudTrail) |
+| 🚀 **Penetration Testing (Red Team)**  | Simulates cloud attacks, privilege escalation, network scans |
+| 🔐 **IAM Security Auditing**  | Detects overprivileged users, misconfigured roles, and weak permissions |
+| 🕵️ **AWS Recon & Enumeration** | Identifies EC2 instances, S3 buckets, exposed services |
+| 🌐 **Network Scanning**  | Uses `nmap` to detect open ports & attack surfaces |
+| 📂 **S3 Bucket Security** | Scans for public buckets, tests write access vulnerabilities |
+| 🔒 **CloudTrail & GuardDuty Analysis**  | Ensures AWS logs & threat detection are working properly |
+| 📊 **Automated Reports** | Generates security & pentest logs, stored in AWS S3 |
 
-SkyeVault-Ops is a growing project aimed at simplifying AWS security while helping users build confidence in managing secure cloud environments.
+---
+
+## **🔴 Red Team vs. 🔵 Blue Team Structure**  
+
+To **separate offensive and defensive security**, SkyeVault Ops is organized into **two main security teams**:  
+
+### **🔴 Red Team (Penetration Testing & Exploitation)**  
+- **`recon.py`** → Identifies AWS resources (EC2, S3, IAM, API endpoints)  
+- **`network_scan.py`** → Runs `nmap` on EC2 instances to detect open ports  
+- **`s3_exploit.py`** → Tests public S3 buckets for write/read vulnerabilities  
+- **`privilege_escalation.py`** → Identifies IAM roles that allow privilege escalation  
+- **`attack_simulation.py`** → Runs AWS attack simulations to test GuardDuty & logging  
+
+### **🔵 Blue Team (Security Monitoring & Defense)**  
+- **`iam_checker.py`** → Scans for weak IAM roles, missing MFA, excessive permissions  
+- **`cloudtrail_checker.py`** → Ensures logging & GuardDuty are enabled  
+- **`s3_auditor.py`** → Detects publicly accessible S3 buckets  
+- **`ec2_security.py`** → Audits EC2 security groups & firewall misconfigurations  
+- **`logging.py`** → Tracks security events & pentest activity  
+
+---
+
+## **📂 Folder Structure**
+```plaintext
+skyevault-ops/
+│── backend/
+│   ├── security/
+│   │   ├── red_team/   # Offensive Security (Pentesting)
+│   │   │   ├── recon.py              
+│   │   │   ├── network_scan.py       
+│   │   │   ├── s3_exploit.py         
+│   │   │   ├── privilege_escalation.py  
+│   │   │   ├── attack_simulation.py  
+│   │   │
+│   │   ├── blue_team/  # Defensive Security (Monitoring)
+│   │   │   ├── iam_checker.py        
+│   │   │   ├── cloudtrail_checker.py 
+│   │   │   ├── s3_auditor.py         
+│   │   │   ├── ec2_security.py       
+│   │   │   ├── logging.py            
+│   │   │
+│   │   ├── __init__.py
+│   │
+│   ├── reporting/  # Security logs & reporting
+│   │   ├── generate_reports.py  
+│   │   ├── s3_storage.py        
+│   │   ├── sns_alerts.py        
+│   │   ├── __init__.py
+│   │
+│   ├── config.py  # Configuration settings
+│   ├── utils.py   # Shared helper functions
+│   ├── main.py    # Toggles between Red Team & Blue Team testing
+│
+│── frontend/ (To be built later)
+│── docs/ (Documentation & user guides)
+│── README.md  (Project overview & setup instructions)
+│── requirements.txt  (Python dependencies)
+│── .gitignore
