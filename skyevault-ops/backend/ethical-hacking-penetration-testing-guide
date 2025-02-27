@@ -1,33 +1,36 @@
 skyevault-ops/
 │── backend/
-│   ├── security_monitoring/  # Blue Team (Defensive Security)
-│   │   ├── iam_checker.py      # Checks IAM roles, MFA, privilege escalation risks
-│   │   ├── cloudtrail_checker.py # Ensures logging & GuardDuty are enabled
-│   │   ├── s3_auditor.py       # Detects public S3 buckets & misconfigurations
-│   │   ├── ec2_security.py     # Checks security groups, open ports, vulnerabilities
-│   │   ├── logging.py          # Handles security alerts & event tracking
+│   ├── security/
+│   │   ├── red_team/   # Offensive Security (Pentesting)
+│   │   │   ├── recon.py              # AWS reconnaissance & enumeration
+│   │   │   ├── network_scan.py       # nmap scanning for open ports
+│   │   │   ├── s3_exploit.py         # S3 bucket misconfiguration testing
+│   │   │   ├── privilege_escalation.py  # IAM role privilege escalation checks
+│   │   │   ├── attack_simulation.py  # Simulate real-world AWS attacks
+│   │   │   ├── __init__.py
+│   │   │
+│   │   ├── blue_team/  # Defensive Security (Monitoring)
+│   │   │   ├── iam_checker.py        # IAM misconfiguration detection
+│   │   │   ├── cloudtrail_checker.py # Logging & GuardDuty verification
+│   │   │   ├── s3_auditor.py         # S3 security auditing
+│   │   │   ├── ec2_security.py       # Security group & open ports audit
+│   │   │   ├── logging.py            # Track security events
+│   │   │   ├── __init__.py
+│   │   │
 │   │   ├── __init__.py
 │   │
-│   ├── penetration_testing/  # Red Team (Offensive Security)
-│   │   ├── recon.py           # Finds AWS resources, open services
-│   │   ├── network_scan.py    # Runs nmap on EC2 instances
-│   │   ├── s3_exploit.py      # Attempts public bucket write/read
-│   │   ├── privilege_escalation.py # Checks for IAM misconfigurations & lateral movement
-│   │   ├── attack_simulation.py # Simulates real-world AWS attacks
-│   │   ├── __init__.py
-│   │
-│   ├── reporting/  # Logging & Data Analysis
+│   ├── reporting/  # Security logs & reporting
 │   │   ├── generate_reports.py  # Creates security & pentest reports
-│   │   ├── s3_storage.py        # Saves logs to an S3 bucket
+│   │   ├── s3_storage.py        # Stores reports in AWS S3
 │   │   ├── sns_alerts.py        # Sends notifications via AWS SNS
 │   │   ├── __init__.py
 │   │
-│   ├── config.py  # Configuration settings (AWS credentials, logging settings)
+│   ├── config.py  # Configuration settings (AWS credentials, logging)
 │   ├── utils.py   # Shared helper functions
-│   ├── main.py    # Main execution script, toggles between Pentest Mode & Security Mode
+│   ├── main.py    # Toggles between Red Team & Blue Team testing
 │
 │── frontend/ (To be built later)
-│── docs/ (Documentation for how to use SkyeVault Ops)
+│── docs/ (Documentation & user guides)
 │── README.md  (Project overview & setup instructions)
 │── requirements.txt  (Python dependencies)
 │── .gitignore
