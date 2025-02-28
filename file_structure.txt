@@ -1,49 +1,59 @@
 skyevault-ops
-├── README.md
-├── backend
-│   ├── config.py
-│   ├── docs
-│   │   └── readme.md
-│   ├── ethical-hacking-penetration-testing-guide
-│   ├── main.py
-│   ├── reporting
-│   │   ├── __init__.py
-│   │   ├── generate_reports.py
-│   │   ├── s3_storage.py
-│   │   └── sns_alerts.py
-│   ├── scripts
-│   │   └── requirements.txt
-│   ├── security
-│   │   ├── __init__.py
-│   │   ├── __pycache__
-│   │   │   └── database.cpython-38.pyc
-│   │   ├── blue_team
-│   │   │   ├── cloudtrail_checker.py
-│   │   │   ├── database.py
-│   │   │   ├── guardduty_check.py
-│   │   │   ├── iam_security_checker.py
-│   │   │   ├── logging.py
-│   │   │   ├── s3_auditor.py
-│   │   │   └── security_reports.db
-│   │   └── red_team
-│   │       ├── attack_simulation.py
-│   │       ├── network_scan.py
-│   │       ├── privilege_escalation.py
-│   │       ├── recon.py
-│   │       └── s3_exploit.py
-│   ├── security_reports.db
-│   ├── setup_skyevault_structure.py
-│   └── utils.py
-├── docs
-│   ├── README.md
-│   ├── api_docs
-│   └── setup.md
-├── frontend
-│   ├── package.json
-│   ├── public
-│   └── src
-├── progress-log.md
-├── requirements.txt
-└── scripts
-
-15 directories, 32 files
+skyevault-ops/.DS_Store
+skyevault-ops/frontend
+skyevault-ops/frontend/public
+skyevault-ops/frontend/package.json
+skyevault-ops/frontend/src
+skyevault-ops/requirements.txt
+skyevault-ops/progress-log.md
+skyevault-ops/backend
+skyevault-ops/backend/reporting
+skyevault-ops/backend/reporting/generate_reports.py
+skyevault-ops/backend/reporting/.DS_Store
+skyevault-ops/backend/reporting/__init__.py
+skyevault-ops/backend/reporting/sns_alerts.py
+skyevault-ops/backend/reporting/s3_storage.py
+skyevault-ops/backend/.DS_Store
+skyevault-ops/backend/config.py
+skyevault-ops/backend/security
+skyevault-ops/backend/security/blue_team
+skyevault-ops/backend/security/blue_team/cloudtrail_checker.py
+skyevault-ops/backend/security/blue_team/.DS_Store
+skyevault-ops/backend/security/blue_team/iam_security_checker.py
+skyevault-ops/backend/security/blue_team/database.py
+skyevault-ops/backend/security/blue_team/__pycache__
+skyevault-ops/backend/security/blue_team/__pycache__/database.cpython-38.pyc
+skyevault-ops/backend/security/blue_team/__pycache__/logging.cpython-38.pyc
+skyevault-ops/backend/security/blue_team/security_logging.py
+skyevault-ops/backend/security/blue_team/security_reports.db
+skyevault-ops/backend/security/blue_team/guardduty_check.py
+skyevault-ops/backend/security/blue_team/s3_auditor.py
+skyevault-ops/backend/security/.DS_Store
+skyevault-ops/backend/security/database.py
+skyevault-ops/backend/security/red_team
+skyevault-ops/backend/security/red_team/.DS_Store
+skyevault-ops/backend/security/red_team/privilege_escalation.py
+skyevault-ops/backend/security/red_team/network_scan.py
+skyevault-ops/backend/security/red_team/attack_simulation.py
+skyevault-ops/backend/security/red_team/s3_exploit.py
+skyevault-ops/backend/security/red_team/recon.py
+skyevault-ops/backend/security/__init__.py
+skyevault-ops/backend/security/__pycache__
+skyevault-ops/backend/security/__pycache__/database.cpython-38.pyc
+skyevault-ops/backend/security/security_reports.db
+skyevault-ops/backend/security/.gitignore
+skyevault-ops/backend/security/view_reports.py
+skyevault-ops/backend/setup_skyevault_structure.py
+skyevault-ops/backend/security_reports.db
+skyevault-ops/backend/utils.py
+skyevault-ops/backend/scripts
+skyevault-ops/backend/scripts/.DS_Store
+skyevault-ops/backend/scripts/requirements.txt
+skyevault-ops/backend/main.py
+skyevault-ops/backend/ethical-hacking-penetration-testing-guide
+skyevault-ops/docs
+skyevault-ops/docs/setup.md
+skyevault-ops/docs/README.md
+skyevault-ops/docs/api_docs
+skyevault-ops/README.md
+skyevault-ops/scripts
