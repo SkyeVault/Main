@@ -1,0 +1,49 @@
+skyevault-ops
+├── README.md
+├── backend
+│   ├── config.py
+│   ├── docs
+│   │   └── readme.md
+│   ├── ethical-hacking-penetration-testing-guide
+│   ├── main.py
+│   ├── reporting
+│   │   ├── __init__.py
+│   │   ├── generate_reports.py
+│   │   ├── s3_storage.py
+│   │   └── sns_alerts.py
+│   ├── scripts
+│   │   └── requirements.txt
+│   ├── security
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   └── database.cpython-38.pyc
+│   │   ├── blue_team
+│   │   │   ├── cloudtrail_checker.py
+│   │   │   ├── database.py
+│   │   │   ├── guardduty_check.py
+│   │   │   ├── iam_security_checker.py
+│   │   │   ├── logging.py
+│   │   │   ├── s3_auditor.py
+│   │   │   └── security_reports.db
+│   │   └── red_team
+│   │       ├── attack_simulation.py
+│   │       ├── network_scan.py
+│   │       ├── privilege_escalation.py
+│   │       ├── recon.py
+│   │       └── s3_exploit.py
+│   ├── security_reports.db
+│   ├── setup_skyevault_structure.py
+│   └── utils.py
+├── docs
+│   ├── README.md
+│   ├── api_docs
+│   └── setup.md
+├── frontend
+│   ├── package.json
+│   ├── public
+│   └── src
+├── progress-log.md
+├── requirements.txt
+└── scripts
+
+15 directories, 32 files
