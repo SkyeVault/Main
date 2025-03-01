@@ -35,6 +35,7 @@ Integrating security testing into CI/CD pipelines
 Expanding DevSecOps best practices for scalable cloud applications
 
 Connect & Collaborate
+
 Interested in cloud security, automation, or full-stack security applications? Check out my repositories and feel free to reach out.
 
 ## My Journey
