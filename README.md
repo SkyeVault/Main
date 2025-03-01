@@ -15,13 +15,15 @@ Full-stack developer and cloud security engineer with a focus on secure, scalabl
 
 Skills & Technologies
 
-Frontend: HTML, CSS, JavaScript (React, Vue)
-Backend: Python (Flask, FastAPI), Node.js
-Cloud & Security: AWS (IAM, GuardDuty, CloudTrail, WAF)
-Infrastructure: Docker, Terraform, Kubernetes
-Automation & CI/CD: GitHub Actions, Jenkins, Ansible
-Security Operations: Red Team Simulations, Blue Team Monitoring
+- Frontend: HTML, CSS, JavaScript (React, Vue)
+- Backend: Python (Flask, FastAPI), Node.js
+- Cloud & Security: AWS (IAM, GuardDuty, CloudTrail, WAF)
+- Infrastructure: Docker, Terraform, Kubernetes
+- Automation & CI/CD: GitHub Actions, Jenkins, Ansible
+- Security Operations: Red Team Simulations, Blue Team Monitoring
+
 Current Focus
+
 Building a cloud security dashboard for real-time monitoring
 Automating security workflows with AWS and Python
 Developing full-stack security applications with integrated logging
