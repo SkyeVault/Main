@@ -122,3 +122,120 @@ print(get_reports())
 ✅ **Git repository is clean and synced with GitHub.**
 ✅ **Database logging works as expected.**
 
+Sure! Here’s your full log formatted in Markdown. You can copy and paste this into a file named notes-veylan-log.md.
+
+# 📜 SkyeVault Ops Setup & Debugging Log
+**Date:** *February 28, 2025*  
+**Objective:** *Set up and debug the Cyberpunk AWS Security Dashboard using Flask, HTML, CSS, JavaScript, and Python API.*  
+
+---
+
+## 1️⃣ Project Initialization  
+### ✅ Step 1: Set Up Flask & Directory Structure  
+📌 First, we set up the **Flask app structure** with `templates/` for HTML and `static/` for CSS & JS.  
+
+### **Project Structure**  
+
+/skyevault-ops
+│── /templates
+│    ├── index.html  # Flask HTML template
+│── /static
+│    ├── /css
+│    │    ├── style.css  # UI styling
+│    ├── /js
+│    │    ├── main.js  # JavaScript for logs & graphs
+│── app.py  # Flask backend
+│── requirements.txt  # Python dependencies
+│── README.md  # Project Documentation
+
+---
+
+## 2️⃣ Flask Backend - `app.py`  
+### ✅ Step 2: Creating the Flask API  
+We created the Flask app (`app.py`) to:  
+- **Render the dashboard (`index.html`)**  
+- **Serve security logs as JSON (`/logs`)**  
+- **Load static files (`style.css`, `main.js`)**  
+
+### **Final `app.py`**  
+```python
+from flask import Flask, render_template, jsonify
+
+app = Flask(__name__, template_folder="templates", static_folder="static")
+
+# Simulated AWS security logs
+def get_security_logs():
+    return [
+        {"service": "IAM", "status": "WARNING", "message": "Excessive IAM permissions detected."},
+        {"service": "CloudTrail", "status": "INFO", "message": "New API call recorded."},
+        {"service": "GuardDuty", "status": "CRITICAL", "message": "Possible credential compromise detected!"},
+        {"service": "WAF", "status": "INFO", "message": "Web request blocked by firewall."}
+    ]
+
+@app.route('/')
+def index():
+    return render_template("index.html")  # Serve the HTML Dashboard
+
+@app.route('/logs')
+def logs():
+    return jsonify(get_security_logs())  # Serve logs as JSON
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+3️⃣ HTML - index.html
+
+✅ Step 3: Creating the Dashboard Layout
+
+📌 We added sections for logs, graphs, and Red Team buttons.
+
+Final index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk AWS Security Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Graphs -->
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ Cyberpunk AWS Security Dashboard ⚡</h1>
+
+        <!-- Security Logs -->
+        <div class="box">
+            <h2>📜 Security Logs</h2>
+            <div id="terminal">
+                <pre id="log-output">Loading security logs...</pre>
+            </div>
+        </div>
+
+        <!-- Graphs -->
+        <div class="box">
+            <h2>📊 Security Insights</h2>
+            <canvas id="securityGraph"></canvas>
+        </div>
+
+        <!-- Red Team Tools -->
+        <div class="box">
+            <h2>🛠️ Red Team Tools</h2>
+            <button class="red-button" onclick="launchScan()">🔍 Network Scan</button>
+            <button class="red-button" onclick="privilegeEscalation()">⚠️ Privilege Escalation Test</button>
+            <button class="red-button" onclick="runExploit()">💥 Exploit S3 Bucket</button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+This log documents everything from setting up Flask to debugging 
+
+`  
+
+
+
+
+
