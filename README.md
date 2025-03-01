@@ -11,7 +11,7 @@ This repository serves as the central hub for my cloud security journey, documen
 
 ## Lorelei Noble | Full-Stack DevSecOps Engineer
 
-Full-stack developer and cloud security engineer with a focus on secure, scalable, and automated solutions. Experienced in building full-stack applications, implementing cloud security best practices, and integrating DevSecOps automation into CI/CD pipelines. Skilled in Python, AWS security, infrastructure as code, and both offensive and defensive security strategies.
+Full-stack developer and cloud security engineer with a focus on secure, scalable, and automated solutions. Currently building full-stack applications, implementing cloud security best practices, and integrating DevSecOps automation into CI/CD pipelines. Skilled in Python, AWS security, infrastructure as code, and both offensive and defensive security strategies.
 
 Skills & Technologies
 
