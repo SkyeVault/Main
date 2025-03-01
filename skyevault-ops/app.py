@@ -1,23 +1,53 @@
+import subprocess
+import json
+import os
 from flask import Flask, render_template, jsonify
 
-app = Flask(__name__, template_folder="templates", static_folder="static")  # Ensure correct folders
+app = Flask(__name__, template_folder="templates", static_folder="static")
 
-# Simulated AWS security logs (Replace with real AWS API calls later)
-def get_security_logs():
-    return [
-        {"service": "IAM", "status": "WARNING", "message": "Excessive IAM permissions detected."},
-        {"service": "CloudTrail", "status": "INFO", "message": "New API call recorded."},
-        {"service": "GuardDuty", "status": "CRITICAL", "message": "Possible credential compromise detected!"},
-        {"service": "WAF", "status": "INFO", "message": "Web request blocked by firewall."}
+LOG_FILE = "security_logs.json"
+
+def run_blue_team_scripts():
+    """ Runs Blue Team security scripts and logs results. """
+    scripts = [
+        "backend/security/blue_team/iam_security_checker.py",
+        "backend/security/blue_team/cloudtrail_checker.py",
+        "backend/security/blue_team/guardduty_check.py",
+        "backend/security/blue_team/s3_auditor.py"
     ]
+    
+    results = []
+    
+    for script in scripts:
+        try:
+            result = subprocess.run(["python3", script], capture_output=True, text=True)
+            output = result.stdout.strip() if result.stdout else "No output"
+            results.append({"script": script, "output": output})
+        except Exception as e:
+            results.append({"script": script, "output": f"Error running script: {str(e)}"})
+    
+    # Save results to a JSON log file
+    with open(LOG_FILE, "w") as f:
+        json.dump(results, f, indent=4)
 
 @app.route('/')
 def index():
-    return render_template("index.html")  # Ensure Flask renders the template properly
+    return render_template("index.html")
 
 @app.route('/logs')
 def logs():
-    return jsonify(get_security_logs())  # Fixed function returning logs properly
+    """ Fetch security logs from the JSON file. """
+    if os.path.exists(LOG_FILE):
+        with open(LOG_FILE, "r") as f:
+            return jsonify(json.load(f))
+    return jsonify([])
+
+@app.route('/run-blue-team')
+def run_blue_team():
+    """ API to trigger the Blue Team security checks manually. """
+    run_blue_team_scripts()
+    return jsonify({"status": "Blue Team security scripts executed!"})
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Run Flask locally with debugging
+    run_blue_team_scripts()  # Run once at startup
+    app.run(debug=True)
