@@ -1,9 +1,9 @@
-# 🔥 SkyeVault Ops: Ethical Hacking & Cloud Security Lab Guide  
-📌 *A Complete Guide to My AWS Security & Penetration Testing Project*  
+# SkyeVault Ops: Ethical Hacking & Cloud Security Lab Guide  
+*A Complete Guide to My AWS Security & Penetration Testing Project*  
 
 ---
 
-## **🔍 Introduction**  
+## ** Introduction**  
 Welcome to **SkyeVault Ops**, a security automation and penetration testing framework designed for **ethical hacking, cloud security auditing, and AWS penetration testing**.  
 
 This repository is a **live demonstration of my AWS security journey**, showing **real-world security automation, penetration testing, and ethical hacking workflows**.  
