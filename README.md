@@ -27,10 +27,12 @@ Current Focus
 Building a cloud security dashboard for real-time monitoring
 Automating security workflows with AWS and Python
 Developing full-stack security applications with integrated logging
+
 What I’m Working On
 Automating cloud security with AWS and Python
 Integrating security testing into CI/CD pipelines
 Expanding DevSecOps best practices for scalable cloud applications
+
 Connect & Collaborate
 Interested in cloud security, automation, or full-stack security applications? Check out my repositories and feel free to reach out.
 
