@@ -121,8 +121,7 @@ print(get_reports())
 ✅ **All scripts are working and saving security events.**
 ✅ **Git repository is clean and synced with GitHub.**
 ✅ **Database logging works as expected.**
-
-Sure! Here’s your full log formatted in Markdown. You can copy and paste this into a file named notes-veylan-log.md.
+ 
 
 # 📜 SkyeVault Ops Setup & Debugging Log
 **Date:** *February 28, 2025*  
@@ -135,7 +134,7 @@ Sure! Here’s your full log formatted in Markdown. You can copy and paste this 
 📌 First, we set up the **Flask app structure** with `templates/` for HTML and `static/` for CSS & JS.  
 
 ### **Project Structure**  
-
+```
 /skyevault-ops
 │── /templates
 │    ├── index.html  # Flask HTML template
@@ -147,12 +146,12 @@ Sure! Here’s your full log formatted in Markdown. You can copy and paste this 
 │── app.py  # Flask backend
 │── requirements.txt  # Python dependencies
 │── README.md  # Project Documentation
-
+```
 ---
 
 ## 2️⃣ Flask Backend - `app.py`  
 ### ✅ Step 2: Creating the Flask API  
-We created the Flask app (`app.py`) to:  
+created the Flask app (`app.py`) to:  
 - **Render the dashboard (`index.html`)**  
 - **Serve security logs as JSON (`/logs`)**  
 - **Load static files (`style.css`, `main.js`)**  
@@ -182,6 +181,7 @@ def logs():
 
 if __name__ == '__main__':
     app.run(debug=True)
+```
 
 3️⃣ HTML - index.html
 
@@ -190,7 +190,7 @@ if __name__ == '__main__':
 📌 We added sections for logs, graphs, and Red Team buttons.
 
 Final index.html
-
+```
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -234,7 +234,7 @@ Final index.html
 This log documents everything from setting up Flask to debugging 
 
 `  
-
+```
 
 
 
