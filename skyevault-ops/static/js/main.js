@@ -6,44 +6,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 let logOutput = document.getElementById('log-output');
                 logOutput.innerHTML = "";
                 data.forEach(log => {
-                    logOutput.innerHTML += `[${log.service}] ${log.status} - ${log.message}\n`;
+                    logOutput.innerHTML += `[${log.script}] ${log.output}\n`;
                 });
             })
             .catch(error => console.error('Error fetching logs:', error));
     }
 
-    setInterval(fetchLogs, 5000);
+    setInterval(fetchLogs, 10000);  // Refresh every 10 seconds
     fetchLogs();
 
-    // Chart.js Placeholder for Security Insights Graph
-    const ctx = document.getElementById('securityGraph').getContext('2d');
-    const securityChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['IAM', 'CloudTrail', 'GuardDuty', 'WAF'],
-            datasets: [{
-                label: 'Threat Level',
-                data: [3, 1, 5, 2],  // Simulated Data
-                backgroundColor: ['red', 'yellow', 'purple', 'blue']
-            }]
-        },
-        options: {
-            scales: {
-                y: { beginAtZero: true }
-            }
-        }
+    // Button to manually run security scripts
+    document.getElementById("run-blue-team").addEventListener("click", function () {
+        fetch('/run-blue-team')
+            .then(response => response.json())
+            .then(data => alert(data.status))
+            .catch(error => console.error('Error running Blue Team scripts:', error));
     });
-
-    // Red Team Buttons
-    window.launchScan = function () {
-        alert("🚀 Running Network Scan...");
-    };
-
-    window.privilegeEscalation = function () {
-        alert("⚠️ Attempting Privilege Escalation...");
-    };
-
-    window.runExploit = function () {
-        alert("💥 Exploiting S3 Bucket...");
-    };
 });
+
