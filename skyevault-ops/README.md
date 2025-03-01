@@ -57,40 +57,69 @@ To **separate offensive and defensive security**, SkyeVault Ops is organized int
 
 ## **📂 Folder Structure**
 ```plaintext
-skyevault-ops/
-│── backend/
-│   ├── security/
-│   │   ├── red_team/   # Offensive Security (Pentesting)
-│   │   │   ├── recon.py              
-│   │   │   ├── network_scan.py       
-│   │   │   ├── s3_exploit.py         
-│   │   │   ├── privilege_escalation.py  
-│   │   │   ├── attack_simulation.py  
-│   │   │
-│   │   ├── blue_team/  # Defensive Security (Monitoring)
-│   │   │   ├── iam_checker.py        
-│   │   │   ├── cloudtrail_checker.py 
-│   │   │   ├── s3_auditor.py         
-│   │   │   ├── ec2_security.py       
-│   │   │   ├── logging.py            
-│   │   │
-│   │   ├── __init__.py
-│   │
-│   ├── reporting/  # Security logs & reporting
-│   │   ├── generate_reports.py  
-│   │   ├── s3_storage.py        
-│   │   ├── sns_alerts.py        
-│   │   ├── __init__.py
-│   │
-│   ├── config.py  # Configuration settings
-│   ├── utils.py   # Shared helper functions
-│   ├── main.py    # Toggles between Red Team & Blue Team testing
-│
-│── frontend/ (To be built later)
-│── docs/ (Documentation & user guides)
-│── README.md  (Project overview & setup instructions)
-│── requirements.txt  (Python dependencies)
-│── .gitignore
+└── skyevault-ops
+    ├── README.md
+    ├── __pycache__
+    │   └── app.cpython-38.pyc
+    ├── app.py
+    ├── backend
+    │   ├── api.py
+    │   ├── config.py
+    │   ├── ethical-hacking-penetration-testing-guide
+    │   ├── main.py
+    │   ├── reporting
+    │   │   ├── __init__.py
+    │   │   ├── generate_reports.py
+    │   │   ├── s3_storage.py
+    │   │   └── sns_alerts.py
+    │   ├── security
+    │   │   ├── SELECT
+    │   │   ├── __init__.py
+    │   │   ├── __pycache__
+    │   │   │   └── database.cpython-38.pyc
+    │   │   ├── blue_team
+    │   │   │   ├── __pycache__
+    │   │   │   │   ├── database.cpython-38.pyc
+    │   │   │   │   └── logging.cpython-38.pyc
+    │   │   │   ├── blue_team_logging.py
+    │   │   │   ├── cloudtrail_checker.py
+    │   │   │   ├── database.py
+    │   │   │   ├── guardduty_check.py
+    │   │   │   ├── iam_security_checker.py
+    │   │   │   ├── s3_auditor.py
+    │   │   │   └── security_reports.db
+    │   │   ├── database.py
+    │   │   ├── red_team
+    │   │   │   ├── attack_simulation.py
+    │   │   │   ├── network_scan.py
+    │   │   │   ├── privilege_escalation.py
+    │   │   │   ├── recon.py
+    │   │   │   └── s3_exploit.py
+    │   │   ├── security_reports.db
+    │   │   └── view_reports.py
+    │   ├── setup_skyevault_structure.py
+    │   └── utils.py
+    ├── docs
+    │   ├── README.md
+    │   ├── api_docs
+    │   └── setup.md
+    ├── frontend
+    │   ├── package.json
+    │   ├── public
+    │   └── src
+    ├── progress-log.md
+    ├── requirements.txt
+    ├── scripts
+    ├── security_logs.json
+    ├── security_reports.db
+    ├── static
+    │   ├── css
+    │   │   └── style.css
+    │   └── js
+    │       └── main.js
+    └── templates
+        └── index.html
+
 
 📝 Ethical Hacking Guidelines
 
