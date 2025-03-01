@@ -63,6 +63,7 @@ crontab -e
 This opens your crontab file in an editor (default: nano).
 Crontab Syntax
 A crontab line follows this format:
+```sh
 * * * * * command_to_run
 - - - - -
 | | | | |
@@ -71,23 +72,9 @@ A crontab line follows this format:
 | | +-------- Day of the month (1 - 31)
 | +---------- Hour (0 - 23)
 +------------ Minute (0 - 59)
-Example Jobs
-Schedule
-Command
-Description
-0 * * * *
-echo "Hello" >> ~/log.txt
-Runs every hour
-30 7 * * 1
-backup.sh
-Runs every Monday at 7:30 AM
-*/15 * * * *
-check.sh
-Runs every 15 minutes
-0 0 1 * *
-logrotate
-Runs on the 1st of every month
-Remove Crontab
+```
+
+
 To remove all scheduled jobs:
 ```sh
 crontab -r
