@@ -6,14 +6,37 @@
     <title>SkyeVault Ops - AWS Security Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', 
 filename='css/style.css') }}">
-    <script src="{{ url_for('static', filename='js/main.js') }}" 
+    <script src="https://cdn.jsdelivr.net/npn/chart.js/main.js') }}" 
 defer></script>
 </head>
 <body>
     <div class="container">
-        <h1>SkyeVault Ops - Security Dashboard</h1>
-        <div id="terminal">
-            <pre id="log-output">Loading security logs...</pre>
+        <h1>⚡ SkyeVault Ops -  AWS Security Dashboard ⚡</h1>
+
+        <!-- Security Log Terminal -->
+        <div class="box">
+            <h2>📜 Security Logs</h2>
+            <div id="terminal">
+                <pre id="log-output">Loading security logs...</pre>
+            </div>
+        </div>
+
+        <!-- Graphs Section -->
+        <div class="box">
+            <h2>📊 Security Insights</h2>
+            <canvas id="securityGraph"></canvas>  <!-- Placeholder for 
+Graph -->
+        </div>
+
+        <!-- Red Team Services -->
+        <div class="box">
+            <h2>🛠️ Red Team Tools</h2>
+            <button class="red-button" onclick="launchScan()">🔍 Network 
+Scan</button>
+            <button class="red-button" onclick="privilegeEscalation()">⚠️ 
+Privilege Escalation Test</button>
+            <button class="red-button" onclick="runExploit()">💥 Exploit 
+S3 Bucket</button>
         </div>
     </div>
 </body>
