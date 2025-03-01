@@ -9,7 +9,7 @@ This repository serves as the central hub for my cloud security journey, documen
 - **Scripts/** - Useful scripts for security monitoring, IAM automation, and infrastructure hardening.
 - **SkyeVault Ops App** - automated red/blue team security dashboard app
 
-##Lorelei Noble | Full-Stack DevSecOps Engineer
+## Lorelei Noble | Full-Stack DevSecOps Engineer
 
 Full-stack developer and cloud security engineer with a focus on secure, scalable, and automated solutions. Experienced in building full-stack applications, implementing cloud security best practices, and integrating DevSecOps automation into CI/CD pipelines. Skilled in Python, AWS security, infrastructure as code, and both offensive and defensive security strategies.
 
