@@ -1,4 +1,4 @@
-devlog
+
 DevLog 001: The Shift to Rust and Transparent DevOps
 
 Where We’ve Been
