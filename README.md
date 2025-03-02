@@ -7,7 +7,7 @@ This repository serves as the central hub for my cloud security journey, documen
 - **AWS-Security-Labs/** - Hands-on exercises and experiments related to AWS security.
 - **Cloud-Security-Projects/** - Real-world cloud security configurations and automation scripts.
 - **Scripts/** - Useful scripts for security monitoring, IAM automation, and infrastructure hardening.
-- **SkyeVault Ops App** - automated red/blue team security dashboard app
+- **SkyeVault-ops/** - AWS Security dashboard in development - automated red/blue team security
 
 ## Lorelei Noble | Full-Stack DevSecOps Engineer
 
