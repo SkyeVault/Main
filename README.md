@@ -113,3 +113,8 @@ Current file structure:
     └── templates
         └── index.html
 ```
+
+SkyeVault Ops: The Shift to Rust & DevOps Transparency
+
+Vision Statement:
+SkyeVault Ops is evolving into a fully Rust-based cloud security and automation project with a focus on high-performance security tooling and modern DevOps practices. To support this, we’re embracing transparent development workflows and exploring a transition to GitLab for CI/CD and project management.
