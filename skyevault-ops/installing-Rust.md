@@ -199,4 +199,184 @@ For any issues, check the [Rust documentation](https://doc.rust-lang.org/book/) 
 rustc --explain <error_code>
 ```
 
+# SkyeVault Ops - Rust Basics: Commands & Program Execution
+
+## Overview
+This guide covers **essential Rust commands** for crafting, editing, compiling, and running Rust programs efficiently. Whether you’re just starting or refining your workflow, this provides a structured approach to Rust development.
+
+---
+
+## 1. Creating a New Rust Project
+
+Rust projects are managed using **Cargo**, Rust's package manager and build system.
+
+### **Create a New Project**
+```sh
+cargo new my_project
+cd my_project
+```
+- This creates a directory `my_project` with:
+  - `Cargo.toml` (Project metadata)
+  - `src/main.rs` (Main Rust file)
+
+---
+
+## 2. Editing Rust Code
+
+Rust source files are stored in the **`src`** directory. Open `main.rs` in a code editor (e.g., **VS Code**, **Neovim**, or **Nano**) and edit your Rust program.
+
+### **Example Code: Hello, World!**
+Edit `src/main.rs`:
+
+```rust
+fn main() {
+    println!("Welcome to SkyeVault Ops Rust Lab!");
+}
+```
+
+---
+
+## 3. Running a Rust Program
+
+### **Run the Program (Without Compilation)**
+```sh
+cargo run
+```
+- This compiles and executes the program in **debug mode**.
+- Use this for quick testing.
+
+### **Compile and Run Separately**
+```sh
+cargo build
+./target/debug/my_project
+```
+- `cargo build` compiles the project into an executable in `target/debug/`.
+- You can run the executable manually.
+
+### **Run in Release Mode (Optimized Performance)**
+```sh
+cargo build --release
+./target/release/my_project
+```
+- `--release` generates an optimized binary for production.
+
+---
+
+## 4. Formatting & Linting Code
+
+### **Format Code (Rustfmt)**
+```sh
+cargo fmt
+```
+- Ensures your code is clean and well-formatted.
+
+### **Lint Code (Clippy)**
+```sh
+cargo clippy
+```
+- Analyzes code for best practices and optimizations.
+
+---
+
+## 5. Managing Dependencies
+
+### **Add a New Dependency**
+```sh
+cargo add crate_name
+```
+- Example:
+  ```sh
+  cargo add rand
+  ```
+- This adds the `rand` crate (random number generator) to `Cargo.toml`.
+
+### **View Dependencies**
+```sh
+cargo tree
+```
+- Displays a tree of all dependencies.
+
+---
+
+## 6. Running Tests
+
+### **Write a Test in `src/lib.rs` or `src/main.rs`**
+```rust
+#[test]
+fn test_addition() {
+    assert_eq!(2 + 2, 4);
+}
+```
+
+### **Run Tests**
+```sh
+cargo test
+```
+- Runs all test functions in the project.
+
+---
+
+## 7. Debugging Rust Code
+
+### **Print Debugging Information**
+Use `dbg!()` for quick debugging:
+```rust
+fn main() {
+    let x = dbg!(5 * 5);
+}
+```
+
+### **Run with Debug Symbols**
+```sh
+RUST_BACKTRACE=1 cargo run
+```
+- Enables **stack traces** when Rust encounters an error.
+
+---
+
+## 8. Building and Running a Rust Script (Without Cargo)
+
+For simple Rust scripts, you can compile them manually.
+
+### **Create a Rust File**
+```sh
+nano hello.rs
+```
+Add this code:
+
+```rust
+fn main() {
+    println!("Hello from Rust!");
+}
+```
+
+### **Compile Manually**
+```sh
+rustc hello.rs
+./hello
+```
+- `rustc` compiles Rust code directly.
+- Runs without needing `cargo`.
+
+---
+
+## 9. Cleaning Up Build Files
+
+To remove compiled files and free up space:
+```sh
+cargo clean
+```
+
+---
+
+## 10. Next Steps
+
+Now that you have a foundation, explore:
+- **Error handling (`Result`, `Option`)**
+- **Async programming (`tokio`, `async-std`)**
+- **Building CLIs with `structopt`**
+- **Concurrency with threads and channels**
+
+For detailed documentation, visit the [Rust Book](https://doc.rust-lang.org/book/).
+
 Happy coding!
