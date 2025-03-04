@@ -1,0 +1,37 @@
+# **SkyeVault Ops - Dev Log for March 3, 2025**  
+### *Debugging Authentication in Rust’s Spotify API Integration*  
+
+---
+
+## **Current Status**  
+I’m actively debugging authentication errors in `main.rs` while refining how the program interacts with the Spotify API. Right now, I’m running `cargo watch` to speed up iteration and checking how the API requirements align with my request structure.  
+
+I noticed that my text editor isn’t providing the level of syntax highlighting I need for Rust, making it harder to track sections of code efficiently. To improve visibility and debugging, I’m downloading Visual Studio Code, which should make it easier to spot formatting inconsistencies and missing elements in the request flow.  
+
+---
+
+## **What I’m Working On**  
+- **Authentication Debugging:**  
+  - The program is failing to authenticate correctly, despite generating an OAuth token.  
+  - Checking if the `Authorization: Bearer {token}` header is being passed correctly.  
+  - Running `curl` requests separately to compare expected vs actual responses.  
+
+- **Error Analysis:**  
+  - Capturing error messages returned by the API to pinpoint issues.  
+  - Looking into whether the token scope includes necessary permissions.  
+  - Ensuring the token isn’t expiring prematurely due to a timing issue.  
+
+- **Refining Workflow:**  
+  - Using `cargo watch -x run` to track code changes in real time.  
+  - Adjusting the request format based on the API documentation.  
+
+---
+
+## **Next Steps**  
+- Finish setting up Visual Studio Code and confirm that it improves readability for debugging.  
+- Compare API request structure against Spotify’s documentation to find mismatches.  
+- Implement additional logging to get a clearer picture of what’s being sent and received.  
+
+---
+
+I’ll provide another update once I have more details on the authentication issue and whether switching to Visual Studio Code helps with troubleshooting.  
