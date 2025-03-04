@@ -63,7 +63,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     println!("Spotify User ID: {}", user.id); // ✅ Debugging
 
     let playlist = spotify
-        .user_playlist_create(user.id, "Ember Dance", Some(false), None, None)
+        .user_playlist_create(user.id, "Lady Hip Hop", Some(false), None, None)
         .await?;
 
     // ✅ **Step 5: Add Songs to Playlist**
