@@ -1,15 +1,83 @@
 # 🎵 Rust Spotify Playlist Maker 🎵
+# Rust Program Documentation
 
-This Rust program **automates playlist creation on Spotify** using the `rspotify` library.  
-It authenticates users, searches for songs, and creates a playlist with predefined tracks.
+This Rust program automates playlist creation on Spotify using the `rspotify` library. It authenticates users, searches for songs, and creates a playlist with predefined tracks.
 
-## ✨ Features
-✅ **OAuth2 Authentication** (No need to manually enter tokens)  
-✅ **Automated Playlist Creation**  
-✅ **Song Search & Addition**  
-✅ **Uses `tiny_http` for seamless authentication**  
+---
 
-## 📌 Prerequisites
-1. **Install Rust** (if not already installed):
+## Features
+- OAuth2 authentication with Spotify (no need to manually enter tokens)
+- Automated playlist creation
+- Song search and addition
+- Uses `tiny_http` to handle the authentication callback automatically
+
+---
+
+## Prerequisites
+Before running the program, make sure you have the following installed:
+
+1. **Rust and Cargo** (if not already installed)  
    ```sh
    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   ```
+2. **Spotify Developer Account**  
+   - Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+   - Create a new app
+   - Add the following **Redirect URIs**:
+     ```
+     http://127.0.0.1:8888/callback
+     http://localhost:8888/callback
+     ```
+   - Copy the **Client ID** and **Client Secret**.
+
+---
+
+## Installation and Setup
+### 1. Clone this repository
+```sh
+git clone https://github.com/SkyeVault/Main.git
+cd spotify_playlist_maker
+```
+
+### 2. Create a `.env` file for your API credentials
+```sh
+nano .env
+```
+Paste the following into the file:
+```ini
+SPOTIFY_CLIENT_ID="your_client_id_here"
+SPOTIFY_CLIENT_SECRET="your_client_secret_here"
+SPOTIFY_REDIRECT_URI="http://127.0.0.1:8888/callback"
+SPOTIFY_SCOPES="playlist-modify-public playlist-modify-private user-library-read"
+```
+Save the file (`CTRL + X → Y → Enter`).
+
+---
+
+## Running the Program
+1. **Build and run the program**
+   ```sh
+   cargo run
+   ```
+2. **Follow the authorization link in the terminal**
+3. **Approve the application on Spotify**
+4. **Once approved, the program will automatically create the playlist and add songs**
+
+---
+
+## Built With
+- Rust
+- rspotify (Spotify API client)
+- tiny_http (to handle OAuth2 callback)
+
+---
+
+## License
+This project is licensed under the MIT License.
+
+---
+
+## Maintained by
+[SkyeVault](https://github.com/SkyeVault)
+```
+
