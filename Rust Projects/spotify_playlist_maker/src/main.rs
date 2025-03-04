@@ -1,10 +1,13 @@
-use rspotify::{
-    auth_code::AuthCodeSpotify,
-    clients::OAuthClient,
-    model::scope, Credentials, OAuth,
-};
 use dotenv::dotenv;
-use std::{env, error::Error, io};
+use rspotify::{
+    clients::{BaseClient, OAuthClient}, // ✅ Added BaseClient for `.search()`
+    model::{PlayableId, SearchResult, SearchType},
+    AuthCodeSpotify,
+    Credentials,
+    OAuth,
+};
+use std::{collections::HashSet, env, error::Error};
+use tiny_http::Server;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
@@ -12,36 +15,58 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let creds = Credentials::new(
         &env::var("SPOTIFY_CLIENT_ID")?,
-        &env::var("SPOTIFY_CLIENT_SECRET")?
+        &env::var("SPOTIFY_CLIENT_SECRET")?,
     );
 
     let oauth = OAuth {
         redirect_uri: env::var("SPOTIFY_REDIRECT_URI")?.to_string(),
-        scopes: scope!("playlist-modify-public", "user-library-read"),
+        scopes: HashSet::from([
+            "playlist-modify-public".to_string(),
+            "playlist-modify-private".to_string(),
+            "user-library-read".to_string(),
+        ]), // ✅ Fixed scopes
         ..Default::default()
     };
 
     let spotify = AuthCodeSpotify::new(creds, oauth);
 
-    let url = spotify.get_authorize_url(false)?;
-    println!("Authorize here: {}\nEnter the code:", url);
+    // ✅ **Step 1: Display Authorization URL**
+    let auth_url = spotify.get_authorize_url(false)?;
+    println!("Authorize here: {}", auth_url);
 
-    let mut auth_code = String::new();
-    io::stdin().read_line(&mut auth_code)?;
-    spotify.request_token(&auth_code.trim()).await?;
+    // ✅ **Step 2: Start Local Server to Capture Auth Code**
+    println!("Waiting for Spotify authentication...");
+    let server = Server::http("127.0.0.1:8888").unwrap();
+    let request = server.recv().unwrap();
+    let url = request.url().to_string();
+    let code = url
+        .split("code=")
+        .nth(1)
+        .unwrap_or("")
+        .split('&')
+        .next()
+        .unwrap();
 
+    println!("Received authorization code: {}", code);
+    request
+        .respond(tiny_http::Response::from_string(
+            "You can close this tab now.",
+        ))
+        .unwrap();
+
+    // ✅ **Step 3: Request Token Using Captured Code**
+    spotify.request_token(code).await?;
     println!("Authenticated successfully!");
-    Ok(())
 
-    // Step 2: Create Playlist "Ember Dance"
+    // ✅ **Step 4: Create Playlist**
     let user = spotify.me().await?;
-    let playlist = spotify
-        .user_playlist_create(user.id.clone(), "Ember Dance", Some(false), None, None)
-        .await?;
-    
-    println!("Created playlist: {}", playlist.name);
+    println!("Spotify User ID: {}", user.id); // ✅ Debugging
 
-    // Step 3: Add Songs to Playlist
+    let playlist = spotify
+        .user_playlist_create(user.id, "Ember Dance", Some(false), None, None)
+        .await?;
+
+    // ✅ **Step 5: Add Songs to Playlist**
     let song_titles = [
         "Only Child Tierra Whack",
         "Dolly Tierra Whack",
@@ -67,25 +92,34 @@ async fn main() -> Result<(), Box<dyn Error>> {
         "No Face Flo Milli",
         "Work It Missy Elliott",
         "Lose Control Missy Elliott",
-        "The Rain Missy Elliott"
+        "The Rain Missy Elliott",
     ];
 
-    let mut track_uris = Vec::new();
+    let mut track_uris: Vec<PlayableId> = Vec::new(); // ✅ FIX: Store as `PlayableId`
 
-for song in &song_titles {
-    let search_result = spotify
-        .search(song, rspotify::model::SearchType::Track, None, None, Some(1), None)
-        .await?;
+    for song in &song_titles {
+        let search_result = spotify
+            .search(song, SearchType::Track, None, None, Some(1), None)
+            .await?;
 
-    // 🔹 Debug: Print the entire SearchResult to understand its structure
-    println!("Full SearchResult: {:#?}", search_result);
-}
+        // 🔹 Debugging: Print the full search result to see the correct structure
+        println!("Full SearchResult: {:#?}", search_result);
 
+        if let SearchResult::Tracks(tracks) = search_result {
+            if let Some(track) = tracks.items.first() {
+                println!("Adding {} to playlist...", track.name);
+                let track_id = track.id.as_ref().unwrap();
+                track_uris.push(track_id.clone().into());
+            }
+        } else {
+            println!("Could not find {}", song);
+        }
+    }
 
-    // Step 4: Add Songs to Playlist
+    // ✅ **Step 6: Add Songs to Playlist**
     if !track_uris.is_empty() {
         spotify
-            .playlist_add_items(PlaylistId::from(playlist.id), track_uris, None) // ✅ Fixed borrowing issue
+            .playlist_add_items(playlist.id, track_uris, None)
             .await?;
         println!("Added all songs successfully!");
     } else {
@@ -93,5 +127,4 @@ for song in &song_titles {
     }
 
     Ok(())
-}
-
+} // ✅ **Closing `main()` Properly**
