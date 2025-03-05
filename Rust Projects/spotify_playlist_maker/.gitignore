@@ -1,7 +1,6 @@
-# Ignore environment files (contains API keys)
+# Ignore environment variables (API keys, secrets)
 .env
 
-# Ignore compiled Rust binaries and dependencies
+# Ignore Rust compiled binaries
 target/
-Cargo.lock
 
