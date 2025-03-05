@@ -106,3 +106,20 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     Ok(())
 } // ✅ **Closing `main()` Properly**
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_format_track_name() {
+        let formatted = format_track_name("Upside Down", "Jack Johnson");
+        assert_eq!(formatted, "Upside Down - Jack Johnson");
+    }
+
+    #[test]
+    fn test_spotify_auth_url() {
+        let test_url = generate_spotify_auth_url();
+        assert!(test_url.contains("https://accounts.spotify.com/authorize"));
+    }
+}
