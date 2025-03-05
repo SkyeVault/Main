@@ -65,6 +65,15 @@ Save the file (`CTRL + X → Y → Enter`).
 
 ---
 
+## Testing & CI/CD
+
+This project includes:
+- Unit tests for core logic (`cargo test`)
+- Integration tests for API calls
+- GitHub Actions for automated testing on every push
+
+[![Rust CI](https://github.com/SkyeVault/Main/actions/workflows/rust-ci.yml/badge.svg)](https://github.com/SkyeVault/Main/actions)
+
 ## Built With
 - Rust
 - rspotify (Spotify API client)
