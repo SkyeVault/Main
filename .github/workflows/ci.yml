@@ -20,13 +20,15 @@ jobs:
           echo "Current directory:"
           pwd
           echo "Listing files:"
-          ls -R
+          ls -lah
+          echo "Listing contents of rust_projects:"
+          ls -lah rust_projects || echo "rust_projects directory not found"
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
       - name: Run Tests
-        working-directory: rust_projects/spotify_playlist_maker  # ✅ Remove "main/" if not needed
+        working-directory: rust_projects/spotify_playlist_maker  # ✅ Update this after checking logs
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
@@ -44,7 +46,9 @@ jobs:
           echo "Current directory:"
           pwd
           echo "Listing files:"
-          ls -R
+          ls -lah
+          echo "Listing contents of rust_projects:"
+          ls -lah rust_projects || echo "rust_projects directory not found"
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
@@ -52,9 +56,9 @@ jobs:
           components: clippy, rustfmt
 
       - name: Run Clippy (Linting)
-        working-directory: rust_projects/spotify_playlist_maker  # ✅ Remove "main/" if not needed
+        working-directory: rust_projects/spotify_playlist_maker  # ✅ Update this after checking logs
         run: cargo clippy --all-targets --all-features -- -D warnings
 
       - name: Check Formatting
-        working-directory: rust_projects/spotify_playlist_maker  # ✅ Remove "main/" if not needed
+        working-directory: rust_projects/spotify_playlist_maker  # ✅ Update this after checking logs
         run: cargo fmt --check
