@@ -19,7 +19,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Run Tests
-        working-directory: rust_projects/spotify_playlist_maker  # ✅ Correct path
+        working-directory: main/rust_projects/spotify_playlist_maker
         run: cargo test
 
   lint:
@@ -31,12 +31,12 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          components: clippy, rustfmt  # ✅ Ensure Clippy and `cargo fmt` are installed
+          components: clippy, rustfmt
 
       - name: Run Clippy (Linting)
-        working-directory: rust_projects/spotify_playlist_maker  # ✅ Correct path
+        working-directory: main/rust_projects/spotify_playlist_maker
         run: cargo clippy --all-targets --all-features -- -D warnings
 
       - name: Check Formatting
-        working-directory: rust_projects/spotify_playlist_maker  # ✅ Correct path
+        working-directory: main/rust_projects/spotify_playlist_maker
         run: cargo fmt --check
