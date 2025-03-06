@@ -15,18 +15,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Debug Directory Structure  # ✅ Verify the directory
+      - name: Debug Directory Structure  # ✅ Verify the actual directory
         run: |
           echo "Current directory:"
           pwd
           echo "Listing files:"
           ls -lah
+          echo "Checking for Cargo.toml:"
+          find . -name "Cargo.toml"
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
       - name: Run Tests
-        working-directory: .  # ✅ This ensures Cargo.toml is found
+        working-directory: Rust_Projects  # ✅ Set correct working directory
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
@@ -39,7 +41,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Debug Directory Structure  # ✅ Show the actual structure
+      - name: Debug Directory Structure  # ✅ Check before linting
         run: |
           echo "Current directory:"
           pwd
@@ -48,16 +50,15 @@ jobs:
           echo "Checking for Cargo.toml:"
           find . -name "Cargo.toml"
 
-
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy, rustfmt
 
       - name: Run Clippy (Linting)
-        working-directory: .  # ✅ This ensures Cargo.toml is found
+        working-directory: Rust_Projects  # ✅ Set correct working directory
         run: cargo clippy --all-targets --all-features -- -D warnings
 
       - name: Check Formatting
-        working-directory: .  # ✅ This ensures Cargo.toml is found
+        working-directory: Rust_Projects  # ✅ Set correct working directory
         run: cargo fmt --check
