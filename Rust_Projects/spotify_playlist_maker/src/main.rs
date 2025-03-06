@@ -107,9 +107,11 @@ async fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 } // ✅ **Closing `main()` Properly**
 
+mod utils; // Keep this so Rust knows about utils.rs
+
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::utils::{format_track_name, generate_spotify_auth_url}; // ✅ Only used in tests
 
     #[test]
     fn test_format_track_name() {
