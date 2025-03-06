@@ -71,6 +71,46 @@ pub fn add(a: i32, b: i32) -> i32 {
 }
 ```
 
+### **Benchmark Tests in Rust**
+Benchmark tests measure performance rather than correctness. Rust uses the `criterion` crate for benchmarking since the built-in benchmarking feature is unstable.
+
+### **Setting Up Benchmarking**
+Add `criterion` to `Cargo.toml`:
+```toml
+[dev-dependencies]
+criterion = "0.5"
+```
+
+### **Creating a Benchmark Test (`benches/benchmark.rs`)**
+```rust
+use criterion::{black_box, criterion_group, criterion_main, Criterion};
+
+fn fibonacci(n: u64) -> u64 {
+    if n < 2 { n } else { fibonacci(n - 1) + fibonacci(n - 2) }
+}
+
+fn benchmark_fibonacci(c: &mut Criterion) {
+    c.bench_function("fib 20", |b| b.iter(|| fibonacci(black_box(20))));
+}
+
+criterion_group!(benches, benchmark_fibonacci);
+criterion_main!(benches);
+```
+
+### **Running Benchmark Tests**
+Run benchmarks with:
+```sh
+cargo bench
+```
+
+### **Integrating Benchmarks into CI/CD**
+In `.github/workflows/ci.yml`, add:
+```yaml
+  - name: Run benchmarks
+    run: cargo bench
+```
+This ensures benchmarking runs automatically in your pipeline.
+
 #### Running Tests:
 - Run all tests: `cargo test`
 - Run specific test: `cargo test test_name`
