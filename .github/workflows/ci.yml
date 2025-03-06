@@ -28,11 +28,11 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Run Tests
-        working-directory: Rust_Projects  # ✅ Set correct working directory
+        working-directory: Rust_Projects/spotify_playlist_maker  # ✅ Corrected directory
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-          SPOTIFY_REDIRECT_URI: ${{ secrets.SPOTIFY_REDIRECT_URI }}
+          SPOTIFY_REDIRECT_URI: ${{ secrets/SPOTIFY_REDIRECT_URI }}
         run: cargo test
 
   lint:
@@ -56,9 +56,9 @@ jobs:
           components: clippy, rustfmt
 
       - name: Run Clippy (Linting)
-        working-directory: Rust_Projects  # ✅ Set correct working directory
+        working-directory: Rust_Projects/spotify_playlist_maker  # ✅ Corrected directory
         run: cargo clippy --all-targets --all-features -- -D warnings
 
       - name: Check Formatting
-        working-directory: Rust_Projects  # ✅ Set correct working directory
+        working-directory: Rust_Projects/spotify_playlist_maker  # ✅ Corrected directory
         run: cargo fmt --check
