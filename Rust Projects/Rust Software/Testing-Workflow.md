@@ -161,6 +161,59 @@ jobs:
         run: cargo test --verbose
 ```
 
+# Where to Place `.github/workflows/` in Rust Projects
+
+## **Single-Project Repository**
+If you have separate repositories for each Rust project, place the `.github/workflows/` folder inside **each project** repository:
+
+```
+rust-projects/   # Main folder for all Rust projects (not a Git repository)
+├── project-a/   # Individual Rust project
+│   ├── .github/
+│   │   └── workflows/
+│   │       ├── ci.yml
+│   ├── src/
+│   ├── Cargo.toml
+│   └── README.md
+├── project-b/   # Another Rust project
+│   ├── .github/
+│   │   └── workflows/
+│   │       ├── ci.yml
+│   ├── src/
+│   ├── Cargo.toml
+│   └── README.md
+```
+Each project gets its **own CI/CD workflow**, ensuring independent build and test pipelines.
+
+---
+
+## **Monorepo (Multiple Projects in One Repo)**
+If you have a **monorepo** (a single GitHub repository containing multiple Rust projects), use **one `.github/workflows/` folder at the root**:
+
+```
+my-monorepo/  # One GitHub repo containing multiple Rust projects
+├── .github/
+│   └── workflows/
+│       ├── ci-project-a.yml
+│       ├── ci-project-b.yml
+├── project-a/
+│   ├── src/
+│   ├── Cargo.toml
+│   └── README.md
+├── project-b/
+│   ├── src/
+│   ├── Cargo.toml
+│   └── README.md
+```
+Your workflow YAML files can check which project changed and run CI/CD for the relevant project.
+
+---
+
+## **Key Takeaways:**
+- **Separate repositories**: Each project has its own `.github/workflows/` inside the project folder.
+- **Monorepo**: One central `.github/workflows/` at the root of the repository managing all projects.
+
+Choose the structure based on whether your Rust projects are in separate repositories or a single monorepo!
 ---
 
 ## 4. Project Structure and Naming Conventions
