@@ -15,11 +15,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Debug Directory Structure  # ✅ Check folder structure before running tests
+        run: ls -R
+
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
       - name: Run Tests
-        working-directory: main/rust_projects/spotify_playlist_maker
+        working-directory: main/rust_projects/spotify_playlist_maker  # ✅ Corrected directory
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REDIRECT_URI: ${{ secrets.SPOTIFY_REDIRECT_URI }}
         run: cargo test
 
   lint:
@@ -28,15 +35,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Debug Directory Structure  # ✅ Check folder structure before linting
+        run: ls -R
+
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy, rustfmt
 
       - name: Run Clippy (Linting)
-        working-directory: main/rust_projects/spotify_playlist_maker
+        working-directory: main/rust_projects/spotify_playlist_maker  # ✅ Corrected directory
         run: cargo clippy --all-targets --all-features -- -D warnings
 
       - name: Check Formatting
-        working-directory: main/rust_projects/spotify_playlist_maker
+        working-directory: main/rust_projects/spotify_playlist_maker  # ✅ Corrected directory
         run: cargo fmt --check
