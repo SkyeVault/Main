@@ -71,7 +71,7 @@ pub fn add(a: i32, b: i32) -> i32 {
 }
 ```
 
-### **Benchmark Tests in Rust**
+### **1.4 Benchmark Tests**
 Benchmark tests measure performance rather than correctness. Rust uses the `criterion` crate for benchmarking since the built-in benchmarking feature is unstable.
 
 ### **Setting Up Benchmarking**
