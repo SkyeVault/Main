@@ -39,12 +39,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Debug Directory Structure  # ✅ Verify the directory before linting
+      - name: Debug Directory Structure  # ✅ Show the actual structure
         run: |
           echo "Current directory:"
           pwd
           echo "Listing files:"
           ls -lah
+          echo "Checking for Cargo.toml:"
+          find . -name "Cargo.toml"
+
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
