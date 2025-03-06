@@ -161,7 +161,7 @@ jobs:
         run: cargo test --verbose
 ```
 
-# Where to Place `.github/workflows/` in Rust Projects
+### 3.3 Where to Place `.github/workflows/` in Rust Projects
 
 ### **Single-Project Repository**
 If you have separate repositories for each Rust project, place the `.github/workflows/` folder inside **each project** repository:
