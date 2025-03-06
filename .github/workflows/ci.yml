@@ -1,0 +1,44 @@
+name: Rust CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        project: [spotify_playlist_maker]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run tests for ${{ matrix.project }}
+        working-directory: Rust_Projects/${{ matrix.project }}
+        run: cargo test
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run Clippy (Linting)
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      - name: Check Formatting
+        run: cargo fmt --check
+
