@@ -209,11 +209,11 @@ Your workflow YAML files can check which project changed and run CI/CD for the r
 
 ---
 
-## **Key Takeaways:**
+### **Key Takeaways:**
 - **Separate repositories**: Each project has its own `.github/workflows/` inside the project folder.
 - **Monorepo**: One central `.github/workflows/` at the root of the repository managing all projects.
 
-Choose the structure based on whether your Rust projects are in separate repositories or a single monorepo!
+### Choose the structure based on whether your Rust projects are in separate repositories or a single monorepo!
 ---
 
 ## 4. Project Structure and Naming Conventions
