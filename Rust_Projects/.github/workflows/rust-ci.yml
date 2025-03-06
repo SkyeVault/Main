@@ -21,4 +21,3 @@ jobs:
 
       - name: Run Tests
         run: cargo test
-
