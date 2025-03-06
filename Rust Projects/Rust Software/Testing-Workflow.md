@@ -187,7 +187,7 @@ Each project gets its **own CI/CD workflow**, ensuring independent build and tes
 
 ---
 
-## **Monorepo (Multiple Projects in One Repo)**
+### **Monorepo (Multiple Projects in One Repo)**
 If you have a **monorepo** (a single GitHub repository containing multiple Rust projects), use **one `.github/workflows/` folder at the root**:
 
 ```
