@@ -72,7 +72,7 @@ This project includes:
 - Integration tests for API calls
 - GitHub Actions for automated testing on every push
 
-[![Rust CI](https://github.com/SkyeVault/Main/actions/workflows/rust-ci.yml/badge.svg)](https://github.com/SkyeVault/Main/actions)
+[![Rust CI](https://github.com/SkyeVault/Main/actions/workflows/ci.yml/badge.svg)](https://github.com/SkyeVault/Main/actions/workflows/ci.yml)
 
 ## Built With
 - Rust
