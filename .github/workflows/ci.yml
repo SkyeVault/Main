@@ -15,20 +15,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Debug Directory Structure  # ✅ Check actual folder structure
+      - name: Debug Directory Structure  # ✅ Verify the directory
         run: |
           echo "Current directory:"
           pwd
           echo "Listing files:"
           ls -lah
-          echo "Listing contents of rust_projects:"
-          ls -lah rust_projects || echo "rust_projects directory not found"
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
       - name: Run Tests
-        working-directory: rust_projects/spotify_playlist_maker  # ✅ Update this after checking logs
+        working-directory: .  # ✅ This ensures Cargo.toml is found
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
@@ -41,14 +39,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Debug Directory Structure  # ✅ Check structure before linting
+      - name: Debug Directory Structure  # ✅ Verify the directory before linting
         run: |
           echo "Current directory:"
           pwd
           echo "Listing files:"
           ls -lah
-          echo "Listing contents of rust_projects:"
-          ls -lah rust_projects || echo "rust_projects directory not found"
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
@@ -56,9 +52,9 @@ jobs:
           components: clippy, rustfmt
 
       - name: Run Clippy (Linting)
-        working-directory: rust_projects/spotify_playlist_maker  # ✅ Update this after checking logs
+        working-directory: .  # ✅ This ensures Cargo.toml is found
         run: cargo clippy --all-targets --all-features -- -D warnings
 
       - name: Check Formatting
-        working-directory: rust_projects/spotify_playlist_maker  # ✅ Update this after checking logs
+        working-directory: .  # ✅ This ensures Cargo.toml is found
         run: cargo fmt --check
