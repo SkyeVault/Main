@@ -163,7 +163,7 @@ jobs:
 
 # Where to Place `.github/workflows/` in Rust Projects
 
-## **Single-Project Repository**
+### **Single-Project Repository**
 If you have separate repositories for each Rust project, place the `.github/workflows/` folder inside **each project** repository:
 
 ```
