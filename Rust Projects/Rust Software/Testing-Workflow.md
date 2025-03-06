@@ -202,10 +202,6 @@ jobs:
 ```
 
 ### 3.3 Where to Place `.github/workflows/` in Rust Projects
-
-### **Single-Project Repository**
-If you have separate repositories for each Rust project, place the `.github/workflows/` folder inside **each project** repository:
-
 ```
 rust-projects/   # Main folder for all Rust projects (not a Git repository)
 ├── project-a/   # Individual Rust project
@@ -213,6 +209,8 @@ rust-projects/   # Main folder for all Rust projects (not a Git repository)
 │   │   └── workflows/
 │   │       ├── ci.yml
 │   ├── src/
+│   ├── benches/
+│   │   └── benchmark.rs  # Benchmark tests
 │   ├── Cargo.toml
 │   └── README.md
 ├── project-b/   # Another Rust project
@@ -220,14 +218,16 @@ rust-projects/   # Main folder for all Rust projects (not a Git repository)
 │   │   └── workflows/
 │   │       ├── ci.yml
 │   ├── src/
+│   ├── benches/
+│   │   └── benchmark.rs  # Benchmark tests
 │   ├── Cargo.toml
 │   └── README.md
 ```
-Each project gets its **own CI/CD workflow**, ensuring independent build and test pipelines.
+Each project gets its **own CI/CD workflow**, ensuring independent build, test, and benchmarking pipelines.
 
 ---
 
-### **Monorepo (Multiple Projects in One Repo)**
+## **Monorepo (Multiple Projects in One Repo)**
 If you have a **monorepo** (a single GitHub repository containing multiple Rust projects), use **one `.github/workflows/` folder at the root**:
 
 ```
@@ -238,14 +238,18 @@ my-monorepo/  # One GitHub repo containing multiple Rust projects
 │       ├── ci-project-b.yml
 ├── project-a/
 │   ├── src/
+│   ├── benches/
+│   │   └── benchmark.rs  # Benchmark tests
 │   ├── Cargo.toml
 │   └── README.md
 ├── project-b/
 │   ├── src/
+│   ├── benches/
+│   │   └── benchmark.rs  # Benchmark tests
 │   ├── Cargo.toml
 │   └── README.md
 ```
-Your workflow YAML files can check which project changed and run CI/CD for the relevant project.
+Your workflow YAML files can check which project changed and run CI/CD for the relevant project, including benchmarking.
 
 ---
 
