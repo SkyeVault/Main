@@ -64,6 +64,8 @@ SkyeVault Ops is evolving into a fully Rust-based cloud security and automation 
 - Automating security workflows in AWS using Rust and Python
 - Expanding full-stack security applications with integrated logging and security telemetry
 
+![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=your-username&theme=dark)
+
 ---
 
 ## My Journey
