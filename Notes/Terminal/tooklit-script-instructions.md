@@ -19,7 +19,7 @@ while true; do
         1) setup_project ;;  # Calls the function
         2) run_server ;;
         3) backup_files ;;
-        4) update_git ;;
+        4) git_sync ;;
         5) system_maintenance ;;
         6) morning_setup ;;
         7) echo "Goodbye!"; exit 0 ;;
@@ -46,7 +46,7 @@ show_menu() {
     echo "1) Create a new Rust project"
     echo "2) Start a Docker container"
     echo "3) Sync files with AWS S3"
-    echo "4) Update Git repository"
+    echo "4) Pull & Push Git Repository"
     echo "5) System Maintenance"
     echo "6) Morning Setup"
     echo "7) Exit"
@@ -77,44 +77,53 @@ Replace the `setup_project` function call in the menu with:
 1) setup_rust_project ;;
 ```
 
-### **Example: Starting a Docker Container**
+### **Example: Git Sync (Pull & Push to GitHub)**
 ```bash
-run_docker_container() {
-    echo -n "Enter Docker image name: "
-    read image_name
-    docker run -d "$image_name"
-    echo "$image_name is now running."
+git_sync() {
+    echo "Syncing GitHub repository..."
+    git pull origin main
+    git add .
+    echo -n "Enter commit message: "
+    read commit_msg
+    git commit -m "$commit_msg"
+    git push origin main
+    echo "Repository synced successfully!"
 }
 ```
 
 Replace the menu function call:
 ```bash
-2) run_docker_container ;;
+4) git_sync ;;
 ```
 
 ### **Example: Morning Setup**
 ```bash
 morning_setup() {
-    echo "Opening GitHub, VS Code, and browser..."
+    echo "Opening GitHub, VS Code, Google Chrome, and Finder..."
     open -a "Google Chrome" "https://github.com"
     open -a "Visual Studio Code"
-    open -a "Finder" ~/ 
+    open ~/  # Opens Finder in the main directory
     echo "Your development environment is ready!"
 }
 ```
 
-### **Example: System Maintenance**
+### **Example: System Maintenance (Git, Updates, Security)**
 ```bash
 system_maintenance() {
+    echo "Starting system maintenance..."
+    
     echo "Pulling latest changes from GitHub..."
     git pull origin main
     
-    echo "Downloading and installing system updates..."
+    echo "Checking for system updates..."
     sudo softwareupdate -ia
     
-    echo "Checking firewall status and ensuring security..."
+    echo "Ensuring firewall is enabled..."
     sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
     sudo /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate
+    
+    echo "Verifying security settings..."
+    sudo defaults read /Library/Preferences/com.apple.alf globalstate
     
     echo "System is up to date and secure!"
 }
@@ -145,5 +154,10 @@ By customizing this script, you can:
 - Automate your most-used tasks.
 - Reduce repetitive typing.
 - Make development workflows faster and more efficient.
+
+### **New Features Added:**
+✅ **Git Sync:** Pulls and pushes your latest changes to GitHub.  
+✅ **System Maintenance:** Pulls GitHub changes, updates the system, and ensures security.  
+✅ **Morning Setup:** Opens GitHub in Chrome, VS Code, and Finder in the main directory.  
 
 Modify the script to fit your **personal needs** and create a command-line tool that works **just for you**!
