@@ -20,7 +20,9 @@ while true; do
         2) run_server ;;
         3) backup_files ;;
         4) update_git ;;
-        5) echo "Goodbye!"; exit 0 ;;
+        5) system_maintenance ;;
+        6) morning_setup ;;
+        7) echo "Goodbye!"; exit 0 ;;
         *) echo "Invalid option, please try again!" ;;
     esac
 done
@@ -45,16 +47,13 @@ show_menu() {
     echo "2) Start a Docker container"
     echo "3) Sync files with AWS S3"
     echo "4) Update Git repository"
-    echo "5) Exit"
+    echo "5) System Maintenance"
+    echo "6) Morning Setup"
+    echo "7) Exit"
     echo "---------------------------------"
     echo -n "Choose an option: "
 }
 ```
-
-### **Example Changes**
-- Change "Set up a new project" to **"Create a new Rust project."**
-- Replace "Run a local server" with **"Start a Docker container."**
-- Add **"Sync files with AWS S3."**
 
 ---
 
@@ -93,52 +92,42 @@ Replace the menu function call:
 2) run_docker_container ;;
 ```
 
----
-
-## 4. Saving User Preferences
-You can store user preferences in a **config file** to avoid re-entering common inputs.
-
-### **Example: Storing AWS Credentials**
-Modify the AWS sync function to use stored credentials:
-```bash
-sync_aws_s3() {
-    source ~/.aws_config
-    aws s3 sync ~/projects s3://$AWS_BUCKET_NAME/
-    echo "Files synced to S3 bucket: $AWS_BUCKET_NAME"
-}
-```
-
-Create a `~/.aws_config` file:
-```bash
-export AWS_BUCKET_NAME="my-default-bucket"
-```
-Then load it in the script:
-```bash
-source ~/.aws_config
-```
-
----
-
-## 5. Automating Daily Tasks
-### **Example: Running a Morning Setup Script**
-If you frequently open the same tools, automate the process:
+### **Example: Morning Setup**
 ```bash
 morning_setup() {
-    echo "Starting your daily setup..."
-    code ~/projects  # Open VS Code in the projects folder
-    docker start my-dev-container  # Start a development container
-    firefox https://chat.openai.com/  # Open a browser tab
-    echo "All set!"
+    echo "Opening GitHub, VS Code, and browser..."
+    open -a "Google Chrome" "https://github.com"
+    open -a "Visual Studio Code"
+    open -a "Finder" ~/ 
+    echo "Your development environment is ready!"
 }
 ```
-Add this to the menu:
+
+### **Example: System Maintenance**
 ```bash
-3) morning_setup ;;
+system_maintenance() {
+    echo "Pulling latest changes from GitHub..."
+    git pull origin main
+    
+    echo "Downloading and installing system updates..."
+    sudo softwareupdate -ia
+    
+    echo "Checking firewall status and ensuring security..."
+    sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+    sudo /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate
+    
+    echo "System is up to date and secure!"
+}
+```
+
+Replace the menu function call:
+```bash
+5) system_maintenance ;;
 ```
 
 ---
 
-## 6. Running the Customized Script
+## 4. Running the Customized Script
 ### **1. Make the Script Executable**
 ```bash
 chmod +x my_toolkit.sh
