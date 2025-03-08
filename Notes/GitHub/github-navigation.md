@@ -1,6 +1,6 @@
 # GitHub Navigation Guide
 
-## 📌 Introduction
+## Introduction
 This guide provides essential GitHub navigation instructions, covering how to:
 - Create and move folders
 - Rename files and directories
@@ -9,15 +9,15 @@ This guide provides essential GitHub navigation instructions, covering how to:
 
 ---
 
-## 📂 Creating Folders in GitHub
+## Creating Folders in GitHub
 Git does not track empty folders, so you must add a file inside.
 
-### **1️⃣ Create a Folder Locally**
+### **1. Create a Folder Locally**
 ```bash
 mkdir New-Folder
 ```
 
-### **2️⃣ Ensure the Folder Appears in GitHub**
+### **2. Ensure the Folder Appears in GitHub**
 Create a `README.md` inside it:
 ```bash
 touch New-Folder/README.md
@@ -31,20 +31,20 @@ git push origin main
 
 ---
 
-## 🔄 Moving Folders and Files
+## Moving Folders and Files
 To reorganize files within your repository, use the `mv` command.
 
-### **1️⃣ Move a File into a Folder**
+### **1. Move a File into a Folder**
 ```bash
 mv filename.txt New-Folder/
 ```
 
-### **2️⃣ Move a Folder to a Different Location**
+### **2. Move a Folder to a Different Location**
 ```bash
 mv Old-Folder/ New-Location/
 ```
 
-### **3️⃣ Commit and Push the Changes**
+### **3. Commit and Push the Changes**
 ```bash
 git add .
 git commit -m "Moved files and folders"
@@ -53,18 +53,18 @@ git push origin main
 
 ---
 
-## ✏️ Renaming Files and Folders
-### **1️⃣ Rename a File**
+## Renaming Files and Folders
+### **1. Rename a File**
 ```bash
 mv oldname.txt newname.txt
 ```
 
-### **2️⃣ Rename a Folder**
+### **2. Rename a Folder**
 ```bash
 mv old-folder-name new-folder-name
 ```
 
-### **3️⃣ Commit and Push the Changes**
+### **3. Commit and Push the Changes**
 ```bash
 git add .
 git commit -m "Renamed files and folders"
@@ -73,21 +73,21 @@ git push origin main
 
 ---
 
-## 📥 Cloning a GitHub Repository
-### **1️⃣ Clone a Repository Using HTTPS**
+## Cloning a GitHub Repository
+### **1. Clone a Repository Using HTTPS**
 ```bash
 git clone https://github.com/your-username/your-repo.git
 ```
 
-### **2️⃣ Move into the Cloned Directory**
+### **2. Move into the Cloned Directory**
 ```bash
 cd your-repo
 ```
 
 ---
 
-## 🚀 Publishing Updates to GitHub via Terminal
-### **1️⃣ Stage Changes for Commit**
+## Publishing Updates to GitHub via Terminal
+### **1. Stage Changes for Commit**
 ```bash
 git add .
 ```
@@ -96,12 +96,12 @@ Or stage a specific file:
 git add filename.txt
 ```
 
-### **2️⃣ Commit the Changes**
+### **2. Commit the Changes**
 ```bash
 git commit -m "Your commit message here"
 ```
 
-### **3️⃣ Push to GitHub**
+### **3. Push to GitHub**
 ```bash
 git push origin main
 ```
@@ -117,10 +117,10 @@ git push origin main
 
 ---
 
-## ✅ Summary
+## Summary
 - Use `mkdir` and `touch` to create folders and files.
 - Move files using `mv`, and rename them the same way.
 - Use `git add`, `git commit`, and `git push` to publish updates.
 - If necessary, run `git pull --rebase` to sync before pushing.
 
-By mastering these GitHub commands, you can effectively navigate and manage your repositories! 🚀
+By mastering these GitHub commands, you can effectively navigate and manage your repositories!
