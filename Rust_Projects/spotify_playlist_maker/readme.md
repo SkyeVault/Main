@@ -1,7 +1,8 @@
-# 🎵 Rust Spotify Playlist Maker 🎵
+# Rust Spotify Playlist Maker
+
 Rust Program Documentation
 
-This Rust program automates playlist creation on Spotify using the `rspotify` library. It authenticates users, searches for songs, and creates a playlist with predefined tracks. Edit the playlist name and song selection choices inside the code at line 66 and 71 of spotify_playlist_maker/src/main.rs.
+This Rust program automates playlist creation on Spotify using the `rspotify` library. It authenticates users, searches for songs, and creates a playlist with predefined tracks. Edit the playlist name and song selection choices inside the code at line 66 and 71 of `spotify_playlist_maker/src/main.rs`.
 
 ---
 
@@ -34,10 +35,10 @@ Before running the program, make sure you have the following installed:
 
 ## Installation and Setup
 
-## Install via Cargo
+### Install via Cargo
 https://crates.io/crates/spotify_playlist_maker
 
-### 2. Create a `.env` file for your API credentials
+### Create a `.env` file for your API credentials
 ```sh
 nano .env
 ```
@@ -86,5 +87,3 @@ This project is licensed under the MIT License.
 
 ## Maintained by
 [SkyeVault](https://github.com/SkyeVault)
-```
-
