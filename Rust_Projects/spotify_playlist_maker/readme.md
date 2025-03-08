@@ -35,6 +35,7 @@ Before running the program, make sure you have the following installed:
 ## Installation and Setup
 
 ## Install via Cargo
+https://crates.io/crates/spotify_playlist_maker
 
 ### 2. Create a `.env` file for your API credentials
 ```sh
