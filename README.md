@@ -1,10 +1,3 @@
-![GitHub stats](https://github-readme-stats.vercel.app/api?username=skyevault&show_icons=true&theme=dark)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=skyevault&layout=compact&theme=dark)
-![GitHub Streak](https://streak-stats.demolab.com/?user=skyevault&theme=dark)
-![Rust](https://img.shields.io/badge/Rust-Language-brown?style=flat-square&logo=rust)
-![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)
-
-
 # Main Repository
 
 [![Rust CI](https://github.com/SkyeVault/Main/actions/workflows/ci.yml/badge.svg)](https://github.com/SkyeVault/Main/actions/workflows/ci.yml)
@@ -109,7 +102,7 @@ SkyeVault-ops/
   ├── security/
   ├── scripts/
   ├── templates/
-
+```
 ![Rust](https://img.shields.io/badge/Rust-Language-brown?style=flat-square&logo=rust)
 ![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=skyevault&layout=compact&theme=dark)
