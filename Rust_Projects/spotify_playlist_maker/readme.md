@@ -33,11 +33,8 @@ Before running the program, make sure you have the following installed:
 ---
 
 ## Installation and Setup
-### 1. Clone this repository
-```sh
-git clone https://github.com/SkyeVault/Main.git
-cd spotify_playlist_maker
-```
+
+## Install via Cargo
 
 ### 2. Create a `.env` file for your API credentials
 ```sh
