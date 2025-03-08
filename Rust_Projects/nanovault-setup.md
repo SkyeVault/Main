@@ -13,8 +13,8 @@ Before running NanoVault, ensure you have the following installed:
 
 Clone the repository and navigate to the project directory:  
 ```sh
-git clone https://github.com/yourusername/skyevault-ops.git
-cd skyevault-ops/nanovault
+git clone https://github.com/yourusername/main.git
+cd main/rust_projects/nanovault
 ```
 
 Initialize the Rust project and install dependencies:  
