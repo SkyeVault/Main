@@ -49,9 +49,9 @@ This repository serves as the central hub for my cloud security projects, docume
 ---
 
 ## Current Focus
-### SkyeVault Ops: Transition to Rust and DevOps Transparency
+### NanoVault: Transition to Rust and DevOps Transparency
 **Vision Statement:**  
-SkyeVault Ops is evolving into a fully Rust-based cloud security and automation project. The focus is on:
+NanoVault is evolving into a fully Rust-based cloud security and automation project. The focus is on:
 - High-performance security tooling
 - AWS security automation
 - Transparent DevOps workflows
