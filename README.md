@@ -27,6 +27,8 @@ This repository serves as the central hub for my cloud security projects, docume
 - **Build Status:** Check the badge above for the latest result
 
 ---
+  
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=skyevault&layout=compact&theme=dark)
 
 ## Skills and Technologies
 ### Cloud Security and DevSecOps
@@ -43,8 +45,6 @@ This repository serves as the central hub for my cloud security projects, docume
 ### Frontend and UI Security
 - **React/Vue** - Frontend security dashboards.
 - **JavaScript/TypeScript** - Secure web development.
-  
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=skyevault&layout=compact&theme=dark)
 
 ---
 
@@ -72,7 +72,8 @@ My goal is to build expertise in:
 - AWS security hardening
 - Infrastructure automation
 - Scalable security architectures
-
+- 
+![GitHub Streak](https://streak-stats.demolab.com/?user=skyevault&theme=dark)
 ---
 
 ## What’s Next?
@@ -107,5 +108,4 @@ SkyeVault-ops/
 ```
 ![Rust](https://img.shields.io/badge/Rust-Language-brown?style=flat-square&logo=rust)
 ![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)
-![GitHub Streak](https://streak-stats.demolab.com/?user=skyevault&theme=dark)
-![GitHub stats](https://github-readme-stats.vercel.app/api?username=skyevault&show_icons=true&theme=dark)
+
