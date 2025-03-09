@@ -27,6 +27,23 @@ This repository serves as the central hub for my cloud security projects, docume
 - **Build Status:** Check the badge above for the latest result
 
 ---
+
+## My Published Crate: Spotify Playlist Maker
+
+[![Crates.io](https://img.shields.io/crates/v/spotify_playlist_maker)](https://crates.io/crates/spotify_playlist_maker)
+[![Docs.rs](https://docs.rs/spotify_playlist_maker/badge.svg)](https://docs.rs/spotify_playlist_maker)
+
+### Overview
+Spotify Playlist Maker is a Rust package for automating the creation and management of Spotify playlists.
+
+### Installation
+```
+cargo install spotify_playlist_maker
+```
+
+### View the Package
+- [Spotify Playlist Maker on Crates.io](https://crates.io/crates/spotify_playlist_maker)
+- [Documentation on Docs.rs](https://docs.rs/spotify_playlist_maker)
   
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=skyevault&layout=compact&theme=dark)
 
