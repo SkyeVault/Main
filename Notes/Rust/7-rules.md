@@ -198,26 +198,4 @@ fn main() {
 ## **Next Steps**  
 - **Experiment** with each concept by modifying the examples.  
 - **Build small Rust projects** to apply what you’ve learned.  
-- **Explore ownership, borrowing, lifetimes, and advanced Rust concepts.**  
-
----
-
-## **How to Use This Guide**  
-
-1. **Save as** `rust_basics.md`.  
-2. **Push it to GitHub** for easy reference.  
-3. **View it in Markdown format** using:  
-   - **GitHub**  
-   - **VS Code**  
-   - **Obsidian**  
-   - **Markdown Viewers**  
-4. **Modify & Expand** it as you learn new Rust concepts.  
-
----
-
-## **Why This Works**  
-- **Code blocks (` ```rust `) are enclosed properly**, ensuring correct formatting in **GitHub and Markdown viewers**.  
-- **Triple backticks are properly closed** for every Rust example.  
-- **Markdown syntax is optimized** for clear readability.  
-
-This guide is now **ready for GitHub, VS Code, or any Markdown-supported platform**. Let me know if you need any modifications.  
+- **Explore ownership, borrowing, lifetimes, and advanced concepts
