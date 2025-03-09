@@ -1243,7 +1243,7 @@ dependencies = [
 
 [[package]]
 name = "spotify_playlist_maker"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "dotenv",
  "rspotify",
