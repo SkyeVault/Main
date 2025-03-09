@@ -45,9 +45,12 @@ cargo install spotify_playlist_maker
 - [Spotify Playlist Maker on Crates.io](https://crates.io/crates/spotify_playlist_maker)
 - [Documentation on Docs.rs](https://docs.rs/spotify_playlist_maker)
   
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=skyevault&layout=compact&theme=dark)
+
 
 ## Skills and Technologies
+
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=skyevault&layout=compact&theme=dark)
+
 ### Cloud Security and DevSecOps
 - AWS Security (IAM, GuardDuty, CloudTrail, WAF, Security Hub)
 - Infrastructure as Code (Terraform, AWS CloudFormation)
