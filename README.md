@@ -33,7 +33,6 @@ This repository serves as the central hub for my cloud security projects, docume
 [![Crates.io](https://img.shields.io/crates/v/spotify_playlist_maker)](https://crates.io/crates/spotify_playlist_maker)
 ![Crates.io](https://img.shields.io/crates/d/spotify_playlist_maker)
 ![Crates.io](https://img.shields.io/crates/l/spotify_playlist_maker)
-![Crates.io](https://img.shields.io/crates/v/spotify_playlist_maker
 [![Docs.rs](https://docs.rs/spotify_playlist_maker/badge.svg)](https://docs.rs/spotify_playlist_maker)
 
 ### Overview
