@@ -11,10 +11,10 @@ This repository is a **live development environment** showcasing **real-world se
 ---
 
 ## **Project Status**  
-✅ **Working Frontend & Backend** – Basic implementation in place.  
+ **Working Frontend & Backend** – Basic implementation in place.  
 ⚠ **Still in Development** – Security tooling and automation workflows need further work.  
-🔄 **Transition to Rust** – Moving core security tools and automation from Python to Rust.  
-📌 **Upcoming Enhancements** – CI/CD pipeline integration, advanced pentesting automation, and structured reporting.  
+ **Transition to Rust** – Moving core security tools and automation from Python to Rust.  
+ **Upcoming Enhancements** – CI/CD pipeline integration, advanced pentesting automation, and structured reporting.  
 
 ---
 
