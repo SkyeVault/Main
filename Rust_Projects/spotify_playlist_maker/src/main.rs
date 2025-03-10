@@ -2,13 +2,11 @@ use dotenv::dotenv;
 use rspotify::{
     clients::{BaseClient, OAuthClient},
     model::{PlayableId, SearchResult, SearchType},
-    AuthCodeSpotify,
-    Credentials,
-    OAuth,
+    AuthCodeSpotify, Credentials, OAuth,
 };
+use spotify_playlist_maker::{format_track_name, generate_spotify_auth_url};
 use std::{collections::HashSet, env, error::Error};
 use tiny_http::Server;
-use spotify_playlist_maker::{format_track_name, generate_spotify_auth_url};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
