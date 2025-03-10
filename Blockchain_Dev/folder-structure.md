@@ -1,3 +1,4 @@
+
 metaverse-land/
 │── contracts/            # Smart contracts
 │   ├── MetaverseLand.sol  # Land NFT contract (ERC-721)
