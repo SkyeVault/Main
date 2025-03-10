@@ -14,6 +14,12 @@ use spotify_playlist_maker::{format_track_name, generate_spotify_auth_url};
 async fn main() -> Result<(), Box<dyn Error>> {
     dotenv().ok();
 
+    let formatted_track = format_track_name("Song Title", "Artist Name");
+    println!("Formatted Track: {}", formatted_track);
+
+    let auth_url = generate_spotify_auth_url();
+    println!("Spotify Auth URL: {}", auth_url);
+
     let creds = Credentials::new(
         &env::var("SPOTIFY_CLIENT_ID")?,
         &env::var("SPOTIFY_CLIENT_SECRET")?,
