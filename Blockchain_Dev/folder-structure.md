@@ -1,3 +1,4 @@
+```
 metaverse-land/
 │── contracts/            # Smart contracts
 │   ├── MetaverseLand.sol  # Land NFT contract (ERC-721)
@@ -23,3 +24,4 @@ metaverse-land/
 │── foundry.toml          # Foundry project configuration
 │── .env                  # Environment variables (private keys, RPC URLs)
 │── package.json          # Dependencies for frontend (if applicable)
+```
