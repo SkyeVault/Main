@@ -13,6 +13,8 @@ This Rust program automates playlist creation on Spotify using the `rspotify` li
 - Uses `tiny_http` to handle the authentication callback automatically
 
 ![Crates.io](https://img.shields.io/crates/d/spotify_playlist_maker)
+![Crates.io](https://img.shields.io/crates/l/spotify_playlist_maker)
+https://img.shields.io/crates/v/spotify_playlist_maker
 ---
 
 ## Prerequisites
