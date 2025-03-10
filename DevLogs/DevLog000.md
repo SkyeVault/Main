@@ -1,22 +1,22 @@
-# SkyeVault Ops Development Log
+# **SkyeVault Ops Development Log**  
 
-## 📅 Date: February 26, 2025
+## **Date: February 26, 2025**  
 
-This document records all major development steps, fixes, and future plans for **SkyeVault Ops** security automation. Use this as a reference for future improvements and troubleshooting.
+This document records all major development steps, fixes, and future plans for **SkyeVault Ops** security automation. Use this as a reference for future improvements and troubleshooting.  
 
 ---
 
-## ✅ **1. Git & Project Setup**
-### **Fixing Git Issues & Repo Cleanup**
-- **Issue:** `skyevault-ops` was mistakenly treated as a submodule, causing issues with Git tracking.
-- **Solution:**
-  1. Removed `.git` folder inside `skyevault-ops`.
-  2. Deleted incorrect `skyevault-ops` references in Git.
-  3. Recreated `skyevault-ops` as a standard directory.
-  4. Cleaned up `.gitignore` to prevent tracking SQLite database (`security_reports.db`).
-  5. Successfully pushed all cleaned files to GitHub.
+## **1. Git & Project Setup**  
+### **Fixing Git Issues & Repo Cleanup**  
+- **Issue:** `skyevault-ops` was mistakenly treated as a submodule, causing issues with Git tracking.  
+- **Solution:**  
+  1. Removed `.git` folder inside `skyevault-ops`.  
+  2. Deleted incorrect `skyevault-ops` references in Git.  
+  3. Recreated `skyevault-ops` as a standard directory.  
+  4. Cleaned up `.gitignore` to prevent tracking SQLite database (`security_reports.db`).  
+  5. Successfully pushed all cleaned files to GitHub.  
 
-#### **Commands Used:**
+#### **Commands Used:**  
 ```sh
 rm -rf skyevault-ops.git  # Remove submodule directory
 rm -rf .git/modules/skyevault-ops  # Remove lingering Git tracking
@@ -29,111 +29,112 @@ git push origin main --force  # Force update repo structure
 
 ---
 
-## ✅ **2. AWS Security Automation Scripts**
+## **2. AWS Security Automation Scripts**  
 
-### **🔹 IAM Security Check (`iam_security_check.py`)**
-- **Checks IAM users for:**
-  - Users **without MFA enabled** 🚨
-  - **Inactive users** (90+ days without login) ⚠️
-- **Findings logged in** `security_reports.db`.
-- **Test Output:**
+### **IAM Security Check (`iam_security_check.py`)**  
+- **Checks IAM users for:**  
+  - Users without MFA enabled  
+  - Inactive users (90+ days without login)  
+- **Findings logged in** `security_reports.db`.  
+
+**Test Output:**  
 ```sh
-🔍 Running IAM Security Check...
-🚨 Users without MFA enabled:
+Running IAM Security Check...
+Users without MFA enabled:
  - SkyeVaultUser
-✅ IAM Security Check Complete!
+IAM Security Check Complete!
 ```
 
 ---
 
-### **🔹 S3 Security Check (`s3_security_check.py`)**
-- **Scans all AWS S3 buckets for public access.**
-- **Test Output:**
+### **S3 Security Check (`s3_security_check.py`)**  
+- **Scans all AWS S3 buckets for public access.**  
+
+**Test Output:**  
 ```sh
-🔍 Running S3 Security Check...
-✅ All S3 buckets are secure!
+Running S3 Security Check...
+All S3 buckets are secure!
 ```
 
 ---
 
-### **🔹 GuardDuty Security Check (`guardduty_check.py`)**
-- **Pulls threat alerts from AWS GuardDuty.**
-- **Needs additional validation of results.**
+### **GuardDuty Security Check (`guardduty_check.py`)**  
+- **Pulls threat alerts from AWS GuardDuty.**  
+- **Needs additional validation of results.**  
 
 ---
 
-### **🔹 CloudTrail Security Check (`cloudtrail_check.py`)**
-- **Monitors AWS CloudTrail logs for risky events:**
-  - 🚨 `GenerateDataKey` by unknown users.
-  - 🚨 `ListAccessKeys` by **root**.
-- **Findings logged in** `security_reports.db`.
-- **Test Output:**
+### **CloudTrail Security Check (`cloudtrail_check.py`)**  
+- **Monitors AWS CloudTrail logs for risky events:**  
+  - `GenerateDataKey` by unknown users.  
+  - `ListAccessKeys` by root.  
+- **Findings logged in** `security_reports.db`.  
+
+**Test Output:**  
 ```sh
-🔍 Running CloudTrail Security Check...
-🚨 Security Alert: GenerateDataKey by Unknown User at 2025-02-26 16:48:22
-🚨 Security Alert: ListAccessKeys by root at 2025-02-26 16:46:52
+Running CloudTrail Security Check...
+Security Alert: GenerateDataKey by Unknown User at 2025-02-26 16:48:22
+Security Alert: ListAccessKeys by root at 2025-02-26 16:46:52
 ```
 
 ---
 
-## ✅ **3. Database Integration (`database.py`)**
-- **SQLite database created:** `security_reports.db`
-- **Stores security alerts from all scripts.**
-- **Verification Command:**
+## **3. Database Integration (`database.py`)**  
+- **SQLite database created:** `security_reports.db`  
+- **Stores security alerts from all scripts.**  
+
+**Verification Command:**  
 ```python
 from database import get_reports
 print(get_reports())
 ```
-- **Example Database Output:**
+
+**Example Database Output:**  
 ```sh
 [(1, 'IAM', 'User SkyeVaultUser has no MFA enabled', '2025-02-26 21:28:41'),
- (2, 'CloudTrail', '🚨 Security Alert: ListAccessKeys by root at 2025-02-26 16:46:52', '2025-02-26 21:50:39')]
+ (2, 'CloudTrail', 'Security Alert: ListAccessKeys by root at 2025-02-26 16:46:52', '2025-02-26 21:50:39')]
 ```
 
-### **🔹 Fix Needed: CloudTrail Duplicate Entries**
-- **Issue:** CloudTrail logs are being saved **multiple times** when rerunning the script.
-- **Fix:** Before saving a new event, check if it **already exists in the database**.
+### **Fix Needed: CloudTrail Duplicate Entries**  
+- **Issue:** CloudTrail logs are being saved multiple times when rerunning the script.  
+- **Fix:** Before saving a new event, check if it already exists in the database.  
 
 ---
 
-## 🔥 **Next Steps: UI Development**
-### **1️⃣ Frontend Dashboard (Security Visualization)**
-- **Tech Stack:**
-  - **Frontend:** React.js or Flask
-  - **Backend:** Python (Flask or FastAPI)
-  - **Database:** SQLite (Upgrade to DynamoDB later)
-  - **Security Reports API:** JSON endpoints for UI
+## **Next Steps: UI Development**  
 
-### **2️⃣ Automate Notifications**
-- **Send alerts for high-risk security events.**
-- **Potential integrations:**
-  - Email alerts 📧
-  - Slack/Webhooks 🔗
-  - SMS/Phone notifications 📱
+### **1. Frontend Dashboard (Security Visualization)**  
+- **Tech Stack:**  
+  - **Frontend:** React.js or Flask  
+  - **Backend:** Python (Flask or FastAPI)  
+  - **Database:** SQLite (Upgrade to DynamoDB later)  
+  - **Security Reports API:** JSON endpoints for UI  
 
-### **3️⃣ Improve CloudTrail Event Filtering**
-- **Check if an event exists before logging it.**
-- Prevent duplicate security alerts.
+### **2. Automate Notifications**  
+- **Send alerts for high-risk security events.**  
+- **Potential integrations:**  
+  - Email alerts  
+  - Slack/Webhooks  
+  - SMS/Phone notifications  
 
----
-
-## 🚀 **Final Notes**
-✅ **All scripts are working and saving security events.**
-✅ **Git repository is clean and synced with GitHub.**
-✅ **Database logging works as expected.**
- 
-
-# 📜 SkyeVault Ops Setup & Debugging Log
-**Date:** *February 28, 2025*  
-**Objective:** *Set up and debug the Cyberpunk AWS Security Dashboard using Flask, HTML, CSS, JavaScript, and Python API.*  
+### **3. Improve CloudTrail Event Filtering**  
+- **Check if an event exists before logging it.**  
+- **Prevent duplicate security alerts.**  
 
 ---
 
-## 1️⃣ Project Initialization  
-### ✅ Step 1: Set Up Flask & Directory Structure  
-📌 First, we set up the **Flask app structure** with `templates/` for HTML and `static/` for CSS & JS.  
+# **SkyeVault Ops Setup & Debugging Log**  
 
-### **Project Structure**  
+## **Date:** February 28, 2025  
+**Objective:** Set up and debug the **Cyberpunk AWS Security Dashboard** using Flask, HTML, CSS, JavaScript, and Python API.  
+
+---
+
+## **1. Project Initialization**  
+### **Step 1: Set Up Flask & Directory Structure**  
+The **Flask app structure** was set up with `templates/` for HTML and `static/` for CSS & JS.  
+
+### **Project Structure:**  
 ```
 /skyevault-ops
 │── /templates
@@ -147,16 +148,17 @@ print(get_reports())
 │── requirements.txt  # Python dependencies
 │── README.md  # Project Documentation
 ```
+
 ---
 
-## 2️⃣ Flask Backend - `app.py`  
-### ✅ Step 2: Creating the Flask API  
-created the Flask app (`app.py`) to:  
-- **Render the dashboard (`index.html`)**  
-- **Serve security logs as JSON (`/logs`)**  
-- **Load static files (`style.css`, `main.js`)**  
+## **2. Flask Backend - `app.py`**  
+### **Step 2: Creating the Flask API**  
+The Flask app (`app.py`) was created to:  
+- Render the dashboard (`index.html`).  
+- Serve security logs as JSON (`/logs`).  
+- Load static files (`style.css`, `main.js`).  
 
-### **Final `app.py`**  
+### **Final `app.py`:**  
 ```python
 from flask import Flask, render_template, jsonify
 
@@ -183,14 +185,14 @@ if __name__ == '__main__':
     app.run(debug=True)
 ```
 
-3️⃣ HTML - index.html
+---
 
-✅ Step 3: Creating the Dashboard Layout
+## **3. HTML - `index.html`**  
+### **Step 3: Creating the Dashboard Layout**  
+Sections for logs, graphs, and Red Team tools were added.  
 
-📌 We added sections for logs, graphs, and Red Team buttons.
-
-Final index.html
-```
+### **Final `index.html`:**  
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -203,11 +205,11 @@ Final index.html
 </head>
 <body>
     <div class="container">
-        <h1>⚡ Cyberpunk AWS Security Dashboard ⚡</h1>
+        <h1>Cyberpunk AWS Security Dashboard</h1>
 
         <!-- Security Logs -->
         <div class="box">
-            <h2>📜 Security Logs</h2>
+            <h2>Security Logs</h2>
             <div id="terminal">
                 <pre id="log-output">Loading security logs...</pre>
             </div>
@@ -215,27 +217,21 @@ Final index.html
 
         <!-- Graphs -->
         <div class="box">
-            <h2>📊 Security Insights</h2>
+            <h2>Security Insights</h2>
             <canvas id="securityGraph"></canvas>
         </div>
 
         <!-- Red Team Tools -->
         <div class="box">
-            <h2>🛠️ Red Team Tools</h2>
-            <button class="red-button" onclick="launchScan()">🔍 Network Scan</button>
-            <button class="red-button" onclick="privilegeEscalation()">⚠️ Privilege Escalation Test</button>
-            <button class="red-button" onclick="runExploit()">💥 Exploit S3 Bucket</button>
+            <h2>Red Team Tools</h2>
+            <button class="red-button" onclick="launchScan()">Network Scan</button>
+            <button class="red-button" onclick="privilegeEscalation()">Privilege Escalation Test</button>
+            <button class="red-button" onclick="runExploit()">Exploit S3 Bucket</button>
         </div>
     </div>
 </body>
 </html>
-
-
-This log documents everything from setting up Flask to debugging 
-
-`  
 ```
+---
 
-
-
-
+This log documents everything from **setting up Flask to debugging AWS security scripts** while keeping all records structured and easy to reference.
