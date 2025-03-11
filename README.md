@@ -5,6 +5,19 @@
 ## Overview
 This repository serves as the central hub for blockchain security development, Ethereum smart contracts, and cloud security automation using Rust.
 
+## Current File Structure
+```sh
+.github/                  # GitHub workflows and CI configuration  
+Blockchain_Dev/           # Ethereum smart contracts and Foundry projects  
+DevLogs/                  # Documentation, software notes and development logs  
+README.md                 # Project documentation  
+Rust_Projects/            # Rust-based development and security tooling  
+    ├── spotify_playlist_maker/  # Rust automation project  
+    ├── (More Rust projects here)  
+security/                 # Security-focused research and automation  
+
+```
+
 ## Key Areas of Focus
 - Blockchain Development: Smart contracts, decentralized applications (dApps), and blockchain security using Rust & Foundry (Ethereum)
 - Cloud & Security Engineering: AWS security automation, IAM hardening, and cloud monitoring
@@ -74,7 +87,7 @@ The security/ directory focuses on AWS security automation, IAM configurations, 
 - CI/CD Pipelines - GitHub Actions, GitLab CI
 - Security Automation - Red Team/Blue Team security testing
 
-##Current Focus
+## Current Focus
 - Blockchain and Web3 Development
 - Building Ethereum smart contracts using Rust & Foundry
 - Exploring decentralized storage with Web3.Storage and NFT.Storage
@@ -110,19 +123,5 @@ Feel free to check out my repositories and reach out.
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
-
-## Current File Structure
-```sh
-.github/                  # GitHub workflows and CI configuration  
-Blockchain_Dev/           # Ethereum smart contracts and Foundry projects  
-DevLogs/                  # Documentation, software notes and development logs  
-README.md                 # Project documentation  
-Rust_Projects/            # Rust-based development and security tooling  
-    ├── spotify_playlist_maker/  # Rust automation project  
-    ├── (More Rust projects here)  
-security/                 # Security-focused research and automation  
-
-```
 ![Rust](https://img.shields.io/badge/Rust-Language-brown?style=flat-square&logo=rust)
 ![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)
