@@ -3,19 +3,12 @@
 [![Rust CI](https://github.com/SkyeVault/Main/actions/workflows/ci.yml/badge.svg)](https://github.com/SkyeVault/Main/actions/workflows/ci.yml)
 
 ## Overview
-This repository serves as the central hub for my cloud security projects, documenting key implementations, automation scripts, and lessons learned along the way.
+This repository serves as the central hub for blockchain security development, Ethereum smart contracts, and cloud security automation using Rust.
 
----
-
-## Repository Structure
-- **AWS-Security-Labs/** - Hands-on exercises and experiments related to AWS security.
-- **Cloud-Security-Projects/** - Real-world cloud security configurations and automation scripts.
-- **Rust_Projects/** - Security-focused Rust development and automation.
-  - **spotify_playlist_maker/** - Rust automation for creating Spotify playlists.
-  - *(More Rust projects will be added here)*
-- **Scripts/** - Various scripts for security monitoring, IAM automation, and infrastructure hardening.
-- **SkyeVault-ops/** - AWS security dashboard in development, focused on automated security assessments.
-- **Notes/** - Notes about GitHub, Bash, Python, Rust, and more.
+## Key Areas of Focus
+- Blockchain Development: Smart contracts, decentralized applications (dApps), and blockchain security using Rust & Foundry (Ethereum)
+- Cloud & Security Engineering: AWS security automation, IAM hardening, and cloud monitoring
+- Rust Development: High-performance security tooling and infrastructure automation
 
 ---
 
@@ -53,60 +46,63 @@ cargo install spotify_playlist_maker
 
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=skyevault&layout=compact&theme=dark)
 
-### Cloud Security and DevSecOps
-- AWS Security (IAM, GuardDuty, CloudTrail, WAF, Security Hub)
-- Infrastructure as Code (Terraform, AWS CloudFormation)
-- Automated Security Testing (Red Team and Blue Team)
-- CI/CD Pipelines (GitHub Actions, GitLab CI)
+## Blockchain Development
+Foundry and Ethereum Projects
+The Blockchain_Dev/ directory contains projects related to Ethereum smart contracts using Rust and Foundry.
 
-### Backend and Security Development
-- **Rust** - High-performance security tooling and cloud automation.
-- **Python** - Security automation and API development.
-- **Node.js** - Backend security and monitoring.
+## Tools and Technologies
+- Foundry - Ethereum development framework for smart contracts
+- Solidity - Smart contract programming language
+- Rust - High-performance blockchain and security development
+- Web3 Storage - Decentralized storage for blockchain applications
 
-### Frontend and UI Security
-- **React/Vue** - Frontend security dashboards.
-- **JavaScript/TypeScript** - Secure web development.
+## Current Work
+Developing Ethereum smart contracts with Foundry
+Researching blockchain security best practices
+Exploring NFT integration and decentralized applications
 
+## Rust Development
+The Rust_Projects/ directory includes various Rust-based security and automation tools.
 ---
 
-## Current Focus
-### NanoVault: Transition to Rust and DevOps Transparency
-**Vision Statement:**  
-NanoVault is evolving into a fully Rust-based cloud security and automation project. The focus is on:
-- High-performance security tooling
-- AWS security automation
-- Transparent DevOps workflows
-- Exploring a transition to GitLab for CI/CD and project management
+Security and Cloud Automation
+The security/ directory focuses on AWS security automation, IAM configurations, and cloud security research.
 
----
+## Technologies and Skills
+- AWS Security - IAM hardening, GuardDuty, CloudTrail, WAF, Security Hub
+- Infrastructure as Code - Terraform, AWS CloudFormation
+- CI/CD Pipelines - GitHub Actions, GitLab CI
+- Security Automation - Red Team/Blue Team security testing
 
-## What I’m Working On
-- Building a Rust-based cloud security automation framework
-- Automating security workflows in AWS using Rust and Python
-- Expanding full-stack security applications with integrated logging and security telemetry
+##Current Focus
+- Blockchain and Web3 Development
+- Building Ethereum smart contracts using Rust & Foundry
+- Exploring decentralized storage with Web3.Storage and NFT.Storage
+- Implementing blockchain security measures for smart contracts
+- Rust Security and Automation
+- Developing Rust-based security tooling
+- Expanding cloud security automation with AWS IAM and security monitoring
+
+## What’s Next?
+- Enhancing blockchain security documentation
+- Implementing real-world security automation
+- Developing Ethereum smart contracts and decentralized applications
 
 ---
 
 ## My Journey
 I started in web design and graphic arts before shifting my focus to cloud security and Rust development.  
 My goal is to build expertise in:
-- AWS security hardening
+- Blockchain Development
 - Infrastructure automation
-- Scalable security architectures
+- Scalable security architecture
   
 ![GitHub Streak](https://streak-stats.demolab.com/?user=skyevault&theme=dark)
----
-
-## What’s Next?
-- Expanding AWS security documentation
-- Implementing real-world security hardening strategies
-- Developing automation tools for cloud security
 
 ---
 
 ## Connect and Collaborate
-Interested in cloud security, automation, or full-stack security applications?  
+Interested in blockchain development, cloud security, automation, or full-stack security applications?  
 Feel free to check out my repositories and reach out.
 
 ---
@@ -118,15 +114,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Current File Structure
 ```sh
-Rust_Projects/
-  ├── spotify_playlist_maker/  # Rust-based automation project
-  ├── (Add more Rust projects here...)
-SkyeVault-ops/
-  ├── backend/
-  ├── frontend/
-  ├── security/
-  ├── scripts/
-  ├── templates/
+.github/                  # GitHub workflows and CI configuration  
+Blockchain_Dev/           # Ethereum smart contracts and Foundry projects  
+DevLogs/                  # Documentation, software notes and development logs  
+README.md                 # Project documentation  
+Rust_Projects/            # Rust-based development and security tooling  
+    ├── spotify_playlist_maker/  # Rust automation project  
+    ├── (More Rust projects here)  
+security/                 # Security-focused research and automation  
+
 ```
 ![Rust](https://img.shields.io/badge/Rust-Language-brown?style=flat-square&logo=rust)
 ![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)
