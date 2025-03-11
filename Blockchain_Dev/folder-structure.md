@@ -14,29 +14,41 @@ This repository is an open-source initiative to **build a metaverse land system 
 
 ## Folder Structure
 ```
-metaverse-land/
-│── contracts/            # Smart contracts
-│   ├── MetaverseLand.sol  # Land NFT contract (ERC-721)
-│   ├── Marketplace.sol    # Land marketplace contract
-│   ├── Rental.sol         # Land rental contract
-│   ├── utils/             # Utility contracts (e.g., libraries)
-│── scripts/              # Deployment and automation scripts
-│   ├── DeployLand.s.sol   # Script to deploy land contract
-│   ├── DeployMarket.s.sol # Script to deploy marketplace
-│── test/                 # Smart contract tests
-│   ├── MetaverseLand.t.sol
-│   ├── Marketplace.t.sol
-│── storage/              # Land metadata (IPFS JSON files)
-│   ├── parcels/          # Individual land parcel metadata
-│   ├── metadata-schema.json  # JSON structure for land data
-│── frontend/             # Frontend integration (Next.js, Ethers.js)
-│   ├── components/
-│   ├── pages/
-│── docs/                 # Documentation
-│   ├── README.md         # Project overview
-│   ├── LAND_NFT.md       # Detailed explanation of land NFTs
-│   ├── MARKETPLACE.md    # Marketplace documentation
-│── foundry.toml          # Foundry project configuration
-│── .env                  # Environment variables (private keys, RPC URLs)
-│── package.json          # Dependencies for frontend (if applicable)
+metaverse-sandbox/
+├── blockchain/             # Smart Contracts (Solidity / Rust / Move)
+│   ├── contracts/          # Land NFTs, In-Game Assets, Marketplace
+│   ├── scripts/            # Deployment & Upgrade Scripts
+│   ├── tests/              # Security & Functional Testing
+│   ├── foundry.toml        # Foundry Configuration
+│   ├── hardhat.config.js   # Hardhat Setup (Optional)
+├── backend/                # API & Game Server (Rust / Node.js)
+│   ├── src/
+│   │   ├── auth.rs         # User Authentication
+│   │   ├── game.rs         # Game State & Interactions
+│   │   ├── economy.rs      # On-Chain Economy
+│   │   ├── database.rs     # Postgres or SurrealDB
+│   ├── Cargo.toml          # Rust Dependencies
+├── frontend/               # Web Interface (Next.js / Three.js)
+│   ├── pages/              # UI Components
+│   ├── components/         # React Components
+│   ├── hooks/              # Web3 Hooks
+│   ├── styles/             # Tailwind or CSS Modules
+├── assets/                 # 3D Models, Textures, UI Assets
+│   ├── avatars/            # Customizable Player Avatars
+│   ├── worlds/             # Procedural Worlds & Land Data
+├── database/               # Off-Chain Storage (PostgreSQL / Firestore)
+│   ├── schema.sql          # SQL Schema for Off-Chain Data
+├── storage/                # Decentralized Storage (IPFS / Arweave)
+│   ├── metadata.json       # IPFS Metadata for NFT Land & Assets
+├── tests/                  # Smart Contract & Game Tests
+│   ├── blockchain/         # Foundry / Hardhat Tests
+│   ├── api/                # API Unit Tests
+├── docs/                   # Documentation
+│   ├── README.md           # Main Project Overview
+│   ├── setup.md            # Step-by-Step Installation
+│   ├── roadmap.md          # Feature Milestones
+├── scripts/                # Utility Scripts
+│   ├── deploy.sh           # Automated Deployment Script
+│   ├── test.sh             # Run All Tests
+└── README.md               # Main ReadMe
 ```
