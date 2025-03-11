@@ -75,7 +75,7 @@ Researching blockchain security best practices
 Exploring NFT integration and decentralized applications
 
 ## Rust Development
-The Rust_Projects/ directory includes various Rust-based security and automation tools.
+- The Rust_Projects/ directory includes various Rust-based security and automation tools.
 ---
 
 Security and Cloud Automation
