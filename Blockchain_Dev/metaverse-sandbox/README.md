@@ -22,22 +22,23 @@ metaverse-sandbox/
 │   │   ├── db/
 │   │   │   ├── schema.rs          # Land ownership database schema
 │   │   │   ├── queries.rs         # Database queries for land retrieval
+│   ├── revm/                     # REVM-based smart contract execution
+│   │   ├── Cargo.toml             # Rust dependencies for REVM
+│   │   ├── src/
+│   │   │   ├── main.rs            # REVM smart contract executor
 │   ├── Cargo.toml                # Rust dependencies
 │   ├── package.json              # Node dependencies (if using hybrid Rust/Node backend)
 │   ├── .env                      # Environment variables for API keys, RPC URLs
 │   ├── Dockerfile                # Containerization setup
 ├── blockchain/                   # Smart contracts and blockchain integrations
-│   ├── contracts/
-│   │   ├── MetaverseLand.sol      # ERC-721 Land ownership contract
-│   │   ├── Marketplace.sol        # Smart contract for land sales and leases
-│   │   ├── DAO.sol                # Governance contract
-│   ├── test/
-│   │   ├── MetaverseLand.test.js  # ERC-721 contract tests
-│   │   ├── Marketplace.test.js    # Marketplace contract tests
-│   ├── scripts/                   # Deployment and interaction scripts
-│   │   ├── deploy.js              # Deploys smart contracts
-│   │   ├── mintLand.js            # Mints land NFTs
-│   │   ├── listLand.js            # Lists land for sale
+│   ├── foundry/                   # Foundry framework for Solidity contracts
+│   │   ├── src/
+│   │   │   ├── MetaverseLand.sol  # ERC-721 Land ownership contract
+│   │   │   ├── Marketplace.sol    # Smart contract for land sales and leases
+│   │   │   ├── DAO.sol            # Governance contract
+│   │   ├── test/                  # Solidity-based tests with Foundry
+│   │   ├── script/                # Foundry deployment scripts
+│   │   ├── foundry.toml           # Foundry configuration
 │   ├── hardhat.config.js          # Hardhat configuration for Solidity development
 ├── frontend/                      # Web-based UI for land management
 │   ├── src/
@@ -92,8 +93,9 @@ npm install  # If using Node.js
 
 ### 3. Install Blockchain Dependencies
 ```bash
-cd blockchain
-npm install
+cd blockchain/foundry
+forge install
+forge build
 ```
 
 ### 4. Install Frontend Dependencies
@@ -107,42 +109,12 @@ Copy `.env.example` to `.env` in each folder and update the values.
 
 ---
 
-## File Descriptions and Interactions
-
-### Backend (`backend/` folder)
-- **`main.rs`**: Entry point for the Rust backend API.
-- **`auth.rs`**: Manages wallet authentication via MetaMask and WalletConnect.
-- **`land_registry.rs`**: Communicates with the ERC-721 contract for land ownership verification.
-- **`marketplace.rs`**: Handles smart contract interactions for land sales and leasing.
-- **`ipfs.rs`**: Uploads and fetches metadata from IPFS.
-- **`graphql.rs`**: Provides a GraphQL API for querying land data.
-
-### Blockchain (`blockchain/` folder)
-- **`MetaverseLand.sol`**: The ERC-721 contract defining land ownership.
-- **`Marketplace.sol`**: The contract allowing users to sell and buy land.
-- **`DAO.sol`**: Smart contract for decentralized governance.
-- **`deploy.js`**: Deploys contracts to the blockchain.
-- **`mintLand.js`**: Mints new land NFTs.
-- **`listLand.js`**: Lists land for sale.
-
-### Frontend (`frontend/` folder)
-- **`MapViewer.js`**: Displays a 3D metaverse map.
-- **`walletConnect.js`**: Handles user authentication with Web3 wallets.
-- **`smartContract.js`**: Calls Solidity contracts using Web3.js or ethers.js.
-
-### Storage (`storage/` folder)
-- Stores metadata and assets on IPFS, Arweave, or Pinata.
-
-### Governance (`governance/` folder)
-- Manages voting, staking, and treasury functions.
-
----
-
 ## Next Steps
 - Run the backend with `cargo run` or `npm start`.
-- Deploy smart contracts with `npx hardhat run scripts/deploy.js --network goerli`.
+- Deploy smart contracts using Foundry with `forge script script/Deploy.s.sol --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast`.
+- Test smart contracts with `forge test`.
+- Execute smart contract bytecode in `revm` with `cargo run`.
 - Start the frontend with `npm run dev`.
 - Explore metaverse land and interact with smart contracts.
 
-For more details, refer to `docs/setup.md` and `docs/api-reference.md`. 
-
+For more details, refer to `docs/setup.md` and `docs/api-reference.md`.
