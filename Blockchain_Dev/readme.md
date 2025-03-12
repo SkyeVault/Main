@@ -1,4 +1,4 @@
-# **Metaverse Land: Blockchain Development Roadmap**  
+# **Metaverse Sandbox: Blockchain Development Roadmap**  
 ### *A Bootstrap Open-Source Experiment for Learning Smart Contracts and Metaverse Development*  
 
 ---
