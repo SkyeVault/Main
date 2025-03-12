@@ -1,1 +1,148 @@
-# Metaverse Sandbox - Open Source Virtual Land System
+# Metaverse Sandbox - Developer Guide
+
+## Introduction
+The Metaverse Sandbox is a **non-gaming open-source metaverse** built using Rust, Solidity, and JavaScript. It features blockchain-based land ownership, a marketplace for virtual land sales, and a governance model for community-driven decisions.
+
+This guide explains how to navigate the project structure, perform the initial setup, and understand how each file interacts with the system.
+
+---
+
+## Project Structure
+
+```plaintext
+metaverse-sandbox/
+├── backend/                    # Rust/Node backend for authentication, APIs, and land management
+│   ├── src/
+│   │   ├── main.rs              # Rust Axum API entry point
+│   │   ├── auth.rs              # Wallet authentication (MetaMask, WalletConnect)
+│   │   ├── land_registry.rs      # ERC-721 NFT Land Registry integration
+│   │   ├── marketplace.rs        # Smart contract API for land sales, leases, and transfers
+│   │   ├── ipfs.rs               # IPFS integration for metadata storage
+│   │   ├── graphql.rs            # GraphQL API for querying land data
+│   │   ├── db/
+│   │   │   ├── schema.rs          # Land ownership database schema
+│   │   │   ├── queries.rs         # Database queries for land retrieval
+│   ├── Cargo.toml                # Rust dependencies
+│   ├── package.json              # Node dependencies (if using hybrid Rust/Node backend)
+│   ├── .env                      # Environment variables for API keys, RPC URLs
+│   ├── Dockerfile                # Containerization setup
+├── blockchain/                   # Smart contracts and blockchain integrations
+│   ├── contracts/
+│   │   ├── MetaverseLand.sol      # ERC-721 Land ownership contract
+│   │   ├── Marketplace.sol        # Smart contract for land sales and leases
+│   │   ├── DAO.sol                # Governance contract
+│   ├── test/
+│   │   ├── MetaverseLand.test.js  # ERC-721 contract tests
+│   │   ├── Marketplace.test.js    # Marketplace contract tests
+│   ├── scripts/                   # Deployment and interaction scripts
+│   │   ├── deploy.js              # Deploys smart contracts
+│   │   ├── mintLand.js            # Mints land NFTs
+│   │   ├── listLand.js            # Lists land for sale
+│   ├── hardhat.config.js          # Hardhat configuration for Solidity development
+├── frontend/                      # Web-based UI for land management
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── MapViewer.js         # Renders metaverse map using Three.js
+│   │   │   ├── LandCard.js          # Displays land details
+│   │   ├── pages/
+│   │   │   ├── index.js             # Main landing page
+│   │   │   ├── dashboard.js         # User dashboard
+│   │   │   ├── explore.js           # Explore metaverse parcels
+│   │   │   ├── marketplace.js       # Buy/sell land UI
+│   │   ├── utils/
+│   │   │   ├── walletConnect.js     # MetaMask/WalletConnect integration
+│   │   │   ├── ipfs.js              # IPFS data fetching
+│   │   │   ├── smartContract.js     # Web3.js or ethers.js contract helpers
+│   ├── package.json                 # Dependencies for React/Next.js frontend
+│   ├── tailwind.config.js            # TailwindCSS configuration
+│   ├── .env                          # Frontend environment variables
+├── storage/                          # Decentralized storage integration
+│   ├── ipfs/                          # IPFS metadata storage
+│   ├── arweave/                        # Arweave metadata (optional)
+│   ├── pinata/                         # Pinata cloud storage API scripts
+├── governance/                        # DAO & governance integrations
+│   ├── snapshot/                       # Snapshot.org proposal scripts
+│   ├── treasury/                        # DAO-controlled funds management
+│   ├── staking/                         # Staking mechanism for landowners
+├── docs/                               # Documentation
+│   ├── setup.md                         # Installation & setup guide
+│   ├── api-reference.md                 # API endpoints documentation
+│   ├── smart-contracts.md                # Smart contract details
+│   ├── contributing.md                   # How to contribute
+├── .gitignore                           # Ignore unnecessary files
+├── README.md                            # Project overview
+```
+
+---
+
+## Initial Setup
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/SkyeVault/Main.git
+cd Main/Blockchain_Dev/metaverse-sandbox
+```
+
+### 2. Install Backend Dependencies
+```bash
+cd backend
+cargo build  # If using Rust
+npm install  # If using Node.js
+```
+
+### 3. Install Blockchain Dependencies
+```bash
+cd blockchain
+npm install
+```
+
+### 4. Install Frontend Dependencies
+```bash
+cd frontend
+npm install
+```
+
+### 5. Set Up Environment Variables
+Copy `.env.example` to `.env` in each folder and update the values.
+
+---
+
+## File Descriptions and Interactions
+
+### Backend (`backend/` folder)
+- **`main.rs`**: Entry point for the Rust backend API.
+- **`auth.rs`**: Manages wallet authentication via MetaMask and WalletConnect.
+- **`land_registry.rs`**: Communicates with the ERC-721 contract for land ownership verification.
+- **`marketplace.rs`**: Handles smart contract interactions for land sales and leasing.
+- **`ipfs.rs`**: Uploads and fetches metadata from IPFS.
+- **`graphql.rs`**: Provides a GraphQL API for querying land data.
+
+### Blockchain (`blockchain/` folder)
+- **`MetaverseLand.sol`**: The ERC-721 contract defining land ownership.
+- **`Marketplace.sol`**: The contract allowing users to sell and buy land.
+- **`DAO.sol`**: Smart contract for decentralized governance.
+- **`deploy.js`**: Deploys contracts to the blockchain.
+- **`mintLand.js`**: Mints new land NFTs.
+- **`listLand.js`**: Lists land for sale.
+
+### Frontend (`frontend/` folder)
+- **`MapViewer.js`**: Displays a 3D metaverse map.
+- **`walletConnect.js`**: Handles user authentication with Web3 wallets.
+- **`smartContract.js`**: Calls Solidity contracts using Web3.js or ethers.js.
+
+### Storage (`storage/` folder)
+- Stores metadata and assets on IPFS, Arweave, or Pinata.
+
+### Governance (`governance/` folder)
+- Manages voting, staking, and treasury functions.
+
+---
+
+## Next Steps
+- Run the backend with `cargo run` or `npm start`.
+- Deploy smart contracts with `npx hardhat run scripts/deploy.js --network goerli`.
+- Start the frontend with `npm run dev`.
+- Explore metaverse land and interact with smart contracts.
+
+For more details, refer to `docs/setup.md` and `docs/api-reference.md`. 
+
