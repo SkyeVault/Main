@@ -24,99 +24,38 @@ This experiment is designed for **learning and iteration**, with a focus on buil
 
 ---
 
-# **Development Roadmap**  
-
-## **Phase 1: Smart Contract Development (Land Ownership System)**  
-This phase establishes the foundation of the metaverse land system through **blockchain-based land ownership**.  
-
-### **1. Set Up the Development Environment**  
-- Install **Node.js, Hardhat, and Solidity** for smart contract development.  
-- Configure **Ethers.js and Web3.js** for blockchain interactions.  
-
-### **2. Develop the Land NFT Smart Contract**  
-- Create an **ERC-721 contract** for land ownership.  
-- Define **metadata properties** (land coordinates, owner, attributes).  
-- Implement **minting, transferring, and burning functionality**.  
-
-### **3. Deploy the Contract to a Testnet**  
-- Use **Ethereum Goerli or Polygon Mumbai** for testing.  
-- Deploy the contract using **Hardhat scripts**.  
-- Verify the deployment with **Etherscan**.  
-
-### **4. Store Land Metadata on IPFS**  
-- Use **NFT.Storage or Pinata** for decentralized metadata storage.  
-- Generate **JSON metadata files** for land parcels.  
-- Link **IPFS hashes to NFT token URIs**.  
-
----
-
-## **Phase 2: Land Marketplace Development**  
-This phase introduces **smart contract functionality for land transactions**.  
-
-### **5. Implement a Marketplace Contract**  
-- Create a **smart contract** for listing land NFTs for sale.  
-- Define **buy, sell, and auction logic**.  
-- Use **safeTransferFrom** for secure ownership transfers.  
-
-### **6. Integrate Marketplace with Frontend**  
-- Develop a **Next.js-based interface** for listing available land.  
-- Allow users to **connect wallets** and browse land NFTs.  
-- Implement **purchase transactions using MetaMask**.  
-
----
-
-## **Phase 3: 3D Metaverse Integration**  
-This phase links **blockchain land ownership** with a **visual 3D representation**.  
-
-### **7. Build a 3D Land Grid in Three.js**  
-- Load **land NFTs into a 3D world** using Three.js.  
-- Display **owned vs. unowned parcels** with metadata.  
-- Implement **basic user movement and interaction**.  
-
-### **8. Sync Land Ownership with Smart Contracts**  
-- Update **land visuals** based on blockchain data.  
-- Retrieve **owner information using Ethers.js**.  
-- Reflect **real-time land transactions** in the 3D world.  
-
----
-
-## **Phase 4: Expansion and Optimization**  
-Once the core system is functional, additional features will be explored.  
-
-### **9. Introduce Land Development Features**  
-- Allow owners to **place objects on land**.  
-- Store object data on **IPFS and smart contracts**.  
-
-### **10. Enable Rentals and Upgrades**  
-- Implement a **leasing system** for renting land.  
-- Introduce **land expansion mechanics**.  
-
-### **11. Scale to a Multi-Chain System**  
-- Deploy to additional blockchains (**Solana, Avalanche**).  
-- Explore **cross-chain land interoperability**.  
-
----
-
 ## **How to Use Foundry for This Project**  
 
 ### **1. Install Foundry**  
 First, install Foundry using their script:  
+
 ```bash
 curl -L https://foundry.paradigm.xyz | bash
+```
+
+Then, update Foundry:  
+
+```bash
 foundryup
 ```
+
 This installs:  
 - **`forge`** → Builds and tests smart contracts.  
 - **`cast`** → Interacts with Ethereum contracts.  
 - **`anvil`** → Runs a local Ethereum testnet.  
 
+---
+
 ### **2. Initialize the Project**  
 Navigate to your **metaverse-land** folder and initialize Foundry:  
+
 ```bash
 forge init metaverse-land
 cd metaverse-land
 ```
+
 This creates the project structure with:  
+
 ```
 metaverse-land/
 ├── src/      # Solidity contracts
@@ -124,6 +63,8 @@ metaverse-land/
 ├── test/     # Smart contract tests
 ├── foundry.toml # Configuration file
 ```
+
+---
 
 ### **3. Write the Land NFT Smart Contract**  
 Inside `src/MetaverseLand.sol`, create an **ERC-721 NFT contract** for land ownership:  
@@ -160,8 +101,11 @@ contract MetaverseLand is ERC721URIStorage, Ownable {
 }
 ```
 
+---
+
 ### **4. Deploy the Contract**  
 Deploy using Foundry:  
+
 ```bash
 forge script script/DeployMetaverseLand.s.sol --rpc-url $GOERLI_RPC_URL --private-key $PRIVATE_KEY --broadcast
 ```
@@ -192,3 +136,4 @@ This project is released under the **MIT License**, allowing free use, modificat
 This **step-by-step action plan** ensures structured progress while maintaining flexibility for **innovation**. The goal is to **learn, iterate, and experiment** with blockchain-based land systems while creating a **practical foundation for a metaverse land framework**.  
 
 This document serves as a **complete roadmap** for building a **decentralized virtual land system**, integrating **NFTs, blockchain storage, and 3D environments**.  
+
