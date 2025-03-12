@@ -1,1 +1,0 @@
-// Smart contract for land sales
