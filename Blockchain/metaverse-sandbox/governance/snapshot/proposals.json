@@ -1,0 +1,13 @@
+{
+    "proposals": [
+        {
+            "id": "proposal-1",
+            "title": "Should we increase the land supply?",
+            "choices": ["Yes", "No"],
+            "status": "active"
+        }
+    ]
+}
+
+// How to Use:
+// - Create new governance proposals for Snapshot voting.

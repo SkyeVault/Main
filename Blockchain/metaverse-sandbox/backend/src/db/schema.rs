@@ -1,0 +1,1 @@
+// Land ownership database schema
