@@ -12,9 +12,11 @@ use std::fs;
 /// Main function to load, setup, and execute a contract in REVM.
 fn main() {
     // Load compiled bytecode
-    let bytecode_str =
-        fs::read_to_string("../blockchain/bytecode.hex").expect("Failed to load bytecode");
-    let bytecode_bytes = hex::decode(bytecode_str.trim()).expect("Invalid hex");
+    let bytecode_str = fs::read_to_string("../../blockchain/bytecode.hex").expect(
+        "Failed to load bytecode.hex. Ensure the file exists in ../../blockchain/bytecode.hex",
+    );
+    let cleaned_bytecode = bytecode_str.trim().trim_start_matches("0x");
+    let bytecode_bytes = hex::decode(cleaned_bytecode).expect("Invalid hex");
 
     // Create contract bytecode
     let contract = Bytecode::new_raw(bytecode_bytes.into());
@@ -39,7 +41,7 @@ fn main() {
     // ✅ Fix: Properly create the EVM instance
     let mut evm = Evm::new(context, handler);
 
-    // ✅ Fix: Execute transaction correctly
+    evm.context.evm.inner.env.tx.transact_to = revm::primitives::TransactTo::Create;
     let result = evm.transact().expect("Transaction failed");
 
     // Output result
