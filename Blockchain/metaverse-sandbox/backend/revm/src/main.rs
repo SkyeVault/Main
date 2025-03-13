@@ -1,15 +1,47 @@
-use revm::primitives::SpecId;
-use revm::{Context, Evm, Handler};
+use hex;
+use revm::{
+    db::EmptyDB,
+    primitives::{Bytecode, Env, SpecId, TxEnv},
+    Context,
+    Evm,
+    EvmContext, // ✅ Import the correct type
+    Handler,
+};
+use std::fs;
 
+/// Main function to load, setup, and execute a contract in REVM.
 fn main() {
-    // Create a new EVM execution context
-    let context = Context::default();
+    // Load compiled bytecode
+    let bytecode_str =
+        fs::read_to_string("../blockchain/bytecode.hex").expect("Failed to load bytecode");
+    let bytecode_bytes = hex::decode(bytecode_str.trim()).expect("Invalid hex");
 
-    // Create a new EVM handler for execution, using a default mainnet configuration
-    let handler = Handler::mainnet_with_spec(SpecId::LATEST);
+    // Create contract bytecode
+    let contract = Bytecode::new_raw(bytecode_bytes.into());
 
-    // Initialize the EVM with context and handler
-    let _evm = Evm::new(context, handler);
+    // ✅ Corrected: Create an execution environment
+    let mut env = Env::default();
 
-    println!("EVM successfully initialized!");
+    // Initialize the transaction environment (TxEnv)
+    let mut tx_env = TxEnv::default();
+    tx_env.data = contract.bytes().clone();
+    env.tx = tx_env;
+
+    // ✅ Fix: Create an EvmContext with EmptyDB (not using Env directly)
+    let evm_context = EvmContext::new(EmptyDB::default());
+
+    // ✅ Fix: Properly initialize Context with EvmContext
+    let context = Context::new(evm_context, env);
+
+    // ✅ Fix: Use Handler correctly
+    let handler = Handler::mainnet_with_spec(SpecId::LATEST); // ✅ Correct
+
+    // ✅ Fix: Properly create the EVM instance
+    let mut evm = Evm::new(context, handler);
+
+    // ✅ Fix: Execute transaction correctly
+    let result = evm.transact().expect("Transaction failed");
+
+    // Output result
+    println!("EVM Execution Result: {:?}", result);
 }

@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
+
+import "forge-std/Test.sol";
+import "../src/MetaverseLand.sol";
+
+contract MetaverseLandTest is Test {
+    MetaverseLand land;
+
+    function setUp() public {
+        land = new MetaverseLand();
+    }
+
+    function testMintLand() public {
+        land.mintLand(address(this));
+        assertEq(land.ownerOf(0), address(this));
+    }
+}
