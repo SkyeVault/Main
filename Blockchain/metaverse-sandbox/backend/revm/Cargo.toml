@@ -5,3 +5,5 @@ edition = "2024"
 
 [dependencies]
 revm = "19.6.0"
+hex = "0.4"
+
