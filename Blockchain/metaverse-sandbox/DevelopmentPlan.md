@@ -1,12 +1,12 @@
 Development Log
 
-## Phase 1: Initial Three.js Virtual Museum Setup
+## Phase 1: Initial Three.js Virtual Gallery/Museum Setup
 
 ### 1. Create the Project Structure
 Set up a new folder and create the following files:
 
 ```
-/museum_project
+/gallery
 │── index.html  # Main entry point
 │── main.js  # Three.js scene logic
 │── models.json  # JSON file storing model links
@@ -182,8 +182,8 @@ Now, **syrenwork.com automatically resolves to the latest museum version hosted 
 
 ## Future Features & Expansion
 
-### 12. AI-Generated Story Capsules
-- Implement AI-generated **time capsule narratives** linked to NFT metadata.
+### 12. Story Capsules
+- Implement **time capsule narratives** linked to NFT metadata.
 - Allow NFT owners to **contribute historical updates** over time.
 
 ---
