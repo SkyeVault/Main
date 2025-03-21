@@ -1,6 +1,7 @@
 import json
 import os
 
+# this does not contain the actual links for the NFT images, you must customize all entries
 # Define the NFT metadata
 nft_data = [
     {
