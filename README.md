@@ -53,7 +53,18 @@ cargo install spotify_playlist_maker
 - [Spotify Playlist Maker on Crates.io](https://crates.io/crates/spotify_playlist_maker)
 - [Documentation on Docs.rs](https://docs.rs/spotify_playlist_maker)
   
+ NFT COLLECTION LAUNCH COMPLETE — LORELEI NOBLE GENESIS 
 
+✅ Deployed to: Polygon Amoy Testnet  
+✅ Smart Contract Address: 0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783  
+✅ Hosted on IPFS: bafybeihdo27nu3iak7njllgpkmx3ra27mbazlrr444t4sdp46z3sn2v5ye  
+✅ Batch Minted: 10 Original NFT Paintings  
+✅ Visible on OpenSea Testnet
+
+This is the beginning of an open-source metaverse art project, celebrating freedom, creativity, and decentralized ownership. Built entirely with free tools, foundry, and passion.
+
+Explore the collection:  
+https://testnets.opensea.io/assets/amoy/0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783/
 
 ## Skills and Technologies
 
