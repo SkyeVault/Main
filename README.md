@@ -53,6 +53,8 @@ cargo install spotify_playlist_maker
 - [Spotify Playlist Maker on Crates.io](https://crates.io/crates/spotify_playlist_maker)
 - [Documentation on Docs.rs](https://docs.rs/spotify_playlist_maker)
   
+---
+
 ## NFT COLLECTION LAUNCH COMPLETE — LORELEI NOBLE GENESIS 
 
 - Deployed to: Polygon Amoy Testnet  
@@ -65,6 +67,8 @@ This is the beginning of an open-source metaverse art project, celebrating creat
 
 Explore the collection:  
 https://testnets.opensea.io/assets/amoy/0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783/
+
+---
 
 ## Skills and Technologies
 
