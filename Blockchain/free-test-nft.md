@@ -40,7 +40,7 @@ RPC (Remote Procedure Call) allows your development tools or dApps to send trans
    - Your wallet address  
    - Project use case or links to your dApp or repo  
 4. **Wait for email approval** (usually within 24 hours)  
-5. You'll receive **100 Amoy POL**, valid for 90 days  
+5. You'll receive **100 Amoy POL**, one request per 90 days  
 
 ---
 
