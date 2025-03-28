@@ -1,72 +1,92 @@
-# Free Test Resources and Gas-Free Smart Contract Development
+# Free Test Resources and Gas-Free Smart Contract Development (Amoy Edition)
 
 ## Introduction
-This guide explains how to develop and test smart contracts for free, using testnets and open-source tools. It covers setting up a development environment, deploying smart contracts without gas fees, and using testnet resources effectively.
+
+This guide walks through how to develop and test smart contracts for free using **Polygon Amoy**, **Foundry**, and **open-source tools**. You'll learn to deploy contracts without spending real tokens, get testnet funds responsibly, and build a front-end to interact with your smart contract.
+
+---
 
 ## 1. Understanding Free Test Resources
 
-### 1.1 What is an RPC?
-RPC (Remote Procedure Call) allows applications to communicate with the blockchain. It connects a dApp to a blockchain node for sending transactions and querying data.
+### 1.1 What Is an RPC?
 
-#### Free RPC Providers
-- [Alchemy](https://www.alchemy.com/) (Ethereum, Polygon, Arbitrum, etc.)
-- [Infura](https://infura.io/) (Ethereum, IPFS, L2 networks)
-- [QuickNode](https://www.quicknode.com/) (Supports various chains)
-- [Chainlist](https://chainlist.org/) (Find RPC URLs for any chain)
+RPC (Remote Procedure Call) allows your development tools or dApps to send transactions and read data from a blockchain node.
 
-#### Example: Free Polygon Mumbai RPC
-```
-https://polygon-mumbai.g.alchemy.com/v2/YOUR_API_KEY
-```
-Use this RPC in your dApp to interact with the Polygon Mumbai testnet.
+#### Trusted RPC Providers
+
+- [Alchemy](https://www.alchemy.com/) – Ethereum, Polygon, and more  
+- [Infura](https://infura.io/) – Ethereum and IPFS  
+- [QuickNode](https://www.quicknode.com/)  
+- [Chainlist](https://chainlist.org/) – Easy RPC access for many networks  
+
+---
 
 ### 1.2 What Are Faucets?
-A **faucet** provides free testnet tokens so you can test transactions without spending real money. These tokens allow you to deploy contracts and interact with smart contracts on testnets.
 
-#### Free Testnet Faucets
-- [Alchemy Faucet](https://www.alchemy.com/faucets)
-- [Polygon Mumbai Faucet](https://faucet.polygon.technology/)
-- [QuickNode Faucet](https://faucet.quicknode.com/)
+**Faucets** provide free testnet tokens so you can deploy, test, and interact with contracts without real gas fees.
 
-#### Steps to Get Free Test Tokens
-1. Open MetaMask and copy your wallet address.
-2. Paste it into a testnet faucet.
-3. Click **Request Funds** and wait for the transaction confirmation.
+#### Polygon Amoy Faucet Info (as of 2025):
 
-## 2. Setting Up a Free Development Environment
+- The **Polygon Mumbai testnet is deprecated** and replaced by **Amoy**.
+- Unlike older testnets, Amoy **requires POL tokens** for gas, which can only be received by:
+  - **Bridging from mainnet POL** (not ideal for beginners)  
+  - **Filling out the developer form** at [Polygon Faucet](https://faucet.polygon.technology/)
 
-### 2.1 Installing Foundry for Smart Contract Development
-Foundry is a powerful tool for compiling, testing, and deploying smart contracts.
-```sh
+#### How to Get Amoy POL
+
+1. Go to [https://faucet.polygon.technology](https://faucet.polygon.technology)  
+2. Click "Request Amoy POL"  
+3. Fill out the developer form with:
+   - Your wallet address  
+   - Project use case or links to your dApp or repo  
+4. **Wait for email approval** (usually within 24 hours)  
+5. You'll receive **100 Amoy POL**, valid for 90 days  
+
+---
+
+## 2. Setting Up Your Development Environment
+
+### 2.1 Install Foundry (Smart Contract Development Toolkit)
+
+```bash
 curl -L https://foundry.paradigm.xyz | bash
 foundryup
 ```
 
-### 2.2 Installing Node.js and Ethers.js
-```sh
+### 2.2 Install Node.js and Ethers.js (Frontend Tools)
+
+```bash
 curl -fsSL https://fnm.vercel.app/install | bash
 fnm install 18
 npm install ethers dotenv
 ```
-Ethers.js is a JavaScript library for interacting with the blockchain.
 
-### 2.3 Setting Up MetaMask and Getting Test MATIC
-1. Install [MetaMask](https://metamask.io/).
-2. Add the **Polygon Mumbai Testnet**:
-   - **RPC URL:** `https://polygon-mumbai.g.alchemy.com/v2/YOUR_API_KEY`
-   - **Chain ID:** `80001`
-3. Use a faucet to get free MATIC.
+---
 
-## 3. Deploying a Free Smart Contract
+## 3. Configure MetaMask and Add the Amoy Testnet
 
-### 3.1 Writing a Basic Smart Contract
-Create a new directory and Solidity file:
-```sh
-mkdir free-dapp && cd free-dapp
+### Amoy Testnet Settings
+
+- **Network Name:** Polygon Amoy  
+- **New RPC URL:** `https://rpc-amoy.polygon.technology`  
+- **Chain ID:** `80002`  
+- **Currency Symbol:** POL  
+
+Once added, you'll be able to receive and use testnet POL to deploy contracts and test dApps.
+
+---
+
+## 4. Writing & Deploying a Simple Smart Contract
+
+### 4.1 Create the Project
+
+```bash
+mkdir amoy-free-dapp && cd amoy-free-dapp
 forge init
-nano src/FreeDapp.sol
 ```
-Paste the following Solidity code:
+
+### 4.2 Create `src/FreeDapp.sol`
+
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
@@ -84,48 +104,90 @@ contract FreeDapp {
 }
 ```
 
-### 3.2 Compiling and Deploying on Polygon Mumbai
+### 4.3 Compile the Contract
 
-#### Compiling the Contract
-```sh
+```bash
 forge build
 ```
 
-#### Deploying to Testnet
-1. Get a free RPC URL from Alchemy.
-2. Export the RPC URL and deploy using Foundry:
-```sh
-export RPC_URL="https://polygon-mumbai.g.alchemy.com/v2/YOUR_API_KEY"
-forge create src/FreeDapp.sol:FreeDapp --rpc-url $RPC_URL --private-key YOUR_PRIVATE_KEY
+---
+
+## 5. Deploying to Polygon Amoy
+
+### 5.1 Setup `.env`
+
+Create a `.env` file in your root project:
+
+```env
+PRIVATE_KEY=your_private_key_here
+DEPLOYER_ADDRESS=0xYourAddress
+RPC_URL=https://rpc-amoy.polygon.technology
 ```
-This deploys the contract **without real gas fees.**
 
-## 4. Building a Free Frontend for Your dApp
+### 5.2 Write `script/Deploy.s.sol`
 
-### 4.1 Setting Up React
-```sh
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "forge-std/Script.sol";
+import "../src/FreeDapp.sol";
+
+contract Deploy is Script {
+    function run() external {
+        vm.startBroadcast();
+        new FreeDapp("Hello, Amoy!");
+        vm.stopBroadcast();
+    }
+}
+```
+
+### 5.3 Deploy Using Foundry
+
+```bash
+forge script script/Deploy.s.sol:Deploy \
+  --rpc-url $RPC_URL \
+  --broadcast \
+  --legacy \
+  --private-key $PRIVATE_KEY
+```
+
+You should see a transaction hash and deployed contract address if successful.
+
+---
+
+## 6. Optional: Build a Frontend with React + Ethers
+
+### 6.1 Scaffold a React App
+
+```bash
 npx create-react-app freedapp-frontend
 cd freedapp-frontend
 npm install ethers
 ```
 
-### 4.2 Where to Place `App.js`
-React project structure:
-```
-freedapp-frontend/
-├── src/
-│   ├── App.js  <-- Put your frontend logic here
-│   ├── index.js
-```
-Edit `src/App.js` with the following code:
+### 6.2 Add Contract Logic in `src/App.js`
+
 ```js
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 
-const CONTRACT_ADDRESS = "YOUR_DEPLOYED_CONTRACT_ADDRESS";
+const CONTRACT_ADDRESS = "0xYourDeployedContract";
 const ABI = [
-  { "inputs": [], "name": "message", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" },
-  { "inputs": [{ "internalType": "string", "name": "_newMessage", "type": "string" }], "name": "updateMessage", "outputs": [], "stateMutability": "nonpayable", "type": "function" }
+  {
+    "inputs": [],
+    "name": "message",
+    "outputs": [{ "internalType": "string", "type": "string" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "string", "name": "_newMessage", "type": "string" }],
+    "name": "updateMessage",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
 ];
 
 function App() {
@@ -134,76 +196,60 @@ function App() {
   const [contract, setContract] = useState(null);
 
   useEffect(() => {
-    async function loadContract() {
-      if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
-        setContract(contract);
-        setMessage(await contract.message());
-      }
+    async function init() {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
+      setContract(contract);
+      setMessage(await contract.message());
     }
-    loadContract();
+    init();
   }, []);
 
   async function updateMessage() {
-    if (contract) {
-      const tx = await contract.updateMessage(newMessage);
-      await tx.wait();
-      setMessage(await contract.message());
-    }
+    const tx = await contract.updateMessage(newMessage);
+    await tx.wait();
+    setMessage(await contract.message());
   }
 
   return (
     <div>
-      <h1>Free dApp</h1>
+      <h1>Free Amoy dApp</h1>
       <p>Stored Message: {message}</p>
-      <input onChange={(e) => setNewMessage(e.target.value)} placeholder="New Message"/>
+      <input onChange={(e) => setNewMessage(e.target.value)} />
       <button onClick={updateMessage}>Update</button>
     </div>
   );
 }
+
 export default App;
 ```
 
-### 4.3 Running the Frontend
-```sh
+### 6.3 Run the App
+
+```bash
 npm start
 ```
-This launches a free frontend dApp that connects to the blockchain.
 
-## 5. Free NFT Minting on Polygon Mumbai
+---
 
-### 5.1 Deploying an NFT Contract
-Create and deploy an ERC-721 NFT contract using Foundry:
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+## 7. Tips for Working with Amoy
 
-contract MyNFT is ERC721 {
-    uint256 public nextTokenId;
-    constructor() ERC721("Free NFT", "FNFT") {}
-    function mint() public {
-        _safeMint(msg.sender, nextTokenId++);
-    }
-}
-```
-Deploy with Foundry:
-```sh
-forge build
-forge create src/MyNFT.sol:MyNFT --rpc-url $RPC_URL --private-key YOUR_PRIVATE_KEY
-```
+- Amoy **does not support traditional faucets** (Alchemy, QuickNode, etc.)
+- **You must apply** through [Polygon's Developer Faucet Form](https://faucet.polygon.technology/)
+- Each developer can receive **up to 100 Amoy POL every 90 days** per wallet
 
-### 5.2 Viewing NFTs on OpenSea Testnet
-- Visit [OpenSea Testnet](https://testnets.opensea.io/).
-- Search for your contract address.
+---
 
 ## Conclusion
-- Use free testnets (Polygon Mumbai, Sepolia) to test contracts.
-- Get free gas from faucets.
-- Deploy and interact with contracts using Foundry and Ethers.js.
-- Host dApp frontends for free using GitHub Pages or IPFS.
 
-This guide provides a cost-free way to experiment with smart contract development before deploying on mainnet.
+You're now fully equipped to:
+
+- Set up a **local smart contract development environment**  
+- Deploy contracts to **Polygon Amoy**  
+- Request real testnet funds from a trusted source  
+- Build and connect a frontend using **React + Ethers**  
+- Experiment without mainnet fees
+
+Use this as your full-stack foundation before migrating to production.
