@@ -8,12 +8,10 @@ This repository serves as the central hub for blockchain security development, E
 ## Current File Structure
 ```sh
 .github/                  # GitHub workflows and CI configuration  
-Blockchain_Dev/           # Ethereum smart contracts and Foundry projects  
+Blockchain/               # Ethereum smart contracts and Foundry projects  
 DevLogs/                  # Documentation, software notes and development logs  
-README.md                 # Project documentation  
 Rust_Projects/            # Rust-based development and security tooling  
     ├── spotify_playlist_maker/  # Rust automation project  
-    ├── (More Rust projects here)  
 security/                 # Security-focused research and automation  
 
 ```
