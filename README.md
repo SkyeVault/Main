@@ -74,7 +74,7 @@ https://testnets.opensea.io/assets/amoy/0x1C5ec3De32C1cA8e1da93A99c176fa0eF27117
 
 ## Blockchain Development
 Foundry and Ethereum Projects
-The Blockchain_Dev/ directory contains projects related to Ethereum smart contracts using Rust and Foundry.
+The Blockchain/ directory contains projects related to Ethereum smart contracts using Rust and Foundry.
 
 ## Tools and Technologies
 - Foundry - Ethereum development framework for smart contracts
