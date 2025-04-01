@@ -4,8 +4,7 @@ export default {
     "./src/**/*.{astro,html,js,jsx,ts,tsx,md,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {}, // You can add custom colors or overrides here
   },
   plugins: [],
 }
-
