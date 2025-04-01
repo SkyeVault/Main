@@ -54,7 +54,10 @@ const posts = await getCollection('blog');
 
     {posts.map((post) => (
       <div class="output" key={post.slug}>
-        $ <a href={`/blog/${post.slug}`}><span class="prompt">{post.data.title}</span></a> <br />
+        $ <a href={`/blog/${post.id.replace('blog/', '')}`}>
+  <span class="prompt">{post.data.title}</span>
+</a>
+ <br />
         <small>{post.data.pubDate.toDateString()}</small>
       </div>
     ))}
