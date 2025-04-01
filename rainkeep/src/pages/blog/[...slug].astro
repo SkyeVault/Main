@@ -1,34 +1,30 @@
----
 import { getCollection, getEntryBySlug } from 'astro:content';
 
-// 🛠 This tells Astro exactly how to build URLs for each blog post
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map((entry) => ({
-    params: { slug: [entry.slug] }, // slug MUST be an array now!
-  }));
+  const allPosts = await getCollection('blog');
+
+  return allPosts
+    .filter((post) => !!post.slug) // Make sure slug isn't null
+    .map((post) => ({
+      params: { slug: [post.slug] },
+      props: { post }
+    }));
 }
 
-// Get the slug from the URL
-const { slug } = Astro.params;
-const post = await getEntryBySlug('blog', slug[0]); // <— Must index the array!
+export async function get({ params }) {
+  const slug = params.slug?.[0];
+  const post = await getEntryBySlug('blog', slug);
 
-if (!post) {
-  throw new Error(`No post found for slug: ${slug}`);
+  if (!post) {
+    return {
+      status: 404,
+      body: 'Post not found'
+    };
+  }
+
+  return {
+    props: {
+      post
+    }
+  };
 }
----
-
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{post.data.title}</title>
-  </head>
-  <body style="background:#0e0e0e;color:#dcdcdc;font-family:'JetBrains Mono',monospace;padding:2rem;">
-    <article style="max-width:800px;margin:auto;">
-      <h1 style="color:#b9aaff;">{post.data.title}</h1>
-      <p style="color:#888;">{post.data.pubDate}</p>
-      <p style="color:#aaa;">{post.data.description}</p>
-      <div innerHTML={post.body} />
-    </article>
-  </body>
-</html>
