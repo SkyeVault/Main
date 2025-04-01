@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
+
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
@@ -21,6 +22,7 @@ const { post } = Astro.props;
     <article style="max-width: 800px; margin: auto;">
       <h1 style="color: #b9aaff;">{post.data.title}</h1>
       <p style="color: #888;">{post.data.pubDate}</p>
+      <p>{post.data.description}</p>
       <div innerHTML={post.body} />
     </article>
   </body>
