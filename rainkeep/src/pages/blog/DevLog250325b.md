@@ -1,3 +1,7 @@
+---
+title: DevLog 250325b - Deploying to Polygon Amoy
+date: 2025-03-25
+---
 # DevLog: Deploying TopSecurityNFT to Polygon Amoy
 
 **Date:** 2025-03-25  
