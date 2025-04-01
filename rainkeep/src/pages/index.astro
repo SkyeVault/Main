@@ -9,6 +9,7 @@ import '../styles/tailwind.css';
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Arynwood Terminal</title>
   <style>
+<<<<<<< HEAD
     body {
       margin: 0;
       padding: 2rem;
@@ -55,11 +56,73 @@ import '../styles/tailwind.css';
       color: #b9aaff;
     }
   </style>
+=======
+  body {
+    margin: 0;
+    padding: 2rem;
+    background-color: #0e0e0e;
+    color: #dcdcdc;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .terminal {
+    max-width: 800px;
+    margin: auto;
+    background-color: #121212;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
+  }
+
+  .prompt {
+    color: #b9aaff;
+  }
+
+  .output {
+    margin-bottom: 1rem;
+  }
+
+  .command-input {
+    background: none;
+    border: none;
+    color: #dcdcdc;
+    font: inherit;
+    width: 100%;
+    outline: none;
+  }
+
+  .gui-toggle {
+    margin-top: 2rem;
+    color: #888;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: right;
+  }
+
+  .gui-toggle:hover {
+    color: #b9aaff;
+  }
+
+  /* 💜 Add this section for link styling */
+  a {
+    color: #a78bfa;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: #f9a8d4;
+  }
+</style>
+>>>>>>> ba6ec753fc9b98375520accf01f151f7558e18a0
 </head>
 <body>
   <div class="terminal">
     <div class="output">$ <span class="prompt">whoami</span></div>
+<<<<<<< HEAD
     <div class="output">Lorelei Noble — full-stack dev, artist, architect of Rainkeep.</div>
+=======
+    <div class="output">Lorelei Noble — full-stack dev, artist, architect of Arynwood.</div>
+>>>>>>> ba6ec753fc9b98375520accf01f151f7558e18a0
     <div class="output">Type <span class="prompt">help</span> or try commands like <span class="prompt">projects</span>, <span class="prompt">blog</span>, or <span class="prompt">contact</span>.</div>
     
     <div class="output">$ <input class="command-input" id="command" type="text" placeholder="Type a command..." autofocus></div>
@@ -68,6 +131,7 @@ import '../styles/tailwind.css';
   </div>
 
   <script>
+<<<<<<< HEAD
     const input = document.getElementById('command');
     input.addEventListener('keydown', function(event) {
       if (event.key === 'Enter') {
@@ -103,5 +167,44 @@ import '../styles/tailwind.css';
       }
     });
   </script>
+=======
+  const input = document.getElementById('command');
+  input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      const cmd = input.value.trim().toLowerCase();
+      let response = '';
+
+      switch (cmd) {
+        case 'help':
+          response = 'Available commands: whoami, projects, <a href="/blog">blog</a>, <a href="/contact">contact</a>';
+          break;
+        case 'whoami':
+          response = 'Lorelei Noble — full-stack dev, artist, architect of Arynwood.';
+          break;
+        case 'projects':
+          response = '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/projects">Metaverse Viewer (Coming soon...)</a>';
+          break;
+        case 'blog':
+          response = 'Read the blog: <a href="/blog">Rainkeep</a>';
+          break;
+        case 'contact':
+          response = 'Email: <a href="mailto:contact@me">contact@me</a> | GitHub: <a href="https://github.com/SkyeVault" target="_blank">skyevault</a>';
+          break;
+        default:
+          response = `Command not found: ${cmd}`;
+      }
+
+      const terminal = document.querySelector('.terminal');
+      const newOutput = document.createElement('div');
+      newOutput.className = 'output';
+      newOutput.innerHTML = `$ <span class="prompt">${cmd}</span><br>${response}`;
+      terminal.insertBefore(newOutput, input.parentNode);
+
+      input.value = '';
+    }
+  });
+</script>
+>>>>>>> ba6ec753fc9b98375520accf01f151f7558e18a0
 </body>
 </html>
+
