@@ -1,21 +1,63 @@
 ---
 import { getCollection } from 'astro:content';
-
 const posts = await getCollection('blog');
 ---
 
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <title>Rainkeep DevLog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/styles/tailwind.css" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 2rem;
+        background-color: #0e0e0e;
+        color: #dcdcdc;
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      .terminal {
+        max-width: 800px;
+        margin: auto;
+        background-color: #121212;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
+      }
+
+      a {
+        color: #a78bfa;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        color: #f9a8d4;
+      }
+
+      .log-item {
+        margin-bottom: 1rem;
+      }
+
+      .prompt {
+        color: #b9aaff;
+      }
+    </style>
   </head>
   <body>
-    <h1>Rainkeep DevLog</h1>
-    <ul>
-      {posts.map(post => (
-        <li>
-          <a href={`/blog/${post.slug}`}>{post.data.title || post.slug}</a>
-        </li>
-      ))}
-    </ul>
+    <div class="terminal">
+      <div class="output">$ <span class="prompt">cd blog</span></div>
+      <div class="output">Listing devlogs...</div>
+
+      <ul>
+        {posts.sort((a, b) => b.data.date.localeCompare(a.data.date)).map(post => (
+          <li class="log-item">
+            <span class="prompt">→</span> <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
   </body>
 </html>
