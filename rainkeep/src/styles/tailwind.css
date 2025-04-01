@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles go after all the directives */
 a {
   @apply text-blue-400 underline hover:text-pink-300;
 }
