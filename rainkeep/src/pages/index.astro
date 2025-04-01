@@ -9,52 +9,62 @@ import '../styles/tailwind.css';
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Arynwood Terminal</title>
   <style>
-    body {
-      margin: 0;
-      padding: 2rem;
-      background-color: #0e0e0e;
-      color: #dcdcdc;
-      font-family: 'JetBrains Mono', monospace;
-    }
+  body {
+    margin: 0;
+    padding: 2rem;
+    background-color: #0e0e0e;
+    color: #dcdcdc;
+    font-family: 'JetBrains Mono', monospace;
+  }
 
-    .terminal {
-      max-width: 800px;
-      margin: auto;
-      background-color: #121212;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
-    }
+  .terminal {
+    max-width: 800px;
+    margin: auto;
+    background-color: #121212;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
+  }
 
-    .prompt {
-      color: #b9aaff;
-    }
+  .prompt {
+    color: #b9aaff;
+  }
 
-    .output {
-      margin-bottom: 1rem;
-    }
+  .output {
+    margin-bottom: 1rem;
+  }
 
-    .command-input {
-      background: none;
-      border: none;
-      color: #dcdcdc;
-      font: inherit;
-      width: 100%;
-      outline: none;
-    }
+  .command-input {
+    background: none;
+    border: none;
+    color: #dcdcdc;
+    font: inherit;
+    width: 100%;
+    outline: none;
+  }
 
-    .gui-toggle {
-      margin-top: 2rem;
-      color: #888;
-      cursor: pointer;
-      font-size: 0.9rem;
-      text-align: right;
-    }
+  .gui-toggle {
+    margin-top: 2rem;
+    color: #888;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: right;
+  }
 
-    .gui-toggle:hover {
-      color: #b9aaff;
-    }
-  </style>
+  .gui-toggle:hover {
+    color: #b9aaff;
+  }
+
+  /* 💜 Add this section for link styling */
+  a {
+    color: #a78bfa;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: #f9a8d4;
+  }
+</style>
 </head>
 <body>
   <div class="terminal">
@@ -68,41 +78,42 @@ import '../styles/tailwind.css';
   </div>
 
   <script>
-    const input = document.getElementById('command');
-    input.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter') {
-        const cmd = input.value.trim().toLowerCase();
-        let response = '';
-        switch (cmd) {
-          case 'help':
-            response = 'Available commands: whoami, projects, blog, contact';
-            break;
-          case 'whoami':
-            response = 'Lorelei Noble — full-stack dev, artist, architect of Rainkeep.';
-            break;
-          case 'projects':
-            response = 'Spotify Playlist Maker, NFT Collection, Metaverse Viewer (Coming soon...)';
-            break;
-          case 'blog':
-            response = 'Read the blog';
-            break;
-          case 'contact':
-            response = 'Email: contact@me | GitHub: skyevault';
-            break;
-          default:
-            response = `Command not found: ${cmd}`;
-        }
+  const input = document.getElementById('command');
+  input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      const cmd = input.value.trim().toLowerCase();
+      let response = '';
 
-        const terminal = document.querySelector('.terminal');
-        const newOutput = document.createElement('div');
-        newOutput.className = 'output';
-        newOutput.innerHTML = `$ <span class="prompt">${cmd}</span><br>${response}`;
-        terminal.insertBefore(newOutput, input.parentNode);
-
-        input.value = '';
+      switch (cmd) {
+        case 'help':
+          response = 'Available commands: whoami, projects, <a href="/blog">blog</a>, <a href="/contact">contact</a>';
+          break;
+        case 'whoami':
+          response = 'Lorelei Noble — full-stack dev, artist, architect of Arynwood.';
+          break;
+        case 'projects':
+          response = '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/projects">Metaverse Viewer (Coming soon...)</a>';
+          break;
+        case 'blog':
+          response = 'Read the blog: <a href="/blog">Rainkeep</a>';
+          break;
+        case 'contact':
+          response = 'Email: <a href="mailto:contact@me">contact@me</a> | GitHub: <a href="https://github.com/SkyeVault" target="_blank">skyevault</a>';
+          break;
+        default:
+          response = `Command not found: ${cmd}`;
       }
-    });
-  </script>
+
+      const terminal = document.querySelector('.terminal');
+      const newOutput = document.createElement('div');
+      newOutput.className = 'output';
+      newOutput.innerHTML = `$ <span class="prompt">${cmd}</span><br>${response}`;
+      terminal.insertBefore(newOutput, input.parentNode);
+
+      input.value = '';
+    }
+  });
+</script>
 </body>
 </html>
 
