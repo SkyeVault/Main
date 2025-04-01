@@ -1,1 +1,2 @@
-devlogs have moved to my netlify blog. go to main/rainkeep/src/blog or visit rainkeep.netlify.app
+devlogs have moved!
+www.arynwood.com
