@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-black text-white overflow-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Storm Legacy — Rainkeep</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: 'Courier New', monospace;
+        background: radial-gradient(ellipse at center, #1a1a1a 0%, #000000 100%);
+      }
+      h1 {
+        position: relative;
+        z-index: 10;
+        font-size: 3rem;
+        color: #a3bffa;
+        text-shadow: 0 0 10px #94a3ff, 0 0 20px #5865f2;
+        text-align: center;
+        margin-top: 20vh;
+        animation: pulse 3s infinite ease-in-out;
+      }
+      @keyframes pulse {
+        0%, 100% { text-shadow: 0 0 10px #94a3ff; }
+        50% { text-shadow: 0 0 20px #ffffff; }
+      }
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stormCanvas"></canvas>
+    <h1>// Storm Legacy</h1>
+
+    <script>
+      const canvas = document.getElementById('stormCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      let raindrops = [];
+
+      for (let i = 0; i < 300; i++) {
+        raindrops.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          length: Math.random() * 20 + 10,
+          velocity: Math.random() * 4 + 4
+        });
+      }
+
+      function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.strokeStyle = '#7dd3fc';
+        ctx.lineWidth = 1;
+
+        raindrops.forEach(drop => {
+          ctx.beginPath();
+          ctx.moveTo(drop.x, drop.y);
+          ctx.lineTo(drop.x, drop.y + drop.length);
+          ctx.stroke();
+
+          drop.y += drop.velocity;
+          if (drop.y > canvas.height) {
+            drop.y = 0;
+            drop.x = Math.random() * canvas.width;
+          }
+        });
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    </script>
+  </body>
+</html>
