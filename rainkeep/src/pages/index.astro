@@ -2,58 +2,107 @@
 import '../styles/tailwind.css';
 ---
 
-<html lang="en" class="bg-black text-white overflow-hidden">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Rainkeep — Terminal</title>
-  </head>
-  <body>
-    <canvas id="stormCanvas"></canvas>
-    <h1 class="text-4xl font-bold text-indigo-300 text-center mt-40 animate-pulse">
-      // Storm Legacy
-    </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arynwood Terminal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #0e0e0e;
+      color: #dcdcdc;
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-    <script>
-      const canvas = document.getElementById('stormCanvas');
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    .terminal {
+      max-width: 800px;
+      margin: auto;
+      background-color: #121212;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
+    }
 
-      let raindrops = [];
+    .prompt {
+      color: #b9aaff;
+    }
 
-      for (let i = 0; i < 300; i++) {
-        raindrops.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          length: Math.random() * 20 + 10,
-          velocity: Math.random() * 4 + 4
-        });
+    .output {
+      margin-bottom: 1rem;
+    }
+
+    .command-input {
+      background: none;
+      border: none;
+      color: #dcdcdc;
+      font: inherit;
+      width: 100%;
+      outline: none;
+    }
+
+    .gui-toggle {
+      margin-top: 2rem;
+      color: #888;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    .gui-toggle:hover {
+      color: #b9aaff;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="output">$ <span class="prompt">whoami</span></div>
+    <div class="output">Lorelei Noble — full-stack dev, artist, architect of Rainkeep.</div>
+    <div class="output">Type <span class="prompt">help</span> or try commands like <span class="prompt">projects</span>, <span class="prompt">blog</span>, or <span class="prompt">contact</span>.</div>
+    
+    <div class="output">$ <input class="command-input" id="command" type="text" placeholder="Type a command..." autofocus></div>
+    
+    <div class="gui-toggle">[ Switch to classic view ]</div>
+  </div>
+
+  <script>
+    const input = document.getElementById('command');
+    input.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        const cmd = input.value.trim().toLowerCase();
+        let response = '';
+        switch (cmd) {
+          case 'help':
+            response = 'Available commands: whoami, projects, blog, contact';
+            break;
+          case 'whoami':
+            response = 'Lorelei Noble — full-stack dev, artist, architect of Rainkeep.';
+            break;
+          case 'projects':
+            response = 'Spotify CLI, LoreleiNFT, Metaverse Viewer (IPFS/Three.js)';
+            break;
+          case 'blog':
+            response = 'Read the devlog at /devlog';
+            break;
+          case 'contact':
+            response = 'Email: encrypted@arynwood.com | GitHub: skyevault';
+            break;
+          default:
+            response = `Command not found: ${cmd}`;
+        }
+
+        const terminal = document.querySelector('.terminal');
+        const newOutput = document.createElement('div');
+        newOutput.className = 'output';
+        newOutput.innerHTML = `$ <span class="prompt">${cmd}</span><br>${response}`;
+        terminal.insertBefore(newOutput, input.parentNode);
+
+        input.value = '';
       }
-
-      function draw() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.strokeStyle = '#7dd3fc';
-        ctx.lineWidth = 1;
-
-        raindrops.forEach(drop => {
-          ctx.beginPath();
-          ctx.moveTo(drop.x, drop.y);
-          ctx.lineTo(drop.x, drop.y + drop.length);
-          ctx.stroke();
-
-          drop.y += drop.velocity;
-          if (drop.y > canvas.height) {
-            drop.y = 0;
-            drop.x = Math.random() * canvas.width;
-          }
-        });
-
-        requestAnimationFrame(draw);
-      }
-
-      draw();
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
+
