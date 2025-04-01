@@ -5,15 +5,13 @@ import { getCollection, getEntryBySlug } from 'astro:content';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((entry) => ({
-    params: { slug: entry.slug }, // <-  This is where the slug is set
+    params: { slug: [entry.slug] }, // slug MUST be an array now!
   }));
 }
 
 // Get the slug from the URL
 const { slug } = Astro.params;
-
-// Load the post using the slug
-const post = await getEntryBySlug('blog', slug);
+const post = await getEntryBySlug('blog', slug[0]); // <— Must index the array!
 
 if (!post) {
   throw new Error(`No post found for slug: ${slug}`);
