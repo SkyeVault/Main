@@ -3,12 +3,9 @@ import { getCollection, getEntryBySlug } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-
-  return {
-    paths: posts.map(post => ({
-      params: { slug: post.slug },
-    })),
-  };
+  return posts.map(post => ({
+    params: { slug: post.slug },
+  }));
 }
 
 const { slug } = Astro.params;
@@ -24,4 +21,3 @@ if (!post) {
   <p>{new Date(post.data.pubDate).toDateString()}</p>
   <div innerHTML={post.body} />
 </article>
-
