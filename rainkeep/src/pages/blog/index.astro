@@ -52,12 +52,16 @@ const posts = await getCollection('blog');
       <div class="output">Listing devlogs...</div>
 
       <ul>
-        {posts.sort((a, b) => b.data.date.localeCompare(a.data.date)).map(post => (
-          <li class="log-item">
-            <span class="prompt">→</span> <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-          </li>
-        ))}
-      </ul>
+  {posts
+    .filter(post => post.data.date) // only include posts with valid dates
+    .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
+    .map(post => (
+      <li class="log-item">
+        <span class="prompt">→</span> <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+      </li>
+    ))}
+</ul>
+
     </div>
   </body>
 </html>
