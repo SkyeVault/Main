@@ -1,79 +1,83 @@
 ---
-import { getEntryBySlug } from 'astro:content';
-import { AstroError } from 'astro/errors';
+import { getCollection, getEntryBySlug } from 'astro:content';
 import '../../styles/tailwind.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
 
 const { slug } = Astro.params;
 const post = await getEntryBySlug('blog', slug);
 
 if (!post) {
-  throw new AstroError({
-    name: "404 Not Found",
-    message: `No post found for slug: ${slug}`,
-    location: slug,
-  });
+  throw new Error(`Post not found for slug: ${slug}`);
 }
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{post.data.title}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      body {
-        margin: 0;
-        padding: 2rem;
-        background-color: #0e0e0e;
-        color: #dcdcdc;
-        font-family: 'JetBrains Mono', monospace;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <title>{post.data.title}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #0e0e0e;
+      color: #dcdcdc;
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-      .terminal {
-        max-width: 800px;
-        margin: auto;
-        background-color: #121212;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
-      }
+    .terminal {
+      max-width: 800px;
+      margin: auto;
+      background-color: #121212;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
+    }
 
-      a {
-        color: #a78bfa;
-        text-decoration: underline;
-      }
+    a {
+      color: #a78bfa;
+      text-decoration: underline;
+    }
 
-      a:hover {
-        color: #f9a8d4;
-      }
+    a:hover {
+      color: #f9a8d4;
+    }
 
-      .prompt {
-        color: #b9aaff;
-      }
+    .prompt {
+      color: #b9aaff;
+    }
 
-      .output {
-        margin-bottom: 1rem;
-      }
+    .output {
+      margin-bottom: 1rem;
+    }
 
-      article h1 {
-        font-size: 1.5rem;
-        color: #f9a8d4;
-      }
+    article h1 {
+      font-size: 1.5rem;
+      color: #f9a8d4;
+    }
 
-      article p {
-        margin-bottom: 1rem;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="terminal">
-      <div class="output">$ <span class="prompt">cat {post.slug}.md</span></div>
-      <article>
-        <h1>{post.data.title}</h1>
-        <small>{post.data.pubDate.toDateString()}</small>
-        <div innerHTML={post.body} />
-      </article>
-    </div>
-  </body>
+    article p {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="output">$ <span class="prompt">cat {post.slug}.md</span></div>
+    <article>
+      <h1>{post.data.title}</h1>
+      <p><small>{post.data.pubDate.toDateString()}</small></p>
+      <div innerHTML={post.body} />
+    </article>
+  </div>
+</body>
 </html>
