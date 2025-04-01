@@ -1,66 +1,27 @@
 ---
 import { getCollection } from 'astro:content';
-import '../../styles/tailwind.css';
+import Layout from '../../layouts/Layout.astro'; // or delete this line if you're not using a layout
+const { slug } = Astro.params;
 
-const posts = await getCollection('blog');
+const allPosts = await getCollection('blog');
+const post = allPosts.find((post) => post.slug === slug);
+
+if (!post) {
+  throw new Error(`Post not found for slug: ${slug}`);
+}
 ---
 
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arynwood Blog</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 2rem;
-      background-color: #0e0e0e;
-      color: #dcdcdc;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .terminal {
-      max-width: 800px;
-      margin: auto;
-      background-color: #121212;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
-    }
-
-    .output {
-      margin-bottom: 1rem;
-    }
-
-    .prompt {
-      color: #b9aaff;
-    }
-
-    a {
-      color: #a78bfa;
-      text-decoration: underline;
-    }
-
-    a:hover {
-      color: #f9a8d4;
-    }
-  </style>
-</head>
-<body>
-  <div class="terminal">
-    <div class="output">$ <span class="prompt">cd blog</span></div>
-    <div class="output">Listing devlogs...</div>
-
-    {posts.map((post) => (
-      <div class="output" key={post.slug}>
-        $ <a href={`/blog/${post.id.replace('blog/', '')}`}>
-  <span class="prompt">{post.data.title}</span>
-</a>
- <br />
-        <small>{post.data.pubDate.toDateString()}</small>
-      </div>
-    ))}
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{post.data.title}</title>
+  </head>
+  <body style="padding: 2rem; background: #0e0e0e; color: #dcdcdc; font-family: 'JetBrains Mono', monospace;">
+    <article style="max-width: 800px; margin: auto;">
+      <h1>{post.data.title}</h1>
+      <p><small>{post.data.pubDate.toDateString()}</small></p>
+      <p><em>{post.data.description}</em></p>
+      <div innerHTML={post.body}></div>
+    </article>
+  </body>
 </html>
