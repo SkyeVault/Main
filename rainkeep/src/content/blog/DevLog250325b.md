@@ -1,6 +1,8 @@
 ---
 title: DevLog 250325b - Deploying to Polygon Amoy
 date: 2025-03-25
+pubDate: 2025-03-01
+description: Ongoing development log for Arynwood’s creative build process.
 ---
 # DevLog: Deploying TopSecurityNFT to Polygon Amoy
 
