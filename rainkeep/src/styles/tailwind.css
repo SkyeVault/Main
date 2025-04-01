@@ -1,3 +1,6 @@
 a {
   @apply text-indigo-400 underline hover:text-pink-300;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
