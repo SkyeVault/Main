@@ -19,7 +19,14 @@ const allPosts = await getCollection('blog');
   >
     <main style="max-width: 800px; margin: auto;">
       <h1>Blog</h1>
-
+      <ul>
+  {allPosts.map((post) => (
+    <li>
+      <p>DEBUG: slug = {post.slug}</p> <!-- Add this line -->
+      <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+    </li>
+  ))}
+</ul>
       <ul>
         {allPosts.map((post) => (
           <li style="margin-bottom: 2rem;">
