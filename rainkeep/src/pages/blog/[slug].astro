@@ -5,7 +5,7 @@ export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
 
   return allPosts.map((post) => ({
-    params: { slug: post.id }, // ✅ must be a string
+    params: { slug: post.id }, // slug must be a string (post.id)
   }));
 }
 
@@ -20,22 +20,26 @@ export async function get({ params }) {
   }
 
   return {
-    props: {
-      post,
-    },
+    props: { post },
   };
 }
 
 const { post } = Astro.props;
 ---
 
-<html>
+<html lang="en">
   <head>
-    <title>{post.data.title}</title>
+    <title>{post?.data?.title ?? 'Post Not Found'}</title>
   </head>
   <body class="prose dark:prose-invert mx-auto p-8">
-    <h1>{post.data.title}</h1>
-    <p>{new Date(post.data.pubDate).toDateString()}</p>
-    <div innerHTML={post.body} />
+    {post ? (
+      <>
+        <h1>{post.data.title}</h1>
+        <p>{new Date(post.data.pubDate).toDateString()}</p>
+        <div innerHTML={post.body} />
+      </>
+    ) : (
+      <p style="text-align:center;">Sorry, this post couldn't be found.</p>
+    )}
   </body>
 </html>
