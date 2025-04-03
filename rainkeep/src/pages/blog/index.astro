@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro'; // or delete this line if you'r
 const { slug } = Astro.params;
 
 const allPosts = await getCollection('blog');
-const post = allPosts.find((post) => post.slug === slug);
+const post = allPosts.find((post) => post.slug === slug?.[0]);
 
 if (!post) {
   throw new Error(`Post not found for slug: ${slug}`);
