@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
 ---
-<pre>{JSON.stringify(post, null, 2)}</pre>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -22,9 +22,13 @@ const allPosts = await getCollection('blog');
       <ul>
         {allPosts.map((post) => (
           <li style="margin-bottom: 2rem;">
-            <!-- DEBUG: Force cast slug to string just in case -->
+            <!-- Full post object debug -->
+            <pre>{JSON.stringify(post, null, 2)}</pre>
+
+            <!-- Just the slug (force string just in case) -->
             <p>DEBUG: slug = {String(post.slug)}</p>
 
+            <!-- Blog post link -->
             <a href={`/blog/${post.slug}`} style="color: #79b8ff; font-size: 1.2rem;">
               {post.data.title}
             </a>
