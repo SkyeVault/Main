@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
 ---
-
+<pre>{JSON.stringify(post, null, 2)}</pre>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
