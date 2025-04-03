@@ -1,28 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro'; // Optional: Remove if not using a layout
 
-// Destructure 'slug' param from Astro — since this is a [...slug].astro file, it's an array
-const { slug } = Astro.params;
-
-// Get all blog posts from the 'blog' content collection
 const allPosts = await getCollection('blog');
-
-// Find the post whose slug matches the first element of the slug array
-// This assumes you're using flat slugs like 'devlog250302'
-const post = allPosts.find((post) => post.slug === slug?.[0]);
-
-// If no matching post is found, throw an error (this will trigger a 500 in dev)
-if (!post) {
-  throw new Error(`Post not found for slug: ${slug}`);
-}
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Page title set from post frontmatter -->
-    <title>{post.data.title}</title>
+    <title>Blog</title>
   </head>
   <body
     style="
@@ -32,19 +17,21 @@ if (!post) {
       font-family: 'JetBrains Mono', monospace;
     "
   >
-    <article style="max-width: 800px; margin: auto;">
-      <!-- Blog Post Title -->
-      <h1>{post.data.title}</h1>
+    <main style="max-width: 800px; margin: auto;">
+      <h1>Blog</h1>
 
-      <!-- Publication Date (formatted) -->
-      <p><small>{post.data.pubDate.toDateString()}</small></p>
-
-      <!-- Optional Description from Frontmatter -->
-      <p><em>{post.data.description}</em></p>
-
-      <!-- Render the HTML content of the Markdown file -->
-      <!-- post.body is already compiled Markdown → HTML -->
-      <div innerHTML={post.body}></div>
-    </article>
+      <ul>
+        {allPosts.map((post) => (
+          <li style="margin-bottom: 2rem;">
+            <a href={`/blog/${post.slug}`} style="color: #79b8ff; font-size: 1.2rem;">
+              {post.data.title}
+            </a>
+            <br />
+            <small>{new Date(post.data.pubDate).toDateString()}</small>
+            <p>{post.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    </main>
   </body>
 </html>
