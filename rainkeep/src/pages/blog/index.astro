@@ -22,14 +22,13 @@ const allPosts = await getCollection('blog');
       <ul>
         {allPosts.map((post) => (
           <li style="margin-bottom: 2rem;">
-            <!-- Full post object debug -->
+            <!-- Full debug output -->
             <pre>{JSON.stringify(post, null, 2)}</pre>
 
-            <!-- Just the slug (force string just in case) -->
-            <p>DEBUG: slug = {String(post.slug)}</p>
+            <!-- Updated: use post.id instead of slug -->
+            <p>DEBUG: id = {String(post.id)}</p>
 
-            <!-- Blog post link -->
-            <a href={`/blog/${post.slug}`} style="color: #79b8ff; font-size: 1.2rem;">
+            <a href={`/blog/${post.id}`} style="color: #79b8ff; font-size: 1.2rem;">
               {post.data.title}
             </a>
             <br />
