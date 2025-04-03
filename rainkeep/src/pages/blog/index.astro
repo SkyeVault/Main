@@ -22,9 +22,10 @@ const allPosts = await getCollection('blog');
       <ul>
         {allPosts.map((post) => (
           <li style="margin-bottom: 2rem;">
-            <!-- DEBUG: Show the slug so we can verify it's working -->
+            <!-- DEBUG: Show only the slug -->
             <p>DEBUG: slug = {post.slug}</p>
 
+            <!-- Post link -->
             <a href={`/blog/${post.slug}`} style="color: #79b8ff; font-size: 1.2rem;">
               {post.data.title}
             </a>
