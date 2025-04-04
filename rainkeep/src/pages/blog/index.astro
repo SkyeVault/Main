@@ -23,7 +23,7 @@ const allPosts = await getCollection('blog');
         {allPosts.map((post) => (
           <li style="margin-bottom: 2rem;">
             <!-- Full debug output -->
-            <pre>{JSON.stringify(post, null, 2)}</pre>
+            <!-- pre>{JSON.stringify(post, null, 2)}</pre -->
 
             <!-- Updated: use post.id instead of slug -->
             <p>DEBUG: id = {String(post.id)}</p>
