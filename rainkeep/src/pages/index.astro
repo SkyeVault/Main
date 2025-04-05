@@ -1,118 +1,112 @@
 ---
-import '../styles/tailwind.css';
+// index.astro
+import '../../styles/tailwind.css';
+
+const posts = [
+  {
+    title: 'Devlog 01 — Entering the Rainkeep',
+    url: '/blog/devlog-01',
+    date: '2025-04-05',
+    excerpt: 'The first echoes of the Arynwood project, glowing in lavender dusk...',
+  },
+  {
+    title: 'Devlog 02 — Sculpting in Solidity',
+    url: '/blog/devlog-02',
+    date: '2025-04-02',
+    excerpt: 'Deployments to the Amoy testnet, and the birth of LoreleiNobleGenesis.',
+  },
+  // Add more posts as needed...
+];
 ---
 
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arynwood Terminal</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 2rem;
-      background-color: #0e0e0e;
-      color: #dcdcdc;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .terminal {
-      max-width: 800px;
-      margin: auto;
-      background-color: #121212;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
-    }
-
-    .prompt {
-      color: #b9aaff;
-    }
-
-    .output {
-      margin-bottom: 1rem;
-    }
-
-    .command-input {
-      background: none;
-      border: none;
-      color: #dcdcdc;
-      font: inherit;
-      width: 100%;
-      outline: none;
-    }
-
-    .gui-toggle {
-      margin-top: 2rem;
-      color: #888;
-      cursor: pointer;
-      font-size: 0.9rem;
-      text-align: right;
-    }
-
-    .gui-toggle:hover {
-      color: #b9aaff;
-    }
-
-    /* 💜 Add this section for link styling */
-    a {
-  color: #3399ff;
-  text-decoration: underline;
-}
-
-a:hover {
-  color: #ff99cc;
-}
-  </style>
-</head>
-<body>
-  <div class="terminal">
-    <div class="output">$ <span class="prompt">whoami</span></div>
-    <div class="output">Lorelei Noble — full-stack dev, artist, architect of Arynwood.</div>
-    <div class="output">Type <span class="prompt">help</span> or try commands like <span class="prompt">projects</span>, <span class="prompt">blog</span>, or <span class="prompt">contact</span>.</div>
-    
-    <div class="output">$ <input class="command-input" id="command" type="text" placeholder="Type a command..." autofocus></div>
-    
-    <div class="gui-toggle">[ Switch to classic view ]</div>
-  </div>
-
-  <script>
-    const input = document.getElementById('command');
-    input.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter') {
-        const cmd = input.value.trim().toLowerCase();
-        let response = '';
-
-        switch (cmd) {
-          case 'help':
-            response = 'Available commands: whoami, <a href="/projects">projects</a>, <a href="/blog">blog</a>, <a href="/contact">contact</a>';
-            break;
-          case 'whoami':
-            response = 'Lorelei Noble — full-stack dev, artist, architect of Arynwood.';
-            break;
-          case 'projects':
-            response = '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/projects">Metaverse Viewer</a>';
-            break;
-          case 'blog':
-            response = 'Read the blog: <a href="/blog">Rainkeep</a>';
-            break;
-          case 'contact':
-            response = 'Email: <a href="mailto:contact@me">contact@me</a> | GitHub: <a href="https://github.com/SkyeVault" target="_blank">skyevault</a>';
-            break;
-          default:
-            response = `Command not found: ${cmd}`;
-        }
-
-        const terminal = document.querySelector('.terminal');
-        const newOutput = document.createElement('div');
-        newOutput.className = 'output';
-        newOutput.innerHTML = `$ <span class="prompt">${cmd}</span><br>${response}`;
-        terminal.insertBefore(newOutput, input.parentNode);
-
-        input.value = '';
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Rainkeep Blog — Arynwood Terminal</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 2rem;
+        background-color: #0e0e0e;
+        color: #dcdcdc;
+        font-family: 'JetBrains Mono', monospace;
       }
-    });
-  </script>
-</body>
+
+      .terminal {
+        max-width: 850px;
+        margin: auto;
+        background-color: #121212;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(185, 170, 255, 0.15);
+      }
+
+      .blog-title {
+        font-size: 1.8rem;
+        color: #b9aaff;
+        margin-bottom: 1.5rem;
+      }
+
+      .post {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #333;
+      }
+
+      .post-title {
+        font-size: 1.25rem;
+        color: #b9aaff;
+        margin-bottom: 0.25rem;
+      }
+
+      .post-title a {
+        text-decoration: none;
+        color: #b9aaff;
+      }
+
+      .post-title a:hover {
+        color: #ff99cc;
+      }
+
+      .post-date {
+        font-size: 0.875rem;
+        color: #888;
+        margin-bottom: 0.5rem;
+      }
+
+      .post-excerpt {
+        color: #ccc;
+        font-size: 1rem;
+      }
+
+      .back-link {
+        margin-top: 2rem;
+        display: block;
+        text-align: right;
+        color: #888;
+      }
+
+      .back-link:hover {
+        color: #b9aaff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="terminal">
+      <div class="blog-title">$ rainkeep blog</div>
+
+      {posts.map(post => (
+        <div class="post">
+          <div class="post-title">
+            <a href={post.url}>{post.title}</a>
+          </div>
+          <div class="post-date">{post.date}</div>
+          <div class="post-excerpt">{post.excerpt}</div>
+        </div>
+      ))}
+
+      <a href="/" class="back-link">[ return to terminal ]</a>
+    </div>
+  </body>
 </html>
