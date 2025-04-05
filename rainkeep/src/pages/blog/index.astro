@@ -26,7 +26,7 @@ const allPosts = await getCollection('blog');
             <!-- pre>{JSON.stringify(post, null, 2)}</pre -->
 
             <!-- Updated: use post.id instead of slug -->
-            <p>DEBUG: id = {String(post.id)}</p>
+            <!-- p>DEBUG: id = {String(post.id)}</p -->
 
             <a href={`/blog/${post.id}`} style="color: #79b8ff; font-size: 1.2rem;">
               {post.data.title}
