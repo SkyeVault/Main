@@ -1,35 +1,44 @@
----
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
+  try {
+    const allPosts = await getCollection('blog');
 
-  return allPosts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+    if (!allPosts) {
+      throw new Error('No blog posts found');
+    }
+
+    return allPosts.map((post) => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 const { post } = Astro.props;
----
+
+if (!post) {
+  return <p style="text-align:center;">Sorry, this post couldn't be found.</p>;
+}
+
+if (!post.data) {
+  return <p style="text-align:center;">Sorry, this post is missing some required data.</p>;
+}
 
 <html lang="en">
   <head>
-    <title>{post?.data?.title ?? 'Post Not Found'}</title>
+    <title>{post.data.title ?? 'Post Not Found'}</title>
   </head>
   <body>
-    {post ? (
-      <>
-        <article style="max-width: 600px; margin: auto;">
-          <h1>{post.data.title}</h1>
-          <p>Published on {new Date(post.data.pubDate).toDateString()}</p>
+    <article style="max-width: 600px; margin: auto;">
+      <h1>{post.data.title}</h1>
+      <p>Published on {new Date(post.data.pubDate).toDateString()}</p>
 
-          <!-- Render the Markdown body -->
-          {await post.render()}
-        </article>
-      </>
-    ) : (
-      <p style="text-align:center;">Sorry, this post couldn't be found.</p>
-    )}
+      <!-- Render the Markdown body -->
+      {await post.render()}
+    </article>
   </body>
 </html>
