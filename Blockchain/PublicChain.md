@@ -155,7 +155,7 @@ This is blockchain for public good.
 
 I build ethical systems for the future I want my daughter to grow up in — one where transparency, fairness, and dignity aren’t ideals, but defaults.
 
-I specialize in cloud security, smart contract architecture, Web3 infrastructure, and decentralized art platforms. I’ve launched NFTs, managed open-source projects, and worked with tools like Solidity, Rust, Foundry, AWS, and IPFS.
+My passion is cloud security, smart contract architecture, Web3 infrastructure, and decentralized platforms. My philosophy is rooted in open-source solutions,  using tools like Solidity, Rust, Foundry, and IPFS.
 
-This project is not theoretical. It’s deeply personal. And it’s just the beginning.
+This project is not theoretical. It’s deeply personal. And it’s with our reach.
 
