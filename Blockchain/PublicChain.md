@@ -48,7 +48,7 @@ A non-speculative, non-transferable token for recipients of public aid.
 - Public healthcare
 - Fuel
 - Public transit
-- Utilities (including internet)
+- Utilities
 - Basic clothing and toiletries
 - Housing and transitional services
 
