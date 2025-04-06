@@ -7,8 +7,6 @@ Built for dignity, equity, and systemic trust.**
 
 ## Why Blockchain?
 
-Blockchain isn’t about hype. It’s not magic money. It’s not a trophy to hoard.
-
 It’s a decentralized ledger — a programmable, verifiable system that removes middlemen, makes transactions transparent, and creates accountability by design.
 
 When applied correctly, blockchain can:
