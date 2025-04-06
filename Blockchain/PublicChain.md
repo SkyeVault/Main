@@ -1,6 +1,6 @@
 # US Public Chain
 
-**A transparent blockchain framework for modernizing public assistance and government payroll.  
+**A transparent blockchain framework and prototype for modernizing public assistance and government payroll.  
 Built for dignity, equity, and systemic trust.**
 
 ---
