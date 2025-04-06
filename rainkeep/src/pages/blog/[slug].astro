@@ -31,13 +31,14 @@ const { post } = Astro.props;
   <head>
     <title>{post?.data?.title ?? 'Post Not Found'}</title>
   </head>
-  <body class="prose dark:prose-invert mx-auto p-8">
+  <body>
     {post ? (
       <>
         <h1>{post.data.title}</h1>
         <p>{new Date(post.data.pubDate).toDateString()}</p>
-        <--! div innerHTML={post.body} / !-->
+
         <Markdown content={post.body} />
+
       </>
     ) : (
       <p style="text-align:center;">Sorry, this post couldn't be found.</p>
