@@ -159,5 +159,5 @@ I build ethical systems for the future I want my daughter to grow up in — one 
 
 My passion is cloud security, smart contract architecture, Web3 infrastructure, and decentralized platforms. My philosophy is rooted in open-source solutions,  using tools like Solidity, Rust, Foundry, and IPFS.
 
-This project is not theoretical. It’s deeply personal. And it’s with our reach.
+This project is not theoretical. It’s deeply personal. And it’s within our reach.
 
