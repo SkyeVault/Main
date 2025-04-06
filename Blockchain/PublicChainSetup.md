@@ -128,4 +128,4 @@ us-public-chain/
 
 - Contracts should favor upgradability via proxy pattern or redeployable logic.
 - Privacy layers must anonymize data but maintain public verification.
-- Keep initial systems simple â focus on proving the *flow* and *transparency*.
+- Keep initial systems simple and focus on proving the *flow* and *transparency*.
