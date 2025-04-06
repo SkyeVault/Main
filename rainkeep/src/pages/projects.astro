@@ -2,14 +2,43 @@
 import '../styles/tailwind.css';
 ---
 
-<h1 class="text-4xl font-bold text-purple-300">Projects</h1>
-<ul class="mt-6 space-y-2">
-<li><a href="https://arynwood.com/publicchain">US Public Chain</a></li>  
-<li><a 
-href="https://github.com/SkyeVault/Main/blob/main/Rust_Projects/spotify_playlist_maker/readme.md" 
-target="_blank">Spotify Playlist Maker</a></li>
-  <li><a href="https://testnets.opensea.io/collection/loreleinoblegenesis">Lorelei 
-NFT Gallery</a> (mainnet coming soon)</li>
-  <li><a href="/blog">DevLog (Rainkeep)</a></li>
-</ul>
-
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Projects</title>
+  </head>
+  <body class="bg-[#0e0e0e] text-[#dcdcdc] font-mono px-6 py-12">
+    <main class="max-w-3xl mx-auto bg-[#121212] p-8 rounded-lg shadow-lg shadow-purple-300/10">
+      <h1 class="text-4xl font-bold text-purple-300 mb-6 border-b border-purple-800 pb-2">Projects</h1>
+      <ul class="space-y-4 text-lg leading-relaxed">
+        <li>
+          <a
+            href="https://arynwood.com/publicchain"
+            class="text-[#3399ff] hover:text-[#ff99cc] underline"
+            target="_blank"
+          >US Public Chain</a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/SkyeVault/Main/blob/main/Rust_Projects/spotify_playlist_maker/readme.md"
+            class="text-[#3399ff] hover:text-[#ff99cc] underline"
+            target="_blank"
+          >Spotify Playlist Maker</a>
+        </li>
+        <li>
+          <a
+            href="https://testnets.opensea.io/collection/loreleinoblegenesis"
+            class="text-[#3399ff] hover:text-[#ff99cc] underline"
+            target="_blank"
+          >Lorelei NFT Gallery</a> <span class="text-sm text-gray-400">(mainnet coming soon)</span>
+        </li>
+        <li>
+          <a
+            href="/blog"
+            class="text-[#3399ff] hover:text-[#ff99cc] underline"
+          >DevLog (Rainkeep)</a>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>
