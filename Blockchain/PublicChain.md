@@ -130,7 +130,7 @@ us-public-chain/
 
 ## Technology
 
-- **Blockchain:** Polygon (Amoy testnet)
+- **Blockchain:** Polygon (Amoy testnet for proof of concept)
 - **Contracts:** Solidity (Hardhat or Foundry)
 - **Frontend:** Astro or React with Tailwind CSS
 - **Data Viz:** D3.js or Recharts
