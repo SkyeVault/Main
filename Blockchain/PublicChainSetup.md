@@ -101,12 +101,12 @@
 
 ```
 us-public-chain/
-âââ contracts/
-âââ frontend/
-âââ data/
-âââ docs/
-âââ scripts/
-âââ README.md
+├── contracts/          # Smart contracts for PAT and USDC logic
+├── frontend/           # User interface for recipients, workers, and the public
+├── data/               # Token flow simulation and program analytics
+├── docs/               # System philosophy, use cases, and public onboarding
+├── scripts/            # Deployment and contract management
+└── README.md           # This file
 ```
 
 - [ ] Add MIT or GPL license
