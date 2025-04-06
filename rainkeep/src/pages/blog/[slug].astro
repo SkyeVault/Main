@@ -5,7 +5,7 @@ export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
 
   return allPosts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.slug }, // ✅ keep using post.slug
     props: { post },
   }));
 }
@@ -22,9 +22,8 @@ const { post } = Astro.props;
       <>
         <article style="max-width: 600px; margin: auto;">
           <h1>{post.data.title}</h1>
-          <p>{new Date(post.data.pubDate).toDateString()}</p>
+          <p>{new Date(post.data.date).toDateString()}</p>
 
-          <!-- ✅ This renders the actual Markdown body -->
           {await post.render()}
         </article>
       </>
@@ -33,3 +32,4 @@ const { post } = Astro.props;
     )}
   </body>
 </html>
+
