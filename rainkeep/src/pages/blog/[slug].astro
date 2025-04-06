@@ -36,7 +36,8 @@ const { post } = Astro.props;
       <>
         <h1>{post.data.title}</h1>
         <p>{new Date(post.data.pubDate).toDateString()}</p>
-        <div innerHTML={post.body} />
+        <--! div innerHTML={post.body} / !-->
+        <Markdown content={post.body} />
       </>
     ) : (
       <p style="text-align:center;">Sorry, this post couldn't be found.</p>
