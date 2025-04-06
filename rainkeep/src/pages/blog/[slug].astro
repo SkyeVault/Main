@@ -1,11 +1,12 @@
 ---
 import { getCollection, getEntryBySlug } from 'astro:content';
+import { Markdown } from 'astro/components';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
 
   return allPosts.map((post) => ({
-    params: { slug: post.slug }, // slug must be a string (post.id)
+    params: { slug: post.slug }, // ✅ use slug, not id
   }));
 }
 
