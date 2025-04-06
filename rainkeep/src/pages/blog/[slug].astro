@@ -2,10 +2,10 @@
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
+  const posts = await getCollection('blog');
 
-  return allPosts.map((post) => ({
-    params: { slug: post.slug }, // ✅ keep using post.slug
+  return posts.map((post) => ({
+    params: { slug: post.slug },
     props: { post },
   }));
 }
@@ -15,7 +15,7 @@ const { post } = Astro.props;
 
 <html lang="en">
   <head>
-    <title>{post?.data?.title ?? 'Post Not Found'}</title>
+    <title>{post?.data?.title ?? "Post Not Found"}</title>
   </head>
   <body>
     {post ? (
@@ -23,7 +23,6 @@ const { post } = Astro.props;
         <article style="max-width: 600px; margin: auto;">
           <h1>{post.data.title}</h1>
           <p>{new Date(post.data.date).toDateString()}</p>
-
           {await post.render()}
         </article>
       </>
@@ -32,4 +31,3 @@ const { post } = Astro.props;
     )}
   </body>
 </html>
-
