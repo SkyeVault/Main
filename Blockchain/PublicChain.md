@@ -1,150 +1,163 @@
 # US Public Chain
 
-**A transparent blockchain system for public assistance and government payroll.  
-Built to restore dignity, traceability, and purpose to how we distribute value in the United States.**
+**A transparent blockchain framework for modernizing public assistance and government payroll.  
+Built for dignity, equity, and systemic trust.**
 
 ---
 
-## Project Vision
+## Why Blockchain?
 
-US Public Chain is a decentralized system designed to tokenize government aid and public payroll in a way that serves people first—not politics, not speculation.
+Blockchain isn’t about hype. It’s not magic money. It’s not a trophy to hoard.
 
-This project was created by Lorelei Noble, a blockchain developer, digital artist, and systems thinker, driven by a lifelong desire to use technology not to hoard wealth—but to heal broken systems.
+It’s a decentralized ledger — a programmable, verifiable system that removes middlemen, makes transactions transparent, and creates accountability by design.
 
-In a time when cryptocurrency is being hoarded for power, politicized for control, and misunderstood by the public, this project reclaims its original purpose: to decentralize trust, automate transparency, and build a fair, open infrastructure for human dignity.
+When applied correctly, blockchain can:
+- Prevent corruption through public verification
+- Automate trust without gatekeeping
+- Deliver funds directly to people who need them
+- Ensure every tax dollar is traceable
 
----
-
-## Philosophy
-
-- Crypto was never meant to be a trophy. It’s a tool.
-- Blockchain must be used for real-world utility, not speculative hoarding.
-- Transparency is not surveillance—it’s accountability.
-- Aid should be delivered with dignity, efficiency, and clarity.
-- Workers deserve verifiable, stable compensation without delay or bureaucracy.
-- The government should be held to the same standards it asks of its people.
+**US Public Chain** applies these core strengths to the public sector — transforming how aid is distributed and how public workers are compensated, with clarity and fairness for all.
 
 ---
 
-## Developer Background
+## The Problem
 
-Created by Lorelei Noble — a developer, artist, and mother.
+Public aid is slow, fragmented, and hard to track.  
+Government payroll is often inefficient, delayed, or unclear.  
+Spending is buried in bureaucracy, difficult to audit, and vulnerable to misuse.  
 
-Lorelei has experience in:
+Meanwhile, cryptocurrency is being politicized and stockpiled — its utility overlooked in favor of speculative value.
 
-- Cloud security and AWS
-- Solidity and Rust smart contracts
-- NFT deployment on Polygon
-- Ethical Web3 infrastructure
-- Open-source public systems
-
-This project is rooted in both technical knowledge and lived experience. It’s built from the ground up to imagine the systems we never got—but always needed.
+We don’t need more accumulation.  
+We need **application**.
 
 ---
 
-## System Design
+## Our Solution
 
-### Dual Token Economy
+**US Public Chain** introduces a two-token blockchain ecosystem for the public sector:
 
-**1. Public Assistance Token (PAT)**  
-- Non-transferable, non-speculative, resets monthly  
-- Can only be used for:
-  - Food
-  - Healthcare
-  - Transportation
-  - Fuel
-  - Utilities (incl. internet)
-  - Basic clothing and toiletries
-  - Housing and transitional housing
-- Prevents stockpiling or off-chain abuse
-- Designed to protect dignity and ensure survival
+---
 
-**2. USDC for Public Workers**  
-- Salary paid to:
-  - Educators
-  - Healthcare workers
-  - Emergency responders
-  - Road and transit workers
-  - Government employees
+### 1. Public Assistance Token (PAT)
+
+A non-speculative, non-transferable token for recipients of public aid.
+
+**Use cases:**
+- Food
+- Public healthcare
+- Fuel
+- Public transit
+- Utilities (including internet)
+- Basic clothing and toiletries
+- Housing and transitional services
+
+**Key features:**
+- Resets monthly (no stockpiling)
+- Cannot be converted or traded
+- Fully traceable but anonymized for privacy
+- Usable only at verified providers within essential categories
+
+---
+
+### 2. USDC for Public Workers
+
+Stablecoin-based payroll for government and essential public service workers.
+
+**Eligible roles:**
+- Emergency services
+- Educators
+- Healthcare workers
+- Government employees (local, state, federal)
+- Infrastructure and transportation workers
+
+**Key features:**
 - Spendable, saveable, and convertible
-- Leftover balance rolls over monthly
-- Full transparency in payroll
+- Remaining balance rolls over monthly
+- Fully transparent salary tracking
+- Encourages accountability without restriction
 
 ---
 
-## Eligibility
+## Who It Serves
 
-**Recipients include:**  
-- Disabled individuals  
-- Veterans  
-- Seniors  
-- Children in low-income households  
-- Pregnant women and mothers with low income  
-- Verified unemployed
+### Assistance Recipients
+- Disabled individuals
+- Veterans
+- Senior citizens
+- Children under 18 in low-income households
+- Pregnant women and mothers with low household income
+- Unemployed individuals verified through labor records
 
-**Public servants include:**  
-- Emergency services  
-- Educators  
-- Healthcare workers  
-- Government workers  
-- Infrastructure and transit personnel
-
-Eligibility is verified through decentralized registries with protected personal data.
+### Public Workers
+- Verified public employees paid through state or federal systems
+- Salaries visible on-chain to promote fair pay and trust
 
 ---
 
-## Transparency Architecture
+## How It Works
 
-- All transactions are on-chain  
-- Contracts are open-source  
-- Public dashboards show monthly spending, distributions, and efficiency metrics  
-- Recipient privacy is protected with anonymized IDs
-
----
-
-## Project Structure
+```
 us-public-chain/
-├── contracts/          # Solidity or Rust contracts for PAT + USDC
-├── frontend/           # React or Astro frontend for dashboard and wallets
-├── data/               # Sample datasets and token flow
-├── docs/               # Public philosophy, goals, and economic model
-├── scripts/            # Deployment, verification, and automation
+├── contracts/          # Smart contracts for PAT and USDC logic
+├── frontend/           # User interface for recipients, workers, and the public
+├── data/               # Token flow simulation and program analytics
+├── docs/               # System philosophy, use cases, and public onboarding
+├── scripts/            # Deployment and contract management
 └── README.md           # This file
+```
+**Public dashboards** allow citizens to view:
+- Total monthly aid issued
+- Payroll distribution
+- Budget allocations and spending patterns
+
+**Smart contracts** automate all disbursements and eliminate administrative bottlenecks.
+
+**Privacy protections** ensure recipient data is protected while maintaining full traceability of public funds.
+
 ---
 
-## Tech Stack
+## Future Plans
 
-- Blockchain: Polygon (Amoy testnet to start)
-- Contracts: Solidity (Hardhat or Foundry)
-- Frontend: Astro or React + Tailwind CSS
-- Data Visualization: D3.js or Recharts
-- Hosting: GitHub Pages or IPFS
-- Wallet Support: MetaMask, WalletConnect
+- Mobile-friendly public wallet cards for recipients  
+- DAO-governed community budgeting tools  
+- Token-based voting for local use of public funds  
+- Open-source APIs for city, state, and nonprofit integration  
+- International templates for global deployment
 
 ---
 
-## Future Features
+## Technology
 
-- Mobile-accessible wallet cards for recipients  
-- On-chain dispute resolution  
-- DAO-based local budgeting control  
-- Public token flow explorer  
-- Multilingual, international-ready templates
+- **Blockchain:** Polygon (Amoy testnet)
+- **Contracts:** Solidity (Hardhat or Foundry)
+- **Frontend:** Astro or React with Tailwind CSS
+- **Data Viz:** D3.js or Recharts
+- **Wallets:** MetaMask, WalletConnect
+- **Hosting:** GitHub Pages, IPFS
 
 ---
 
 ## Why This Matters
 
-The current system is slow, fragmented, and hidden from public view. Aid is delayed. Workers are underpaid. Tax dollars vanish into black boxes.
+We don’t need to imagine a better system — we can build it.  
+We have the tools to automate aid, eliminate corruption, and honor the dignity of both the worker and the recipient.
 
-Meanwhile, crypto is being hoarded and politicized instead of implemented for good.
+US Public Chain is a prototype for how decentralized tech can bring transparency and structure to the very systems meant to support us.
 
-US Public Chain is a tool to change that—**one smart contract at a time.**
-
-Let’s put the government on chain.  
-Let’s use crypto the way it was meant to be used: for people.
+This is crypto applied with intention.  
+This is blockchain for public good.
 
 ---
 
-**Created by Lorelei Noble**  
-Founder of Arynwood • Blockchain Developer • Artist • Citizen
+## About the Creator
+
+**Written by Lorelei Noble – Developer. Artist. Mother. Citizen.**
+
+I build ethical systems for the future I want my daughter to grow up in — one where transparency, fairness, and dignity aren’t ideals, but defaults.
+
+I specialize in cloud security, smart contract architecture, Web3 infrastructure, and decentralized art platforms. I’ve launched NFTs, managed open-source projects, and worked with tools like Solidity, Rust, Foundry, AWS, and IPFS.
+
+This project is not theoretical. It’s deeply personal. And it’s just the beginning.
+
