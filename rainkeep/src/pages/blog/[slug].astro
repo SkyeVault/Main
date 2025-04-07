@@ -1,33 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
-
-export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
-
-  return allPosts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
-}
+const { slug } = Astro.params;
 ---
 
-<html lang="en">
+<html>
   <head>
-    <title>{Astro.props.post?.data?.title ?? 'Post Not Found'}</title>
+    <title>Not Found</title>
   </head>
   <body>
-    {Astro.props.post ? (
-      <>
-        <article style="max-width: 600px; margin: auto;">
-          <h1>{Astro.props.post.data.title}</h1>
-          <p>Published on {new Date(Astro.props.post.data.pubDate).toDateString()}</p>
-
-          <!-- Render the Markdown body -->
-          {await Astro.props.post.render()}
-        </article>
-      </>
-    ) : (
-      <p style="text-align:center;">Sorry, this post couldn't be found.</p>
-    )}
+    <h1>⚠ Legacy blog route disabled</h1>
+    <p>
+      Posts are now stored as static HTML files.<br />
+      Please visit <a href="/blog">the Lore Logs index</a>.
+    </p>
   </body>
 </html>
