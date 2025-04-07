@@ -1,3 +1,4 @@
+---
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -8,6 +9,12 @@ export async function getStaticPaths() {
     props: { post },
   }));
 }
+---
+
+<script>
+  const { post } = Astro.props;
+</script>
+
 <html lang="en">
   <head>
     <title>{Astro.props.post?.data?.title ?? 'Post Not Found'}</title>
