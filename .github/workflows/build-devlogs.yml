@@ -1,0 +1,39 @@
+name: Build DevLogs to HTML
+
+on:
+  push:
+    paths:
+      - 'rainkeep/src/content/blog2/*.md'
+
+jobs:
+  convert-markdown:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
+
+      - name:  Install Pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
+      - name:  Convert Markdown to HTML
+        run: |
+          mkdir -p rainkeep/public/blog-html
+          for file in rainkeep/src/content/blog2/*.md; do
+            filename=$(basename "$file" .md)
+            pandoc "$file" \
+              -o "rainkeep/public/blog-html/$filename.html" \
+              --template="rainkeep/plain-template.html" \
+              --metadata title="$filename"
+            echo "✓ Converted $file → $filename.html"
+          done
+
+      - name:  Commit generated HTML files
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "actions@github.com"
+          git add rainkeep/public/blog-html/*.html
+          git commit -m "chore: auto-convert devlogs to HTML" || echo "No changes to 
+commit"
+          git push
+
