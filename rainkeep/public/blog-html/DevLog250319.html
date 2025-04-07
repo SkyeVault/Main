@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevLog250319</title>
+  <style>
+    body {
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      font-family: 'Courier New', monospace;
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+    h1, h2, h3 {
+      color: #b48eff;
+      text-shadow: 0 0 6px #b48eff;
+    }
+    a {
+      color: #79b8ff;
+      text-decoration: underline;
+    }
+    code {
+      background: #1f1f2e;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1
+  id="devlog-250319-shelling-into-my-own-machine-the-great-upstairs-hack">Devlog
+  250319: Shelling into My Own Machine – The Great Upstairs Hack</h1>
+  <h2 id="overview"><strong>Overview</strong></h2>
+  <p>Today’s objective is to <strong>gain remote access to my upstairs
+  computer</strong>, which lost its <strong>monitor connection</strong>.
+  Instead of physically troubleshooting, I want to <strong>SSH into it
+  from my laptop</strong> and regain control.</p>
+  <hr />
+  <h2 id="current-challenges"><strong>Current Challenges</strong></h2>
+  <ol type="1">
+  <li><strong>No Monitor, No GUI</strong> – The upstairs computer is
+  <strong>alive but blind</strong>. I can’t interact with it
+  directly.</li>
+  <li><strong>No Pre-Configured SSH Access</strong> – I didn’t set up
+  remote access ahead of time (oops), so I need to find a way in.</li>
+  <li><strong>Unknown Network Configuration</strong> – I need to
+  determine <strong>its local IP address</strong> or another way to
+  reach it.</li>
+  <li><strong>Firewall and User Authentication</strong> – Even if SSH is
+  enabled, I might need to <strong>bypass login issues or enable access
+  remotely</strong>.</li>
+  </ol>
+  <hr />
+  <h2 id="potential-attack-vectors-a.k.a.-solutions"><strong>Potential
+  Attack Vectors (a.k.a. Solutions)</strong></h2>
+  <h3 id="find-the-computers-local-ip"><strong>1. Find the Computer’s
+  Local IP</strong></h3>
+  <ul>
+  <li>Use my <strong>router’s admin panel</strong> to list connected
+  devices.</li>
+  <li>Run <code>arp -a</code> on my laptop to scan for networked
+  machines.</li>
+  </ul>
+  <h3 id="attempt-ssh-access-if-enabled"><strong>2. Attempt SSH Access
+  (if enabled)</strong></h3>
+  <div class="sourceCode" id="cb1"><pre
+  class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> username@192.168.x.xxx</span></code></pre></div>
+  <ul>
+  <li>If it works, fantastic! If not, move to step 3.</li>
+  </ul>
+  <h3 id="remote-shell-via-another-open-service"><strong>3. Remote Shell
+  via Another Open Service</strong></h3>
+  <ul>
+  <li>Check if the upstairs computer <strong>runs any services</strong>
+  that I can piggyback on.</li>
+  <li>Use <strong>Netcat (<code>nc</code>)</strong> to set up a backdoor
+  if necessary.</li>
+  <li>Try accessing it via <strong>PowerShell Remoting
+  (Windows)</strong> or <strong>SSH (Linux/Mac).</strong></li>
+  </ul>
+  <h3 id="worst-case-sneaker-net-approach"><strong>4. Worst Case:
+  Sneaker-Net Approach</strong></h3>
+  <ul>
+  <li>If all else fails, I might have to <strong>drag a monitor
+  upstairs</strong>, but I refuse to give up yet.</li>
+  </ul>
+  <hr />
+  <h2 id="next-steps"><strong>Next Steps</strong></h2>
+  <ol type="1">
+  <li><strong>Scan my network</strong> for the machine’s IP.</li>
+  <li><strong>Try SSH or PowerShell Remoting</strong> to see if I can
+  get in.</li>
+  <li><strong>Use alternative access methods</strong> (Netcat, file
+  drops, etc.).</li>
+  <li><strong>If all else fails, begrudgingly reconnect a
+  monitor.</strong></li>
+  </ol>
+  <hr />
+  <h2 id="final-thoughts"><strong>Final Thoughts</strong></h2>
+  <p>If I succeed, I regain access <strong>without touching the machine
+  physically</strong>. If I fail… well, I’ll get my steps in carrying a
+  monitor upstairs. <strong>Wish me luck.</strong></p>
+</body>
+</html>

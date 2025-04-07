@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevLog250322</title>
+  <style>
+    body {
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      font-family: 'Courier New', monospace;
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+    h1, h2, h3 {
+      color: #b48eff;
+      text-shadow: 0 0 6px #b48eff;
+    }
+    a {
+      color: #79b8ff;
+      text-decoration: underline;
+    }
+    code {
+      background: #1f1f2e;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <p>Foundry vs Hardhat – Ethereum Development Tools</p>
+  <p><strong>Topic:</strong> Comparing Foundry and Hardhat for Smart
+  Contract Development</p>
+  <hr />
+  <h2 id="overview">Overview</h2>
+  <p>Foundry and Hardhat are two popular development frameworks used in
+  Ethereum smart contract workflows. Both offer tools for compiling,
+  testing, and deploying smart contracts, but they differ in design
+  philosophy, performance, and developer experience.</p>
+  <hr />
+  <h2 id="hardhat">Hardhat</h2>
+  <ul>
+  <li>JavaScript/TypeScript-based</li>
+  <li>Heavily integrated with the Node.js ecosystem</li>
+  <li>Popular for frontend-integrated projects</li>
+  <li>Uses Mocha/Chai for testing</li>
+  <li>Offers plugins and scripting via JavaScript</li>
+  <li>Strong documentation and plugin community</li>
+  </ul>
+  <p><strong>Strengths:</strong> - Easy for web developers familiar with
+  JS - Well-supported by tutorials and tools - Great for full-stack dApp
+  projects</p>
+  <hr />
+  <h2 id="foundry">Foundry</h2>
+  <ul>
+  <li>Rust-based toolchain</li>
+  <li>Uses Forge (testing), Cast (CLI), and Anvil (local node)</li>
+  <li>Extremely fast compile and test cycles</li>
+  <li>Native Solidity test files (no JS required)</li>
+  <li>Built for speed, reliability, and power users</li>
+  </ul>
+  <p><strong>Strengths:</strong> - Blazing fast testing and deployment -
+  Native Solidity scripting and tests - Easy to integrate into low-level
+  or advanced tooling setups</p>
+  <hr />
+  <h2 id="summary">Summary</h2>
+  <table>
+  <thead>
+  <tr>
+  <th>Feature</th>
+  <th>Hardhat</th>
+  <th>Foundry</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>Language</td>
+  <td>JavaScript/TypeScript</td>
+  <td>Solidity + Rust tools</td>
+  </tr>
+  <tr>
+  <td>Testing</td>
+  <td>Mocha + JS</td>
+  <td>Native Solidity</td>
+  </tr>
+  <tr>
+  <td>Speed</td>
+  <td>Slower (JS-based)</td>
+  <td>Very fast (Rust core)</td>
+  </tr>
+  <tr>
+  <td>Best for</td>
+  <td>Full-stack dApps</td>
+  <td>Power users, CLI devs</td>
+  </tr>
+  </tbody>
+  </table>
+  <p>Both tools are excellent and often used together in learning
+  environments. Foundry is gaining traction for serious protocol-level
+  devs, while Hardhat remains the go-to for frontend-integrated dApp
+  teams.</p>
+  <p><strong>Status:</strong> Learning and experimenting with both</p>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevLog250328</title>
+  <style>
+    body {
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      font-family: 'Courier New', monospace;
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+    h1, h2, h3 {
+      color: #b48eff;
+      text-shadow: 0 0 6px #b48eff;
+    }
+    a {
+      color: #79b8ff;
+      text-decoration: underline;
+    }
+    code {
+      background: #1f1f2e;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="loreleinoblegenesis">LoreleiNobleGenesis</h1>
+  <p><strong>A Genesis NFT Collection by Lorelei Noble</strong></p>
+  <p>This project represents the first complete on-chain NFT collection
+  deployed to the Polygon Amoy testnet by Lorelei Noble. It contains 10
+  original digital paintings, each one permanently stored on IPFS and
+  minted as a unique token.</p>
+  <hr />
+  <h2 id="project-overview">Project Overview</h2>
+  <ul>
+  <li><strong>Chain:</strong> Polygon Amoy Testnet<br />
+  </li>
+  <li><strong>Standard:</strong> ERC-721<br />
+  </li>
+  <li><strong>Storage:</strong> Metadata and images hosted on IPFS via
+  Web3.Storage<br />
+  </li>
+  <li><strong>Smart Contract:</strong>
+  <code>LoreleiNobleGenesis</code><br />
+  </li>
+  <li><strong>Deployed Address:</strong>
+  <code>0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783</code><br />
+  </li>
+  <li><strong>Explorer:</strong> <a
+  href="https://amoy.polygonscan.com/address/0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783">Polygonscan
+  Amoy</a><br />
+  </li>
+  <li><strong>Marketplace:</strong> <a
+  href="https://testnets.opensea.io/assets/amoy/0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783/1">OpenSea
+  Testnet Collection</a></li>
+  </ul>
+  <hr />
+  <h2 id="ipfs-details">IPFS Details</h2>
+  <ul>
+  <li><p><strong>Root CID:</strong><br />
+  <code>bafybeihdo27nu3iak7njllgpkmx3ra27mbazlrr444t4sdp46z3sn2v5ye</code></p></li>
+  <li><p><strong>Access via HTTPS:</strong><br />
+  <a
+  href="https://bafybeihdo27nu3iak7njllgpkmx3ra27mbazlrr444t4sdp46z3sn2v5ye.ipfs.w3s.link/">IPFS
+  Folder</a></p></li>
+  </ul>
+  <p>Each NFT points to a metadata file:</p>
+  <pre><code>metadata1.json  
+metadata2.json  
+...  
+metadata10.json</code></pre>
+  <p>Each metadata file includes: - <code>name</code> -
+  <code>description</code> - <code>image</code>
+  (e.g. <code>painting_01.png</code>)</p>
+  <hr />
+  <h2 id="burn-function">Burn Function</h2>
+  <p>The contract includes a burn function to permanently destroy an NFT
+  if needed. This can only be called by the token owner or an approved
+  operator.</p>
+  <pre class="solidity"><code>function burn(uint256 tokenId) public</code></pre>
+  <hr />
+  <h2 id="tools-used">Tools Used</h2>
+  <ul>
+  <li>Foundry (Forge + Cast)</li>
+  <li>Solidity</li>
+  <li>OpenZeppelin Contracts</li>
+  <li>IPFS via Web3.Storage</li>
+  <li>Polygon Amoy Testnet</li>
+  <li>VS Code + zsh terminal on macOS</li>
+  </ul>
+  <hr />
+  <h2 id="interacting-with-the-contract">Interacting with the
+  Contract</h2>
+  <h3 id="mint-a-new-nft">Mint a New NFT</h3>
+  <div class="sourceCode" id="cb3"><pre
+  class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cast</span> send <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--rpc-url</span> https://rpc-amoy.polygon.technology <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--private-key</span> YOUR_PRIVATE_KEY <span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783 <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;mintNFT(address)&quot;</span> 0xYourWalletAddress</span></code></pre></div>
+  <h3 id="burn-an-nft">Burn an NFT</h3>
+  <div class="sourceCode" id="cb4"><pre
+  class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cast</span> send <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--rpc-url</span> https://rpc-amoy.polygon.technology <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--private-key</span> YOUR_PRIVATE_KEY <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783 <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;burn(uint256)&quot;</span> 5</span></code></pre></div>
+  <hr />
+  <h2 id="license">License</h2>
+  <p>This project is licensed under the MIT License.</p>
+</body>
+</html>

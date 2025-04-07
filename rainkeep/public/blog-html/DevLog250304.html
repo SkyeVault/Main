@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevLog250304</title>
+  <style>
+    body {
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      font-family: 'Courier New', monospace;
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+    h1, h2, h3 {
+      color: #b48eff;
+      text-shadow: 0 0 6px #b48eff;
+    }
+    a {
+      color: #79b8ff;
+      text-decoration: underline;
+    }
+    code {
+      background: #1f1f2e;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="dev-log-250304"><strong>Dev Log | 250304</strong></h1>
+  <h3
+  id="project-restructuring-completed-debugging-main.rs-in-spotify-playlist-maker"><em>Project
+  Restructuring Completed – Debugging <code>main.rs</code> in Spotify
+  Playlist Maker</em></h3>
+  <hr />
+  <h2 id="current-status"><strong>Current Status</strong></h2>
+  <p>The <strong>file and folder restructuring is now complete</strong>
+  for Rust projects. The <strong>Spotify Playlist Maker</strong> is now
+  properly organized under
+  <code>/main/rust_projects/spotify_playlist_maker</code>, ensuring a
+  clean separation from other projects like <strong>SkyeVault
+  Ops</strong>.</p>
+  <p>With the new structure in place, I’m back to debugging
+  <code>main.rs</code>, which is throwing several errors. These seem to
+  be a mix of <strong>authentication issues and compilation
+  errors</strong>. Running <code>cargo watch</code> to iterate
+  quickly.</p>
+  <hr />
+  <h2 id="work-in-progress"><strong>Work in Progress</strong></h2>
+  <h3 id="file-system-restructuring-completed"><strong>File System
+  Restructuring Completed</strong></h3>
+  <ul>
+  <li><p>Finalized the <strong>Rust project directory
+  structure</strong>:</p>
+  <pre><code>/main  
+ ├── rust_projects
+ │   ├── spotify_playlist_maker  
+ │   │   ├── src/  
+ │   │   ├── docs/  
+ │   │   ├── README.md  
+ │   │   ├── Cargo.toml  
+ │   │   └── .gitignore  
+</code></pre></li>
+  <li><p>Verified that <code>cargo build</code> and
+  <code>cargo run</code> execute properly from the correct
+  directories.<br />
+  </p></li>
+  <li><p>Adjusted <strong>VS Code workspace settings</strong> to reflect
+  the new structure.</p></li>
+  </ul>
+  <h3 id="debugging-main.rs-in-spotify-playlist-maker"><strong>Debugging
+  <code>main.rs</code> in Spotify Playlist Maker</strong></h3>
+  <ul>
+  <li>Encountering <strong>multiple errors</strong> during
+  compilation.<br />
+  </li>
+  <li>Running <code>cargo watch -x run</code> to track changes
+  efficiently.<br />
+  </li>
+  <li>Errors appear to be <strong>a mix of authentication failures and
+  Rust syntax issues</strong>.<br />
+  </li>
+  <li>Checking the following areas for fixes:
+  <ul>
+  <li>OAuth authentication process.<br />
+  </li>
+  <li>Struct definitions in <code>serde_json</code>.<br />
+  </li>
+  <li>Rust syntax and type mismatches in API calls.<br />
+  </li>
+  <li>Missing or incorrect dependencies.</li>
+  </ul></li>
+  </ul>
+  <hr />
+  <h2 id="latest-updates"><strong>Latest Updates</strong></h2>
+  <h3 id="am-file-system-restructure-finalized"><strong>[10:00am] File
+  System Restructure Finalized</strong></h3>
+  <ul>
+  <li>All Rust projects are properly isolated.<br />
+  </li>
+  <li>VS Code reflects the correct workspace settings.<br />
+  </li>
+  <li>Initial test builds confirm that <code>cargo</code> commands work
+  within the new structure.</li>
+  </ul>
+  <h3 id="am-debugging-main.rs-compilation-errors"><strong>[11:00am]
+  Debugging <code>main.rs</code> Compilation Errors</strong></h3>
+  <ul>
+  <li>First build attempt after restructuring failed due to
+  <strong>missing dependencies</strong> (resolved by rechecking
+  <code>Cargo.toml</code>).<br />
+  </li>
+  <li>Authentication request still returning <strong>401
+  Unauthorized</strong> – possible issue with token handling.<br />
+  </li>
+  <li>Running manual API tests with <code>curl</code> to verify if the
+  problem is Rust-specific.</li>
+  </ul>
+  <hr />
+  <h2 id="next-steps"><strong>Next Steps</strong></h2>
+  <ul>
+  <li>Work through the specific errors in <code>main.rs</code>,
+  resolving them one at a time.<br />
+  </li>
+  <li>Validate OAuth token request formatting to ensure API
+  compliance.<br />
+  </li>
+  <li>Debug <code>serde_json</code> struct definitions to match the API
+  response format.<br />
+  </li>
+  <li>Continue running <code>cargo watch</code> to test fixes in real
+  time.</li>
+  </ul>
+  <hr />
+  <p>Now that the folder structure is solid, the focus is entirely on
+  debugging <code>main.rs</code> and getting the Spotify API integration
+  working correctly. More updates to follow as errors are fixed.</p>
+  <h3
+  id="debugging-main.rs-in-spotify-playlist-maker-403-error-investigation"><em>Debugging
+  <code>main.rs</code> in Spotify Playlist Maker – 403 Error
+  Investigation</em></h3>
+  <hr />
+  <h2 id="current-status-1"><strong>Current Status</strong></h2>
+  <p>The <strong>file and folder restructuring is complete</strong>, and
+  I’ve moved back to debugging <code>main.rs</code>. Previously, we
+  bypassed local authorization, but now the <strong>main issue is a 403
+  Forbidden error</strong> when making API requests. This indicates a
+  permissions issue, likely related to <strong>OAuth scopes or request
+  formatting</strong>.</p>
+  <hr />
+  <h2 id="work-in-progress-1"><strong>Work in Progress</strong></h2>
+  <h3 id="forbidden-error-investigation"><strong>403 Forbidden Error
+  Investigation</strong></h3>
+  <ul>
+  <li><strong>Confirmed OAuth token is valid</strong>, but Spotify API
+  is rejecting requests.<br />
+  </li>
+  <li>Potential causes being tested:
+  <ul>
+  <li><strong>Insufficient scopes</strong>: Ensuring the token has the
+  correct permissions for playlist access.<br />
+  </li>
+  <li><strong>Incorrect request formatting</strong>: Checking headers
+  and JSON structure.<br />
+  </li>
+  <li><strong>Rate limiting or regional restrictions</strong>: Verifying
+  if IP-based blocking is a factor.</li>
+  </ul></li>
+  </ul>
+  <h3 id="bypassing-local-authorization"><strong>Bypassing Local
+  Authorization</strong></h3>
+  <ul>
+  <li>The previous issue with local authorization has been
+  resolved.<br />
+  </li>
+  <li>The authentication flow now proceeds correctly, but the API is
+  rejecting specific requests.<br />
+  </li>
+  <li>Testing various endpoints to see if all requests fail or only
+  certain ones.</li>
+  </ul>
+  <hr />
+  <h2 id="latest-updates-1"><strong>Latest Updates</strong></h2>
+  <h3 id="pm-first-403-debugging-attempt"><strong>[3:00pm] First 403
+  Debugging Attempt</strong></h3>
+  <ul>
+  <li><p>Ran <code>curl</code> test with manually generated OAuth
+  token.<br />
+  </p></li>
+  <li><p>Confirmed token is working for some endpoints, <strong>but
+  failing for playlist modifications.</strong><br />
+  </p></li>
+  <li><p>Checked Spotify Developer Console – token has the following
+  scopes:</p>
+  <pre><code>user-read-private
+playlist-modify-public
+playlist-modify-private</code></pre>
+  <ul>
+  <li><strong>Next Step:</strong> Ensure the request includes
+  <code>playlist-modify-public</code> or
+  <code>playlist-modify-private</code> explicitly.</li>
+  </ul></li>
+  </ul>
+  <h3 id="running-api-tests-on-alternative-endpoints"><strong>Running
+  API Tests on Alternative Endpoints</strong></h3>
+  <ul>
+  <li><code>GET /v1/me</code> works fine – authentication itself is
+  valid.<br />
+  </li>
+  <li><code>GET /v1/me/playlists</code> returns a list of playlists,
+  confirming read permissions.<br />
+  </li>
+  <li><code>POST /v1/playlists/{playlist_id}/tracks</code> fails with
+  403.</li>
+  </ul>
+  <p><strong>Hypothesis:</strong> The API call requires additional
+  permission settings.</p>
+  <hr />
+  <h2 id="next-steps-1"><strong>Next Steps</strong></h2>
+  <ul>
+  <li><strong>Verify OAuth scopes</strong> by regenerating a token with
+  explicit playlist permissions.<br />
+  </li>
+  <li><strong>Check Spotify API documentation</strong> to confirm
+  request format for modifying playlists.<br />
+  </li>
+  <li><strong>Log full request and response data</strong> to pinpoint
+  the exact cause of the 403 error.<br />
+  </li>
+  <li><strong>Try a different authorization flow</strong> to see if it
+  affects permissions.</li>
+  </ul>
+  <hr />
+  <p>Currently focused on <strong>resolving the 403 error and confirming
+  API permissions</strong>. More updates to follow as we narrow down the
+  issue.</p>
+  <h3 id="spotify-playlist-maker-permanent-fix-log"><em>Spotify Playlist
+  Maker – Permanent Fix Log</em></h3>
+  <hr />
+  <h2 id="fix-summary"><strong>Fix Summary</strong></h2>
+  <ol type="1">
+  <li><strong>Resolved incorrect <code>user.id</code> reference</strong>
+  in <code>user_playlist_create()</code> function.<br />
+  </li>
+  <li><strong>Updated <code>.env</code> configuration</strong> to
+  include <code>playlist-modify-private</code> scope.<br />
+  </li>
+  <li><strong>Implemented <code>tiny_http</code></strong> to
+  automatically capture the authentication code.<br />
+  </li>
+  <li><strong>Fixed API request failures</strong> caused by missing
+  permissions.</li>
+  </ol>
+  <hr />
+  <h2 id="steps-taken"><strong>Steps Taken</strong></h2>
+  <h3 id="oauth-permissions-fixes"><strong>OAuth &amp; Permissions
+  Fixes</strong></h3>
+  <ul>
+  <li>Verified <strong>Spotify API scopes</strong> and added
+  <code>playlist-modify-private</code> to ensure playlist creation
+  access.<br />
+  </li>
+  <li>Removed <code>&amp;user.id</code> reference in
+  <code>user_playlist_create()</code>, resolving request formatting
+  errors.<br />
+  </li>
+  <li>Updated <code>.env</code> file to explicitly define required
+  permissions.</li>
+  </ul>
+  <h3 id="local-authorization-automation"><strong>Local Authorization
+  Automation</strong></h3>
+  <ul>
+  <li>Set up <strong>local HTTP listener</strong> on
+  <code>127.0.0.1:8888/callback</code> to automatically handle OAuth
+  authorization.<br />
+  </li>
+  <li>Eliminated the need for manual authentication code entry,
+  improving workflow efficiency.</li>
+  </ul>
+  <h3 id="api-request-debugging"><strong>API Request
+  Debugging</strong></h3>
+  <ul>
+  <li>Logged <strong>full request and response data</strong> to diagnose
+  permission-related failures.<br />
+  </li>
+  <li>Successfully authenticated requests now return <strong>200
+  OK</strong> instead of <code>403 Forbidden</code>.<br />
+  </li>
+  <li>Confirmed playlist creation functionality through
+  <code>POST /v1/users/{user_id}/playlists</code>.</li>
+  </ul>
+  <hr />
+  <h2 id="status-update"><strong>Status Update</strong></h2>
+  <p><strong>Tested &amp; Working!</strong><br />
+  - Authentication is fully automated.<br />
+  - Playlist creation works dynamically without manual
+  intervention.<br />
+  - The API now correctly recognizes the user’s permissions.</p>
+  <hr />
+  <p>With these fixes in place, the <strong>Spotify Playlist
+  Maker</strong> is stable and ready for further feature
+  development.</p>
+</body>
+</html>

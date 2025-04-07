@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevLog250326</title>
+  <style>
+    body {
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      font-family: 'Courier New', monospace;
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+    h1, h2, h3 {
+      color: #b48eff;
+      text-shadow: 0 0 6px #b48eff;
+    }
+    a {
+      color: #79b8ff;
+      text-decoration: underline;
+    }
+    code {
+      background: #1f1f2e;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="nft-metadata-image-mapping">NFT Metadata &amp; Image
+  Mapping</h2>
+  <p>Each NFT in the <code>TopSecurityNFT</code> collection maps to a
+  metadata file and a corresponding image stored on IPFS.</p>
+  <table>
+  <colgroup>
+  <col style="width: 11%" />
+  <col style="width: 22%" />
+  <col style="width: 22%" />
+  <col style="width: 42%" />
+  </colgroup>
+  <thead>
+  <tr>
+  <th>Token ID</th>
+  <th>Metadata File</th>
+  <th>Image File</th>
+  <th>Display Name (in metadata)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>1</td>
+  <td>metadata1.json</td>
+  <td>painting_01.png</td>
+  <td>“Untitled Piece 1”</td>
+  </tr>
+  <tr>
+  <td>2</td>
+  <td>metadata2.json</td>
+  <td>painting_02.png</td>
+  <td>“Untitled Piece 2”</td>
+  </tr>
+  <tr>
+  <td>3</td>
+  <td>metadata3.json</td>
+  <td>painting_03.png</td>
+  <td>“Untitled Piece 3”</td>
+  </tr>
+  <tr>
+  <td>4</td>
+  <td>metadata4.json</td>
+  <td>painting_04.png</td>
+  <td>“Untitled Piece 4”</td>
+  </tr>
+  <tr>
+  <td>5</td>
+  <td>metadata5.json</td>
+  <td>painting_05.png</td>
+  <td>“Untitled Piece 5”</td>
+  </tr>
+  <tr>
+  <td>6</td>
+  <td>metadata6.json</td>
+  <td>painting_06.png</td>
+  <td>“Untitled Piece 6”</td>
+  </tr>
+  <tr>
+  <td>7</td>
+  <td>metadata7.json</td>
+  <td>painting_07.png</td>
+  <td>“Untitled Piece 7”</td>
+  </tr>
+  <tr>
+  <td>8</td>
+  <td>metadata8.json</td>
+  <td>painting_08.png</td>
+  <td>“Untitled Piece 8”</td>
+  </tr>
+  <tr>
+  <td>9</td>
+  <td>metadata9.json</td>
+  <td>painting_09.png</td>
+  <td>“Untitled Piece 9”</td>
+  </tr>
+  <tr>
+  <td>10</td>
+  <td>metadata10.json</td>
+  <td>painting_10.png</td>
+  <td>“Untitled Piece 10”</td>
+  </tr>
+  </tbody>
+  </table>
+  <ul>
+  <li><strong>Metadata Folder CID:</strong>
+  <code>bafybeic2f7dtbhcph4q72ja4avhesovmhmbdmpjtc45brtwbqyfroqsr3y</code></li>
+  <li><strong>Base URI (in contract):</strong><br />
+  <code>ipfs://bafybeic2f7dtbhcph4q72ja4avhesovmhmbdmpjtc45brtwbqyfroqsr3y/</code></li>
+  </ul>
+  <p>Each <code>tokenURI(tokenId)</code> is automatically constructed by
+  the contract using:</p>
+  <pre class="solidity"><code>string public baseURI;
+string memory uri = string(abi.encodePacked(baseURI, &quot;metadata&quot;, Strings.toString(tokenId), &quot;.json&quot;));</code></pre>
+  <hr />
+  <h2 id="metadata-generator-script-python">Metadata Generator Script
+  (Python)</h2>
+  <p>Save this as <code>generate_metadata.py</code> and run it in the
+  same folder as your <code>painting_01.png</code>,
+  <code>painting_02.png</code>, etc. Update the
+  <code>base_ipfs_cid</code> as needed.</p>
+  <div class="sourceCode" id="cb2"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>base_ipfs_cid <span class="op">=</span> <span class="st">&quot;bafybeic2f7dtbhcph4q72ja4avhesovmhmbdmpjtc45brtwbqyfroqsr3y&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>output_dir <span class="op">=</span> <span class="st">&quot;metadata&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>num_tokens <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>os.makedirs(output_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, num_tokens <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    metadata <span class="op">=</span> {</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;name&quot;</span>: <span class="ss">f&quot;Untitled Piece </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">&quot;</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;description&quot;</span>: <span class="st">&quot;A digital work in the TopSecurityNFT collection.&quot;</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;image&quot;</span>: <span class="ss">f&quot;ipfs://</span><span class="sc">{</span>base_ipfs_cid<span class="sc">}</span><span class="ss">/painting_</span><span class="sc">{</span><span class="bu">str</span>(i)<span class="sc">.</span>zfill(<span class="dv">2</span>)<span class="sc">}</span><span class="ss">.png&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    filename <span class="op">=</span> os.path.join(output_dir, <span class="ss">f&quot;metadata</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">.json&quot;</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(filename, <span class="st">&quot;w&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        json.dump(metadata, f, indent<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Created </span><span class="sc">{</span>num_tokens<span class="sc">}</span><span class="ss"> metadata files in &#39;</span><span class="sc">{</span>output_dir<span class="sc">}</span><span class="ss">/&#39;&quot;</span>)</span></code></pre></div>
+  <p>This will generate: - <code>metadata/metadata1.json</code> -
+  <code>metadata/metadata2.json</code> - … -
+  <code>metadata/metadata10.json</code></p>
+</body>
+</html>

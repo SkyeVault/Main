@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevLog250313</title>
+  <style>
+    body {
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      font-family: 'Courier New', monospace;
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+    h1, h2, h3 {
+      color: #b48eff;
+      text-shadow: 0 0 6px #b48eff;
+    }
+    a {
+      color: #79b8ff;
+      text-decoration: underline;
+    }
+    code {
+      background: #1f1f2e;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1
+  id="journal-entry-250313---web3-decentralized-metaverse-sandbox"><strong>Journal
+  Entry: 250313 - Web3 Decentralized Metaverse Sandbox</strong></h1>
+  <h2 id="project-web3-decentralized-metaverse-sandbox"><strong>Project:
+  Web3 Decentralized Metaverse Sandbox</strong></h2>
+  <h3 id="objective"><strong>Objective</strong></h3>
+  <p>I am building a full-stack <strong>Web3 decentralized metaverse
+  sandbox</strong>, where users can experience an <strong>NFT gallery
+  for socializing</strong>, buy <strong>virtual land</strong>, and build
+  <strong>custom business spaces</strong>. This project aims to create a
+  <strong>decentralized, user-owned environment</strong> that integrates
+  blockchain, NFT-based land ownership, and immersive 3D
+  interactions.</p>
+  <h3 id="current-focus"><strong>Current Focus</strong></h3>
+  <p>I am researching the <strong>best way to derive a tech
+  stack</strong> for this project. My focus is on selecting frameworks,
+  blockchain layers, and infrastructure that will allow for
+  <strong>scalability, low-cost transactions, and decentralized
+  hosting</strong>. This research will guide the next steps in
+  development.</p>
+  <h3 id="core-features-to-implement"><strong>Core Features to
+  Implement</strong></h3>
+  <ol type="1">
+  <li><strong>NFT Gallery Experience</strong> – Users can visit,
+  explore, and interact with NFTs in a virtual space.</li>
+  <li><strong>Tokenized Land Ownership</strong> – Virtual land will be
+  represented as NFTs that can be bought, sold, or leased.</li>
+  <li><strong>Business Space Customization</strong> – Users can build
+  digital shops, studios, and offices.</li>
+  <li><strong>Web3 Wallet Authentication</strong> – MetaMask and
+  WalletConnect for seamless login.</li>
+  <li><strong>Decentralized Storage</strong> – Using IPFS or Arweave for
+  NFT assets and metadata.</li>
+  <li><strong>Social Interactions</strong> – Voice, chat, and live
+  events.</li>
+  </ol>
+  <h3 id="tech-stack-considerations"><strong>Tech Stack
+  Considerations</strong></h3>
+  <h4 id="frontend-3d-interface-user-interaction"><strong>Frontend (3D
+  Interface &amp; User Interaction)</strong></h4>
+  <ul>
+  <li><strong>Three.js</strong> or <strong>Babylon.js</strong> for
+  browser-based 3D rendering.</li>
+  <li><strong>WebXR</strong> for potential VR expansion.</li>
+  <li><strong>React.js</strong> or <strong>Next.js</strong> for UI
+  components.</li>
+  </ul>
+  <h4 id="smart-contracts-blockchain-integration"><strong>Smart
+  Contracts &amp; Blockchain Integration</strong></h4>
+  <ul>
+  <li><strong>Ethereum (Layer 2 - Polygon or Arbitrum)</strong> for
+  low-cost transactions.</li>
+  <li><strong>ERC-721/ERC-1155</strong> for NFT-based land and
+  assets.</li>
+  <li><strong>OpenZeppelin Libraries</strong> for contract
+  security.</li>
+  </ul>
+  <h4 id="backend-storage"><strong>Backend &amp; Storage</strong></h4>
+  <ul>
+  <li><strong>Node.js + Express</strong> or <strong>Rust-based
+  backend</strong> for Web3 interactions.</li>
+  <li><strong>IPFS/Arweave</strong> for decentralized storage.</li>
+  <li><strong>GraphQL or The Graph</strong> for querying blockchain
+  data.</li>
+  </ul>
+  <h4 id="social-communication"><strong>Social &amp;
+  Communication</strong></h4>
+  <ul>
+  <li><strong>WebRTC</strong> for voice and video chat.</li>
+  <li><strong>Livepeer</strong> for decentralized streaming.</li>
+  <li><strong>GPT-4 AI NPCs</strong> for interactive experiences.</li>
+  </ul>
+  <h3 id="next-steps"><strong>Next Steps</strong></h3>
+  <ul>
+  <li>Finalize the <strong>core tech stack</strong> based on feasibility
+  and scalability.</li>
+  <li>Research <strong>smart contract security best practices</strong>
+  to prevent vulnerabilities.</li>
+  <li>Experiment with <strong>Three.js and Web3 wallet
+  integration</strong> for initial prototype.</li>
+  <li>Investigate <strong>decentralized hosting options</strong> to
+  avoid reliance on Web2 infrastructure.</li>
+  </ul>
+  <h3 id="challenges-to-solve"><strong>Challenges to Solve</strong></h3>
+  <ul>
+  <li>Choosing a blockchain that balances <strong>low fees and
+  decentralization</strong>.</li>
+  <li>Ensuring <strong>fast load times and smooth 3D rendering</strong>
+  in browsers.</li>
+  <li>Making <strong>NFT land interactions gas-efficient and
+  user-friendly</strong>.</li>
+  </ul>
+  <h3 id="developer-notes"><strong>Developer Notes</strong></h3>
+  <p>This log serves as a <strong>technical roadmap</strong> for the
+  project’s initial research phase. The next few weeks will be dedicated
+  to <strong>tech stack finalization, contract design, and 3D rendering
+  tests</strong>. More detailed development logs will follow as
+  components come together.</p>
+  <hr />
+  <h1
+  id="devlog-250313-alchemy-setup-and-polygon-amoy-testnet-challenges"><strong>Devlog
+  250313: Alchemy Setup and Polygon Amoy Testnet
+  Challenges</strong></h1>
+  <h2 id="what-happened"><strong>What Happened</strong></h2>
+  <ul>
+  <li><strong>Alchemy setup was successful.</strong> Connected to the
+  <strong>Polygon Amoy testnet</strong>, verified <strong>RPC
+  settings</strong>, and confirmed everything was working.<br />
+  </li>
+  <li><strong>Hit the “must have 0.001 POL on Polygon PoS”
+  issue.</strong> The <strong>Amoy faucet</strong> refused to send
+  testnet POL unless the account already held <strong>mainnet
+  POL</strong>, leading to the next challenge.<br />
+  </li>
+  <li><strong>Tried bridging funds.</strong> Sent <strong>WETH from
+  Coinbase Wallet</strong>, expecting a simple transfer to
+  <strong>MetaMask</strong>, but it turned into a <strong>gas-fee
+  nightmare</strong>.<br />
+  </li>
+  <li><strong>No way to move WETH without MATIC.</strong> Couldn’t send
+  or swap anything because there wasn’t enough <strong>MATIC to cover
+  gas fees</strong>.<br />
+  </li>
+  <li><strong>Bought MATIC through MetaMask (via Coinbase Pay).</strong>
+  Expected an <strong>instant transfer</strong>, but it <strong>never
+  appeared</strong> in <strong>MetaMask or Polygonscan</strong>, leading
+  to another dead end.</li>
+  </ul>
+  <hr />
+  <h2 id="frustrations-takeaways"><strong>Frustrations &amp;
+  Takeaways</strong></h2>
+  <ul>
+  <li><strong>Spending more on gas fees than the token’s actual worth is
+  infuriating.</strong> A <strong>$2 transaction</strong> quickly turns
+  into a <strong>$5 problem</strong>.<br />
+  </li>
+  <li><strong>Bridging and swapping funds feels unnecessarily
+  complex.</strong> The <strong>gas-to-move-gas</strong> dependency is
+  frustrating, forcing users to spend more just to get started.<br />
+  </li>
+  <li><strong>Testnets requiring mainnet tokens defeats the
+  purpose.</strong> The goal is to <strong>experiment</strong>, yet the
+  system forces users to <strong>hold real assets first</strong>.<br />
+  </li>
+  <li><strong>Still no idea where the MATIC from MetaMask’s Coinbase
+  integration went.</strong> It’s <strong>not in MetaMask</strong>,
+  <strong>not on Polygonscan</strong>, and there’s no clear way to
+  <strong>track it down</strong>.</li>
+  </ul>
+  <hr />
+  <h2 id="next-steps-1"><strong>Next Steps</strong></h2>
+  <ol type="1">
+  <li><strong>Investigate the missing MATIC purchase.</strong> If it
+  <strong>never processed</strong>, look into an alternative method for
+  acquiring <strong>testnet funds</strong>.<br />
+  </li>
+  <li><strong>If MATIC arrives, use just enough for gas fees</strong> to
+  move the <strong>WETH to MetaMask</strong>.<br />
+  </li>
+  <li><strong>Once gas fees are covered, swap WETH for MATIC or
+  POL</strong> (whichever is needed to proceed).<br />
+  </li>
+  <li><strong>Resume the main goal: deploying the contract on
+  Amoy</strong> without running out of funds.</li>
+  </ol>
+  <h3 id="biggest-issue-right-now"><strong>Biggest Issue Right
+  Now</strong></h3>
+  <p>Having <strong>assets trapped with no way to move them</strong> is
+  a serious usability problem. This experience highlights why people get
+  frustrated with <strong>crypto onboarding</strong>. If the
+  <strong>next session</strong> happens, the primary goal will be
+  securing even the <strong>smallest amount of working funds</strong> on
+  <strong>Polygon PoS</strong> and <strong>finally deploying the
+  contract</strong>.</p>
+</body>
+</html>
