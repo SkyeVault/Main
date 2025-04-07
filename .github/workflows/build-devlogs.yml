@@ -1,10 +1,7 @@
 name: Build DevLogs to HTML
 
 on:
-  push:
-    paths:
-      - 'rainkeep/src/content/blog2/*.md'
-  workflow_dispatch:
+  workflow_dispatch:  # Manual trigger only
 
 jobs:
   convert-markdown:
@@ -13,8 +10,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GH_TOKEN }}
 
       - name: Install Pandoc
         run: |
@@ -30,21 +25,5 @@ jobs:
               -o "rainkeep/public/blog-html/$filename.html" \
               --template="rainkeep/plain-template.html" \
               --metadata title="$filename"
-            echo "✓ Converted $file → $filename.html"
+            echo "✓ Converted $file → blog-html/$filename.html"
           done
-
-      - name: Commit generated HTML files
-        run: |
-          git config user.name "SkyeVault"
-          git config user.email "skye@arynwood.com"
-
-          git fetch origin main
-          git checkout main
-          git branch --set-upstream-to=origin/main
-          git pull --rebase origin main || true
-
-          git add rainkeep/public/blog-html/*.html
-          git commit -m "chore: auto-convert devlogs to HTML" || echo "No changes to commit"
-          git push origin main --force
-
-
