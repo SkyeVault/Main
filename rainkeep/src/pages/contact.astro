@@ -1,0 +1,79 @@
+---
+import '../styles/tailwind.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Arynwood Terminal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #0e0e0e;
+      color: #dcdcdc;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .terminal {
+      max-width: 800px;
+      margin: auto;
+      background-color: #121212;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
+    }
+
+    .prompt {
+      color: #b9aaff;
+    }
+
+    .label {
+      color: #888;
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    a {
+      color: #3399ff;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #ff99cc;
+    }
+
+    .gui-toggle {
+      margin-top: 2rem;
+      color: #888;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    .gui-toggle:hover {
+      color: #b9aaff;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="output">$ <span class="prompt">contact</span></div>
+    <div class="output">Terminal connection established. Showing contact directory...</div>
+
+    <div class="label">Email</div>
+    <div class="output"><a href="mailto:loreleihnoble@gmail.com">loreleihnoble@gmail.com</a></div>
+
+    <div class="label">GitHub</div>
+    <div class="output"><a href="https://github.com/SkyeVault" target="_blank">github.com/SkyeVault</a></div>
+
+    <div class="label">LinkedIn</div>
+    <div class="output"><a href="https://www.linkedin.com/in/lorelein/" target="_blank">linkedin.com/in/lorelein</a></div>
+
+    <div class="gui-toggle"><a href="/">[ Back to terminal home ]</a></div>
+  </div>
+</body>
+</html>
