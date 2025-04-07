@@ -8,23 +8,19 @@ export async function getStaticPaths() {
     props: { post },
   }));
 }
-<script>
-  const { post } = Astro.props;
-</script>
-
 <html lang="en">
   <head>
-    <title>{post?.data?.title ?? 'Post Not Found'}</title>
+    <title>{Astro.props.post?.data?.title ?? 'Post Not Found'}</title>
   </head>
   <body>
-    {post ? (
+    {Astro.props.post ? (
       <>
         <article style="max-width: 600px; margin: auto;">
-          <h1>{post.data.title}</h1>
-          <p>Published on {new Date(post.data.pubDate).toDateString()}</p>
+          <h1>{Astro.props.post.data.title}</h1>
+          <p>Published on {new Date(Astro.props.post.data.pubDate).toDateString()}</p>
 
           <!-- Render the Markdown body -->
-          {await post.render()}
+          {await Astro.props.post.render()}
         </article>
       </>
     ) : (
