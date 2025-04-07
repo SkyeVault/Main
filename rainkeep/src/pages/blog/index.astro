@@ -1,42 +1,29 @@
 ---
-import { getCollection } from 'astro:content';
+import fs from 'node:fs';
+import path from 'node:path';
 
-const allPosts = await getCollection('blog');
+// Path to the folder with the converted HTML files
+const blogHtmlDir = path.resolve('rainkeep/static/blog-html');
+
+// Read all .html files in the directory
+const htmlFiles = fs.readdirSync(blogHtmlDir)
+  .filter(file => file.endsWith('.html'));
 ---
 
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>Blog</title>
+    <title>Lore Logs</title>
   </head>
-  <body
-    style="
-      padding: 2rem;
-      background: #0e0e0e;
-      color: #dcdcdc;
-      font-family: 'JetBrains Mono', monospace;
-    "
-  >
-    <main style="max-width: 800px; margin: auto;">
-      <h1>Blog</h1>
-      <ul>
-        {allPosts.map((post) => (
-          <li style="margin-bottom: 2rem;">
-            <!-- Full debug output -->
-            <!-- pre>{JSON.stringify(post, null, 2)}</pre -->
-
-            <!-- Updated: use post.id instead of slug -->
-            <!-- p>DEBUG: id = {String(post.id)}</p -->
-
-            <a href={`/blog/${post.id}`} style="color: #79b8ff; font-size: 1.2rem;">
-              {post.data.title}
-            </a>
-            <br />
-            <small>{new Date(post.data.pubDate).toDateString()}</small>
-            <p>{post.data.description}</p>
-          </li>
-        ))}
-      </ul>
-    </main>
+  <body>
+    <h1>Lore Logs</h1>
+    <ul>
+      {htmlFiles.map(file => (
+        <li>
+          <a href={`/blog-html/${file}`} target="_blank" rel="noopener">
+            {file.replace('.html', '')}
+          </a>
+        </li>
+      ))}
+    </ul>
   </body>
 </html>
