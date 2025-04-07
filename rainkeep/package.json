@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "mkdir -p public/blog-html && cp -R static/blog-html/* public/blog-html/",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
