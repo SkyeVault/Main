@@ -33,47 +33,78 @@ const posts = [
   "DevLog250304",
   "DevLog250303",
   "DevLog250302",
-  "devlog250301"  // lowercase kept last if sorting by string
+  "devlog250301"
 ];
 ---
 
 <html lang="en">
   <head>
-    <title>Developer Logs</title>
+    <title>▌ Developer Logs ▌</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
         background-color: #0d0f1c;
         color: #c9c7ff;
         font-family: 'Courier New', monospace;
+        margin: 0;
         padding: 2rem;
-        max-width: 600px;
-        margin: 0 auto;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
       }
+
       h1 {
         color: #b48eff;
-        text-shadow: 0 0 4px #b48eff;
-        font-size: 1.5rem;
+        text-shadow: 0 0 6px #b48eff;
+        font-size: 1.6rem;
         text-align: center;
         margin-bottom: 2rem;
+        border-bottom: 1px solid #444;
+        padding-bottom: 0.5rem;
       }
+
       ul {
-        list-style-type: none;
-        padding-left: 0;
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
+
       li {
-        margin-bottom: 1rem;
+        margin-bottom: 1.4rem;
       }
+
+      .prompt {
+        color: #8a8a99;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+
       a {
         color: #79b8ff;
         text-decoration: none;
+        font-size: 1.1rem;
+        transition: color 0.2s ease;
+        display: inline-block;
       }
+
       a:hover {
-        text-decoration: underline;
         color: #b48eff;
+        text-decoration: underline;
       }
-      .prompt {
-        color: #888;
-        font-size: 0.9rem;
+
+      @media (max-width: 500px) {
+        body {
+          padding: 1rem;
+          font-size: 0.95rem;
+        }
+        h1 {
+          font-size: 1.4rem;
+        }
+        a {
+          font-size: 1rem;
+        }
       }
     </style>
   </head>
@@ -82,7 +113,7 @@ const posts = [
     <ul>
       {posts.map(file => (
         <li>
-          <span class="prompt">> access ./blog-html/{file}.html</span><br />
+          <span class="prompt">$ cd ./blog-html/{file}.html</span>
           <a href={`/blog-html/${file}.html`} target="_blank" rel="noopener">
             {file}
           </a>
