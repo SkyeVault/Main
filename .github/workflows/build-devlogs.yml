@@ -18,11 +18,11 @@ jobs:
 
       - name: Convert Markdown to HTML
         run: |
-          mkdir -p rainkeep/public/blog-html
+          mkdir -p rainkeep/static/blog-html
           for file in rainkeep/src/content/blog2/*.md; do
             filename=$(basename "$file" .md)
             pandoc "$file" \
-              -o "rainkeep/public/blog-html/$filename.html" \
+              -o "rainkeep/static/blog-html/$filename.html" \
               --template="rainkeep/plain-template.html" \
               --metadata title="$filename"
             echo "✓ Converted $file → blog-html/$filename.html"
