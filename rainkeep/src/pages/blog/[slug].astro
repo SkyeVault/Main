@@ -8,28 +8,27 @@ export async function getStaticPaths() {
     props: { post },
   }));
 }
-
-const { post } = Astro.props;
-
-if (!post) {
-  return <p style="text-align:center;">Sorry, this post couldn't be found.</p>;
-}
-
-if (!post.data) {
-  return <p style="text-align:center;">Sorry, this post is missing some required data.</p>;
-}
+<script>
+  const { post } = Astro.props;
+</script>
 
 <html lang="en">
   <head>
-    <title>{post.data.title ?? 'Post Not Found'}</title>
+    <title>{post?.data?.title ?? 'Post Not Found'}</title>
   </head>
   <body>
-    <article style="max-width: 600px; margin: auto;">
-      <h1>{post.data.title}</h1>
-      <p>Published on {new Date(post.data.pubDate).toDateString()}</p>
+    {post ? (
+      <>
+        <article style="max-width: 600px; margin: auto;">
+          <h1>{post.data.title}</h1>
+          <p>Published on {new Date(post.data.pubDate).toDateString()}</p>
 
-      <!-- Render the Markdown body -->
-      {await post.render()}
-    </article>
+          <!-- Render the Markdown body -->
+          {await post.render()}
+        </article>
+      </>
+    ) : (
+      <p style="text-align:center;">Sorry, this post couldn't be found.</p>
+    )}
   </body>
 </html>
