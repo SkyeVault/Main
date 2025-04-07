@@ -2,43 +2,104 @@
 import '../styles/tailwind.css';
 ---
 
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Projects</title>
-  </head>
-  <body class="bg-[#0e0e0e] text-[#dcdcdc] font-mono px-6 py-12">
-    <main class="max-w-3xl mx-auto bg-[#121212] p-8 rounded-lg shadow-lg shadow-purple-300/10">
-      <h1 class="text-4xl font-bold text-purple-300 mb-6 border-b border-purple-800 pb-2">Projects</h1>
-      <ul class="space-y-4 text-lg leading-relaxed">
-        <li>
-          <a
-            href="https://arynwood.com/publicchain"
-            class="text-[#3399ff] hover:text-[#ff99cc] underline"
-            target="_blank"
-          >US Public Chain</a>
-        </li>
-        <li>
-          <a
-            href="https://github.com/SkyeVault/Main/blob/main/Rust_Projects/spotify_playlist_maker/readme.md"
-            class="text-[#3399ff] hover:text-[#ff99cc] underline"
-            target="_blank"
-          >Spotify Playlist Maker</a>
-        </li>
-        <li>
-          <a
-            href="https://testnets.opensea.io/collection/loreleinoblegenesis"
-            class="text-[#3399ff] hover:text-[#ff99cc] underline"
-            target="_blank"
-          >Lorelei NFT Gallery</a> <span class="text-sm text-gray-400">(mainnet coming soon)</span>
-        </li>
-        <li>
-          <a
-            href="/blog"
-            class="text-[#3399ff] hover:text-[#ff99cc] underline"
-          >DevLog (Rainkeep)</a>
-        </li>
-      </ul>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Arynwood Terminal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #0e0e0e;
+      color: #dcdcdc;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .terminal {
+      max-width: 800px;
+      margin: auto;
+      background-color: #121212;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
+    }
+
+    .prompt {
+      color: #b9aaff;
+    }
+
+    h1 {
+      color: #b9aaff;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #3b2c61;
+      padding-bottom: 0.5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #3399ff;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #ff99cc;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .gui-toggle {
+      margin-top: 2rem;
+      color: #888;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    .gui-toggle:hover {
+      color: #b9aaff;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <h1>▌ Projects ▌</h1>
+    <ul>
+      <li>
+        <a href="https://arynwood.com/publicchain" target="_blank">US Public Chain</a>
+      </li>
+      <li>
+        <a href="https://github.com/SkyeVault/Main/blob/main/Rust_Projects/spotify_playlist_maker/readme.md" target="_blank">
+          Spotify Playlist Maker
+        </a>
+      </li>
+      <li>
+        <a href="https://testnets.opensea.io/collection/loreleinoblegenesis" target="_blank">
+          Lorelei NFT Gallery
+        </a>
+        <span class="note">(mainnet coming soon)</span>
+      </li>
+      <li>
+        <a href="/blog">DevLog (Rainkeep)</a>
+      </li>
+    </ul>
+
+    <div class="gui-toggle"><a href="/">[ Back to terminal home ]</a></div>
+  </div>
+</body>
 </html>
