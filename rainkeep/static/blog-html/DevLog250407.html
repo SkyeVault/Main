@@ -67,7 +67,7 @@
   <ul>
     <li>Astro markdown rendering failed due to import + routing errors</li>
     <li><code>src/pages/blog/[slug].astro</code> was not resolving <code>.md</code> files</li>
-    <li>Netlify builds broke from missing <code>public/blog-html</code> folder</li>
+    <li>Netlify builds broke from missing <code>static/blog-html</code> folder</li>
     <li>Pandoc templates were too heavy for mobile workflows</li>
     <li>Blog index lacked sorting, consistency, and polish</li>
     <li>Markdown devlogs weren’t triggering site updates</li>
@@ -80,7 +80,7 @@
   <h3>Folder System</h3>
   <ul>
     <li>All <code>.md</code> files converted to <code>.html</code> using Pandoc</li>
-    <li>Output moved to: <code>rainkeep/public/blog-html/</code></li>
+    <li>Output moved to: <code>rainkeep/static/blog-html/</code></li>
     <li>Fallback uses static <code>.html</code> instead of dynamic Markdown</li>
   </ul>
 
@@ -89,7 +89,7 @@
   <ul>
     <li>Converts <code>.md</code> logs from <code>rainkeep/src/content/blog2/</code></li>
     <li>Applies custom Pandoc template</li>
-    <li>Copies output into <code>public/blog-html/</code> for build</li>
+    <li>Copies output into <code>static/blog-html/</code> for build</li>
   </ul>
 
   <h3>Custom Pandoc Template</h3>
@@ -105,7 +105,7 @@
     <li>Triggers on <code>.md</code> push</li>
     <li>Installs Pandoc</li>
     <li>Converts logs to <code>.html</code></li>
-    <li>Pushes to <code>public/blog-html/</code> for Netlify to render</li>
+    <li>Pushes to <code>static/blog-html/</code> for Netlify to render</li>
   </ul>
 
   <hr>
@@ -122,7 +122,7 @@
 
   <h2>Next Steps</h2>
   <ul>
-    <li>[ ] Auto-generate post list from <code>public/blog-html/</code></li>
+    <li>[ ] Auto-generate post list from <code>static/blog-html/</code></li>
     <li>[ ] Add post excerpts from frontmatter</li>
     <li>[ ] Create iOS Shortcut or GitHub CLI to push from phone</li>
     <li>[ ] Build <code>/lorelogs</code> terminal home with ASCII nav and category filter</li>
