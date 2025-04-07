@@ -35,8 +35,8 @@ jobs:
 
       - name: Commit generated HTML files
         run: |
-          git config user.name "GitHub Action"
-          git config user.email "actions@github.com"
+          git config user.name "SkyeVault"
+          git config user.email "loreleihnoble@gmail.com"
           git add rainkeep/public/blog-html/*.html
           git commit -m "chore: auto-convert devlogs to HTML" || echo "No changes to commit"
           git push
