@@ -1,50 +1,92 @@
 ---
 title: "US Public Chain"
+import '../styles/tailwind.css';
 ---
 
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>US Public Chain</title>
-    <style>
-      body {
-        background-color: #1e1e1e;
-        color: #eae6f8;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.6;
-        padding: 2rem;
-      }
-      h1, h2, h3 {
-        color: #cba6f7;
-      }
-      a {
-        color: #a6e3e9;
-      }
-      pre {
-        background-color: #2c2c2c;
-        padding: 1rem;
-        border-radius: 6px;
-        overflow-x: auto;
-      }
-      code {
-        background: #333;
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
-        color: #d6deeb;
-      }
-      hr {
-        border: none;
-        border-top: 1px solid #444;
-        margin: 3rem 0;
-      }
-      ul {
-        padding-left: 1.5rem;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>US Public Chain</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>US Public Chain — Arynwood Terminal</title>
+  <style>
+    body {
+      background-color: #0e0e0e;
+      color: #dcdcdc;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 2rem;
+    }
+
+    .terminal {
+      max-width: 800px;
+      margin: auto;
+      background-color: #121212;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
+    }
+
+    h1, h2, h3 {
+      color: #b9aaff;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #3b2c61;
+      padding-bottom: 0.3rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: #3399ff;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #ff99cc;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin: 2rem 0;
+    }
+
+    code {
+      color: #dcdcdc;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #333;
+      margin: 2.5rem 0;
+    }
+
+    .footer-links {
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .footer-links p {
+      margin: 0.4rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <h1>▌ US Public Chain ▌</h1>
     <p><strong>A transparent blockchain framework and prototype for modernizing public assistance and government payroll.<br>
     Built for dignity, equity, and systemic trust.</strong></p>
 
@@ -73,6 +115,7 @@ title: "US Public Chain"
     <hr>
 
     <h2>Solution</h2>
+
     <h3>1. Public Assistance Token (PAT)</h3>
     <p>A non-speculative, non-transferable token for recipients of public aid.</p>
     <ul>
@@ -84,6 +127,7 @@ title: "US Public Chain"
       <li>Basic clothing and toiletries</li>
       <li>Housing and transitional services</li>
     </ul>
+
     <p><strong>Key features:</strong></p>
     <ul>
       <li>Resets monthly (no stockpiling)</li>
@@ -101,6 +145,7 @@ title: "US Public Chain"
       <li>Government employees (local, state, federal)</li>
       <li>Infrastructure and transportation workers</li>
     </ul>
+
     <p><strong>Key features:</strong></p>
     <ul>
       <li>Spendable, saveable, and convertible</li>
@@ -112,6 +157,7 @@ title: "US Public Chain"
     <hr>
 
     <h2>Who It Serves</h2>
+
     <h3>Assistance Recipients</h3>
     <ul>
       <li>Disabled individuals</li>
@@ -170,15 +216,13 @@ title: "US Public Chain"
     <p>I build ethical systems for the future I want my daughter to grow up in — one where transparency, fairness, and dignity aren’t ideals, but defaults.</p>
     <p>My passion is cloud security, smart contract architecture, Web3 infrastructure, and decentralized platforms. My philosophy is rooted in open-source solutions, using tools like Solidity, Rust, Foundry, and IPFS.</p>
     <p>This project is not theoretical. It’s deeply personal. And it’s within our reach.</p>
-      <hr>
 
-    <div style="margin-top: 2rem; font-size: 0.95rem;">
-      <p>
-        <a href="https://arynwood.com" target="_blank">Return to Arynwood Terminal</a>
-      </p>
-      <p>
-        <a href="mailto:loreleihnoble@gmail.com">Contact Me</a>
-      </p>
+    <hr>
+
+    <div class="footer-links">
+      <p><a href="https://arynwood.com" target="_blank">Return to Arynwood Terminal</a></p>
+      <p><a href="mailto:loreleihnoble@gmail.com">Contact Me</a></p>
     </div>
+  </div>
 </body>
 </html>
