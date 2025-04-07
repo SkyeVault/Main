@@ -1,21 +1,12 @@
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  try {
-    const allPosts = await getCollection('blog');
+  const allPosts = await getCollection('blog');
 
-    if (!allPosts) {
-      throw new Error('No blog posts found');
-    }
-
-    return allPosts.map((post) => ({
-      params: { slug: post.slug },
-      props: { post },
-    }));
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
 const { post } = Astro.props;
