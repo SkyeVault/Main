@@ -11,10 +11,6 @@ export async function getStaticPaths() {
 }
 ---
 
-<script>
-  const { post } = Astro.props;
-</script>
-
 <html lang="en">
   <head>
     <title>{Astro.props.post?.data?.title ?? 'Post Not Found'}</title>
