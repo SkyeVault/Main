@@ -67,6 +67,12 @@ import '../../styles/tailwind.css';
       padding-bottom: 0.5rem;
     }
 
+    p.intro {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      color: #c9c7ff;
+    }
+
     ul {
       list-style: none;
       padding: 0;
@@ -120,6 +126,15 @@ import '../../styles/tailwind.css';
 </head>
 <body>
   <h1>▌ Developer Logs ▌</h1>
+
+  <p class="intro">
+    Welcome to the Arynwood Terminal Blog. This space serves as the technical documentation log for all current and future projects.
+    The site itself is being actively built — and the development process is fully transparent. You can follow the evolution of every system,
+    contract, and line of logic through these devlogs.  
+    <br /><br />
+    Projects on the horizon include a 2D and 3D metaverse — fully on-chain, using the Polygon Amoy testnet for early deployment and proof-of-concept testing.
+  </p>
+
   <ul>
     {
       posts.map(file => (
