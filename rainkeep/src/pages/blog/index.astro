@@ -150,7 +150,7 @@ function getExcerpt(file) {
     Welcome to the Arynwood Terminal Blog. This space serves as the technical documentation log for all current and future projects.
     The site itself is being actively built — and the development process is fully transparent. You can follow the evolution of every system,
     contract, and line of logic through these devlogs. Visit the GitHub repository here:<br />
-    <a href="https://github.com/skyevault/main/tree/main/rainkeep" target="_blank">
+    <a href="https://github.com/skyevault/main/tree/main/rainkeep" target="_blank" rel="noopener">
       github.com/skyevault/main/tree/main/rainkeep
     </a>
     <br /><br />
@@ -162,7 +162,7 @@ function getExcerpt(file) {
       posts.map(file => (
         <li>
           <span class="prompt">$ cd ./blog-html/{file}.html</span>
-          <a href={`/blog-html/${file}.html`} target="_blank" rel="noopener">
+          <a href={`/blog-html/${file}.html`}>
             {file}
           </a>
           <p class="snippet">{getExcerpt(file)}</p>
