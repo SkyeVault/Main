@@ -41,7 +41,7 @@ const posts = [
   "devlog250301"
 ];
 
-const blogPath = '../../static/blog-html';
+const blogPath = new URL('../../static/blog-html', import.meta.url).pathname;
 
 function getExcerpt(file) {
   const fullPath = path.resolve(blogPath, `${file}.html`);
