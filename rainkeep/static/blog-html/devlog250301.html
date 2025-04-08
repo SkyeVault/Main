@@ -3,215 +3,247 @@
 <head>
   <meta charset="UTF-8" />
   <title>devlog250301</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background-color: #0d0f1c;
       color: #c9c7ff;
       font-family: 'Courier New', monospace;
-      max-width: 700px;
-      margin: 4rem auto;
       padding: 2rem;
-      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-    h1, h2, h3 {
+
+    h1 {
       color: #b48eff;
-      text-shadow: 0 0 6px #b48eff;
+      text-shadow: 0 0 2px #b48eff;
     }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
     a {
       color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
       text-decoration: underline;
     }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
     code {
-      background: #1f1f2e;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1 id="section">250301</h1>
-  <p>This document records all major development steps, fixes, and
-  future plans for <strong>SkyeVault Ops</strong> security automation.
-  Use this as a reference for future improvements and
-  troubleshooting.</p>
-  <hr />
-  <h2 id="git-project-setup"><strong>1. Git &amp; Project
-  Setup</strong></h2>
-  <h3 id="fixing-git-issues-repo-cleanup"><strong>Fixing Git Issues
-  &amp; Repo Cleanup</strong></h3>
-  <ul>
-  <li><strong>Issue:</strong> <code>skyevault-ops</code> was mistakenly
-  treated as a submodule, causing issues with Git tracking.<br />
-  </li>
-  <li><strong>Solution:</strong>
-  <ol type="1">
-  <li>Removed <code>.git</code> folder inside
-  <code>skyevault-ops</code>.<br />
-  </li>
-  <li>Deleted incorrect <code>skyevault-ops</code> references in
-  Git.<br />
-  </li>
-  <li>Recreated <code>skyevault-ops</code> as a standard
-  directory.<br />
-  </li>
-  <li>Cleaned up <code>.gitignore</code> to prevent tracking SQLite
-  database (<code>security_reports.db</code>).<br />
-  </li>
-  <li>Successfully pushed all cleaned files to GitHub.</li>
-  </ol></li>
-  </ul>
-  <h4 id="commands-used"><strong>Commands Used:</strong></h4>
-  <div class="sourceCode" id="cb1"><pre
-  class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> skyevault-ops.git  <span class="co"># Remove submodule directory</span></span>
+<h1>devlog250301</h1>
+<span class="prompt">> Log Date: 250301</span>
+<h1 id="section">250301</h1>
+<p>This document records all major development steps, fixes, and future
+plans for <strong>SkyeVault Ops</strong> security automation. Use this
+as a reference for future improvements and troubleshooting.</p>
+<hr />
+<h2 id="git-project-setup"><strong>1. Git &amp; Project
+Setup</strong></h2>
+<h3 id="fixing-git-issues-repo-cleanup"><strong>Fixing Git Issues &amp;
+Repo Cleanup</strong></h3>
+<ul>
+<li><strong>Issue:</strong> <code>skyevault-ops</code> was mistakenly
+treated as a submodule, causing issues with Git tracking.<br />
+</li>
+<li><strong>Solution:</strong>
+<ol type="1">
+<li>Removed <code>.git</code> folder inside
+<code>skyevault-ops</code>.<br />
+</li>
+<li>Deleted incorrect <code>skyevault-ops</code> references in
+Git.<br />
+</li>
+<li>Recreated <code>skyevault-ops</code> as a standard directory.<br />
+</li>
+<li>Cleaned up <code>.gitignore</code> to prevent tracking SQLite
+database (<code>security_reports.db</code>).<br />
+</li>
+<li>Successfully pushed all cleaned files to GitHub.</li>
+</ol></li>
+</ul>
+<h4 id="commands-used"><strong>Commands Used:</strong></h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> skyevault-ops.git  <span class="co"># Remove submodule directory</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> .git/modules/skyevault-ops  <span class="co"># Remove lingering Git tracking</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> skyevault-ops  <span class="co"># Delete local folder</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Fully removed SkyeVault Ops submodule&quot;</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main <span class="at">--force</span>  <span class="co"># Force update repo structure</span></span></code></pre></div>
-  <hr />
-  <h2 id="aws-security-automation-scripts"><strong>2. AWS Security
-  Automation Scripts</strong></h2>
-  <h3 id="iam-security-check-iam_security_check.py"><strong>IAM Security
-  Check (<code>iam_security_check.py</code>)</strong></h3>
-  <ul>
-  <li><strong>Checks IAM users for:</strong>
-  <ul>
-  <li>Users without MFA enabled<br />
-  </li>
-  <li>Inactive users (90+ days without login)<br />
-  </li>
-  </ul></li>
-  <li><strong>Findings logged in</strong>
-  <code>security_reports.db</code>.</li>
-  </ul>
-  <p><strong>Test Output:</strong></p>
-  <div class="sourceCode" id="cb2"><pre
-  class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Running</span> IAM Security Check...</span>
+<hr />
+<h2 id="aws-security-automation-scripts"><strong>2. AWS Security
+Automation Scripts</strong></h2>
+<h3 id="iam-security-check-iam_security_check.py"><strong>IAM Security
+Check (<code>iam_security_check.py</code>)</strong></h3>
+<ul>
+<li><strong>Checks IAM users for:</strong>
+<ul>
+<li>Users without MFA enabled<br />
+</li>
+<li>Inactive users (90+ days without login)<br />
+</li>
+</ul></li>
+<li><strong>Findings logged in</strong>
+<code>security_reports.db</code>.</li>
+</ul>
+<p><strong>Test Output:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Running</span> IAM Security Check...</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Users</span> without MFA enabled:</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">-</span> SkyeVaultUser</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">IAM</span> Security Check Complete!</span></code></pre></div>
-  <hr />
-  <h3 id="s3-security-check-s3_security_check.py"><strong>S3 Security
-  Check (<code>s3_security_check.py</code>)</strong></h3>
-  <ul>
-  <li><strong>Scans all AWS S3 buckets for public access.</strong></li>
-  </ul>
-  <p><strong>Test Output:</strong></p>
-  <div class="sourceCode" id="cb3"><pre
-  class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Running</span> S3 Security Check...</span>
+<hr />
+<h3 id="s3-security-check-s3_security_check.py"><strong>S3 Security
+Check (<code>s3_security_check.py</code>)</strong></h3>
+<ul>
+<li><strong>Scans all AWS S3 buckets for public access.</strong></li>
+</ul>
+<p><strong>Test Output:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Running</span> S3 Security Check...</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">All</span> S3 buckets are secure!</span></code></pre></div>
-  <hr />
-  <h3 id="guardduty-security-check-guardduty_check.py"><strong>GuardDuty
-  Security Check (<code>guardduty_check.py</code>)</strong></h3>
-  <ul>
-  <li><strong>Pulls threat alerts from AWS GuardDuty.</strong><br />
-  </li>
-  <li><strong>Needs additional validation of results.</strong></li>
-  </ul>
-  <hr />
-  <h3
-  id="cloudtrail-security-check-cloudtrail_check.py"><strong>CloudTrail
-  Security Check (<code>cloudtrail_check.py</code>)</strong></h3>
-  <ul>
-  <li><strong>Monitors AWS CloudTrail logs for risky events:</strong>
-  <ul>
-  <li><code>GenerateDataKey</code> by unknown users.<br />
-  </li>
-  <li><code>ListAccessKeys</code> by root.<br />
-  </li>
-  </ul></li>
-  <li><strong>Findings logged in</strong>
-  <code>security_reports.db</code>.</li>
-  </ul>
-  <p><strong>Test Output:</strong></p>
-  <div class="sourceCode" id="cb4"><pre
-  class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Running</span> CloudTrail Security Check...</span>
+<hr />
+<h3 id="guardduty-security-check-guardduty_check.py"><strong>GuardDuty
+Security Check (<code>guardduty_check.py</code>)</strong></h3>
+<ul>
+<li><strong>Pulls threat alerts from AWS GuardDuty.</strong><br />
+</li>
+<li><strong>Needs additional validation of results.</strong></li>
+</ul>
+<hr />
+<h3
+id="cloudtrail-security-check-cloudtrail_check.py"><strong>CloudTrail
+Security Check (<code>cloudtrail_check.py</code>)</strong></h3>
+<ul>
+<li><strong>Monitors AWS CloudTrail logs for risky events:</strong>
+<ul>
+<li><code>GenerateDataKey</code> by unknown users.<br />
+</li>
+<li><code>ListAccessKeys</code> by root.<br />
+</li>
+</ul></li>
+<li><strong>Findings logged in</strong>
+<code>security_reports.db</code>.</li>
+</ul>
+<p><strong>Test Output:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Running</span> CloudTrail Security Check...</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Security</span> Alert: GenerateDataKey by Unknown User at 2025-02-26 16:48:22</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Security</span> Alert: ListAccessKeys by root at 2025-02-26 16:46:52</span></code></pre></div>
-  <hr />
-  <h2 id="database-integration-database.py"><strong>3. Database
-  Integration (<code>database.py</code>)</strong></h2>
-  <ul>
-  <li><strong>SQLite database created:</strong>
-  <code>security_reports.db</code><br />
-  </li>
-  <li><strong>Stores security alerts from all scripts.</strong></li>
-  </ul>
-  <p><strong>Verification Command:</strong></p>
-  <div class="sourceCode" id="cb5"><pre
-  class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> database <span class="im">import</span> get_reports</span>
+<hr />
+<h2 id="database-integration-database.py"><strong>3. Database
+Integration (<code>database.py</code>)</strong></h2>
+<ul>
+<li><strong>SQLite database created:</strong>
+<code>security_reports.db</code><br />
+</li>
+<li><strong>Stores security alerts from all scripts.</strong></li>
+</ul>
+<p><strong>Verification Command:</strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> database <span class="im">import</span> get_reports</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_reports())</span></code></pre></div>
-  <p><strong>Example Database Output:</strong></p>
-  <div class="sourceCode" id="cb6"><pre
-  class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[</span><span class="er">(</span><span class="ex">1,</span> <span class="st">&#39;IAM&#39;</span>, <span class="st">&#39;User SkyeVaultUser has no MFA enabled&#39;</span>, <span class="st">&#39;2025-02-26 21:28:41&#39;</span><span class="kw">)</span><span class="ex">,</span></span>
+<p><strong>Example Database Output:</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[</span><span class="er">(</span><span class="ex">1,</span> <span class="st">&#39;IAM&#39;</span>, <span class="st">&#39;User SkyeVaultUser has no MFA enabled&#39;</span>, <span class="st">&#39;2025-02-26 21:28:41&#39;</span><span class="kw">)</span><span class="ex">,</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">(</span><span class="ex">2,</span> <span class="st">&#39;CloudTrail&#39;</span>, <span class="st">&#39;Security Alert: ListAccessKeys by root at 2025-02-26 16:46:52&#39;</span>, <span class="st">&#39;2025-02-26 21:50:39&#39;</span><span class="kw">)</span><span class="ex">]</span></span></code></pre></div>
-  <h3 id="fix-needed-cloudtrail-duplicate-entries"><strong>Fix Needed:
-  CloudTrail Duplicate Entries</strong></h3>
-  <ul>
-  <li><strong>Issue:</strong> CloudTrail logs are being saved multiple
-  times when rerunning the script.<br />
-  </li>
-  <li><strong>Fix:</strong> Before saving a new event, check if it
-  already exists in the database.</li>
-  </ul>
-  <hr />
-  <h2 id="next-steps-ui-development"><strong>Next Steps: UI
-  Development</strong></h2>
-  <h3 id="frontend-dashboard-security-visualization"><strong>1. Frontend
-  Dashboard (Security Visualization)</strong></h3>
-  <ul>
-  <li><strong>Tech Stack:</strong>
-  <ul>
-  <li><strong>Frontend:</strong> React.js or Flask<br />
-  </li>
-  <li><strong>Backend:</strong> Python (Flask or FastAPI)<br />
-  </li>
-  <li><strong>Database:</strong> SQLite (Upgrade to DynamoDB
-  later)<br />
-  </li>
-  <li><strong>Security Reports API:</strong> JSON endpoints for UI</li>
-  </ul></li>
-  </ul>
-  <h3 id="automate-notifications"><strong>2. Automate
-  Notifications</strong></h3>
-  <ul>
-  <li><strong>Send alerts for high-risk security events.</strong><br />
-  </li>
-  <li><strong>Potential integrations:</strong>
-  <ul>
-  <li>Email alerts<br />
-  </li>
-  <li>Slack/Webhooks<br />
-  </li>
-  <li>SMS/Phone notifications</li>
-  </ul></li>
-  </ul>
-  <h3 id="improve-cloudtrail-event-filtering"><strong>3. Improve
-  CloudTrail Event Filtering</strong></h3>
-  <ul>
-  <li><strong>Check if an event exists before logging it.</strong><br />
-  </li>
-  <li><strong>Prevent duplicate security alerts.</strong></li>
-  </ul>
-  <hr />
-  <h1 id="skyevault-ops-setup-debugging-log"><strong>SkyeVault Ops Setup
-  &amp; Debugging Log</strong></h1>
-  <h2 id="date-february-28-2025"><strong>Date:</strong> February 28,
-  2025</h2>
-  <p><strong>Objective:</strong> Set up and debug the <strong>Cyberpunk
-  AWS Security Dashboard</strong> using Flask, HTML, CSS, JavaScript,
-  and Python API.</p>
-  <hr />
-  <h2 id="project-initialization"><strong>1. Project
-  Initialization</strong></h2>
-  <h3 id="step-1-set-up-flask-directory-structure"><strong>Step 1: Set
-  Up Flask &amp; Directory Structure</strong></h3>
-  <p>The <strong>Flask app structure</strong> was set up with
-  <code>templates/</code> for HTML and <code>static/</code> for CSS
-  &amp; JS.</p>
-  <h3 id="project-structure"><strong>Project Structure:</strong></h3>
-  <pre><code>/skyevault-ops
+<h3 id="fix-needed-cloudtrail-duplicate-entries"><strong>Fix Needed:
+CloudTrail Duplicate Entries</strong></h3>
+<ul>
+<li><strong>Issue:</strong> CloudTrail logs are being saved multiple
+times when rerunning the script.<br />
+</li>
+<li><strong>Fix:</strong> Before saving a new event, check if it already
+exists in the database.</li>
+</ul>
+<hr />
+<h2 id="next-steps-ui-development"><strong>Next Steps: UI
+Development</strong></h2>
+<h3 id="frontend-dashboard-security-visualization"><strong>1. Frontend
+Dashboard (Security Visualization)</strong></h3>
+<ul>
+<li><strong>Tech Stack:</strong>
+<ul>
+<li><strong>Frontend:</strong> React.js or Flask<br />
+</li>
+<li><strong>Backend:</strong> Python (Flask or FastAPI)<br />
+</li>
+<li><strong>Database:</strong> SQLite (Upgrade to DynamoDB later)<br />
+</li>
+<li><strong>Security Reports API:</strong> JSON endpoints for UI</li>
+</ul></li>
+</ul>
+<h3 id="automate-notifications"><strong>2. Automate
+Notifications</strong></h3>
+<ul>
+<li><strong>Send alerts for high-risk security events.</strong><br />
+</li>
+<li><strong>Potential integrations:</strong>
+<ul>
+<li>Email alerts<br />
+</li>
+<li>Slack/Webhooks<br />
+</li>
+<li>SMS/Phone notifications</li>
+</ul></li>
+</ul>
+<h3 id="improve-cloudtrail-event-filtering"><strong>3. Improve
+CloudTrail Event Filtering</strong></h3>
+<ul>
+<li><strong>Check if an event exists before logging it.</strong><br />
+</li>
+<li><strong>Prevent duplicate security alerts.</strong></li>
+</ul>
+<hr />
+<h1 id="skyevault-ops-setup-debugging-log"><strong>SkyeVault Ops Setup
+&amp; Debugging Log</strong></h1>
+<h2 id="date-february-28-2025"><strong>Date:</strong> February 28,
+2025</h2>
+<p><strong>Objective:</strong> Set up and debug the <strong>Cyberpunk
+AWS Security Dashboard</strong> using Flask, HTML, CSS, JavaScript, and
+Python API.</p>
+<hr />
+<h2 id="project-initialization"><strong>1. Project
+Initialization</strong></h2>
+<h3 id="step-1-set-up-flask-directory-structure"><strong>Step 1: Set Up
+Flask &amp; Directory Structure</strong></h3>
+<p>The <strong>Flask app structure</strong> was set up with
+<code>templates/</code> for HTML and <code>static/</code> for CSS &amp;
+JS.</p>
+<h3 id="project-structure"><strong>Project Structure:</strong></h3>
+<pre><code>/skyevault-ops
 │── /templates
 │    ├── index.html  # Flask HTML template
 │── /static
@@ -222,19 +254,18 @@
 │── app.py  # Flask backend
 │── requirements.txt  # Python dependencies
 │── README.md  # Project Documentation</code></pre>
-  <hr />
-  <h2 id="flask-backend---app.py"><strong>2. Flask Backend -
-  <code>app.py</code></strong></h2>
-  <h3 id="step-2-creating-the-flask-api"><strong>Step 2: Creating the
-  Flask API</strong></h3>
-  <p>The Flask app (<code>app.py</code>) was created to:<br />
-  - Render the dashboard (<code>index.html</code>).<br />
-  - Serve security logs as JSON (<code>/logs</code>).<br />
-  - Load static files (<code>style.css</code>,
-  <code>main.js</code>).</p>
-  <h3 id="final-app.py"><strong>Final <code>app.py</code>:</strong></h3>
-  <div class="sourceCode" id="cb8"><pre
-  class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, render_template, jsonify</span>
+<hr />
+<h2 id="flask-backend---app.py"><strong>2. Flask Backend -
+<code>app.py</code></strong></h2>
+<h3 id="step-2-creating-the-flask-api"><strong>Step 2: Creating the
+Flask API</strong></h3>
+<p>The Flask app (<code>app.py</code>) was created to:<br />
+- Render the dashboard (<code>index.html</code>).<br />
+- Serve security logs as JSON (<code>/logs</code>).<br />
+- Load static files (<code>style.css</code>, <code>main.js</code>).</p>
+<h3 id="final-app.py"><strong>Final <code>app.py</code>:</strong></h3>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, render_template, jsonify</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>, template_folder<span class="op">=</span><span class="st">&quot;templates&quot;</span>, static_folder<span class="op">=</span><span class="st">&quot;static&quot;</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -257,16 +288,16 @@
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
-  <hr />
-  <h2 id="html---index.html"><strong>3. HTML -
-  <code>index.html</code></strong></h2>
-  <h3 id="step-3-creating-the-dashboard-layout"><strong>Step 3: Creating
-  the Dashboard Layout</strong></h3>
-  <p>Sections for logs, graphs, and Red Team tools were added.</p>
-  <h3 id="final-index.html"><strong>Final
-  <code>index.html</code>:</strong></h3>
-  <div class="sourceCode" id="cb9"><pre
-  class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<hr />
+<h2 id="html---index.html"><strong>3. HTML -
+<code>index.html</code></strong></h2>
+<h3 id="step-3-creating-the-dashboard-layout"><strong>Step 3: Creating
+the Dashboard Layout</strong></h3>
+<p>Sections for logs, graphs, and Red Team tools were added.</p>
+<h3 id="final-index.html"><strong>Final
+<code>index.html</code>:</strong></h3>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">&quot;en&quot;</span><span class="dt">&gt;</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;UTF-8&quot;</span><span class="dt">&gt;</span></span>
@@ -304,9 +335,9 @@
 <span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
-  <hr />
-  <p>This log documents everything from <strong>setting up Flask to
-  debugging AWS security scripts</strong> while keeping all records
-  structured and easy to reference.</p>
+<hr />
+<p>This log documents everything from <strong>setting up Flask to
+debugging AWS security scripts</strong> while keeping all records
+structured and easy to reference.</p>
 </body>
 </html>

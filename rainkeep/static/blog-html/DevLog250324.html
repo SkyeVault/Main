@@ -3,110 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <title>DevLog250324</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background-color: #0d0f1c;
       color: #c9c7ff;
       font-family: 'Courier New', monospace;
-      max-width: 700px;
-      margin: 4rem auto;
       padding: 2rem;
-      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-    h1, h2, h3 {
+
+    h1 {
       color: #b48eff;
-      text-shadow: 0 0 6px #b48eff;
+      text-shadow: 0 0 2px #b48eff;
     }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
     a {
       color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
       text-decoration: underline;
     }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
     code {
-      background: #1f1f2e;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1 id="devlog-250324-breaking-through-the-testnet-barrier">Devlog
-  250324: Breaking Through the Testnet Barrier</h1>
-  <h2 id="summary"><strong>Summary</strong></h2>
-  <p>Today marked a breakthrough in my development workflow. After
-  hitting roadblocks trying to acquire testnet funds, I was finally able
-  to secure <strong>100 Amoy POL tokens</strong> for the <strong>Polygon
-  Amoy testnet</strong>. This clears the way for <strong>active contract
-  testing, gas fee benchmarking, and simulation of full deployment
-  workflows</strong> within my metaverse sandbox environment.</p>
-  <hr />
-  <h2 id="problem"><strong>Problem</strong></h2>
-  <p>Getting testnet POL tokens on Amoy had been a frustrating and
-  limiting experience:</p>
-  <ul>
-  <li>The public faucets (e.g., Alchemy’s, QuickNode’s) refused to send
-  tokens unless my wallet already held <strong>mainnet
-  POL</strong>.</li>
-  <li>Bridging or swapping from other assets was impossible without
-  <strong>gas funds</strong>.</li>
-  <li>This circular dependency stalled progress and made it impossible
-  to test contracts in a meaningful way.</li>
-  </ul>
-  <hr />
-  <h2 id="solution"><strong>Solution</strong></h2>
-  <p>After running into repeated issues, I submitted a request directly
-  via the official <strong>Polygon developer faucet form</strong>
-  at:</p>
-  <blockquote>
-  <p><a
-  href="https://faucet.polygon.technology">https://faucet.polygon.technology</a></p>
-  </blockquote>
-  <h3 id="what-i-did">What I Did:</h3>
-  <ul>
-  <li>Filled out the <strong>developer use-case form</strong>,
-  describing my metaverse project and need for smart contract
-  testing.</li>
-  <li>Within a short time, I received an <strong>email
-  confirmation</strong> from the Polygon team.</li>
-  <li>They <strong>manually approved</strong> my wallet and <strong>sent
-  100 AMOY POL tokens</strong> for development.</li>
-  </ul>
-  <hr />
-  <h2 id="impact"><strong>Impact</strong></h2>
-  <p>With the testnet funds finally in place, I can now:</p>
-  <ul>
-  <li><strong>Deploy and test smart contracts</strong> (minting NFTs,
-  marketplace logic, etc.)</li>
-  <li><strong>Measure gas usage</strong> and optimize contract
-  functions</li>
-  <li><strong>Simulate full user flows</strong> (wallet auth,
-  transactions, land purchases)</li>
-  <li><strong>Experiment with REVM + Foundry tooling</strong> to
-  simulate contracts both off-chain and on-chain</li>
-  </ul>
-  <p>This unblocks a major development milestone and allows me to
-  prepare my project for eventual <strong>mainnet
-  deployment</strong>.</p>
-  <hr />
-  <h2 id="next-steps"><strong>Next Steps</strong></h2>
-  <ul>
-  <li>Run end-to-end contract tests on Amoy with <strong>real wallet and
-  gas simulations</strong></li>
-  <li>Finalize <strong>ERC-721 minting and transfer logic</strong></li>
-  <li>Set up <strong>deployment scripts</strong> and verify contract
-  addresses</li>
-  <li>Test UI wallet interactions in the <strong>Polygon L2
-  context</strong></li>
-  <li>Begin preparing the <strong>mainnet deployment plan</strong> for
-  MetaverseLand and related contracts</li>
-  </ul>
-  <hr />
-  <h2 id="reflection"><strong>Reflection</strong></h2>
-  <p>The experience highlighted the importance of developer-friendly
-  testnet access. Without it, even well-prepared developers can find
-  themselves stuck in gas fee loops. Today reminded me that
-  <strong>resourcefulness, persistence, and direct outreach can still
-  solve problems</strong>, even in the Web3 world.</p>
-  <p>Moving forward, I feel a new sense of momentum. The sandbox is
-  open. Now it’s time to build.</p>
+<h1>DevLog250324</h1>
+<span class="prompt">> Log Date: 250324</span>
+<h1 id="devlog-250324-breaking-through-the-testnet-barrier">Devlog
+250324: Breaking Through the Testnet Barrier</h1>
+<h2 id="summary"><strong>Summary</strong></h2>
+<p>Today marked a breakthrough in my development workflow. After hitting
+roadblocks trying to acquire testnet funds, I was finally able to secure
+<strong>100 Amoy POL tokens</strong> for the <strong>Polygon Amoy
+testnet</strong>. This clears the way for <strong>active contract
+testing, gas fee benchmarking, and simulation of full deployment
+workflows</strong> within my metaverse sandbox environment.</p>
+<hr />
+<h2 id="problem"><strong>Problem</strong></h2>
+<p>Getting testnet POL tokens on Amoy had been a frustrating and
+limiting experience:</p>
+<ul>
+<li>The public faucets (e.g., Alchemy’s, QuickNode’s) refused to send
+tokens unless my wallet already held <strong>mainnet POL</strong>.</li>
+<li>Bridging or swapping from other assets was impossible without
+<strong>gas funds</strong>.</li>
+<li>This circular dependency stalled progress and made it impossible to
+test contracts in a meaningful way.</li>
+</ul>
+<hr />
+<h2 id="solution"><strong>Solution</strong></h2>
+<p>After running into repeated issues, I submitted a request directly
+via the official <strong>Polygon developer faucet form</strong> at:</p>
+<blockquote>
+<p><a
+href="https://faucet.polygon.technology">https://faucet.polygon.technology</a></p>
+</blockquote>
+<h3 id="what-i-did">What I Did:</h3>
+<ul>
+<li>Filled out the <strong>developer use-case form</strong>, describing
+my metaverse project and need for smart contract testing.</li>
+<li>Within a short time, I received an <strong>email
+confirmation</strong> from the Polygon team.</li>
+<li>They <strong>manually approved</strong> my wallet and <strong>sent
+100 AMOY POL tokens</strong> for development.</li>
+</ul>
+<hr />
+<h2 id="impact"><strong>Impact</strong></h2>
+<p>With the testnet funds finally in place, I can now:</p>
+<ul>
+<li><strong>Deploy and test smart contracts</strong> (minting NFTs,
+marketplace logic, etc.)</li>
+<li><strong>Measure gas usage</strong> and optimize contract
+functions</li>
+<li><strong>Simulate full user flows</strong> (wallet auth,
+transactions, land purchases)</li>
+<li><strong>Experiment with REVM + Foundry tooling</strong> to simulate
+contracts both off-chain and on-chain</li>
+</ul>
+<p>This unblocks a major development milestone and allows me to prepare
+my project for eventual <strong>mainnet deployment</strong>.</p>
+<hr />
+<h2 id="next-steps"><strong>Next Steps</strong></h2>
+<ul>
+<li>Run end-to-end contract tests on Amoy with <strong>real wallet and
+gas simulations</strong></li>
+<li>Finalize <strong>ERC-721 minting and transfer logic</strong></li>
+<li>Set up <strong>deployment scripts</strong> and verify contract
+addresses</li>
+<li>Test UI wallet interactions in the <strong>Polygon L2
+context</strong></li>
+<li>Begin preparing the <strong>mainnet deployment plan</strong> for
+MetaverseLand and related contracts</li>
+</ul>
+<hr />
+<h2 id="reflection"><strong>Reflection</strong></h2>
+<p>The experience highlighted the importance of developer-friendly
+testnet access. Without it, even well-prepared developers can find
+themselves stuck in gas fee loops. Today reminded me that
+<strong>resourcefulness, persistence, and direct outreach can still
+solve problems</strong>, even in the Web3 world.</p>
+<p>Moving forward, I feel a new sense of momentum. The sandbox is open.
+Now it’s time to build.</p>
 </body>
 </html>

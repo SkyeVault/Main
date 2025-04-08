@@ -3,110 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <title>DevLog250327</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background-color: #0d0f1c;
       color: #c9c7ff;
       font-family: 'Courier New', monospace;
-      max-width: 700px;
-      margin: 4rem auto;
       padding: 2rem;
-      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-    h1, h2, h3 {
+
+    h1 {
       color: #b48eff;
-      text-shadow: 0 0 6px #b48eff;
+      text-shadow: 0 0 2px #b48eff;
     }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
     a {
       color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
       text-decoration: underline;
     }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
     code {
-      background: #1f1f2e;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1
-  id="devlog-250327-test-launch-results-nft-display-debugging">DevLog
-  250327: Test Launch Results &amp; NFT Display Debugging</h1>
-  <p><strong>Date:</strong> 2025-03-27<br />
-  <strong>Project:</strong> TopSecurityNFT<br />
-  <strong>Network:</strong> Polygon Amoy Testnet<br />
-  <strong>Tooling:</strong> Foundry, Web3.Storage, OpenSea Testnet</p>
-  <hr />
-  <h2 id="summary">Summary</h2>
-  <p>Today marked a milestone with the <strong>successful test
-  launch</strong> of the <code>TopSecurityNFT</code> contract on the
-  <strong>Polygon Amoy testnet</strong>. Most of the collection
-  <strong>minted and rendered correctly</strong>, and the entire
-  collection was <strong>automatically indexed by OpenSea
-  testnet</strong> without requiring any manual input.</p>
-  <p>However, there were a few visual bugs during testing.
-  Specifically:</p>
-  <ul>
-  <li><strong>Painting #4</strong> and <strong>Painting #10</strong> did
-  <strong>not render</strong> on OpenSea.</li>
-  <li>All other metadata files appeared valid and matched expected
-  formatting.</li>
-  <li>No syntax errors were detected in the JSON files, which makes this
-  behavior somewhat ambiguous.</li>
-  </ul>
-  <hr />
-  <h2 id="debugging-notes">Debugging Notes</h2>
-  <ul>
-  <li>Confirmed that all 10 tokens were successfully minted.</li>
-  <li>Re-uploaded metadata to Web3.Storage to rule out CID or upload
-  issues.</li>
-  <li>Opened the metadata manually via IPFS gateway – files for Token 4
-  and 10 load as expected.</li>
-  <li>Suspected potential casing mismatch or naming inconsistency
-  between <code>tokenURI()</code> construction and actual file
-  names.</li>
-  <li>Considered image size or encoding errors as possible causes but
-  could not reproduce locally.</li>
-  </ul>
-  <hr />
-  <h2 id="takeaways">Takeaways</h2>
-  <ul>
-  <li><strong>Thank god for testnet funds.</strong> Testing this without
-  cost enabled full deployment and error identification before mainnet
-  publishing.</li>
-  <li>OpenSea <strong>indexing was automatic</strong>, which confirms
-  the contract metadata structure is valid and conforms to
-  standards.</li>
-  <li>Foundry, IPFS, and Polygon are working well together in this
-  workflow.</li>
-  <li>Realized the importance of deterministic metadata generation and
-  consistent image references.</li>
-  </ul>
-  <hr />
-  <h2 id="next-steps">Next Steps</h2>
-  <ul>
-  <li><strong>Start fresh with a new contract deployment
-  tomorrow.</strong>
-  <ul>
-  <li>Reset the <code>TopSecurityNFT</code> contract to ensure clean
-  indexing.</li>
-  <li>Regenerate all metadata files with fully verified naming and
-  casing.</li>
-  <li>Upload to a new CID on Web3.Storage and update the
-  <code>baseURI</code>.</li>
-  </ul></li>
-  <li><strong>Mint tokens again on testnet and verify all images load
-  correctly.</strong>
-  <ul>
-  <li>Focus specifically on image formatting and edge-case rendering
-  bugs.</li>
-  </ul></li>
-  <li>If all tokens display correctly, proceed to prepare for
-  <strong>mainnet deployment.</strong></li>
-  </ul>
-  <hr />
-  <p>This session was a reminder that <strong>testnets exist for a
-  reason</strong>—to break things safely. One more try, then it’s
-  go-time for production.</p>
+<h1>DevLog250327</h1>
+<span class="prompt">> Log Date: 250327</span>
+<h1 id="devlog-250327-test-launch-results-nft-display-debugging">DevLog
+250327: Test Launch Results &amp; NFT Display Debugging</h1>
+<p><strong>Date:</strong> 2025-03-27<br />
+<strong>Project:</strong> TopSecurityNFT<br />
+<strong>Network:</strong> Polygon Amoy Testnet<br />
+<strong>Tooling:</strong> Foundry, Web3.Storage, OpenSea Testnet</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<p>Today marked a milestone with the <strong>successful test
+launch</strong> of the <code>TopSecurityNFT</code> contract on the
+<strong>Polygon Amoy testnet</strong>. Most of the collection
+<strong>minted and rendered correctly</strong>, and the entire
+collection was <strong>automatically indexed by OpenSea testnet</strong>
+without requiring any manual input.</p>
+<p>However, there were a few visual bugs during testing.
+Specifically:</p>
+<ul>
+<li><strong>Painting #4</strong> and <strong>Painting #10</strong> did
+<strong>not render</strong> on OpenSea.</li>
+<li>All other metadata files appeared valid and matched expected
+formatting.</li>
+<li>No syntax errors were detected in the JSON files, which makes this
+behavior somewhat ambiguous.</li>
+</ul>
+<hr />
+<h2 id="debugging-notes">Debugging Notes</h2>
+<ul>
+<li>Confirmed that all 10 tokens were successfully minted.</li>
+<li>Re-uploaded metadata to Web3.Storage to rule out CID or upload
+issues.</li>
+<li>Opened the metadata manually via IPFS gateway – files for Token 4
+and 10 load as expected.</li>
+<li>Suspected potential casing mismatch or naming inconsistency between
+<code>tokenURI()</code> construction and actual file names.</li>
+<li>Considered image size or encoding errors as possible causes but
+could not reproduce locally.</li>
+</ul>
+<hr />
+<h2 id="takeaways">Takeaways</h2>
+<ul>
+<li><strong>Thank god for testnet funds.</strong> Testing this without
+cost enabled full deployment and error identification before mainnet
+publishing.</li>
+<li>OpenSea <strong>indexing was automatic</strong>, which confirms the
+contract metadata structure is valid and conforms to standards.</li>
+<li>Foundry, IPFS, and Polygon are working well together in this
+workflow.</li>
+<li>Realized the importance of deterministic metadata generation and
+consistent image references.</li>
+</ul>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li><strong>Start fresh with a new contract deployment
+tomorrow.</strong>
+<ul>
+<li>Reset the <code>TopSecurityNFT</code> contract to ensure clean
+indexing.</li>
+<li>Regenerate all metadata files with fully verified naming and
+casing.</li>
+<li>Upload to a new CID on Web3.Storage and update the
+<code>baseURI</code>.</li>
+</ul></li>
+<li><strong>Mint tokens again on testnet and verify all images load
+correctly.</strong>
+<ul>
+<li>Focus specifically on image formatting and edge-case rendering
+bugs.</li>
+</ul></li>
+<li>If all tokens display correctly, proceed to prepare for
+<strong>mainnet deployment.</strong></li>
+</ul>
+<hr />
+<p>This session was a reminder that <strong>testnets exist for a
+reason</strong>—to break things safely. One more try, then it’s go-time
+for production.</p>
 </body>
 </html>

@@ -3,116 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <title>DevLog250307</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background-color: #0d0f1c;
       color: #c9c7ff;
       font-family: 'Courier New', monospace;
-      max-width: 700px;
-      margin: 4rem auto;
       padding: 2rem;
-      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-    h1, h2, h3 {
+
+    h1 {
       color: #b48eff;
-      text-shadow: 0 0 6px #b48eff;
+      text-shadow: 0 0 2px #b48eff;
     }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
     a {
       color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
       text-decoration: underline;
     }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
     code {
-      background: #1f1f2e;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1 id="dev-log-250307"><strong>Dev Log | 250307</strong></h1>
-  <h3
-  id="publishing-the-spotify-playlist-maker-streamlining-repository-management"><em>Publishing
-  the Spotify Playlist Maker &amp; Streamlining Repository
-  Management</em></h3>
-  <hr />
-  <h2 id="overview"><strong>Overview</strong></h2>
-  <p>Instead of separating projects into different repositories, I
-  decided to <strong>package and publish</strong> the <strong>Spotify
-  Playlist Maker</strong> on crates.io. This allows for better version
-  control, easier installation, and a cleaner development workflow while
-  keeping everything in one place.</p>
-  <p>With this, the project is now in a <strong>fully functional and
-  published state</strong>, making it accessible for others to install
-  and use.</p>
-  <hr />
-  <h2 id="publishing-the-spotify-playlist-maker-package"><strong>1.
-  Publishing the Spotify Playlist Maker Package</strong></h2>
-  <h3
-  id="goal-make-the-project-easily-installable-via-cargo."><strong>Goal:</strong>
-  Make the project easily installable via Cargo.</h3>
-  <ul>
-  <li><p>Successfully <strong>published the package on
-  crates.io</strong>.<br />
-  </p></li>
-  <li><p>Verified installation with:</p>
-  <div class="sourceCode" id="cb1"><pre
-  class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install spotify_playlist_maker  </span></code></pre></div></li>
-  <li><p>Confirmed that dependencies and build processes work
-  correctly.</p></li>
-  </ul>
-  <hr />
-  <h2 id="refining-documentation-cicd-workflow"><strong>2. Refining
-  Documentation &amp; CI/CD Workflow</strong></h2>
-  <h3
-  id="goal-improve-clarity-and-maintainability."><strong>Goal:</strong>
-  Improve clarity and maintainability.</h3>
-  <ul>
-  <li>Updated <code>README.md</code> to include:
-  <ul>
-  <li>Installation instructions.<br />
-  </li>
-  <li>Improved formatting for better readability.<br />
-  </li>
-  </ul></li>
-  <li>Verified that <strong>GitHub Actions CI workflow</strong>
-  correctly targets the <code>spotify_playlist_maker</code>
-  directory.<br />
-  </li>
-  <li>Committed and pushed all changes to GitHub, ensuring everything is
-  up to date.</li>
-  </ul>
-  <hr />
-  <h2 id="next-steps"><strong>3. Next Steps</strong></h2>
-  <h3 id="documentation-enhancements"><strong>Documentation
-  Enhancements</strong></h3>
-  <ul>
-  <li>Add more <strong>usage examples</strong> to improve user
-  experience.<br />
-  </li>
-  <li>Expand README to include <strong>troubleshooting tips and advanced
-  features</strong>.</li>
-  </ul>
-  <h3 id="feature-improvements"><strong>Feature
-  Improvements</strong></h3>
-  <ul>
-  <li>Consider adding <strong>dynamic song selection</strong> based on
-  mood, genre, or user preferences.</li>
-  </ul>
-  <h3 id="automation-versioning"><strong>Automation &amp;
-  Versioning</strong></h3>
-  <ul>
-  <li>Explore using <strong>GitHub Actions</strong> to automate version
-  bumps and release processes.</li>
-  </ul>
-  <hr />
-  <h2 id="final-thoughts"><strong>Final Thoughts</strong></h2>
-  <p>Publishing the <strong>Spotify Playlist Maker</strong> as a package
-  is a major step forward. The next focus is on <strong>improving
-  usability and automation</strong> to make future updates more
-  efficient. Keeping everything in a <strong>single repository</strong>
-  simplifies project management while ensuring that new features and
-  enhancements are easier to track and maintain.</p>
-  <p>Now that the package is live, the next goal is to <strong>expand
-  functionality and streamline updates</strong> for future versions.</p>
+<h1>DevLog250307</h1>
+<span class="prompt">> Log Date: 250307</span>
+<h1 id="dev-log-250307"><strong>Dev Log | 250307</strong></h1>
+<h3
+id="publishing-the-spotify-playlist-maker-streamlining-repository-management"><em>Publishing
+the Spotify Playlist Maker &amp; Streamlining Repository
+Management</em></h3>
+<hr />
+<h2 id="overview"><strong>Overview</strong></h2>
+<p>Instead of separating projects into different repositories, I decided
+to <strong>package and publish</strong> the <strong>Spotify Playlist
+Maker</strong> on crates.io. This allows for better version control,
+easier installation, and a cleaner development workflow while keeping
+everything in one place.</p>
+<p>With this, the project is now in a <strong>fully functional and
+published state</strong>, making it accessible for others to install and
+use.</p>
+<hr />
+<h2 id="publishing-the-spotify-playlist-maker-package"><strong>1.
+Publishing the Spotify Playlist Maker Package</strong></h2>
+<h3
+id="goal-make-the-project-easily-installable-via-cargo."><strong>Goal:</strong>
+Make the project easily installable via Cargo.</h3>
+<ul>
+<li><p>Successfully <strong>published the package on
+crates.io</strong>.<br />
+</p></li>
+<li><p>Verified installation with:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install spotify_playlist_maker  </span></code></pre></div></li>
+<li><p>Confirmed that dependencies and build processes work
+correctly.</p></li>
+</ul>
+<hr />
+<h2 id="refining-documentation-cicd-workflow"><strong>2. Refining
+Documentation &amp; CI/CD Workflow</strong></h2>
+<h3
+id="goal-improve-clarity-and-maintainability."><strong>Goal:</strong>
+Improve clarity and maintainability.</h3>
+<ul>
+<li>Updated <code>README.md</code> to include:
+<ul>
+<li>Installation instructions.<br />
+</li>
+<li>Improved formatting for better readability.<br />
+</li>
+</ul></li>
+<li>Verified that <strong>GitHub Actions CI workflow</strong> correctly
+targets the <code>spotify_playlist_maker</code> directory.<br />
+</li>
+<li>Committed and pushed all changes to GitHub, ensuring everything is
+up to date.</li>
+</ul>
+<hr />
+<h2 id="next-steps"><strong>3. Next Steps</strong></h2>
+<h3 id="documentation-enhancements"><strong>Documentation
+Enhancements</strong></h3>
+<ul>
+<li>Add more <strong>usage examples</strong> to improve user
+experience.<br />
+</li>
+<li>Expand README to include <strong>troubleshooting tips and advanced
+features</strong>.</li>
+</ul>
+<h3 id="feature-improvements"><strong>Feature Improvements</strong></h3>
+<ul>
+<li>Consider adding <strong>dynamic song selection</strong> based on
+mood, genre, or user preferences.</li>
+</ul>
+<h3 id="automation-versioning"><strong>Automation &amp;
+Versioning</strong></h3>
+<ul>
+<li>Explore using <strong>GitHub Actions</strong> to automate version
+bumps and release processes.</li>
+</ul>
+<hr />
+<h2 id="final-thoughts"><strong>Final Thoughts</strong></h2>
+<p>Publishing the <strong>Spotify Playlist Maker</strong> as a package
+is a major step forward. The next focus is on <strong>improving
+usability and automation</strong> to make future updates more efficient.
+Keeping everything in a <strong>single repository</strong> simplifies
+project management while ensuring that new features and enhancements are
+easier to track and maintain.</p>
+<p>Now that the package is live, the next goal is to <strong>expand
+functionality and streamline updates</strong> for future versions.</p>
 </body>
 </html>

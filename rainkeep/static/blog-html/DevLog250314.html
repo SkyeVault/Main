@@ -3,90 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <title>DevLog250314</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background-color: #0d0f1c;
       color: #c9c7ff;
       font-family: 'Courier New', monospace;
-      max-width: 700px;
-      margin: 4rem auto;
       padding: 2rem;
-      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-    h1, h2, h3 {
+
+    h1 {
       color: #b48eff;
-      text-shadow: 0 0 6px #b48eff;
+      text-shadow: 0 0 2px #b48eff;
     }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
     a {
       color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
       text-decoration: underline;
     }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
     code {
-      background: #1f1f2e;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1 id="devlog-250314">Devlog 250314</h1>
-  <h2 id="focus-for-the-day"><strong>Focus for the Day</strong></h2>
-  <p>Today, my primary goal is to <strong>sort out my crypto
-  woes</strong> and resolve the issues with acquiring <strong>testnet
-  funds</strong>. Once I have the necessary <strong>MATIC or POL on the
-  Polygon Amoy testnet</strong>, I’ll be able to move past this
-  bottleneck and <strong>jump back into smart contract
-  development</strong>.</p>
-  <h2 id="immediate-priorities"><strong>Immediate
-  Priorities</strong></h2>
-  <ol type="1">
-  <li><strong>Investigate missing MATIC purchase</strong> – Double-check
-  whether the funds from MetaMask’s Coinbase integration ever
-  arrived.</li>
-  <li><strong>Explore alternative testnet funding methods</strong> – If
-  necessary, consider:
-  <ul>
-  <li>Trying different <strong>Amoy faucets</strong> or community grant
-  programs.</li>
-  <li>Checking if anyone in the dev community can send a small amount of
-  <strong>testnet POL</strong>.</li>
-  <li>Looking into bridge alternatives to move funds from
-  <strong>Ethereum or another chain</strong>.</li>
-  </ul></li>
-  <li><strong>Ensure I have enough gas fees to move WETH</strong> – If
-  successful, swap just enough MATIC for transactions and continue
-  testing smart contracts.</li>
-  <li><strong>Resume smart contract development</strong> – As soon as I
-  have functional funds on <strong>Polygon Amoy</strong>, I’ll refocus
-  on:
-  <ul>
-  <li>Deploying and testing <strong>MetaverseLand.sol</strong> and
-  <strong>Marketplace.sol</strong>.</li>
-  <li>Running on-chain simulations using <strong>REVM</strong>.</li>
-  <li>Expanding contract features, such as land leasing and auction
-  mechanics.</li>
-  </ul></li>
-  </ol>
-  <h2 id="reflection"><strong>Reflection</strong></h2>
-  <p>The dependency on <strong>gas fees to move funds</strong> has been
-  the biggest roadblock so far. This process highlights a significant
-  usability issue in blockchain development—having tokens without the
-  ability to move them due to gas constraints creates a frustrating
-  loop.</p>
-  <p>That said, once I get past this, it should be a straight path back
-  into <strong>contract deployment and metaverse development</strong>.
-  The goal is to ensure I don’t lose momentum by getting stuck in
-  funding logistics.</p>
-  <h2 id="next-steps"><strong>Next Steps</strong></h2>
-  <ul>
-  <li><strong>Check for missing transactions</strong> and determine if I
-  need to escalate with Coinbase support.</li>
-  <li><strong>Test new funding approaches</strong> to secure enough
-  testnet MATIC or POL to proceed.</li>
-  <li><strong>Resume smart contract deployment</strong> and get back to
-  core development work.</li>
-  </ul>
-  <p>Hoping that by the end of the day, I’ll have this sorted and be
-  ready to move forward!</p>
+<h1>DevLog250314</h1>
+<span class="prompt">> Log Date: 250314</span>
+<h1 id="devlog-250314">Devlog 250314</h1>
+<h2 id="focus-for-the-day"><strong>Focus for the Day</strong></h2>
+<p>Today, my primary goal is to <strong>sort out my crypto woes</strong>
+and resolve the issues with acquiring <strong>testnet funds</strong>.
+Once I have the necessary <strong>MATIC or POL on the Polygon Amoy
+testnet</strong>, I’ll be able to move past this bottleneck and
+<strong>jump back into smart contract development</strong>.</p>
+<h2 id="immediate-priorities"><strong>Immediate Priorities</strong></h2>
+<ol type="1">
+<li><strong>Investigate missing MATIC purchase</strong> – Double-check
+whether the funds from MetaMask’s Coinbase integration ever
+arrived.</li>
+<li><strong>Explore alternative testnet funding methods</strong> – If
+necessary, consider:
+<ul>
+<li>Trying different <strong>Amoy faucets</strong> or community grant
+programs.</li>
+<li>Checking if anyone in the dev community can send a small amount of
+<strong>testnet POL</strong>.</li>
+<li>Looking into bridge alternatives to move funds from <strong>Ethereum
+or another chain</strong>.</li>
+</ul></li>
+<li><strong>Ensure I have enough gas fees to move WETH</strong> – If
+successful, swap just enough MATIC for transactions and continue testing
+smart contracts.</li>
+<li><strong>Resume smart contract development</strong> – As soon as I
+have functional funds on <strong>Polygon Amoy</strong>, I’ll refocus on:
+<ul>
+<li>Deploying and testing <strong>MetaverseLand.sol</strong> and
+<strong>Marketplace.sol</strong>.</li>
+<li>Running on-chain simulations using <strong>REVM</strong>.</li>
+<li>Expanding contract features, such as land leasing and auction
+mechanics.</li>
+</ul></li>
+</ol>
+<h2 id="reflection"><strong>Reflection</strong></h2>
+<p>The dependency on <strong>gas fees to move funds</strong> has been
+the biggest roadblock so far. This process highlights a significant
+usability issue in blockchain development—having tokens without the
+ability to move them due to gas constraints creates a frustrating
+loop.</p>
+<p>That said, once I get past this, it should be a straight path back
+into <strong>contract deployment and metaverse development</strong>. The
+goal is to ensure I don’t lose momentum by getting stuck in funding
+logistics.</p>
+<h2 id="next-steps"><strong>Next Steps</strong></h2>
+<ul>
+<li><strong>Check for missing transactions</strong> and determine if I
+need to escalate with Coinbase support.</li>
+<li><strong>Test new funding approaches</strong> to secure enough
+testnet MATIC or POL to proceed.</li>
+<li><strong>Resume smart contract deployment</strong> and get back to
+core development work.</li>
+</ul>
+<p>Hoping that by the end of the day, I’ll have this sorted and be ready
+to move forward!</p>
 </body>
 </html>

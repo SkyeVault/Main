@@ -3,127 +3,165 @@
 <head>
   <meta charset="UTF-8" />
   <title>DevLog250305</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background-color: #0d0f1c;
       color: #c9c7ff;
       font-family: 'Courier New', monospace;
-      max-width: 700px;
-      margin: 4rem auto;
       padding: 2rem;
-      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-    h1, h2, h3 {
+
+    h1 {
       color: #b48eff;
-      text-shadow: 0 0 6px #b48eff;
+      text-shadow: 0 0 2px #b48eff;
     }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
     a {
       color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
       text-decoration: underline;
     }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
     code {
-      background: #1f1f2e;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <h2 id="dev-log-250305"># <strong>Dev Log | 250305</strong></h2>
-  <h2 id="project-ideas-considerations"><strong>Project Ideas &amp;
-  Considerations</strong></h2>
-  <h3 id="enhancing-the-spotify-playlist-maker"><strong>1. Enhancing the
-  Spotify Playlist Maker</strong></h3>
-  <ul>
-  <li>Should I develop a <strong>UI for better usability</strong>?<br />
-  </li>
-  <li>Could I integrate <strong>auto-suggestions</strong> based on:
-  <ul>
-  <li><strong>Mood-based playlists</strong> (e.g., relaxing, focus,
-  energy)?<br />
-  </li>
-  <li><strong>Artists and genre preferences</strong>?<br />
-  </li>
-  <li><strong>Keywords typed in by the user</strong>?<br />
-  </li>
-  </ul></li>
-  <li>Would adding <strong>machine learning elements</strong> to analyze
-  user history improve recommendations?</li>
-  </ul>
-  <h3 id="netflix-movie-recommendation-tool"><strong>2. Netflix Movie
-  Recommendation Tool</strong></h3>
-  <ul>
-  <li>A tool that suggests <strong>movies or shows</strong> based on:
-  <ul>
-  <li><strong>Mood or genre preferences</strong>.<br />
-  </li>
-  <li><strong>A few simple questions</strong> to personalize
-  recommendations.<br />
-  </li>
-  <li><strong>Keyword-based searches</strong> (e.g., “sci-fi adventure
-  with great cinematography”).<br />
-  </li>
-  </ul></li>
-  <li>Could use <strong>web scraping and AI</strong> to refine
-  suggestions fron Netflix current library.<br />
-  </li>
-  <li>This could be a good introduction to <strong>Rust, API
-  integration, web scraping, and AI</strong> in a single project.</li>
-  </ul>
-  <hr />
-  <h2 id="reflections-next-steps"><strong>Reflections &amp; Next
-  Steps</strong></h2>
-  <ul>
-  <li>The <strong>Spotify Playlist Maker</strong> is now functional, but
-  <strong>a UI and better recommendations could make it much more
-  powerful</strong>.<br />
-  </li>
-  <li>A <strong>Netflix recommendation tool</strong> would be an
-  interesting way to start exploring <strong>AI-driven
-  suggestions</strong>.<br />
-  </li>
-  <li>The <strong>combination of Rust, APIs, web scraping, and AI opens
-  up endless possibilities</strong>—figuring out how to focus efforts
-  effectively.</li>
-  </ul>
-  <hr />
-  <h3 id="immediate-next-steps"><strong>Immediate Next
-  Steps</strong></h3>
-  <ul>
-  <li>Reflect on whether the <strong>Spotify UI and auto-suggestion
-  features</strong> should be the next priority.<br />
-  </li>
-  <li>Consider whether the <strong>Netflix recommendation tool</strong>
-  is worth prototyping.<br />
-  </li>
-  <li>Research <strong>how Rust handles AI and recommendation
-  engines</strong> to evaluate feasibility.</li>
-  </ul>
-  <hr />
-  <h1
-  id="dev-log-implementing-tests-cicd-and-environment-variable-management"><strong>Dev
-  Log: Implementing Tests, CI/CD, and Environment Variable
-  Management</strong></h1>
-  <h2 id="date-250305"><strong>Date: 250305</strong></h2>
-  <hr />
-  <h2 id="overview"><strong>Overview</strong></h2>
-  <p>This log documents improvements made to the <strong>Spotify
-  Playlist Maker</strong> Rust project by adding <strong>automated
-  tests</strong>, setting up <strong>GitHub Actions for CI/CD</strong>,
-  and properly managing <strong>environment variables</strong>. These
-  updates enhance project reliability, security, and
-  maintainability.</p>
-  <hr />
-  <h2 id="adding-tests"><strong>1. Adding Tests</strong></h2>
-  <h3 id="unit-tests-in-rust"><strong>Unit Tests in Rust</strong></h3>
-  <p>We implemented unit tests to verify that environment variables are
-  being loaded correctly.</p>
-  <h3 id="integration-test-for-.env-variables"><strong>Integration Test
-  for <code>.env</code> Variables</strong></h3>
-  <p>A test file was created at
-  <code>tests/integration_tests.rs</code>:</p>
-  <div class="sourceCode" id="cb1"><pre
-  class="sourceCode rust"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">dotenv::</span>dotenv<span class="op">;</span></span>
+<h1>DevLog250305</h1>
+<span class="prompt">> Log Date: 250305</span>
+<h2 id="dev-log-250305"># <strong>Dev Log | 250305</strong></h2>
+<h2 id="project-ideas-considerations"><strong>Project Ideas &amp;
+Considerations</strong></h2>
+<h3 id="enhancing-the-spotify-playlist-maker"><strong>1. Enhancing the
+Spotify Playlist Maker</strong></h3>
+<ul>
+<li>Should I develop a <strong>UI for better usability</strong>?<br />
+</li>
+<li>Could I integrate <strong>auto-suggestions</strong> based on:
+<ul>
+<li><strong>Mood-based playlists</strong> (e.g., relaxing, focus,
+energy)?<br />
+</li>
+<li><strong>Artists and genre preferences</strong>?<br />
+</li>
+<li><strong>Keywords typed in by the user</strong>?<br />
+</li>
+</ul></li>
+<li>Would adding <strong>machine learning elements</strong> to analyze
+user history improve recommendations?</li>
+</ul>
+<h3 id="netflix-movie-recommendation-tool"><strong>2. Netflix Movie
+Recommendation Tool</strong></h3>
+<ul>
+<li>A tool that suggests <strong>movies or shows</strong> based on:
+<ul>
+<li><strong>Mood or genre preferences</strong>.<br />
+</li>
+<li><strong>A few simple questions</strong> to personalize
+recommendations.<br />
+</li>
+<li><strong>Keyword-based searches</strong> (e.g., “sci-fi adventure
+with great cinematography”).<br />
+</li>
+</ul></li>
+<li>Could use <strong>web scraping and AI</strong> to refine suggestions
+fron Netflix current library.<br />
+</li>
+<li>This could be a good introduction to <strong>Rust, API integration,
+web scraping, and AI</strong> in a single project.</li>
+</ul>
+<hr />
+<h2 id="reflections-next-steps"><strong>Reflections &amp; Next
+Steps</strong></h2>
+<ul>
+<li>The <strong>Spotify Playlist Maker</strong> is now functional, but
+<strong>a UI and better recommendations could make it much more
+powerful</strong>.<br />
+</li>
+<li>A <strong>Netflix recommendation tool</strong> would be an
+interesting way to start exploring <strong>AI-driven
+suggestions</strong>.<br />
+</li>
+<li>The <strong>combination of Rust, APIs, web scraping, and AI opens up
+endless possibilities</strong>—figuring out how to focus efforts
+effectively.</li>
+</ul>
+<hr />
+<h3 id="immediate-next-steps"><strong>Immediate Next Steps</strong></h3>
+<ul>
+<li>Reflect on whether the <strong>Spotify UI and auto-suggestion
+features</strong> should be the next priority.<br />
+</li>
+<li>Consider whether the <strong>Netflix recommendation tool</strong> is
+worth prototyping.<br />
+</li>
+<li>Research <strong>how Rust handles AI and recommendation
+engines</strong> to evaluate feasibility.</li>
+</ul>
+<hr />
+<h1
+id="dev-log-implementing-tests-cicd-and-environment-variable-management"><strong>Dev
+Log: Implementing Tests, CI/CD, and Environment Variable
+Management</strong></h1>
+<h2 id="date-250305"><strong>Date: 250305</strong></h2>
+<hr />
+<h2 id="overview"><strong>Overview</strong></h2>
+<p>This log documents improvements made to the <strong>Spotify Playlist
+Maker</strong> Rust project by adding <strong>automated tests</strong>,
+setting up <strong>GitHub Actions for CI/CD</strong>, and properly
+managing <strong>environment variables</strong>. These updates enhance
+project reliability, security, and maintainability.</p>
+<hr />
+<h2 id="adding-tests"><strong>1. Adding Tests</strong></h2>
+<h3 id="unit-tests-in-rust"><strong>Unit Tests in Rust</strong></h3>
+<p>We implemented unit tests to verify that environment variables are
+being loaded correctly.</p>
+<h3 id="integration-test-for-.env-variables"><strong>Integration Test
+for <code>.env</code> Variables</strong></h3>
+<p>A test file was created at
+<code>tests/integration_tests.rs</code>:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">dotenv::</span>dotenv<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>env<span class="op">;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>test<span class="at">]</span></span>
@@ -134,23 +172,22 @@
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">assert!</span>(<span class="pp">env::</span>var(<span class="st">&quot;SPOTIFY_CLIENT_SECRET&quot;</span>)<span class="op">.</span>is_ok())<span class="op">;</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="pp">assert!</span>(<span class="pp">env::</span>var(<span class="st">&quot;SPOTIFY_REDIRECT_URI&quot;</span>)<span class="op">.</span>is_ok())<span class="op">;</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-  <h3 id="running-tests"><strong>Running Tests</strong></h3>
-  <p>To execute tests, we ran:</p>
-  <div class="sourceCode" id="cb2"><pre
-  class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> test</span></code></pre></div>
-  <p>The tests passed, confirming that the <code>.env</code> variables
-  were properly loaded.</p>
-  <hr />
-  <h2 id="setting-up-cicd-with-github-actions"><strong>2. Setting Up
-  CI/CD with GitHub Actions</strong></h2>
-  <h3 id="adding-a-github-actions-workflow"><strong>Adding a GitHub
-  Actions Workflow</strong></h3>
-  <p>A new workflow file, <code>.github/workflows/rust-ci.yml</code>,
-  was created to automate testing on every push.</p>
-  <h4 id="github-actions-workflow-rust-ci.yml"><strong>GitHub Actions
-  Workflow (<code>rust-ci.yml</code>)</strong></h4>
-  <div class="sourceCode" id="cb3"><pre
-  class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Rust CI/CD Pipeline</span></span>
+<h3 id="running-tests"><strong>Running Tests</strong></h3>
+<p>To execute tests, we ran:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> test</span></code></pre></div>
+<p>The tests passed, confirming that the <code>.env</code> variables
+were properly loaded.</p>
+<hr />
+<h2 id="setting-up-cicd-with-github-actions"><strong>2. Setting Up CI/CD
+with GitHub Actions</strong></h2>
+<h3 id="adding-a-github-actions-workflow"><strong>Adding a GitHub
+Actions Workflow</strong></h3>
+<p>A new workflow file, <code>.github/workflows/rust-ci.yml</code>, was
+created to automate testing on every push.</p>
+<h4 id="github-actions-workflow-rust-ci.yml"><strong>GitHub Actions
+Workflow (<code>rust-ci.yml</code>)</strong></h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Rust CI/CD Pipeline</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
@@ -178,76 +215,72 @@
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run tests</span></span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> cargo test --verbose</span></span></code></pre></div>
-  <p>This workflow ensures that every push and pull request to
-  <code>main</code> is automatically tested.</p>
-  <hr />
-  <h2 id="managing-environment-variables"><strong>3. Managing
-  Environment Variables</strong></h2>
-  <h3 id="moving-.env-to-the-root-directory"><strong>Moving
-  <code>.env</code> to the Root Directory</strong></h3>
-  <p>To ensure Rust can properly load environment variables, the
-  <code>.env</code> file was moved:</p>
-  <div class="sourceCode" id="cb4"><pre
-  class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> src/.env .env</span></code></pre></div>
-  <h3 id="updating-.gitignore"><strong>Updating
-  <code>.gitignore</code></strong></h3>
-  <p>To prevent <code>.env</code> from being committed to GitHub, the
-  <code>.gitignore</code> file was updated:</p>
-  <div class="sourceCode" id="cb5"><pre
-  class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ignore environment variables (API keys, secrets)</span></span>
+<p>This workflow ensures that every push and pull request to
+<code>main</code> is automatically tested.</p>
+<hr />
+<h2 id="managing-environment-variables"><strong>3. Managing Environment
+Variables</strong></h2>
+<h3 id="moving-.env-to-the-root-directory"><strong>Moving
+<code>.env</code> to the Root Directory</strong></h3>
+<p>To ensure Rust can properly load environment variables, the
+<code>.env</code> file was moved:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> src/.env .env</span></code></pre></div>
+<h3 id="updating-.gitignore"><strong>Updating
+<code>.gitignore</code></strong></h3>
+<p>To prevent <code>.env</code> from being committed to GitHub, the
+<code>.gitignore</code> file was updated:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ignore environment variables (API keys, secrets)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">.env</span></span></code></pre></div>
-  <p>This ensures sensitive credentials remain secure.</p>
-  <h3 id="verifying-.env-in-rust"><strong>Verifying <code>.env</code> in
-  Rust</strong></h3>
-  <p>To check if the <code>.env</code> file was being loaded correctly,
-  values were printed in <code>main.rs</code>:</p>
-  <div class="sourceCode" id="cb6"><pre
-  class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">dotenv::</span>dotenv<span class="op">;</span></span>
+<p>This ensures sensitive credentials remain secure.</p>
+<h3 id="verifying-.env-in-rust"><strong>Verifying <code>.env</code> in
+Rust</strong></h3>
+<p>To check if the <code>.env</code> file was being loaded correctly,
+values were printed in <code>main.rs</code>:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">dotenv::</span>dotenv<span class="op">;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>env<span class="op">;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>dotenv()<span class="op">.</span>ok()<span class="op">;</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="pp">println!</span>(<span class="st">&quot;SPOTIFY_CLIENT_ID: {:?}&quot;</span><span class="op">,</span> <span class="pp">env::</span>var(<span class="st">&quot;SPOTIFY_CLIENT_ID&quot;</span>))<span class="op">;</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="pp">println!</span>(<span class="st">&quot;SPOTIFY_CLIENT_SECRET: {:?}&quot;</span><span class="op">,</span> <span class="pp">env::</span>var(<span class="st">&quot;SPOTIFY_CLIENT_SECRET&quot;</span>))<span class="op">;</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="pp">println!</span>(<span class="st">&quot;SPOTIFY_REDIRECT_URI: {:?}&quot;</span><span class="op">,</span> <span class="pp">env::</span>var(<span class="st">&quot;SPOTIFY_REDIRECT_URI&quot;</span>))<span class="op">;</span></span></code></pre></div>
-  <p>Running <code>cargo run</code> confirmed that the values were
-  correctly loaded.</p>
-  <hr />
-  <h2 id="pushing-updates-to-github"><strong>4. Pushing Updates to
-  GitHub</strong></h2>
-  <h3 id="commit-and-push"><strong>Commit and Push</strong></h3>
-  <p>After verifying that everything worked, the changes were committed
-  and pushed:</p>
-  <div class="sourceCode" id="cb7"><pre
-  class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .gitignore .github/workflows/rust-ci.yml tests/</span>
+<p>Running <code>cargo run</code> confirmed that the values were
+correctly loaded.</p>
+<hr />
+<h2 id="pushing-updates-to-github"><strong>4. Pushing Updates to
+GitHub</strong></h2>
+<h3 id="commit-and-push"><strong>Commit and Push</strong></h3>
+<p>After verifying that everything worked, the changes were committed
+and pushed:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .gitignore .github/workflows/rust-ci.yml tests/</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Added GitHub Actions CI/CD and integration tests&quot;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div>
-  <p>GitHub Actions automatically ran the tests upon push, confirming
-  that the pipeline is functional.</p>
-  <hr />
-  <h2 id="final-results"><strong>Final Results</strong></h2>
-  <ul>
-  <li>Automated testing is now in place for core functionality.<br />
-  </li>
-  <li>CI/CD pipeline ensures that all commits and pull requests are
-  tested before merging.<br />
-  </li>
-  <li>Environment variables are securely managed and properly
-  loaded.<br />
-  </li>
-  <li>The project is structured for maintainability and
-  scalability.</li>
-  </ul>
-  <hr />
-  <h2 id="next-steps"><strong>Next Steps</strong></h2>
-  <ul>
-  <li>Expand test coverage to include playlist creation.<br />
-  </li>
-  <li>Add logging for better debugging and tracking API responses.<br />
-  </li>
-  <li>Improve error handling for failed API requests.</li>
-  </ul>
-  <p>With these improvements, the project now has <strong>automated
-  testing, secure environment management, and a reliable CI/CD
-  pipeline</strong>, ensuring stability as new features are added.</p>
+<p>GitHub Actions automatically ran the tests upon push, confirming that
+the pipeline is functional.</p>
+<hr />
+<h2 id="final-results"><strong>Final Results</strong></h2>
+<ul>
+<li>Automated testing is now in place for core functionality.<br />
+</li>
+<li>CI/CD pipeline ensures that all commits and pull requests are tested
+before merging.<br />
+</li>
+<li>Environment variables are securely managed and properly
+loaded.<br />
+</li>
+<li>The project is structured for maintainability and scalability.</li>
+</ul>
+<hr />
+<h2 id="next-steps"><strong>Next Steps</strong></h2>
+<ul>
+<li>Expand test coverage to include playlist creation.<br />
+</li>
+<li>Add logging for better debugging and tracking API responses.<br />
+</li>
+<li>Improve error handling for failed API requests.</li>
+</ul>
+<p>With these improvements, the project now has <strong>automated
+testing, secure environment management, and a reliable CI/CD
+pipeline</strong>, ensuring stability as new features are added.</p>
 </body>
 </html>

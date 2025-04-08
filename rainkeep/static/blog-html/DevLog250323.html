@@ -3,213 +3,251 @@
 <head>
   <meta charset="UTF-8" />
   <title>DevLog250323</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background-color: #0d0f1c;
       color: #c9c7ff;
       font-family: 'Courier New', monospace;
-      max-width: 700px;
-      margin: 4rem auto;
       padding: 2rem;
-      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-    h1, h2, h3 {
+
+    h1 {
       color: #b48eff;
-      text-shadow: 0 0 6px #b48eff;
+      text-shadow: 0 0 2px #b48eff;
     }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
     a {
       color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
       text-decoration: underline;
     }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
     code {
-      background: #1f1f2e;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1
-  id="devlog-250323-understanding-blockchain-layers-and-architecture">Devlog
-  250323: Understanding Blockchain Layers and Architecture</h1>
-  <h2 id="objective"><strong>Objective</strong></h2>
-  <p>Today’s focus was to break down the <strong>different levels of
-  blockchain architecture</strong>, clarify what each one does, and
-  understand how they affect development. This is essential for deciding
-  <strong>where and how to build decentralized applications</strong>,
-  especially in the context of my <strong>metaverse sandbox</strong>
-  project.</p>
-  <hr />
-  <h2 id="what-are-blockchain-layers"><strong>What Are Blockchain
-  Layers?</strong></h2>
-  <p>Blockchains are often described in <strong>“layers”</strong>,
-  similar to how the internet has protocols like HTTP, TCP/IP, and DNS.
-  These layers represent different responsibilities and features in a
-  decentralized ecosystem.</p>
-  <h3 id="layer-0-infrastructure-and-interoperability"><strong>Layer 0 –
-  Infrastructure and Interoperability</strong></h3>
-  <ul>
-  <li><strong>Purpose</strong>: Provides the foundation for multiple
-  Layer 1 blockchains to communicate and coexist.</li>
-  <li><strong>Examples</strong>: Polkadot, Cosmos, Avalanche subnet
-  protocol.</li>
-  <li><strong>What it handles</strong>:
-  <ul>
-  <li>Cross-chain communication</li>
-  <li>Shared security</li>
-  <li>Validator networks across chains</li>
-  </ul></li>
-  </ul>
-  <h4 id="why-it-matters">Why it matters:</h4>
-  <p>If the metaverse expands across chains (Polygon, Solana, etc.), a
-  <strong>Layer 0 protocol helps keep it unified</strong>.</p>
-  <hr />
-  <h3 id="layer-1-the-base-blockchain"><strong>Layer 1 – The Base
-  Blockchain</strong></h3>
-  <ul>
-  <li><strong>Purpose</strong>: This is the main chain. It provides
-  consensus, security, and the ledger itself.</li>
-  <li><strong>Examples</strong>: Ethereum, Bitcoin, Solana,
-  Avalanche.</li>
-  <li><strong>What it handles</strong>:
-  <ul>
-  <li>Block production</li>
-  <li>Consensus mechanisms (Proof of Work, Proof of Stake)</li>
-  <li>Smart contract execution (on programmable L1s like Ethereum)</li>
-  </ul></li>
-  </ul>
-  <h4 id="why-it-matters-1">Why it matters:</h4>
-  <p><strong>Smart contracts for metaverse land and NFT marketplaces are
-  deployed on Layer 1</strong> blockchains. This is the “home base” for
-  ownership and logic.</p>
-  <hr />
-  <h3 id="layer-2-scaling-solutions"><strong>Layer 2 – Scaling
-  Solutions</strong></h3>
-  <ul>
-  <li><strong>Purpose</strong>: Built on top of Layer 1 to solve
-  scalability and cost issues.</li>
-  <li><strong>Examples</strong>: Polygon (PoS chain and zkEVM),
-  Arbitrum, Optimism, StarkNet.</li>
-  <li><strong>What it handles</strong>:
-  <ul>
-  <li>Batch transaction processing</li>
-  <li>Cheaper and faster operations</li>
-  <li>Rollups (ZK-rollups, Optimistic rollups)</li>
-  </ul></li>
-  </ul>
-  <h4 id="why-it-matters-2">Why it matters:</h4>
-  <p>My <strong>NFT gallery and land ownership system can live on a
-  Layer 2</strong> like Polygon to save on gas fees and improve speed,
-  while still settling on Ethereum L1.</p>
-  <hr />
-  <h3 id="layer-3-application-specific-logic"><strong>Layer 3 –
-  Application-Specific Logic</strong></h3>
-  <ul>
-  <li><strong>Purpose</strong>: DApps, protocols, and interfaces that
-  live on top of Layer 1 or Layer 2.</li>
-  <li><strong>Examples</strong>: Uniswap, OpenSea, Mirror, OnCyber.</li>
-  <li><strong>What it handles</strong>:
-  <ul>
-  <li>User-facing applications</li>
-  <li>Custom smart contract logic</li>
-  <li>UI and UX for interacting with blockchain</li>
-  </ul></li>
-  </ul>
-  <h4 id="why-it-matters-3">Why it matters:</h4>
-  <p>The <strong>Metaverse Sandbox itself is a Layer 3 app</strong>. It
-  integrates smart contracts (L1/L2), storage, authentication, and
-  rendering (e.g., 3D frontend).</p>
-  <hr />
-  <h3 id="off-chain-layers-complementary-tools"><strong>Off-Chain Layers
-  – Complementary Tools</strong></h3>
-  <ul>
-  <li><strong>Purpose</strong>: Not strictly “on-chain,” but essential
-  for full stack development.</li>
-  <li><strong>Examples</strong>:
-  <ul>
-  <li><strong>IPFS / Arweave</strong> – Decentralized storage</li>
-  <li><strong>GraphQL / The Graph</strong> – Blockchain data
-  indexing</li>
-  <li><strong>Chainlink / Oracles</strong> – Bridging real-world data
-  into smart contracts</li>
-  <li><strong>Authentication</strong> – WalletConnect, MetaMask
-  login</li>
-  </ul></li>
-  </ul>
-  <h4 id="why-it-matters-4">Why it matters:</h4>
-  <p>Users in the metaverse will interact with both on-chain (land,
-  NFTs) and off-chain (images, metadata, 3D models) components.</p>
-  <hr />
-  <h2 id="summary-of-layers-and-tools"><strong>Summary of Layers and
-  Tools</strong></h2>
-  <table>
-  <colgroup>
-  <col style="width: 14%" />
-  <col style="width: 45%" />
-  <col style="width: 39%" />
-  </colgroup>
-  <thead>
-  <tr>
-  <th>Layer</th>
-  <th>Purpose</th>
-  <th>Examples</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-  <td>Layer 0</td>
-  <td>Cross-chain interoperability</td>
-  <td>Polkadot, Cosmos, Avalanche</td>
-  </tr>
-  <tr>
-  <td>Layer 1</td>
-  <td>Base blockchain and consensus</td>
-  <td>Ethereum, Solana, Bitcoin</td>
-  </tr>
-  <tr>
-  <td>Layer 2</td>
-  <td>Scaling solutions</td>
-  <td>Polygon, Arbitrum, Optimism</td>
-  </tr>
-  <tr>
-  <td>Layer 3</td>
-  <td>Decentralized applications (DApps)</td>
-  <td>NFT Gallery, DAO, Sandbox Worlds</td>
-  </tr>
-  <tr>
-  <td>Off-Chain</td>
-  <td>Storage, indexing, oracles, wallets</td>
-  <td>IPFS, The Graph, Chainlink, Wallets</td>
-  </tr>
-  </tbody>
-  </table>
-  <hr />
-  <h2 id="todays-takeaways"><strong>Today’s Takeaways</strong></h2>
-  <ul>
-  <li><strong>I now understand where my project sits</strong>: A Layer 3
-  application that spans L1 and L2 contracts, and uses off-chain tools
-  for media and interaction.</li>
-  <li><strong>Layer 2 is where I want to deploy</strong> (Polygon or
-  Arbitrum) to avoid high gas fees and keep it beginner-accessible.</li>
-  <li><strong>The goal is to build a self-owned Layer 3
-  application</strong> that pulls from decentralized storage, reads
-  blockchain data, and gives users a seamless experience.</li>
-  </ul>
-  <hr />
-  <h2 id="next-steps"><strong>Next Steps</strong></h2>
-  <ul>
-  <li>Finalize which <strong>Layer 1 and Layer 2 chains</strong> I want
-  to support in my smart contracts.</li>
-  <li>Begin building out the <strong>Layer 3 logic</strong>: wallet
-  connection, NFT display, land registry.</li>
-  <li>Research tools for <strong>cross-chain support</strong> in case
-  users want to connect different wallets.</li>
-  <li>Continue developing the <strong>tech stack and architecture
-  diagram</strong> to document how each layer connects.</li>
-  </ul>
-  <hr />
-  <p>This devlog helps ground the full-stack structure of the metaverse
-  project and provides a reference for deciding how to structure smart
-  contracts, APIs, and frontend behavior.</p>
+<h1>DevLog250323</h1>
+<span class="prompt">> Log Date: 250323</span>
+<h1
+id="devlog-250323-understanding-blockchain-layers-and-architecture">Devlog
+250323: Understanding Blockchain Layers and Architecture</h1>
+<h2 id="objective"><strong>Objective</strong></h2>
+<p>Today’s focus was to break down the <strong>different levels of
+blockchain architecture</strong>, clarify what each one does, and
+understand how they affect development. This is essential for deciding
+<strong>where and how to build decentralized applications</strong>,
+especially in the context of my <strong>metaverse sandbox</strong>
+project.</p>
+<hr />
+<h2 id="what-are-blockchain-layers"><strong>What Are Blockchain
+Layers?</strong></h2>
+<p>Blockchains are often described in <strong>“layers”</strong>, similar
+to how the internet has protocols like HTTP, TCP/IP, and DNS. These
+layers represent different responsibilities and features in a
+decentralized ecosystem.</p>
+<h3 id="layer-0-infrastructure-and-interoperability"><strong>Layer 0 –
+Infrastructure and Interoperability</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Provides the foundation for multiple Layer
+1 blockchains to communicate and coexist.</li>
+<li><strong>Examples</strong>: Polkadot, Cosmos, Avalanche subnet
+protocol.</li>
+<li><strong>What it handles</strong>:
+<ul>
+<li>Cross-chain communication</li>
+<li>Shared security</li>
+<li>Validator networks across chains</li>
+</ul></li>
+</ul>
+<h4 id="why-it-matters">Why it matters:</h4>
+<p>If the metaverse expands across chains (Polygon, Solana, etc.), a
+<strong>Layer 0 protocol helps keep it unified</strong>.</p>
+<hr />
+<h3 id="layer-1-the-base-blockchain"><strong>Layer 1 – The Base
+Blockchain</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: This is the main chain. It provides
+consensus, security, and the ledger itself.</li>
+<li><strong>Examples</strong>: Ethereum, Bitcoin, Solana,
+Avalanche.</li>
+<li><strong>What it handles</strong>:
+<ul>
+<li>Block production</li>
+<li>Consensus mechanisms (Proof of Work, Proof of Stake)</li>
+<li>Smart contract execution (on programmable L1s like Ethereum)</li>
+</ul></li>
+</ul>
+<h4 id="why-it-matters-1">Why it matters:</h4>
+<p><strong>Smart contracts for metaverse land and NFT marketplaces are
+deployed on Layer 1</strong> blockchains. This is the “home base” for
+ownership and logic.</p>
+<hr />
+<h3 id="layer-2-scaling-solutions"><strong>Layer 2 – Scaling
+Solutions</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Built on top of Layer 1 to solve
+scalability and cost issues.</li>
+<li><strong>Examples</strong>: Polygon (PoS chain and zkEVM), Arbitrum,
+Optimism, StarkNet.</li>
+<li><strong>What it handles</strong>:
+<ul>
+<li>Batch transaction processing</li>
+<li>Cheaper and faster operations</li>
+<li>Rollups (ZK-rollups, Optimistic rollups)</li>
+</ul></li>
+</ul>
+<h4 id="why-it-matters-2">Why it matters:</h4>
+<p>My <strong>NFT gallery and land ownership system can live on a Layer
+2</strong> like Polygon to save on gas fees and improve speed, while
+still settling on Ethereum L1.</p>
+<hr />
+<h3 id="layer-3-application-specific-logic"><strong>Layer 3 –
+Application-Specific Logic</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: DApps, protocols, and interfaces that live
+on top of Layer 1 or Layer 2.</li>
+<li><strong>Examples</strong>: Uniswap, OpenSea, Mirror, OnCyber.</li>
+<li><strong>What it handles</strong>:
+<ul>
+<li>User-facing applications</li>
+<li>Custom smart contract logic</li>
+<li>UI and UX for interacting with blockchain</li>
+</ul></li>
+</ul>
+<h4 id="why-it-matters-3">Why it matters:</h4>
+<p>The <strong>Metaverse Sandbox itself is a Layer 3 app</strong>. It
+integrates smart contracts (L1/L2), storage, authentication, and
+rendering (e.g., 3D frontend).</p>
+<hr />
+<h3 id="off-chain-layers-complementary-tools"><strong>Off-Chain Layers –
+Complementary Tools</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Not strictly “on-chain,” but essential for
+full stack development.</li>
+<li><strong>Examples</strong>:
+<ul>
+<li><strong>IPFS / Arweave</strong> – Decentralized storage</li>
+<li><strong>GraphQL / The Graph</strong> – Blockchain data indexing</li>
+<li><strong>Chainlink / Oracles</strong> – Bridging real-world data into
+smart contracts</li>
+<li><strong>Authentication</strong> – WalletConnect, MetaMask login</li>
+</ul></li>
+</ul>
+<h4 id="why-it-matters-4">Why it matters:</h4>
+<p>Users in the metaverse will interact with both on-chain (land, NFTs)
+and off-chain (images, metadata, 3D models) components.</p>
+<hr />
+<h2 id="summary-of-layers-and-tools"><strong>Summary of Layers and
+Tools</strong></h2>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 45%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Purpose</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layer 0</td>
+<td>Cross-chain interoperability</td>
+<td>Polkadot, Cosmos, Avalanche</td>
+</tr>
+<tr>
+<td>Layer 1</td>
+<td>Base blockchain and consensus</td>
+<td>Ethereum, Solana, Bitcoin</td>
+</tr>
+<tr>
+<td>Layer 2</td>
+<td>Scaling solutions</td>
+<td>Polygon, Arbitrum, Optimism</td>
+</tr>
+<tr>
+<td>Layer 3</td>
+<td>Decentralized applications (DApps)</td>
+<td>NFT Gallery, DAO, Sandbox Worlds</td>
+</tr>
+<tr>
+<td>Off-Chain</td>
+<td>Storage, indexing, oracles, wallets</td>
+<td>IPFS, The Graph, Chainlink, Wallets</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="todays-takeaways"><strong>Today’s Takeaways</strong></h2>
+<ul>
+<li><strong>I now understand where my project sits</strong>: A Layer 3
+application that spans L1 and L2 contracts, and uses off-chain tools for
+media and interaction.</li>
+<li><strong>Layer 2 is where I want to deploy</strong> (Polygon or
+Arbitrum) to avoid high gas fees and keep it beginner-accessible.</li>
+<li><strong>The goal is to build a self-owned Layer 3
+application</strong> that pulls from decentralized storage, reads
+blockchain data, and gives users a seamless experience.</li>
+</ul>
+<hr />
+<h2 id="next-steps"><strong>Next Steps</strong></h2>
+<ul>
+<li>Finalize which <strong>Layer 1 and Layer 2 chains</strong> I want to
+support in my smart contracts.</li>
+<li>Begin building out the <strong>Layer 3 logic</strong>: wallet
+connection, NFT display, land registry.</li>
+<li>Research tools for <strong>cross-chain support</strong> in case
+users want to connect different wallets.</li>
+<li>Continue developing the <strong>tech stack and architecture
+diagram</strong> to document how each layer connects.</li>
+</ul>
+<hr />
+<p>This devlog helps ground the full-stack structure of the metaverse
+project and provides a reference for deciding how to structure smart
+contracts, APIs, and frontend behavior.</p>
 </body>
 </html>
