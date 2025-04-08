@@ -7,7 +7,7 @@
 This is the technical portfolio and development hub for Lorelei Noble. Projects include decentralized infrastructure, blockchain development, security automation, and Rust-based tooling.
 
 This repository supports:
-- Arynwood.com — a terminal-styled hub for projects and technical blogs logs
+- Arynwood.com — a terminal-styled hub for projects and technical logs
 - SkyeVault Ops — cloud and contract security research
 - On-Chain Metaverse — a 2D and 3D open metaverse experiment using decentralized storage and Ethereum-compatible contracts
 - Genesis — an NFT collection deployed to the Polygon testnet and stored on IPFS
