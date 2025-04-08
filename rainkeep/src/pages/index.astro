@@ -26,25 +26,6 @@ import '../styles/tailwind.css';
       box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
     }
 
-    .ascii-header {
-      white-space: pre;
-      font-size: 0.8rem;
-      line-height: 1.2;
-      color: #b48eff;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .about {
-      font-size: 0.9rem;
-      color: #999;
-      margin: 1rem 0 2rem;
-      text-align: center;
-      max-width: 44ch;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
     .prompt {
       color: #b9aaff;
     }
@@ -74,33 +55,19 @@ import '../styles/tailwind.css';
       color: #b9aaff;
     }
 
+    /* 💜 Add this section for link styling */
     a {
-      color: #3399ff;
-      text-decoration: underline;
-    }
+  color: #3399ff;
+  text-decoration: underline;
+}
 
-    a:hover {
-      color: #ff99cc;
-    }
+a:hover {
+  color: #ff99cc;
+}
   </style>
 </head>
 <body>
   <div class="terminal">
-    <div class="ascii-header">
-{`                                                  _ 
-    /\\                                           | |
-   /  \\   _ __ _   _ _ ____      _____   ___   __| |
-  / /\\ \\ | '__| | | | '_ \\ \\ /\\ / / _ \\ / _ \\ / _\` |
- / ____ \\| |  | |_| | | | \\ V  V / (_) | (_) | (_| |
-/_/    \\_\\_|   \\__, |_| |_|\\_/\\_/ \\___/ \\___/ \\__,_|
-                __/ |                               
-               |___/                                `}
-    </div>
-
-    <div class="about">
-      Arynwood Terminal — built by a dev who grew up on the Commodore 64 and lives fully modern in Web3. This site runs on IPFS, hand-coded with Astro, and forged in lavender fire.
-    </div>
-
     <div class="output">$ <span class="prompt">whoami</span></div>
     <div class="output">Lorelei Noble — full-stack dev, artist, architect of Arynwood.</div>
     <div class="output">Type <span class="prompt">help</span> or try commands like <span class="prompt">projects</span>, <span class="prompt">blog</span>, or <span class="prompt">contact</span>.</div>
@@ -131,16 +98,16 @@ import '../styles/tailwind.css';
             response = 'Read the blog: <a href="/blog">DevLogs</a>';
             break;
           case 'contact':
-            response = 'Email: <a href="mailto:loreleihnoble@gmail.com">Gmail</a> | LinkedIn: <a href="https://www.linkedin.com/in/lorelein/">LinkedIn</a> | GitHub: <a href="https://github.com/SkyeVault" target="_blank">SkyeVault</a>';
+            response = 'Email: <a href="mailto:loreleihnoble@gmail.com">Gmail</a> | LinkedIn: <a href="https://www.linkedin.com/in/lorelein/">LinkedIn</a> |GitHub: <a href="https://github.com/SkyeVault" target="_blank">SkyeVault</a>';
             break;
           default:
-            response = \`Command not found: \${cmd}\`;
+            response = `Command not found: ${cmd}`;
         }
 
         const terminal = document.querySelector('.terminal');
         const newOutput = document.createElement('div');
         newOutput.className = 'output';
-        newOutput.innerHTML = \`$ <span class="prompt">\${cmd}</span><br>\${response}\`;
+        newOutput.innerHTML = `$ <span class="prompt">${cmd}</span><br>${response}`;
         terminal.insertBefore(newOutput, input.parentNode);
 
         input.value = '';
