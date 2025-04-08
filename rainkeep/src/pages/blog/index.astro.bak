@@ -1,4 +1,8 @@
 ---
+import fs from 'fs';
+import path from 'path';
+import '../../styles/tailwind.css';
+
 const posts = [
   "DevLog250407",
   "DevLog250402",
@@ -36,7 +40,16 @@ const posts = [
   "DevLog250302",
   "devlog250301"
 ];
-import '../../styles/tailwind.css';
+
+const blogPath = '../../static/blog-html';
+
+function getExcerpt(file) {
+  const fullPath = path.resolve(blogPath, `${file}.html`);
+  if (!fs.existsSync(fullPath)) return 'No snippet available.';
+  const content = fs.readFileSync(fullPath, 'utf8');
+  const match = content.match(/<p class=\"excerpt\">(.*?)<\/p>/s);
+  return match ? match[1].trim() : 'No snippet available.';
+}
 ---
 
 <!DOCTYPE html>
@@ -80,7 +93,7 @@ import '../../styles/tailwind.css';
     }
 
     li {
-      margin-bottom: 1.4rem;
+      margin-bottom: 2rem;
     }
 
     .prompt {
@@ -88,6 +101,12 @@ import '../../styles/tailwind.css';
       font-size: 0.9rem;
       display: block;
       margin-bottom: 0.25rem;
+    }
+
+    .snippet {
+      color: #aaa;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
     }
 
     a {
@@ -130,10 +149,10 @@ import '../../styles/tailwind.css';
   <p class="intro">
     Welcome to the Arynwood Terminal Blog. This space serves as the technical documentation log for all current and future projects.
     The site itself is being actively built — and the development process is fully transparent. You can follow the evolution of every system,
-    contract, and line of logic through these devlogs.  Visit the GitHub repository here:<br />
-      <a href="https://github.com/skyevault/main/tree/main/rainkeep" target="_blank">
-        github.com/skyevault/main/tree/main/rainkeep
-      </a>
+    contract, and line of logic through these devlogs. Visit the GitHub repository here:<br />
+    <a href="https://github.com/skyevault/main/tree/main/rainkeep" target="_blank">
+      github.com/skyevault/main/tree/main/rainkeep
+    </a>
     <br /><br />
     Projects on the horizon include a 2D and 3D metaverse — fully on-chain, using the Polygon Amoy testnet for early deployment and proof-of-concept testing.
   </p>
@@ -146,6 +165,7 @@ import '../../styles/tailwind.css';
           <a href={`/blog-html/${file}.html`} target="_blank" rel="noopener">
             {file}
           </a>
+          <p class="snippet">{getExcerpt(file)}</p>
         </li>
       ))
     }
