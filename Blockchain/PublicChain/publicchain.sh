@@ -1,0 +1,216 @@
+#!/bin/bash
+
+# Create main project directory
+mkdir -p US-Public-Chain
+cd US-Public-Chain
+
+# Create the Python script that writes the HTML
+cat << 'EOF' > generate_index.py
+html_content = """<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>US Public Chain</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>US Public Chain</h1>
+    <span class="prompt">> Log Date: 2025-04-07</span>
+
+    <p><strong>A transparent blockchain framework and prototype for modernizing public assistance and government payroll.<br>
+    Built for dignity, equity, and systemic trust.</strong></p>
+
+    <hr />
+
+    <h2>Why Blockchain?</h2>
+    <p>It’s a decentralized ledger — a programmable, verifiable system that removes middlemen, makes transactions transparent, and creates accountability by design.</p>
+    <ul>
+      <li>Prevent corruption through public verification</li>
+      <li>Automate trust without gatekeeping</li>
+      <li>Deliver funds directly to people who need them</li>
+      <li>Ensure every tax dollar is traceable</li>
+    </ul>
+    <p><strong>US Public Chain</strong> applies these core strengths to the public sector — transforming how aid is distributed and how public workers are compensated, with clarity and fairness for all.</p>
+
+    <hr />
+
+    <h2>The Problem</h2>
+    <p>Public aid is slow, fragmented, and hard to track.<br />
+    Government payroll is often inefficient, delayed, or unclear.<br />
+    Spending is buried in bureaucracy, difficult to audit, and vulnerable to misuse.</p>
+    <p>Meanwhile, cryptocurrency is being politicized and stockpiled — its utility overlooked in favor of speculative value.</p>
+    <p>We don’t need more accumulation. We need <strong>application</strong>.</p>
+    <p><strong>Crypto is not a trophy, it's a tool.</strong></p>
+
+    <hr />
+
+    <h2>Solution</h2>
+
+    <h3>1. Public Assistance Token (PAT)</h3>
+    <p>A non-speculative, non-transferable token for recipients of public aid.</p>
+    <ul>
+      <li>Food</li>
+      <li>Public healthcare</li>
+      <li>Fuel</li>
+      <li>Public transit</li>
+      <li>Utilities</li>
+      <li>Basic clothing and toiletries</li>
+      <li>Housing and transitional services</li>
+    </ul>
+
+    <p><strong>Key features:</strong></p>
+    <ul>
+      <li>Resets monthly (no stockpiling)</li>
+      <li>Cannot be converted or traded</li>
+      <li>Fully traceable but anonymized for privacy</li>
+      <li>Usable only at verified providers within essential categories</li>
+    </ul>
+
+    <h3>2. USDC for Public Workers</h3>
+    <p>Stablecoin-based payroll for government and essential public service workers.</p>
+    <ul>
+      <li>Emergency services</li>
+      <li>Educators</li>
+      <li>Healthcare workers</li>
+      <li>Government employees (local, state, federal)</li>
+      <li>Infrastructure and transportation workers</li>
+    </ul>
+
+    <p><strong>Key features:</strong></p>
+    <ul>
+      <li>Spendable, saveable, and convertible</li>
+      <li>Remaining balance rolls over monthly</li>
+      <li>Fully transparent salary tracking</li>
+      <li>Encourages accountability without restriction</li>
+    </ul>
+
+    <hr />
+
+    <h2>Who It Serves</h2>
+
+    <h3>Assistance Recipients</h3>
+    <ul>
+      <li>Disabled individuals</li>
+      <li>Veterans</li>
+      <li>Senior citizens</li>
+      <li>Children under 18 in low-income households</li>
+      <li>Pregnant women and mothers with low household income</li>
+      <li>Unemployed individuals verified through labor records</li>
+    </ul>
+
+    <h3>Public Workers</h3>
+    <ul>
+      <li>Verified public employees paid through state or federal systems</li>
+      <li>Salaries visible on-chain to promote fair pay and trust</li>
+    </ul>
+
+    <hr />
+
+    <h2>How It Works</h2>
+    <pre><code>us-public-chain/
+├── contracts/          # Smart contracts for PAT and USDC logic
+├── frontend/           # User interface for recipients, workers, and the public
+├── data/               # Token flow simulation and program analytics
+├── docs/               # System philosophy, use cases, and public onboarding
+├── scripts/            # Deployment and contract management
+└── README.md           # This file
+</code></pre>
+
+    <hr />
+
+    <h2>Future Plans</h2>
+    <ul>
+      <li>Mobile-friendly public wallet cards for recipients</li>
+      <li>DAO-governed community budgeting tools</li>
+      <li>Token-based voting for local use of public funds</li>
+      <li>Open-source APIs for city, state, and nonprofit integration</li>
+      <li>International templates for global deployment</li>
+    </ul>
+
+    <hr />
+
+    <h2>Technology</h2>
+    <ul>
+      <li><strong>Blockchain:</strong> Polygon (Amoy testnet)</li>
+      <li><strong>Contracts:</strong> Solidity (Hardhat or Foundry)</li>
+      <li><strong>Frontend:</strong> Astro or React with Tailwind CSS</li>
+      <li><strong>Data Viz:</strong> D3.js or Recharts</li>
+      <li><strong>Wallets:</strong> MetaMask, WalletConnect</li>
+      <li><strong>Hosting:</strong> GitHub Pages, IPFS</li>
+    </ul>
+
+    <hr />
+
+    <h2>About the Creator</h2>
+    <p><strong>Written by Lorelei Noble – Developer. Artist. Mother. Citizen.</strong></p>
+    <p>I build ethical systems for the future I want my daughter to grow up in — one where transparency, fairness, and dignity aren’t ideals, but defaults.</p>
+    <p>My passion is cloud security, smart contract architecture, Web3 infrastructure, and decentralized platforms. My philosophy is rooted in open-source solutions, using tools like Solidity, Rust, Foundry, and IPFS.</p>
+    <p>This project is not theoretical. It’s deeply personal. And it’s within our reach.</p>
+
+    <hr />
+
+    <p><a href="https://arynwood.com">Return to Arynwood Terminal</a></p>
+    <p><a href="mailto:loreleihnoble@gmail.com">Contact Me</a></p>
+  </body>
+</html>"""
+
+with open("index.html", "w") as f:
+    f.write(html_content)
+EOF
+
+# Optional: Run the Python script immediately
+python3 generate_index.py
+
+echo "Project created: US-Public-Chain with index.html"
