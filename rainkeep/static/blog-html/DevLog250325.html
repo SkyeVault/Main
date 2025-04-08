@@ -3,261 +3,299 @@
 <head>
   <meta charset="UTF-8" />
   <title>DevLog250325</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background-color: #0d0f1c;
       color: #c9c7ff;
       font-family: 'Courier New', monospace;
-      max-width: 700px;
-      margin: 4rem auto;
       padding: 2rem;
-      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-    h1, h2, h3 {
+
+    h1 {
       color: #b48eff;
-      text-shadow: 0 0 6px #b48eff;
+      text-shadow: 0 0 2px #b48eff;
     }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
     a {
       color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
       text-decoration: underline;
     }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
     code {
-      background: #1f1f2e;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1
-  id="devlog-250325-understanding-ethereum-testnets-and-their-currencies">Devlog
-  250325: Understanding Ethereum Testnets and Their Currencies</h1>
-  <h2 id="overview"><strong>Overview</strong></h2>
-  <p>Today I focused on learning how <strong>Ethereum testnets</strong>
-  work, why we use them, and what currencies power them. This is
-  essential knowledge for any smart contract developer, especially while
-  building and testing dApps like the Metaverse Sandbox.</p>
-  <p>Testnets provide a <strong>safe and cost-free environment</strong>
-  to test smart contracts before deploying to the mainnet. They simulate
-  blockchain environments using separate consensus mechanisms and fake
-  currencies to avoid real-world financial consequences.</p>
-  <hr />
-  <h2 id="what-is-a-testnet"><strong>What Is a Testnet?</strong></h2>
-  <p>A testnet is a <strong>public or private blockchain</strong> that
-  mirrors the functionality of a main blockchain (mainnet), but is
-  isolated for testing purposes.</p>
-  <h3 id="why-use-a-testnet">Why Use a Testnet?</h3>
-  <ul>
-  <li><strong>Avoid using real ETH or tokens</strong></li>
-  <li><strong>Test smart contracts and UI interactions</strong></li>
-  <li><strong>Estimate gas costs in a real environment</strong></li>
-  <li><strong>Debug transaction flows, wallet behavior, and deployment
-  scripts</strong></li>
-  </ul>
-  <hr />
-  <h2 id="popular-ethereum-compatible-testnets-20242025"><strong>Popular
-  Ethereum-Compatible Testnets (2024–2025)</strong></h2>
-  <table>
-  <colgroup>
-  <col style="width: 20%" />
-  <col style="width: 10%" />
-  <col style="width: 48%" />
-  <col style="width: 19%" />
-  </colgroup>
-  <thead>
-  <tr>
-  <th>Testnet Name</th>
-  <th>Chain ID</th>
-  <th>Use Case</th>
-  <th>Native Token</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-  <td><strong>Sepolia</strong></td>
-  <td>11155111</td>
-  <td>Main Ethereum testnet (replaces Goerli)</td>
-  <td>ETH (testnet)</td>
-  </tr>
-  <tr>
-  <td><strong>Amoy</strong></td>
-  <td>80002</td>
-  <td>Polygon PoS L2 (replaces Mumbai)</td>
-  <td>POL (testnet)</td>
-  </tr>
-  <tr>
-  <td><strong>Holesky</strong></td>
-  <td>17000</td>
-  <td>Ethereum consensus layer testing</td>
-  <td>ETH (testnet)</td>
-  </tr>
-  <tr>
-  <td><strong>Chiado</strong></td>
-  <td>10200</td>
-  <td>Gnosis Chain testnet</td>
-  <td>xDAI</td>
-  </tr>
-  <tr>
-  <td><strong>Scroll Alpha</strong></td>
-  <td>varies</td>
-  <td>Zero-knowledge Layer 2 for Scroll</td>
-  <td>ETH (testnet)</td>
-  </tr>
-  <tr>
-  <td><strong>Arbitrum Sepolia</strong></td>
-  <td>varies</td>
-  <td>Optimistic rollup L2 for Arbitrum</td>
-  <td>ETH (testnet)</td>
-  </tr>
-  </tbody>
-  </table>
-  <hr />
-  <h2 id="currency-on-testnets"><strong>Currency on
-  Testnets</strong></h2>
-  <p>Each testnet uses a <strong>test version of a native token</strong>
-  to simulate transactions.</p>
-  <h3 id="key-concepts">Key Concepts:</h3>
-  <ul>
-  <li><strong>Test ETH, MATIC, POL, or xDAI</strong> are not real
-  assets.</li>
-  <li>These tokens are obtained through <strong>faucets</strong> (web
-  apps that send small test amounts).</li>
-  <li>You <strong>still need these test tokens to pay gas fees</strong>,
-  just like on mainnet.</li>
-  </ul>
-  <hr />
-  <h2 id="how-to-get-testnet-tokens"><strong>How to Get Testnet
-  Tokens</strong></h2>
-  <table>
-  <colgroup>
-  <col style="width: 17%" />
-  <col style="width: 72%" />
-  <col style="width: 9%" />
-  </colgroup>
-  <thead>
-  <tr>
-  <th>Testnet</th>
-  <th>Faucet URL</th>
-  <th>Notes</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-  <td>Sepolia</td>
-  <td>https://sepoliafaucet.com/</td>
-  <td>Requires GitHub login</td>
-  </tr>
-  <tr>
-  <td>Amoy (Polygon)</td>
-  <td>https://faucet.polygon.technology/</td>
-  <td>Requires developer form</td>
-  </tr>
-  <tr>
-  <td>Chiado (Gnosis)</td>
-  <td>https://gnosisfaucet.com/</td>
-  <td>Fast and open</td>
-  </tr>
-  <tr>
-  <td>Arbitrum Sepolia</td>
-  <td>https://faucet.quicknode.com/arbitrum/sepolia</td>
-  <td>New L2 faucet</td>
-  </tr>
-  </tbody>
-  </table>
-  <p>Some testnets (like Amoy) <strong>require mainnet POL before giving
-  out testnet POL</strong>, which can create onboarding headaches.</p>
-  <hr />
-  <h2 id="differences-between-testnets"><strong>Differences Between
-  Testnets</strong></h2>
-  <table>
-  <colgroup>
-  <col style="width: 26%" />
-  <col style="width: 17%" />
-  <col style="width: 19%" />
-  <col style="width: 17%" />
-  <col style="width: 19%" />
-  </colgroup>
-  <thead>
-  <tr>
-  <th>Feature</th>
-  <th>Sepolia</th>
-  <th>Amoy (Polygon)</th>
-  <th>Chiado</th>
-  <th>Arbitrum Sepolia</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-  <td>L2 Support</td>
-  <td>No</td>
-  <td>Yes</td>
-  <td>No</td>
-  <td>Yes</td>
-  </tr>
-  <tr>
-  <td>Realistic Gas Simulation</td>
-  <td>Medium</td>
-  <td>High</td>
-  <td>Low</td>
-  <td>High</td>
-  </tr>
-  <tr>
-  <td>Tooling Support</td>
-  <td>Excellent</td>
-  <td>Growing</td>
-  <td>Moderate</td>
-  <td>Good</td>
-  </tr>
-  <tr>
-  <td>Token Availability</td>
-  <td>Easy (faucets)</td>
-  <td>Moderate (email)</td>
-  <td>Easy</td>
-  <td>Moderate</td>
-  </tr>
-  </tbody>
-  </table>
-  <hr />
-  <h2 id="how-they-work-behind-the-scenes"><strong>How They Work Behind
-  the Scenes</strong></h2>
-  <ul>
-  <li>Each testnet runs its own <strong>consensus</strong> (PoA, PoS, or
-  L2 rollup mechanics).</li>
-  <li>Block explorers like <strong>Sepolia Etherscan</strong> or
-  <strong>Amoy Polygonscan</strong> let you monitor transactions.</li>
-  <li>Tools like <strong>Foundry</strong>, <strong>Hardhat</strong>, and
-  <strong>Truffle</strong> all support testnet deployments with correct
-  <code>--rpc-url</code> settings.</li>
-  </ul>
-  <p>Example RPC config for Sepolia:</p>
-  <div class="sourceCode" id="cb1"><pre
-  class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">forge</span> script script/Deploy.s.sol <span class="at">--rpc-url</span> https://sepolia.infura.io/v3/YOUR_API_KEY <span class="at">--private-key</span> <span class="va">$PRIVATE_KEY</span> <span class="at">--broadcast</span></span></code></pre></div>
-  <hr />
-  <h2 id="takeaways"><strong>Takeaways</strong></h2>
-  <ul>
-  <li>Testnets are vital for <strong>safe and efficient smart contract
-  development</strong>.</li>
-  <li>Choosing the right testnet depends on your <strong>target
-  deployment chain</strong>, availability of faucets, and desired
-  simulation accuracy.</li>
-  <li>Always monitor the <strong>gas costs</strong> and <strong>contract
-  behavior</strong> on testnets before pushing to mainnet.</li>
-  </ul>
-  <hr />
-  <h2 id="next-steps"><strong>Next Steps</strong></h2>
-  <ul>
-  <li>Continue testing <strong>MetaverseLand</strong> contracts on
-  <strong>Amoy</strong> using the 100 testnet POL I received
-  yesterday.</li>
-  <li>Create a script that checks <strong>testnet balances</strong>,
-  faucet availability, and network status for fast switching between
-  environments.</li>
-  <li>Document the full deployment pipeline for <strong>Foundry +
-  Polygon Amoy</strong> for repeatability.</li>
-  </ul>
-  <hr />
-  <p>This devlog helps solidify my understanding of the
-  <strong>ecosystem of testnets</strong> and prepares me for scaling my
-  Web3 deployments with confidence.</p>
+<h1>DevLog250325</h1>
+<span class="prompt">> Log Date: 250325</span>
+<h1
+id="devlog-250325-understanding-ethereum-testnets-and-their-currencies">Devlog
+250325: Understanding Ethereum Testnets and Their Currencies</h1>
+<h2 id="overview"><strong>Overview</strong></h2>
+<p>Today I focused on learning how <strong>Ethereum testnets</strong>
+work, why we use them, and what currencies power them. This is essential
+knowledge for any smart contract developer, especially while building
+and testing dApps like the Metaverse Sandbox.</p>
+<p>Testnets provide a <strong>safe and cost-free environment</strong> to
+test smart contracts before deploying to the mainnet. They simulate
+blockchain environments using separate consensus mechanisms and fake
+currencies to avoid real-world financial consequences.</p>
+<hr />
+<h2 id="what-is-a-testnet"><strong>What Is a Testnet?</strong></h2>
+<p>A testnet is a <strong>public or private blockchain</strong> that
+mirrors the functionality of a main blockchain (mainnet), but is
+isolated for testing purposes.</p>
+<h3 id="why-use-a-testnet">Why Use a Testnet?</h3>
+<ul>
+<li><strong>Avoid using real ETH or tokens</strong></li>
+<li><strong>Test smart contracts and UI interactions</strong></li>
+<li><strong>Estimate gas costs in a real environment</strong></li>
+<li><strong>Debug transaction flows, wallet behavior, and deployment
+scripts</strong></li>
+</ul>
+<hr />
+<h2 id="popular-ethereum-compatible-testnets-20242025"><strong>Popular
+Ethereum-Compatible Testnets (2024–2025)</strong></h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 10%" />
+<col style="width: 48%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr>
+<th>Testnet Name</th>
+<th>Chain ID</th>
+<th>Use Case</th>
+<th>Native Token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sepolia</strong></td>
+<td>11155111</td>
+<td>Main Ethereum testnet (replaces Goerli)</td>
+<td>ETH (testnet)</td>
+</tr>
+<tr>
+<td><strong>Amoy</strong></td>
+<td>80002</td>
+<td>Polygon PoS L2 (replaces Mumbai)</td>
+<td>POL (testnet)</td>
+</tr>
+<tr>
+<td><strong>Holesky</strong></td>
+<td>17000</td>
+<td>Ethereum consensus layer testing</td>
+<td>ETH (testnet)</td>
+</tr>
+<tr>
+<td><strong>Chiado</strong></td>
+<td>10200</td>
+<td>Gnosis Chain testnet</td>
+<td>xDAI</td>
+</tr>
+<tr>
+<td><strong>Scroll Alpha</strong></td>
+<td>varies</td>
+<td>Zero-knowledge Layer 2 for Scroll</td>
+<td>ETH (testnet)</td>
+</tr>
+<tr>
+<td><strong>Arbitrum Sepolia</strong></td>
+<td>varies</td>
+<td>Optimistic rollup L2 for Arbitrum</td>
+<td>ETH (testnet)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="currency-on-testnets"><strong>Currency on Testnets</strong></h2>
+<p>Each testnet uses a <strong>test version of a native token</strong>
+to simulate transactions.</p>
+<h3 id="key-concepts">Key Concepts:</h3>
+<ul>
+<li><strong>Test ETH, MATIC, POL, or xDAI</strong> are not real
+assets.</li>
+<li>These tokens are obtained through <strong>faucets</strong> (web apps
+that send small test amounts).</li>
+<li>You <strong>still need these test tokens to pay gas fees</strong>,
+just like on mainnet.</li>
+</ul>
+<hr />
+<h2 id="how-to-get-testnet-tokens"><strong>How to Get Testnet
+Tokens</strong></h2>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 72%" />
+<col style="width: 9%" />
+</colgroup>
+<thead>
+<tr>
+<th>Testnet</th>
+<th>Faucet URL</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sepolia</td>
+<td>https://sepoliafaucet.com/</td>
+<td>Requires GitHub login</td>
+</tr>
+<tr>
+<td>Amoy (Polygon)</td>
+<td>https://faucet.polygon.technology/</td>
+<td>Requires developer form</td>
+</tr>
+<tr>
+<td>Chiado (Gnosis)</td>
+<td>https://gnosisfaucet.com/</td>
+<td>Fast and open</td>
+</tr>
+<tr>
+<td>Arbitrum Sepolia</td>
+<td>https://faucet.quicknode.com/arbitrum/sepolia</td>
+<td>New L2 faucet</td>
+</tr>
+</tbody>
+</table>
+<p>Some testnets (like Amoy) <strong>require mainnet POL before giving
+out testnet POL</strong>, which can create onboarding headaches.</p>
+<hr />
+<h2 id="differences-between-testnets"><strong>Differences Between
+Testnets</strong></h2>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Sepolia</th>
+<th>Amoy (Polygon)</th>
+<th>Chiado</th>
+<th>Arbitrum Sepolia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L2 Support</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Realistic Gas Simulation</td>
+<td>Medium</td>
+<td>High</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Tooling Support</td>
+<td>Excellent</td>
+<td>Growing</td>
+<td>Moderate</td>
+<td>Good</td>
+</tr>
+<tr>
+<td>Token Availability</td>
+<td>Easy (faucets)</td>
+<td>Moderate (email)</td>
+<td>Easy</td>
+<td>Moderate</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="how-they-work-behind-the-scenes"><strong>How They Work Behind
+the Scenes</strong></h2>
+<ul>
+<li>Each testnet runs its own <strong>consensus</strong> (PoA, PoS, or
+L2 rollup mechanics).</li>
+<li>Block explorers like <strong>Sepolia Etherscan</strong> or
+<strong>Amoy Polygonscan</strong> let you monitor transactions.</li>
+<li>Tools like <strong>Foundry</strong>, <strong>Hardhat</strong>, and
+<strong>Truffle</strong> all support testnet deployments with correct
+<code>--rpc-url</code> settings.</li>
+</ul>
+<p>Example RPC config for Sepolia:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">forge</span> script script/Deploy.s.sol <span class="at">--rpc-url</span> https://sepolia.infura.io/v3/YOUR_API_KEY <span class="at">--private-key</span> <span class="va">$PRIVATE_KEY</span> <span class="at">--broadcast</span></span></code></pre></div>
+<hr />
+<h2 id="takeaways"><strong>Takeaways</strong></h2>
+<ul>
+<li>Testnets are vital for <strong>safe and efficient smart contract
+development</strong>.</li>
+<li>Choosing the right testnet depends on your <strong>target deployment
+chain</strong>, availability of faucets, and desired simulation
+accuracy.</li>
+<li>Always monitor the <strong>gas costs</strong> and <strong>contract
+behavior</strong> on testnets before pushing to mainnet.</li>
+</ul>
+<hr />
+<h2 id="next-steps"><strong>Next Steps</strong></h2>
+<ul>
+<li>Continue testing <strong>MetaverseLand</strong> contracts on
+<strong>Amoy</strong> using the 100 testnet POL I received
+yesterday.</li>
+<li>Create a script that checks <strong>testnet balances</strong>,
+faucet availability, and network status for fast switching between
+environments.</li>
+<li>Document the full deployment pipeline for <strong>Foundry + Polygon
+Amoy</strong> for repeatability.</li>
+</ul>
+<hr />
+<p>This devlog helps solidify my understanding of the <strong>ecosystem
+of testnets</strong> and prepares me for scaling my Web3 deployments
+with confidence.</p>
 </body>
 </html>

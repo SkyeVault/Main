@@ -3,58 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <title>DevLog250320</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background-color: #0d0f1c;
       color: #c9c7ff;
       font-family: 'Courier New', monospace;
-      max-width: 700px;
-      margin: 4rem auto;
       padding: 2rem;
-      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-    h1, h2, h3 {
+
+    h1 {
       color: #b48eff;
-      text-shadow: 0 0 6px #b48eff;
+      text-shadow: 0 0 2px #b48eff;
     }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
     a {
       color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
       text-decoration: underline;
     }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
     code {
-      background: #1f1f2e;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1
-  id="devlog-250320-exploring-blockchain-hashing-and-solidity-cryptography">Devlog
-  250320: Exploring Blockchain Hashing and Solidity Cryptography</h1>
-  <h2 id="overview"><strong>Overview</strong></h2>
-  <p>Today’s focus was on <strong>understanding how blockchain handles
-  cryptographic hashing</strong> and how Solidity interacts with
-  cryptographic functions. This is essential for <strong>data integrity,
-  digital signatures, and secure transactions</strong> in smart
-  contracts.</p>
-  <hr />
-  <h2 id="understanding-hashing-in-blockchain"><strong>1. Understanding
-  Hashing in Blockchain</strong></h2>
-  <p>A <strong>hash function</strong> is a one-way function that takes
-  an input and produces a fixed-length output (hash). On Ethereum,
-  hashing is commonly used for:<br />
-  - <strong>Storing and verifying data</strong> without revealing the
-  original input.<br />
-  - <strong>Checking integrity</strong> to ensure data hasn’t been
-  tampered with.<br />
-  - <strong>Generating digital signatures</strong> for authentication
-  and security.</p>
-  <p>Ethereum primarily uses <strong>Keccak-256</strong>, a variant of
-  SHA-3, as its hashing function.</p>
-  <h3 id="example-of-keccak-256-in-solidity"><strong>Example of
-  Keccak-256 in Solidity</strong></h3>
-  <pre class="solidity"><code>// SPDX-License-Identifier: MIT
+<h1>DevLog250320</h1>
+<span class="prompt">> Log Date: 250320</span>
+<h1
+id="devlog-250320-exploring-blockchain-hashing-and-solidity-cryptography">Devlog
+250320: Exploring Blockchain Hashing and Solidity Cryptography</h1>
+<h2 id="overview"><strong>Overview</strong></h2>
+<p>Today’s focus was on <strong>understanding how blockchain handles
+cryptographic hashing</strong> and how Solidity interacts with
+cryptographic functions. This is essential for <strong>data integrity,
+digital signatures, and secure transactions</strong> in smart
+contracts.</p>
+<hr />
+<h2 id="understanding-hashing-in-blockchain"><strong>1. Understanding
+Hashing in Blockchain</strong></h2>
+<p>A <strong>hash function</strong> is a one-way function that takes an
+input and produces a fixed-length output (hash). On Ethereum, hashing is
+commonly used for:<br />
+- <strong>Storing and verifying data</strong> without revealing the
+original input.<br />
+- <strong>Checking integrity</strong> to ensure data hasn’t been
+tampered with.<br />
+- <strong>Generating digital signatures</strong> for authentication and
+security.</p>
+<p>Ethereum primarily uses <strong>Keccak-256</strong>, a variant of
+SHA-3, as its hashing function.</p>
+<h3 id="example-of-keccak-256-in-solidity"><strong>Example of Keccak-256
+in Solidity</strong></h3>
+<pre class="solidity"><code>// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
 contract HashingExample {
@@ -62,26 +102,26 @@ contract HashingExample {
         return keccak256(abi.encodePacked(input));
     }
 }</code></pre>
-  <h4 id="how-it-works"><strong>How it Works</strong></h4>
-  <ul>
-  <li><code>keccak256(abi.encodePacked(input))</code> → Hashes the input
-  string.</li>
-  <li>This output <strong>cannot be reversed</strong>, ensuring
-  <strong>security</strong> in smart contracts.</li>
-  </ul>
-  <hr />
-  <h2 id="where-hashes-are-stored-in-blockchain"><strong>2. Where Hashes
-  Are Stored in Blockchain</strong></h2>
-  <p>Hashes can be stored <strong>on-chain</strong> inside contract
-  storage or logs, but because blockchain space is expensive, many
-  projects:<br />
-  - Store the <strong>hash on-chain</strong> but <strong>keep the raw
-  data off-chain</strong> (e.g., IPFS, Arweave).<br />
-  - Use <strong>Merkle Trees</strong> to efficiently store and verify
-  large datasets.</p>
-  <h3 id="example-storing-verifying-a-hash-in-solidity"><strong>Example:
-  Storing &amp; Verifying a Hash in Solidity</strong></h3>
-  <pre class="solidity"><code>contract HashStorage {
+<h4 id="how-it-works"><strong>How it Works</strong></h4>
+<ul>
+<li><code>keccak256(abi.encodePacked(input))</code> → Hashes the input
+string.</li>
+<li>This output <strong>cannot be reversed</strong>, ensuring
+<strong>security</strong> in smart contracts.</li>
+</ul>
+<hr />
+<h2 id="where-hashes-are-stored-in-blockchain"><strong>2. Where Hashes
+Are Stored in Blockchain</strong></h2>
+<p>Hashes can be stored <strong>on-chain</strong> inside contract
+storage or logs, but because blockchain space is expensive, many
+projects:<br />
+- Store the <strong>hash on-chain</strong> but <strong>keep the raw data
+off-chain</strong> (e.g., IPFS, Arweave).<br />
+- Use <strong>Merkle Trees</strong> to efficiently store and verify
+large datasets.</p>
+<h3 id="example-storing-verifying-a-hash-in-solidity"><strong>Example:
+Storing &amp; Verifying a Hash in Solidity</strong></h3>
+<pre class="solidity"><code>contract HashStorage {
     mapping(bytes32 =&gt; bool) public storedHashes;
 
     function storeHash(string memory data) public {
@@ -94,35 +134,35 @@ contract HashingExample {
         return storedHashes[hash];
     }
 }</code></pre>
-  <h4 id="how-it-works-1"><strong>How it Works</strong></h4>
-  <ol type="1">
-  <li><strong>User submits data</strong> → Hash is stored in
-  <code>mapping(bytes32 =&gt; bool) storedHashes</code>.<br />
-  </li>
-  <li><strong>Later, the same data can be submitted</strong> → The hash
-  is recomputed and checked against storage.<br />
-  </li>
-  <li><strong>If hashes match</strong> → The function returns
-  <code>true</code>, confirming the data was previously stored.</li>
-  </ol>
-  <p>This is how <strong>blockchain ensures data integrity without
-  storing raw files</strong>.</p>
-  <hr />
-  <h2 id="how-solidity-interacts-with-cryptography"><strong>3. How
-  Solidity Interacts with Cryptography</strong></h2>
-  <p>Solidity doesn’t provide <strong>built-in asymmetric
-  encryption</strong> but supports:<br />
-  - <strong>Keccak-256 hashing</strong> for data integrity.<br />
-  - <strong>ECDSA (Elliptic Curve Digital Signatures)</strong> for
-  verifying signatures.<br />
-  - <strong>Merkle Trees</strong> for efficient data verification.</p>
-  <h3 id="using-ecdsa-for-digital-signatures"><strong>Using ECDSA for
-  Digital Signatures</strong></h3>
-  <p>Ethereum uses <strong>secp256k1</strong>, the same cryptographic
-  curve as Bitcoin.</p>
-  <p>Example: <strong>Recovering a Signer’s Address from a
-  Signature</strong></p>
-  <pre class="solidity"><code>import &quot;@openzeppelin/contracts/utils/cryptography/ECDSA.sol&quot;;
+<h4 id="how-it-works-1"><strong>How it Works</strong></h4>
+<ol type="1">
+<li><strong>User submits data</strong> → Hash is stored in
+<code>mapping(bytes32 =&gt; bool) storedHashes</code>.<br />
+</li>
+<li><strong>Later, the same data can be submitted</strong> → The hash is
+recomputed and checked against storage.<br />
+</li>
+<li><strong>If hashes match</strong> → The function returns
+<code>true</code>, confirming the data was previously stored.</li>
+</ol>
+<p>This is how <strong>blockchain ensures data integrity without storing
+raw files</strong>.</p>
+<hr />
+<h2 id="how-solidity-interacts-with-cryptography"><strong>3. How
+Solidity Interacts with Cryptography</strong></h2>
+<p>Solidity doesn’t provide <strong>built-in asymmetric
+encryption</strong> but supports:<br />
+- <strong>Keccak-256 hashing</strong> for data integrity.<br />
+- <strong>ECDSA (Elliptic Curve Digital Signatures)</strong> for
+verifying signatures.<br />
+- <strong>Merkle Trees</strong> for efficient data verification.</p>
+<h3 id="using-ecdsa-for-digital-signatures"><strong>Using ECDSA for
+Digital Signatures</strong></h3>
+<p>Ethereum uses <strong>secp256k1</strong>, the same cryptographic
+curve as Bitcoin.</p>
+<p>Example: <strong>Recovering a Signer’s Address from a
+Signature</strong></p>
+<pre class="solidity"><code>import &quot;@openzeppelin/contracts/utils/cryptography/ECDSA.sol&quot;;
 
 contract SignatureVerification {
     using ECDSA for bytes32;
@@ -131,31 +171,31 @@ contract SignatureVerification {
         return hash.recover(signature) == expectedSigner;
     }
 }</code></pre>
-  <h4 id="how-it-works-2"><strong>How it Works</strong></h4>
-  <ol type="1">
-  <li><strong>A user signs data</strong> off-chain using their
-  <strong>private key</strong>.<br />
-  </li>
-  <li>The signed message is sent to the contract.<br />
-  </li>
-  <li>The contract <strong>recovers the signer’s address</strong> from
-  the signature and verifies its authenticity.</li>
-  </ol>
-  <p>This is the foundation of <strong>wallet authentication</strong>
-  and <strong>message verification</strong> in Web3.</p>
-  <hr />
-  <h2 id="hashing-use-cases-in-solidity"><strong>4. Hashing Use Cases in
-  Solidity</strong></h2>
-  <h3 id="hash-commitments-anti-tampering-mechanism"><strong>1. Hash
-  Commitments (Anti-Tampering Mechanism)</strong></h3>
-  <ul>
-  <li>Used in <strong>secure auctions</strong>, <strong>commit-reveal
-  voting</strong>, and <strong>lottery systems</strong>.<br />
-  </li>
-  <li>Users submit <strong>hashed values first</strong>, revealing the
-  original value later.</li>
-  </ul>
-  <pre class="solidity"><code>contract CommitReveal {
+<h4 id="how-it-works-2"><strong>How it Works</strong></h4>
+<ol type="1">
+<li><strong>A user signs data</strong> off-chain using their
+<strong>private key</strong>.<br />
+</li>
+<li>The signed message is sent to the contract.<br />
+</li>
+<li>The contract <strong>recovers the signer’s address</strong> from the
+signature and verifies its authenticity.</li>
+</ol>
+<p>This is the foundation of <strong>wallet authentication</strong> and
+<strong>message verification</strong> in Web3.</p>
+<hr />
+<h2 id="hashing-use-cases-in-solidity"><strong>4. Hashing Use Cases in
+Solidity</strong></h2>
+<h3 id="hash-commitments-anti-tampering-mechanism"><strong>1. Hash
+Commitments (Anti-Tampering Mechanism)</strong></h3>
+<ul>
+<li>Used in <strong>secure auctions</strong>, <strong>commit-reveal
+voting</strong>, and <strong>lottery systems</strong>.<br />
+</li>
+<li>Users submit <strong>hashed values first</strong>, revealing the
+original value later.</li>
+</ul>
+<pre class="solidity"><code>contract CommitReveal {
     mapping(address =&gt; bytes32) public commitments;
 
     function commit(bytes32 hash) public {
@@ -166,19 +206,19 @@ contract SignatureVerification {
         return commitments[msg.sender] == keccak256(abi.encodePacked(secret, number));
     }
 }</code></pre>
-  <ul>
-  <li>The <strong>commit function stores a hash</strong> of a secret
-  value.<br />
-  </li>
-  <li>Later, the user <strong>reveals the original value</strong>,
-  proving they committed to it beforehand.</li>
-  </ul>
-  <h3 id="merkle-proofs-efficient-data-verification"><strong>2. Merkle
-  Proofs (Efficient Data Verification)</strong></h3>
-  <p>Used for <strong>batch verification</strong> of data, such as
-  <strong>whitelisting users for NFT mints</strong> or
-  <strong>validating ownership</strong>.</p>
-  <pre class="solidity"><code>import &quot;@openzeppelin/contracts/utils/cryptography/MerkleProof.sol&quot;;
+<ul>
+<li>The <strong>commit function stores a hash</strong> of a secret
+value.<br />
+</li>
+<li>Later, the user <strong>reveals the original value</strong>, proving
+they committed to it beforehand.</li>
+</ul>
+<h3 id="merkle-proofs-efficient-data-verification"><strong>2. Merkle
+Proofs (Efficient Data Verification)</strong></h3>
+<p>Used for <strong>batch verification</strong> of data, such as
+<strong>whitelisting users for NFT mints</strong> or <strong>validating
+ownership</strong>.</p>
+<pre class="solidity"><code>import &quot;@openzeppelin/contracts/utils/cryptography/MerkleProof.sol&quot;;
 
 contract MerkleExample {
     bytes32 public rootHash; // The Merkle Root
@@ -187,44 +227,44 @@ contract MerkleExample {
         return MerkleProof.verify(proof, rootHash, leaf);
     }
 }</code></pre>
-  <ul>
-  <li><strong>MerkleProof.verify()</strong> confirms that a given hash
-  is part of a known dataset.<br />
-  </li>
-  <li>Saves gas by verifying <strong>only a hash</strong>, rather than
-  storing entire lists on-chain.</li>
-  </ul>
-  <hr />
-  <h2 id="takeaways-next-steps"><strong>5. Takeaways &amp; Next
-  Steps</strong></h2>
-  <ul>
-  <li><strong>Keccak-256 is Solidity’s core hashing function</strong>
-  for securing data.<br />
-  </li>
-  <li><strong>Hashes are stored on-chain but often used as
-  references</strong> for off-chain data.<br />
-  </li>
-  <li><strong>ECDSA enables digital signature verification</strong>,
-  critical for <strong>Web3 authentication</strong>.<br />
-  </li>
-  <li><strong>Merkle Trees allow efficient batch verification</strong>,
-  optimizing gas fees.</li>
-  </ul>
-  <h3 id="next-steps"><strong>Next Steps</strong></h3>
-  <ul>
-  <li>Experiment with <strong>commit-reveal voting using hash
-  commitments</strong>.<br />
-  </li>
-  <li>Implement <strong>on-chain signature verification</strong> for
-  Web3 login authentication.<br />
-  </li>
-  <li>Investigate <strong>Layer 2 solutions</strong> that optimize
-  cryptographic proofs on Ethereum.</li>
-  </ul>
-  <p>Today’s session deepened my understanding of <strong>how Solidity
-  interacts with cryptography</strong> and how <strong>hashing secures
-  blockchain operations</strong>. The next focus will be
-  <strong>practical implementations of cryptographic methods in smart
-  contract security and Web3 authentication</strong>.</p>
+<ul>
+<li><strong>MerkleProof.verify()</strong> confirms that a given hash is
+part of a known dataset.<br />
+</li>
+<li>Saves gas by verifying <strong>only a hash</strong>, rather than
+storing entire lists on-chain.</li>
+</ul>
+<hr />
+<h2 id="takeaways-next-steps"><strong>5. Takeaways &amp; Next
+Steps</strong></h2>
+<ul>
+<li><strong>Keccak-256 is Solidity’s core hashing function</strong> for
+securing data.<br />
+</li>
+<li><strong>Hashes are stored on-chain but often used as
+references</strong> for off-chain data.<br />
+</li>
+<li><strong>ECDSA enables digital signature verification</strong>,
+critical for <strong>Web3 authentication</strong>.<br />
+</li>
+<li><strong>Merkle Trees allow efficient batch verification</strong>,
+optimizing gas fees.</li>
+</ul>
+<h3 id="next-steps"><strong>Next Steps</strong></h3>
+<ul>
+<li>Experiment with <strong>commit-reveal voting using hash
+commitments</strong>.<br />
+</li>
+<li>Implement <strong>on-chain signature verification</strong> for Web3
+login authentication.<br />
+</li>
+<li>Investigate <strong>Layer 2 solutions</strong> that optimize
+cryptographic proofs on Ethereum.</li>
+</ul>
+<p>Today’s session deepened my understanding of <strong>how Solidity
+interacts with cryptography</strong> and how <strong>hashing secures
+blockchain operations</strong>. The next focus will be <strong>practical
+implementations of cryptographic methods in smart contract security and
+Web3 authentication</strong>.</p>
 </body>
 </html>

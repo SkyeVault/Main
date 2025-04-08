@@ -3,61 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <title>DevLog250330</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       background-color: #0d0f1c;
       color: #c9c7ff;
       font-family: 'Courier New', monospace;
-      max-width: 700px;
-      margin: 4rem auto;
       padding: 2rem;
-      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-    h1, h2, h3 {
+
+    h1 {
       color: #b48eff;
-      text-shadow: 0 0 6px #b48eff;
+      text-shadow: 0 0 2px #b48eff;
     }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
     a {
       color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
       text-decoration: underline;
     }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
     code {
-      background: #1f1f2e;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1 id="devlog-250330-first-3d-scene-with-three.js">DevLog 250330 –
-  First 3D Scene with Three.js</h1>
-  <p><strong>Date:</strong> 2025-03-30 <strong>Focus:</strong> Setting
-  up a basic <code>Three.js</code> environment for the Metaverse
-  Sandbox. The goal was to render a 3D land tile scene in the browser
-  that can later be connected to smart contracts for NFT-based land
-  ownership.</p>
-  <hr />
-  <h2 id="goal">Goal</h2>
-  <p>To initialize a <strong>clean and expandable 3D space</strong>
-  using <strong>Three.js</strong>, where land parcels could be
-  visualized, clicked, and eventually tied to wallet-owned NFTs.</p>
-  <hr />
-  <h2 id="files-created">Files Created</h2>
-  <ul>
-  <li><code>index.html</code><br />
-  </li>
-  <li><code>main.js</code><br />
-  </li>
-  <li><code>style.css</code></li>
-  </ul>
-  <hr />
-  <h2 id="scene-preview">Scene Preview</h2>
-  <p>The script renders a <strong>flat 10x10 grid of 3D tiles</strong>
-  (cubes) on a plane with a basic camera and lighting setup.</p>
-  <hr />
-  <h2 id="code-main.js">Code: main.js</h2>
-  <div class="sourceCode" id="cb1"><pre
-  class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// main.js</span></span>
+<h1>DevLog250330</h1>
+<span class="prompt">> Log Date: 250330</span>
+<h1 id="devlog-250330-first-3d-scene-with-three.js">DevLog 250330 –
+First 3D Scene with Three.js</h1>
+<p><strong>Date:</strong> 2025-03-30 <strong>Focus:</strong> Setting up
+a basic <code>Three.js</code> environment for the Metaverse Sandbox. The
+goal was to render a 3D land tile scene in the browser that can later be
+connected to smart contracts for NFT-based land ownership.</p>
+<hr />
+<h2 id="goal">Goal</h2>
+<p>To initialize a <strong>clean and expandable 3D space</strong> using
+<strong>Three.js</strong>, where land parcels could be visualized,
+clicked, and eventually tied to wallet-owned NFTs.</p>
+<hr />
+<h2 id="files-created">Files Created</h2>
+<ul>
+<li><code>index.html</code><br />
+</li>
+<li><code>main.js</code><br />
+</li>
+<li><code>style.css</code></li>
+</ul>
+<hr />
+<h2 id="scene-preview">Scene Preview</h2>
+<p>The script renders a <strong>flat 10x10 grid of 3D tiles</strong>
+(cubes) on a plane with a basic camera and lighting setup.</p>
+<hr />
+<h2 id="code-main.js">Code: main.js</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// main.js</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="op">*</span> <span class="im">as</span> THREE <span class="im">from</span> <span class="st">&#39;three&#39;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -122,59 +160,59 @@
 <span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  camera<span class="op">.</span><span class="fu">updateProjectionMatrix</span>()</span>
 <span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  renderer<span class="op">.</span><span class="fu">setSize</span>(<span class="bu">window</span><span class="op">.</span><span class="at">innerWidth</span><span class="op">,</span> <span class="bu">window</span><span class="op">.</span><span class="at">innerHeight</span>)</span>
 <span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-  <hr />
-  <h2 id="code-explained">Code Explained</h2>
-  <h3 id="scene-renderer"><strong>Scene &amp; Renderer</strong></h3>
-  <ul>
-  <li><code>scene</code> is the 3D world container.</li>
-  <li><code>renderer</code> handles drawing the scene to a canvas.</li>
-  </ul>
-  <h3 id="camera"><strong>Camera</strong></h3>
-  <ul>
-  <li>A perspective camera mimics human vision.</li>
-  <li>Positioned high and angled to see the grid.</li>
-  </ul>
-  <h3 id="lighting"><strong>Lighting</strong></h3>
-  <ul>
-  <li>Ambient light brightens all objects.</li>
-  <li>Directional light simulates sunlight and adds depth/shadows.</li>
-  </ul>
-  <h3 id="grid-of-tiles"><strong>Grid of Tiles</strong></h3>
-  <ul>
-  <li>Creates 10x10 cube “parcels.”</li>
-  <li>Spaced apart evenly using <code>tileSize</code> and
-  <code>spacing</code>.</li>
-  <li><code>MeshStandardMaterial</code> gives them a colored surface
-  with lighting response.</li>
-  </ul>
-  <h3 id="animation-loop"><strong>Animation Loop</strong></h3>
-  <ul>
-  <li>Continuously renders the scene for smooth interactivity.</li>
-  <li>Resize handler ensures responsiveness.</li>
-  </ul>
-  <hr />
-  <h2 id="how-to-run">How to Run</h2>
-  <ol type="1">
-  <li>Create a basic HTML/JS/CSS project.</li>
-  <li>Add the Three.js CDN or install with a bundler
-  (<code>npm install three</code>).</li>
-  <li>Link your scripts correctly in <code>index.html</code>.</li>
-  <li>Open <code>index.html</code> in your browser.</li>
-  </ol>
-  <hr />
-  <h2 id="next-steps">Next Steps</h2>
-  <ul>
-  <li>Add raycasting to make each tile clickable.</li>
-  <li>Overlay ownership data (owned vs. unowned).</li>
-  <li>Connect to wallet using <code>ethers.js</code> or
-  <code>wagmi</code>.</li>
-  <li>Load metadata and images from IPFS to decorate owned tiles.</li>
-  </ul>
-  <hr />
-  <p><strong>Summary</strong><br />
-  Today’s work laid the foundation for a 3D land parcel viewer. Three.js
-  will be the visual layer for the Metaverse Sandbox, with NFTs tied to
-  specific tile locations. Next dev session will focus on interactivity
-  and wallet integration.</p>
+<hr />
+<h2 id="code-explained">Code Explained</h2>
+<h3 id="scene-renderer"><strong>Scene &amp; Renderer</strong></h3>
+<ul>
+<li><code>scene</code> is the 3D world container.</li>
+<li><code>renderer</code> handles drawing the scene to a canvas.</li>
+</ul>
+<h3 id="camera"><strong>Camera</strong></h3>
+<ul>
+<li>A perspective camera mimics human vision.</li>
+<li>Positioned high and angled to see the grid.</li>
+</ul>
+<h3 id="lighting"><strong>Lighting</strong></h3>
+<ul>
+<li>Ambient light brightens all objects.</li>
+<li>Directional light simulates sunlight and adds depth/shadows.</li>
+</ul>
+<h3 id="grid-of-tiles"><strong>Grid of Tiles</strong></h3>
+<ul>
+<li>Creates 10x10 cube “parcels.”</li>
+<li>Spaced apart evenly using <code>tileSize</code> and
+<code>spacing</code>.</li>
+<li><code>MeshStandardMaterial</code> gives them a colored surface with
+lighting response.</li>
+</ul>
+<h3 id="animation-loop"><strong>Animation Loop</strong></h3>
+<ul>
+<li>Continuously renders the scene for smooth interactivity.</li>
+<li>Resize handler ensures responsiveness.</li>
+</ul>
+<hr />
+<h2 id="how-to-run">How to Run</h2>
+<ol type="1">
+<li>Create a basic HTML/JS/CSS project.</li>
+<li>Add the Three.js CDN or install with a bundler
+(<code>npm install three</code>).</li>
+<li>Link your scripts correctly in <code>index.html</code>.</li>
+<li>Open <code>index.html</code> in your browser.</li>
+</ol>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Add raycasting to make each tile clickable.</li>
+<li>Overlay ownership data (owned vs. unowned).</li>
+<li>Connect to wallet using <code>ethers.js</code> or
+<code>wagmi</code>.</li>
+<li>Load metadata and images from IPFS to decorate owned tiles.</li>
+</ul>
+<hr />
+<p><strong>Summary</strong><br />
+Today’s work laid the foundation for a 3D land parcel viewer. Three.js
+will be the visual layer for the Metaverse Sandbox, with NFTs tied to
+specific tile locations. Next dev session will focus on interactivity
+and wallet integration.</p>
 </body>
 </html>
