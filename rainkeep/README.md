@@ -1,68 +1,48 @@
-# Astro Starter Kit: Blog
+# Rainkeep — Arynwood Terminal
 
-```sh
-npm create astro@latest -- --template blog
-```
+**Rainkeep** is the codebase for [Arynwood.com](https://arynwood.com), a hand-coded terminal-inspired website documenting the creation of decentralized tools, blockchain infrastructure, and open-source digital craftsmanship.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+Arynwood is the public-facing interface of a larger creative and technical endeavor — blending development, storytelling, and system-building into a transparent workflow anyone can follow.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+## What is Arynwood?
 
-Features:
+Arynwood is a personal codename for a collaborative creative studio and digital frontier. It's the home of:
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+- **DevLogs** — Daily technical entries written as HTML blog posts  
+- **On-Chain Experiments** — Smart contracts deployed to Polygon Amoy testnet  
+- **Metaverse Projects** — Custom 2D and 3D environments fully hosted on chain  
+- **Creative Code** — Integrations of glasswork, woodworking, and software  
+- **Ethical Infrastructure** — A commitment to transparency, privacy, and dignity in digital systems
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## Structure
 
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
+The `rainkeep` folder contains:
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- `static/blog-html/` – Terminal-styled HTML blog posts (DevLog format)  
+- `src/pages/blog/index.astro` – Auto-generated blog index listing all logs  
+- `styles/` – Minimal CSS and typography tailored to terminal aesthetics  
+- `README.md` – This file  
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+The site is served via GitHub Pages and optionally mirrored to IPFS for decentralized access.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+---
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Follow the Build
 
-## 🧞 Commands
+All work is done in public. You can view the source code and logs as the project unfolds:
 
-All commands are run from the root of the project, from a terminal:
+**GitHub:** [github.com/skyevault/main/tree/main/rainkeep](https://github.com/skyevault/main/tree/main/rainkeep)  
+**Live Site:** [arynwood.com](https://arynwood.com)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+---
 
-## 👀 Want to learn more?
+## Philosophy
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+> Code is a form of art. Transparency is a form of trust.  
+> Arynwood is where both converge — in the open, one line at a time.
 
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+---
