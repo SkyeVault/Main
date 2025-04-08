@@ -21,7 +21,22 @@ const date = "2025-04-07"; // Optional display
 
       h1 {
         color: #b48eff;
-        text-shadow: 0 0 4px #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
       }
 
       a {
@@ -57,7 +72,7 @@ const date = "2025-04-07"; // Optional display
   </head>
 
   <body>
-    <h1>▌ {title} ▌</h1>
+    <h1>{title}</h1>
     <span class="prompt">> Log Date: {date}</span>
 
     <p>
@@ -65,10 +80,35 @@ const date = "2025-04-07"; // Optional display
       code blocks, or links as needed.
     </p>
 
+    <hr />
+
+    <h2>Section Title (h2)</h2>
+    <p>This section uses h2 with 1px shadow for clarity.</p>
+
+    <hr />
+
+    <h3>Subsection Title (h3)</h3>
+    <p>This subsection heading uses the same shadow styling for cohesion.</p>
+
+    <hr />
+
     <pre><code>npm run build</code></pre>
+
+    <hr />
 
     <p>
       Here's a link: <a href="https://arynwood.com">Visit Arynwood</a>
     </p>
+
+    <hr />
+
+    <h2>Line Break Example</h2>
+    <p>
+      This is a paragraph that contains a manual<br />
+      line break using the &lt;br /&gt; tag.<br />
+      Useful for poetry, logs, or spacing.
+    </p>
+
+    <hr />
   </body>
 </html>
