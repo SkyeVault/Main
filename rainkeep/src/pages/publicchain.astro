@@ -1,96 +1,84 @@
 ---
-title: "US Public Chain"
-import '../styles/tailwind.css';
+const title = "US Public Chain";
+const date = "2025-04-07";
 ---
 
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>US Public Chain — Arynwood Terminal</title>
-  <style>
-    body {
-      background-color: #0e0e0e;
-      color: #dcdcdc;
-      font-family: 'JetBrains Mono', monospace;
-      padding: 2rem;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>US Public Chain</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
 
-    .terminal {
-      max-width: 800px;
-      margin: auto;
-      background-color: #121212;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
-    }
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
 
-    h1, h2, h3 {
-      color: #b9aaff;
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-      border-bottom: 1px solid #3b2c61;
-      padding-bottom: 0.3rem;
-    }
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
 
-    p {
-      margin-bottom: 1rem;
-    }
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
 
-    a {
-      color: #3399ff;
-      text-decoration: underline;
-    }
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
 
-    a:hover {
-      color: #ff99cc;
-    }
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
 
-    ul {
-      padding-left: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
 
-    li {
-      margin-bottom: 0.5rem;
-    }
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
 
-    pre {
-      background-color: #161822;
-      padding: 1rem;
-      overflow-x: auto;
-      border-left: 3px solid #b48eff;
-      margin: 2rem 0;
-    }
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
 
-    code {
-      color: #dcdcdc;
-    }
+  <body>
+    <h1>US Public Chain</h1>
+    <span class="prompt">> Log Date: 2025-04-07</span>
 
-    hr {
-      border: none;
-      border-top: 1px solid #333;
-      margin: 2.5rem 0;
-    }
-
-    .footer-links {
-      font-size: 0.9rem;
-      margin-top: 2rem;
-    }
-
-    .footer-links p {
-      margin: 0.4rem 0;
-    }
-  </style>
-</head>
-<body>
-  <div class="terminal">
-    <h1>▌ US Public Chain ▌</h1>
     <p><strong>A transparent blockchain framework and prototype for modernizing public assistance and government payroll.<br>
     Built for dignity, equity, and systemic trust.</strong></p>
 
-    <hr>
+    <hr />
 
     <h2>Why Blockchain?</h2>
     <p>It’s a decentralized ledger — a programmable, verifiable system that removes middlemen, makes transactions transparent, and creates accountability by design.</p>
@@ -102,17 +90,17 @@ import '../styles/tailwind.css';
     </ul>
     <p><strong>US Public Chain</strong> applies these core strengths to the public sector — transforming how aid is distributed and how public workers are compensated, with clarity and fairness for all.</p>
 
-    <hr>
+    <hr />
 
     <h2>The Problem</h2>
-    <p>Public aid is slow, fragmented, and hard to track.<br>
-    Government payroll is often inefficient, delayed, or unclear.<br>
+    <p>Public aid is slow, fragmented, and hard to track.<br />
+    Government payroll is often inefficient, delayed, or unclear.<br />
     Spending is buried in bureaucracy, difficult to audit, and vulnerable to misuse.</p>
     <p>Meanwhile, cryptocurrency is being politicized and stockpiled — its utility overlooked in favor of speculative value.</p>
     <p>We don’t need more accumulation. We need <strong>application</strong>.</p>
     <p><strong>Crypto is not a trophy, it's a tool.</strong></p>
 
-    <hr>
+    <hr />
 
     <h2>Solution</h2>
 
@@ -154,7 +142,7 @@ import '../styles/tailwind.css';
       <li>Encourages accountability without restriction</li>
     </ul>
 
-    <hr>
+    <hr />
 
     <h2>Who It Serves</h2>
 
@@ -174,7 +162,7 @@ import '../styles/tailwind.css';
       <li>Salaries visible on-chain to promote fair pay and trust</li>
     </ul>
 
-    <hr>
+    <hr />
 
     <h2>How It Works</h2>
     <pre><code>us-public-chain/
@@ -186,7 +174,7 @@ import '../styles/tailwind.css';
 └── README.md           # This file
 </code></pre>
 
-    <hr>
+    <hr />
 
     <h2>Future Plans</h2>
     <ul>
@@ -197,7 +185,7 @@ import '../styles/tailwind.css';
       <li>International templates for global deployment</li>
     </ul>
 
-    <hr>
+    <hr />
 
     <h2>Technology</h2>
     <ul>
@@ -209,7 +197,7 @@ import '../styles/tailwind.css';
       <li><strong>Hosting:</strong> GitHub Pages, IPFS</li>
     </ul>
 
-    <hr>
+    <hr />
 
     <h2>About the Creator</h2>
     <p><strong>Written by Lorelei Noble – Developer. Artist. Mother. Citizen.</strong></p>
@@ -217,12 +205,9 @@ import '../styles/tailwind.css';
     <p>My passion is cloud security, smart contract architecture, Web3 infrastructure, and decentralized platforms. My philosophy is rooted in open-source solutions, using tools like Solidity, Rust, Foundry, and IPFS.</p>
     <p>This project is not theoretical. It’s deeply personal. And it’s within our reach.</p>
 
-    <hr>
+    <hr />
 
-    <div class="footer-links">
-      <p><a href="https://arynwood.com" target="_blank">Return to Arynwood Terminal</a></p>
-      <p><a href="mailto:loreleihnoble@gmail.com">Contact Me</a></p>
-    </div>
-  </div>
-</body>
+    <p><a href="https://arynwood.com">Return to Arynwood Terminal</a></p>
+    <p><a href="mailto:loreleihnoble@gmail.com">Contact Me</a></p>
+  </body>
 </html>
