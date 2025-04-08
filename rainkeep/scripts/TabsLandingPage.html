@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arynwood Classic View</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'JetBrains Mono', monospace;
+      background-color: #0e0e0e;
+      color: #dcdcdc;
+    }
+
+    .tab-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      border: 1px solid #b9aaff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
+    }
+
+    .tab-buttons {
+      display: flex;
+      background-color: #121212;
+      border-bottom: 1px solid #b9aaff;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      background-color: #121212;
+      border-right: 1px solid #2e2e2e;
+      color: #b9aaff;
+      font-weight: bold;
+      transition: background 0.2s ease;
+    }
+
+    .tab-button:last-child {
+      border-right: none;
+    }
+
+    .tab-button:hover,
+    .tab-button.active {
+      background-color: #1e1e1e;
+    }
+
+    .tab-content {
+      padding: 2rem;
+      background-color: #121212;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <div class="tab-button active" onclick="showTab('about')">ABOUT</div>
+      <div class="tab-button" onclick="showTab('projects')">PROJECTS</div>
+      <div class="tab-button" onclick="showTab('blog')">BLOG</div>
+      <div class="tab-button" onclick="showTab('contact')">CONTACT</div>
+    </div>
+    <div class="tab-content" id="about">
+      <h2>Welcome to Arynwood</h2>
+      <p>I’m Lorelei Noble — full-stack developer, artist, and the architect of Rainkeep.</p>
+      <p>Building tools, worlds, and resilience in the dark — with lavender code and purpose.</p>
+    </div>
+    <div class="tab-content hidden" id="projects">
+      <h2>Projects</h2>
+      <ul>
+        <li>Spotify CLI — Rust, crates.io</li>
+        <li>LoreleiNFT — Solidity, Polygon testnet</li>
+        <li>FoundrySpace Metaverse — Three.js + IPFS</li>
+      </ul>
+    </div>
+    <div class="tab-content hidden" id="blog">
+      <h2>Devlog</h2>
+      <p>Daily build logs and project updates.</p>
+      <p>Visit: /devlog</p>
+    </div>
+    <div class="tab-content hidden" id="contact">
+      <h2>Contact</h2>
+      <p>Email: encrypted@arynwood.com</p>
+      <p>GitHub: skyevault</p>
+    </div>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+      tabs.forEach(tab => tab.classList.add('hidden'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.remove('hidden');
+      event.currentTarget.classList.add('active');
+    }
+  </script>
+</body>
+</html>

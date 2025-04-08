@@ -1,1 +1,0 @@
-mumbai is depreciated. Amoy is the testnet for polygon. Delete
