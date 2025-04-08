@@ -1,6 +1,6 @@
 # Rainkeep — Arynwood Terminal
 
-**Rainkeep** is the codebase for [Arynwood.com](https://arynwood.com), a hand-coded terminal-inspired website documenting the creation of decentralized tools, blockchain infrastructure, and open-source digital craftsmanship.
+**Rainkeep** is the codebase for [Arynwood.com](https://arynwood.com), a terminal-inspired website documenting the creation of decentralized tools, blockchain infrastructure, and open-source digital craftsmanship.
 
 Arynwood is the public-facing interface of a larger creative and technical endeavor — blending development, storytelling, and system-building into a transparent workflow anyone can follow.
 
@@ -8,12 +8,12 @@ Arynwood is the public-facing interface of a larger creative and technical endea
 
 ## What is Arynwood?
 
-Arynwood is a personal codename for a collaborative creative studio and digital frontier. It's the home of:
+Arynwood is a personal codename for a creative studio and digital frontier. It's the home of:
 
 - **DevLogs** — Daily technical entries written as HTML blog posts  
 - **On-Chain Experiments** — Smart contracts deployed to Polygon Amoy testnet  
-- **Metaverse Projects** — Custom 2D and 3D environments fully hosted on chain  
-- **Creative Code** — Integrations of glasswork, woodworking, and software  
+- **Art and Metaverse Projects** — Custom 2D and 3D environments fully hosted on chain  
+- **Creative Code** — Integrations of digital paintings, glasswork, woodworking, and software  
 - **Ethical Infrastructure** — A commitment to transparency, privacy, and dignity in digital systems
 
 ---
@@ -27,7 +27,7 @@ The `rainkeep` folder contains:
 - `styles/` – Minimal CSS and typography tailored to terminal aesthetics  
 - `README.md` – This file  
 
-The site is served via GitHub Pages and optionally mirrored to IPFS for decentralized access.
+The site is served via Netlify and optionally mirrored to IPFS for decentralized access.
 
 ---
 
