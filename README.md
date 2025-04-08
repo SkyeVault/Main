@@ -50,7 +50,7 @@ The rainkeep folder contains the custom blog system that powers [arynwood.com](h
 ## Technologies in Use
 
 ### Blockchain and Web3
-- Foundry, Solidity, and Hardhat
+- Foundry and Solidity
 - IPFS, Web3.Storage
 - Polygon Amoy Testnet
 - Smart contract security best practices
