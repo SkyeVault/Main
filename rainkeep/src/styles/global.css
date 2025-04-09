@@ -153,3 +153,15 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+
+a,
+a:visited,
+a:focus,
+a:active {
+  color: #b9aaff !important;
+  text-decoration: underline !important;
+}
+
+a:hover {
+  color: #ff99cc !important;
+}
