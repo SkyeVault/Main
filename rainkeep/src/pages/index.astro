@@ -55,15 +55,14 @@ import '../styles/tailwind.css';
       color: #b9aaff;
     }
 
-    /* 💜 Add this section for link styling */
     a {
-  color: #3399ff;
-  text-decoration: underline;
-}
+      color: #3399ff;
+      text-decoration: underline;
+    }
 
-a:hover {
-  color: #ff99cc;
-}
+    a:hover {
+      color: #ff99cc;
+    }
   </style>
 </head>
 <body>
@@ -86,7 +85,7 @@ a:hover {
 
         switch (cmd) {
           case 'help':
-            response = 'Available commands: whoami, <a href="/projects">projects</a>, <a href="/blog">blog</a>, <a href="/contact">contact</a>';
+            response = 'Available commands: whoami, <a href="/projects">projects</a>, <a href="/blog">blog</a>, <a href="/contact">contact</a>, <a href="/syrenwork">artwork</a>';
             break;
           case 'whoami':
             response = 'Lorelei Noble — full-stack dev, artist, architect of Arynwood.';
@@ -98,7 +97,10 @@ a:hover {
             response = 'Read the blog: <a href="/blog">DevLogs</a>';
             break;
           case 'contact':
-            response = 'Email: <a href="mailto:loreleihnoble@gmail.com">Gmail</a> | LinkedIn: <a href="https://www.linkedin.com/in/lorelein/">LinkedIn</a> |GitHub: <a href="https://github.com/SkyeVault" target="_blank">SkyeVault</a>';
+            response = 'Email: <a href="mailto:loreleihnoble@gmail.com">Gmail</a> | LinkedIn: <a href="https://www.linkedin.com/in/lorelein/">LinkedIn</a> | GitHub: <a href="https://github.com/SkyeVault" target="_blank">SkyeVault</a>';
+            break;
+          case 'artwork':
+            response = 'Explore the gallery: <a href="https://arynwood.com/syrenwork" target="_blank">Syrenwork Gallery</a>';
             break;
           default:
             response = `Command not found: ${cmd}`;
