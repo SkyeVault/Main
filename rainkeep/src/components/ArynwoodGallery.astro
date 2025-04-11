@@ -1,6 +1,6 @@
 ---
 const artworks = Array.from({ length: 34 }, (_, i) =>
-  `/arynwood/Untitled_Artwork%20${i + 1}.png`
+  `/arynwood/Untitled_Artwork ${i + 1}.png`
 );
 ---
 
@@ -13,6 +13,16 @@ const artworks = Array.from({ length: 34 }, (_, i) =>
   .masonry {
     column-count: 1;
     column-gap: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   @media (min-width: 640px) {
@@ -76,10 +86,6 @@ const artworks = Array.from({ length: 34 }, (_, i) =>
       transform: rotate(360deg);
     }
   }
-
-  .hidden {
-    display: none;
-  }
 </style>
 
 <section class="px-4 py-10 max-w-screen-xl mx-auto">
@@ -87,7 +93,7 @@ const artworks = Array.from({ length: 34 }, (_, i) =>
   <div id="loader" class="spinner"></div>
 
   <!-- Gallery -->
-  <div id="gallery" class="masonry hidden">
+  <div id="gallery" class="masonry">
     {artworks.map((src, index) => (
       <a
         href={src}
@@ -113,24 +119,35 @@ const artworks = Array.from({ length: 34 }, (_, i) =>
     const images = gallery.querySelectorAll(".gallery-img");
     let loadedCount = 0;
 
-    function checkIfDone() {
-      if (loadedCount >= images.length) {
-        loader.classList.add("hidden");
-        gallery.classList.remove("hidden");
-      }
+    function revealGallery() {
+      loader.style.display = "none";
+      gallery.classList.add("visible");
     }
 
     images.forEach((img) => {
       if (img.complete) {
         loadedCount++;
-        checkIfDone();
       } else {
         img.addEventListener("load", () => {
           loadedCount++;
-          checkIfDone();
+          if (loadedCount === images.length) {
+            revealGallery();
+          }
+        });
+
+        img.addEventListener("error", () => {
+          loadedCount++;
+          if (loadedCount === images.length) {
+            revealGallery();
+          }
         });
       }
     });
+
+    // Safety timeout
+    setTimeout(() => {
+      revealGallery();
+    }, 4000);
   });
 </script>
 
