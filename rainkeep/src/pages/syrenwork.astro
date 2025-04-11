@@ -5,58 +5,78 @@ const date = "2025-04-08";
 import ArynwoodGallery from '../components/ArynwoodGallery.astro';
 ---
 
-<!-- Lightbox2 CSS/JS for image modal behavior -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
-  rel="stylesheet"
-/>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"
-  defer
-></script>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
 
-<main class="px-4 py-8 max-w-screen-md mx-auto text-[#c9c7ff] font-mono bg-[#0d0f1c]">
-  <h1 class="text-3xl font-bold text-center text-[#b48eff] mb-6">Artwork & Design</h1>
+    <!-- Lightbox2 CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
-  <p class="mb-4">
-    Syrenwork blends analog craftsmanship with digital vision. Explore hand-drawn original art, fabrication, and interactive tools developed by Lorelei Noble.
-  </p>
+  <body>
+    <main>
+      <h1>Artwork & Design</h1>
 
-  <p class="mb-4">
-    Welcome to <strong>Syrenwork</strong> — a journey through the intersection of traditional craftsmanship and contemporary digital expression.
-    I'm <strong>Lorelei Noble</strong>, an artist and craft worker. My work spans stained glass, wood and metal sculpture, digital art, and interactive technologies — all designed to inspire transformation and reconnection through emotion, light, and movement.
-  </p>
+      <p>
+        Syrenwork blends analog craftsmanship with digital vision. Explore hand-drawn original art,
+        fabrication, and interactive tools developed by Lorelei Noble.
+      </p>
 
-  <p class="mb-6">
-    I also provide fabrication and consulting services, from interior components and installations to project development and design systems.
-  </p>
+      <p>
+        Welcome to <strong>Syrenwork</strong> — a journey through the intersection of traditional
+        craftsmanship and contemporary digital expression. I'm <strong>Lorelei Noble</strong>, an
+        artist and craft worker. My work spans stained glass, wood and metal sculpture, digital art,
+        and interactive technologies — all designed to inspire transformation and reconnection
+        through emotion, light, and movement.
+      </p>
 
-  <hr class="my-8 border-none h-px bg-gradient-to-r from-[#2e254e] via-[#b48eff] to-[#2e254e] opacity-40" />
+      <p>
+        I also provide fabrication and consulting services, from interior components and
+        installations to project development and design systems.
+      </p>
 
-  <div class="mb-6 space-x-4">
-    <a href="https://www.pictorem.com/gallery/Syrenwork" target="_blank">Prints</a>
-    <a href="https://www.etsy.com/shop/Syrenwork" target="_blank">Etsy</a>
-    <a href="https://www.instagram.com/syrenwork" target="_blank">Instagram</a>
-    <a href="https://www.spoonflower.com/profiles/syrenwork?sort=classic" target="_blank">Spoonflower</a>
-  </div>
+      <hr />
 
-  <h2 class="text-2xl font-bold text-center text-[#b48eff] my-8">Arynwood Collection</h2>
+      <div>
+        <a href="https://www.pictorem.com/gallery/Syrenwork" target="_blank">Prints</a>
+        <a href="https://www.etsy.com/shop/Syrenwork" target="_blank">Etsy</a>
+        <a href="https://www.instagram.com/syrenwork" target="_blank">Instagram</a>
+        <a href="https://www.spoonflower.com/profiles/syrenwork?sort=classic" target="_blank"
+          >Spoonflower</a
+        >
+      </div>
 
-  <ArynwoodGallery />
+      <h2>Arynwood Collection</h2>
 
-  <!--
-  <iframe
-    src="https://www.pictorem.com/gallery/Syrenwork"
-    allowfullscreen
-    sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
-  ></iframe>
-  -->
+      <ArynwoodGallery />
 
-  <hr class="my-8 border-none h-px bg-gradient-to-r from-[#2e254e] via-[#b48eff] to-[#2e254e] opacity-40" />
+      <!--
+      <iframe
+        src="https://www.pictorem.com/gallery/Syrenwork"
+        allowfullscreen
+        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
+      ></iframe>
+      -->
 
-  <p>
-    Want to collaborate or request a custom piece? Contact me through
-    <a href="https://www.etsy.com/shop/Syrenwork" target="_blank">Etsy</a> or explore more at
-    <a href="/blog">Arynwood DevLog</a>.
-  </p>
-</main>
+      <hr />
+
+      <p>
+        Want to collaborate or request a custom piece? Contact me through
+        <a href="https://www.etsy.com/shop/Syrenwork" target="_blank">Etsy</a> or explore more at
+        <a href="/blog">Arynwood DevLog</a>.
+      </p>
+    </main>
+
+    <!-- Lightbox2 JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"
+      defer
+    ></script>
+  </body>
+</html>
