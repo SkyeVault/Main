@@ -10,7 +10,7 @@ const { slug } = Astro.params;
     <h1>⚠ Legacy blog route disabled</h1>
     <p>
       Posts are now stored as static HTML files.<br />
-      Please visit <a href="/blog">the Lore Logs index</a>.
+      Please visit <a href="/blog">the DevLogs index</a>.
     </p>
   </body>
 </html>
