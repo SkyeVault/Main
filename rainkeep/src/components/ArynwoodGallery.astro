@@ -4,18 +4,36 @@ const artworks = Array.from({ length: 34 }, (_, i) =>
 );
 ---
 
+<!-- Lightbox2 CSS -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
+  rel="stylesheet"
+/>
+
 <section class="px-4 py-8 max-w-screen-xl mx-auto">
   <h2 class="text-3xl font-bold text-center mb-8">Arynwood Collection</h2>
+
   <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     {artworks.map((src, index) => (
-      <div class="relative group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+      <a
+        href={src}
+        data-lightbox="gallery"
+        data-title={`Untitled Artwork ${index + 1}`}
+        class="relative group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+      >
         <img
           src={src}
           alt={`Untitled Artwork ${index + 1}`}
           class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
           loading="lazy"
         />
-      </div>
+      </a>
     ))}
   </div>
 </section>
+
+<!-- Lightbox2 JS -->
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"
+  defer
+></script>
