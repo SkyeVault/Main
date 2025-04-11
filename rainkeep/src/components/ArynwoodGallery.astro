@@ -52,6 +52,7 @@ const artworks = Array.from({ length: 34 }, (_, i) =>
     height: auto;
     display: block;
     transition: transform 0.3s ease-in-out;
+    border-radius: 0.5rem;
   }
 
   .spinner {
@@ -98,7 +99,7 @@ const artworks = Array.from({ length: 34 }, (_, i) =>
           src={src}
           alt={`Untitled Artwork ${index + 1}`}
           loading="lazy"
-          onload="handleImageLoad()"
+          class="gallery-img"
         />
       </a>
     ))}
@@ -106,18 +107,31 @@ const artworks = Array.from({ length: 34 }, (_, i) =>
 </section>
 
 <script>
-  let loadedImages = 0;
-  const totalImages = {artworks.length};
-  const loader = document.getElementById('loader');
-  const gallery = document.getElementById('gallery');
+  document.addEventListener("DOMContentLoaded", () => {
+    const loader = document.getElementById("loader");
+    const gallery = document.getElementById("gallery");
+    const images = gallery.querySelectorAll(".gallery-img");
+    let loadedCount = 0;
 
-  function handleImageLoad() {
-    loadedImages++;
-    if (loadedImages >= totalImages) {
-      loader.classList.add('hidden');
-      gallery.classList.remove('hidden');
+    function checkIfDone() {
+      if (loadedCount >= images.length) {
+        loader.classList.add("hidden");
+        gallery.classList.remove("hidden");
+      }
     }
-  }
+
+    images.forEach((img) => {
+      if (img.complete) {
+        loadedCount++;
+        checkIfDone();
+      } else {
+        img.addEventListener("load", () => {
+          loadedCount++;
+          checkIfDone();
+        });
+      }
+    });
+  });
 </script>
 
 <script
