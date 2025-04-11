@@ -1,0 +1,148 @@
+---
+import '../styles/tailwind.css';
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arynwood — Classic View</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #0e0e0e;
+      color: #c9c7ff;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #121212;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(180, 142, 255, 0.15);
+    }
+
+    h1, h2 {
+      color: #b48eff;
+      text-shadow: 0 0 3px #b48eff;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .section {
+      margin-top: 2rem;
+    }
+
+    a {
+      color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
+      text-decoration: underline;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+      list-style-type: square;
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .link-row a {
+      flex: 1 1 auto;
+      min-width: 120px;
+      text-align: center;
+      background-color: #161822;
+      padding: 0.5rem 1rem;
+      border: 1px solid #2e254e;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+
+    .link-row a:hover {
+      background-color: #1f2130;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 3rem;
+      text-align: right;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    .back-link:hover {
+      color: #b9aaff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Arynwood — Classic View</h1>
+    <p>
+      Welcome to the classic view of Arynwood — for users who prefer clean navigation over terminal commands. Here you'll find everything: who I am, what I build, and how to explore deeper.
+    </p>
+
+    <div class="section">
+      <h2>About</h2>
+      <p>
+        I'm <strong>Lorelei Noble</strong> — a full-stack developer, digital artist, and the creator of Arynwood. I work across both physical and virtual mediums, blending code, graphic design, and interactive systems into meaningful projects.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Projects</h2>
+      <ul>
+        <li><a href="/publicchain">US Public Chain</a></li>
+        <li><a href="/projects">Spotify Playlist Maker</a></li>
+        <li><a href="/projects">NFT Collection</a></li>
+        <li><a href="/projects">Metaverse Viewer (coming soon)</a></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Blog</h2>
+      <p>
+        Visit the <a href="/blog">Arynwood DevLogs</a> for build notes, design philosophy, and creative updates.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Artwork</h2>
+      <p>
+        Explore my digital gallery at <a href="/syrenwork">Syrenwork</a>. This collection includes hand-drawn digital art, seamless patterns, and interactive illustrations.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Contact + Social</h2>
+      <div class="link-row">
+        <a href="mailto:loreleihnoble@gmail.com">Email</a>
+        <a href="https://github.com/SkyeVault" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/lorelein/" target="_blank">LinkedIn</a>
+        <a href="https://www.etsy.com/shop/Syrenwork" target="_blank">Etsy</a>
+        <a href="https://www.instagram.com/syrenwork" target="_blank">Instagram</a>
+        <a href="https://www.spoonflower.com/profiles/syrenwork?sort=classic" target="_blank">Spoonflower</a>
+      </div>
+    </div>
+
+    <a href="/" class="back-link">[ Return to terminal view ]</a>
+  </div>
+</body>
+</html>
