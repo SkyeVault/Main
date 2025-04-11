@@ -1,0 +1,17 @@
+---
+// src/components/ArynwoodGallery.astro
+const artworks = Array.from({ length: 34 }, (_, i) => `/arynwood/Untitled_Artwork ${i + 1}.png`);
+---
+
+<section class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  {artworks.map((src, index) => (
+    <div class="overflow-hidden rounded shadow hover:shadow-lg transition">
+      <img
+        src={src}
+        alt={`Untitled Artwork ${index + 1}`}
+        class="w-full h-auto object-cover hover:scale-105 transition-transform"
+        loading="lazy"
+      />
+    </div>
+  ))}
+</section>
