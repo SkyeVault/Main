@@ -38,14 +38,17 @@ import '../styles/global.css';
       font-size: 0.9rem;
     }
 
-    a {
-      color: #3399ff;
+     a,
+     a:visited,
+     a:focus,
+     a:active {
+      color: var(--link);
       text-decoration: underline;
     }
 
-    a:hover {
-      color: #ff99cc;
-    }
+a:hover {
+  color: var(--link-hover);
+}
 
     .gui-toggle {
       margin-top: 2rem;
