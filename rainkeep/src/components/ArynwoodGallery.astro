@@ -4,14 +4,14 @@ const artworks = Array.from({ length: 34 }, (_, i) =>
 );
 ---
 
-<!-- Lightbox2 CSS (Safe to duplicate if also in your page) -->
+<!-- Lightbox2 CSS (safe even if already imported in parent) -->
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
   rel="stylesheet"
 />
 
-<section class="px-4 py-8 max-w-screen-xl mx-auto">
-  <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+<section class="px-4 py-10 max-w-screen-xl mx-auto">
+  <div class="grid gap-y-10 gap-x-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     {artworks.map((src, index) => (
       <a
         href={src}
@@ -22,7 +22,7 @@ const artworks = Array.from({ length: 34 }, (_, i) =>
         <img
           src={src}
           alt={`Untitled Artwork ${index + 1}`}
-          class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
+          class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-300 ease-in-out rounded"
           loading="lazy"
         />
       </a>
@@ -30,7 +30,6 @@ const artworks = Array.from({ length: 34 }, (_, i) =>
   </div>
 </section>
 
-<!-- Lightbox2 JS -->
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"
   defer
