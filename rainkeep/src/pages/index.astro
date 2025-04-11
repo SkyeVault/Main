@@ -56,15 +56,15 @@ import '../styles/global.css';
       color: #b9aaff;
     }
 
-    a,
-    a:visited,
-    a:focus,
-    a:active {
+    /* LINK FIX: Injected link styles */
+    .terminal .output a {
+      all: unset;
       color: #b9aaff;
       text-decoration: underline;
+      cursor: pointer;
     }
 
-    a:hover {
+    .terminal .output a:hover {
       color: #ff99cc;
     }
   </style>
