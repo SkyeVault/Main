@@ -2,18 +2,8 @@
 // src/pages/Syrenwork.astro
 const title = "Artwork Gallery";
 import ArynwoodGallery from '../components/ArynwoodGallery.astro';
+import '../styles/global.css'; // <--- This is the key fix
 ---
-
-<!-- Include global styles + lightbox CSS -->
-<head>
-  <title>{title}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/src/styles/global.css" />
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
-    rel="stylesheet"
-  />
-</head>
 
 <main>
   <h1>Artwork & Design</h1>
