@@ -1,0 +1,35 @@
+<!-- DevLog250412.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250412 – Understanding Astro Layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <h1>DevLog 250412</h1>
+    <p>
+      Astro has a learning curve, and I’m still getting the hang of how layouts and styling work together.
+      For a while, I was importing <code>global.css</code> manually on every page and still running into
+      style issues — especially with Markdown blog posts.
+    </p>
+
+    <p>
+      What I’ve finally figured out is that <strong>layouts are the key to consistency</strong>. If you import
+      <code>global.css</code> once inside a layout like <code>BaseLayout.astro</code>, then every page that
+      uses that layout will automatically inherit all your global styles. No need to manually import them again.
+    </p>
+
+    <p>
+      Even if a page or post accidentally imports <code>global.css</code> again, it won’t break anything — Astro
+      and the browser will just apply the styles once. Still, it’s cleaner to move that import to the layout only.
+    </p>
+
+    <hr />
+
+    <p>
+      Next step: I’m going to clean up my layout files and set up a minimal structure that applies global styles
+      automatically. I’ll start fresh and build layout components I actually use — so I never have to debug CSS
+      imports on a per-page basis again.
+    </p>
+  </body>
+</html>
