@@ -1,3 +1,4 @@
+import { OrbitControls } from 'https://cdn.skypack.dev/three/examples/jsm/controls/OrbitControls.js';
 import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 
 // Renderer setup
@@ -13,6 +14,14 @@ scene.background = new THREE.Color('#0d0f1c');
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 6, 10);  // Raise the camera up and pull back
 camera.lookAt(0, 0, 0);
+
+// Controls
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; // Smooth motion
+controls.dampingFactor = 0.05;
+controls.enablePan = false;
+controls.maxPolarAngle = Math.PI / 2; // Prevent flipping
+controls.target.set(0, 1.6, 0); // Focus on gallery center
 
 // Lights
 const ambientLight = new THREE.AmbientLight('#b48eff', 1);
@@ -84,6 +93,7 @@ scene.add(moonGlow);
 // Animation loop
 function animate() {
   requestAnimationFrame(animate);
+  controls.update();
   renderer.render(scene, camera);
 }
 animate();
