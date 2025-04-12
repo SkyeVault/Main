@@ -1,23 +1,29 @@
-<!-- DevLog250412.html -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>DevLog 250412 – Understanding Astro Layouts</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I Was Wrong</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       body {
         background-color: #0d0f1c;
         color: #c9c7ff;
         font-family: 'Courier New', monospace;
         padding: 2rem;
-        max-width: 640px;
+        max-width: 600px;
         margin: 0 auto;
-        line-height: 1.7;
+        line-height: 1.6;
       }
 
       h1 {
         color: #b48eff;
         text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
       }
 
       hr {
@@ -28,38 +34,84 @@
         margin: 2rem 0;
       }
 
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
       code {
-        background-color: #1e1e2e;
-        padding: 0.1rem 0.3rem;
-        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
       }
     </style>
   </head>
+
   <body>
-    <h1>DevLog 250412</h1>
-    <p>
-      Astro has a learning curve, and I’m still getting the hang of how layouts and styling work together.
-      For a while, I was importing <code>global.css</code> manually on every page and still running into
-      style issues — especially with Markdown blog posts.
+    <h1>I Was Wrong</h1>
+    <span class="prompt">> Log Date: 250412</span>
+    <p class="excerpt">
+      I’ve made a lot of mistakes building my Astro blog, and it’s been humbling. But with every misstep comes clarity. Today, I’m documenting the lessons learned and how I’m finally laying the foundation for something better.
     </p>
 
     <p>
-      What I’ve finally figured out is that <strong>layouts are the key to consistency</strong>. If you import
-      <code>global.css</code> once inside a layout like <code>BaseLayout.astro</code>, then every page that
-      uses that layout will automatically inherit all your global styles. No need to manually import them again.
+      Let me just say it: I was wrong—about a lot. This is what happens when you build without reading tutorials, guessing your way through code and expecting clean output. My Astro blog setup was a minefield of mistakes, but now I see it as necessary terrain in the learning curve.
     </p>
 
+    <h2>Lesson One: Layouts Matter</h2>
     <p>
-      Even if a page or post accidentally imports <code>global.css</code> again, it won’t break anything — Astro
-      and the browser will just apply the styles once. Still, it’s cleaner to move that import to the layout only.
+      Most of my markdown formatting issues? Yeah, those were likely caused by not loading my blog layout properly in Astro. Instead of having a unified structure, I was formatting each file manually. That’s not just inefficient—it’s chaos.
+    </p>
+
+    <h2>Lesson Two: Global CSS Is Your Friend</h2>
+    <p>
+      I’ve been importing CSS into every single blog post. That’s fine if you enjoy unnecessary repetition and broken styling. Turns out, all I had to do was import my global stylesheet in the layout. One file, one import—done.
+    </p>
+
+    <h2>Lesson Three: HTML ≠ Astro</h2>
+    <p>
+      The truth is, these blog posts live as HTML files. That’s cool for now, but it means I can’t just throw in Astro components and expect magic. I need to decide where Astro ends and raw HTML begins—or better yet, convert these posts into `.astro` files and unify the system.
     </p>
 
     <hr />
 
+    <h3>Next Steps</h3>
     <p>
-      Next step: I’m going to clean up my layout files and set up a minimal structure that applies global styles
-      automatically. I’ll start fresh and build layout components I actually use — so I never have to debug CSS
-      imports on a per-page basis again.
+      I'm finally ready to build the foundation for a great user experience. Layouts are the key. Style once, import everywhere, and keep it clean. Maybe it’s time I actually sit down and read some tutorials instead of playing the guessing game.
     </p>
+
+    <pre><code>// Step forward
+import Layout from '../layouts/BaseLayout.astro'</code></pre>
+
+    <hr />
+
+    <p>Back to work, and this time—with intention.</p>
+
+    <hr />
+
+    <p>
+      Here's a link: <a href="https://arynwood.com">Arynwood Terminal</a>
+    </p>
+
+    <hr />
   </body>
 </html>
