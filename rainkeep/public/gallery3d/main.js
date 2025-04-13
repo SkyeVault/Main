@@ -13,7 +13,7 @@ scene.background = new THREE.Color('#0d0f1c');
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 6, 10);  // Raise the camera up and pull back
-camera.lookAt(0, 0, 0);
+camera.lookAt(0, 5, 0);
 
 // Controls
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -21,14 +21,14 @@ controls.enableDamping = true; // Smooth motion
 controls.dampingFactor = 0.05;
 controls.enablePan = false;
 controls.maxPolarAngle = Math.PI / 2; // Prevent flipping
-controls.target.set(0, 1.6, 0); // Focus on gallery center
+controls.target.set(0, 5, 0); // Focus on gallery center
 
 // Lights
-const ambientLight = new THREE.AmbientLight('#b48eff', 1);
+const ambientLight = new THREE.AmbientLight('#b48eff', 2);
 scene.add(ambientLight);
 
-const moonlight = new THREE.DirectionalLight('#ffffff', 0.5);
-moonlight.position.set(5, 10, 5);
+const moonlight = new THREE.DirectionalLight('#ffffff', 1);
+moonlight.position.set(0, 20, 10);
 scene.add(moonlight);
 
 // Floor
