@@ -14,6 +14,14 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 camera.position.set(0, 6, 10);  // Raise the camera up and pull back
 camera.lookAt(0, 0, 0);
 
+// After setting up your camera and renderer:
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+controls.maxPolarAngle = Math.PI / 2;
+controls.target.set(0, 5, 0); // Aim where you want to orbit
+controls.update();
+
 // Lights
 const ambientLight = new THREE.AmbientLight('#b48eff', 1);
 scene.add(ambientLight);
@@ -84,6 +92,7 @@ scene.add(moonGlow);
 // Animation loop
 function animate() {
   requestAnimationFrame(animate);
+  controls.update();
   renderer.render(scene, camera);
 }
 animate();
