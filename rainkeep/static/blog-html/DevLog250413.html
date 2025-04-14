@@ -1,82 +1,147 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DevLog 2025-04-14 – Arynwood 3D Gallery Setup</title>
-  <style>
-    body {
-      font-family: monospace;
-      background-color: #0d0f1c;
-      color: #c9c7ff;
-      padding: 2rem;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: auto;
-    }
-    h1 {
-      color: #b48eff;
-      text-shadow: 0 0 2px #b48eff;
-    }
-    h2 {
-      color: #a597ff;
-      margin-top: 2rem;
-    }
-    code {
-      background: #1e1e2e;
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-    }
-    pre {
-      background: #1e1e2e;
-      padding: 1rem;
-      border-radius: 8px;
-      overflow-x: auto;
-    }
-  </style>
-</head>
-<body>
-  <h1>DevLog 2025-04-14 – Arynwood 3D Gallery Setup</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250414 – Arynwood 3D Gallery Setup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
 
-  <h2>Project Goal</h2>
-  <p>Set up a fully functional 3D gallery using <strong>Three.js</strong> and <strong>Vite</strong>, with <code>OrbitControls</code>, lavender floors, charcoal walls, and eventually glowing doors and artwork placement.</p>
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
 
-  <h2>Progress So Far</h2>
-  <ul>
-    <li>Created Vite project in <code>main/rainkeep/public/gallery3d</code></li>
-    <li>Installed Three.js via <code>npm install three</code></li>
-    <li>Replaced CDN imports with local ES module imports</li>
-    <li>Set up OrbitControls with working camera drag and zoom</li>
-    <li>Confirmed everything works in dev mode at <code>localhost:5173</code></li>
-  </ul>
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
 
-  <h2>Vite Config</h2>
-  <p>We are deploying to <code>arynwood.com/gallery3d</code>, so <code>vite.config.js</code> must include:</p>
-  <pre><code>export default {
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>DevLog 250414 – Arynwood 3D Gallery Setup</h1>
+    <span class="prompt">> Log Date: 2025-04-14</span>
+    <p class="excerpt">
+      Began building a 3D gallery using Three.js and Vite, with plans for glowing doors and textured artwork. Initial setup successful, though deployment to Netlify needs debugging.
+    </p>
+
+    <h2>Project Goal</h2>
+    <p>
+      Create a 3D gallery rendered with <code>Three.js</code>, featuring lavender floors, charcoal walls, and immersive orbit viewer controls. Deployment is set to <a href="https://arynwood.com/gallery3d" target="_blank">arynwood.com/gallery3d</a>.
+    </p>
+
+    <hr />
+
+    <h2>Progress So Far</h2>
+    <ul>
+      <li>Initialized Vite project in <code>main/rainkeep/public/gallery3d</code></li>
+      <li>Installed <code>three</code> via <code>npm install three</code></li>
+      <li>Swapped CDN imports for ES module imports</li>
+      <li>Set up <code>OrbitControls</code> with drag and zoom working</li>
+      <li>Confirmed dev server works at <code>localhost:5173</code></li>
+    </ul>
+
+    <hr />
+
+    <h2>Vite Config for Deployment</h2>
+    <p>To serve correctly at <code>/gallery3d/</code> on Netlify, set base path in <code>vite.config.js</code>:</p>
+    <pre><code>export default {
   base: '/gallery3d/',
 };</code></pre>
 
-  <h2>Deployment Issue</h2>
-  <p>Gallery works locally, but shows a white screen on deployment. This is due to path resolution. Current hypothesis: paths are not aligning between Vite base config and Netlify.</p>
+    <hr />
 
-  <h2>What to Do Next</h2>
-  <ol>
-    <li>Ensure <code>vite.config.js</code> is in <code>gallery3d/</code>, not higher up</li>
-    <li>Run <code>npm run build</code></li>
-    <li>Confirm <code>dist/index.html</code> has script paths starting with <code>/gallery3d/</code></li>
-    <li>Deploy <code>dist/</code> to Netlify with publish directory set to <code>dist</code></li>
-    <li>If testing locally: change <code>vite.config.js</code> base to <code>'./'</code> and run <code>serve dist</code></li>
-  </ol>
+    <h2>Deployment Issue</h2>
+    <p>
+      Deployed build shows a white screen. Likely issue is path resolution mismatch between local dev and Netlify environment. Investigating base URL misalignment.
+    </p>
 
-  <h2>Pausing Point</h2>
-  <p>Gallery renders fine in dev. Deployment bug is unresolved. Will return after Ember's bedtime and Matt's birthday aquarium trip.</p>
+    <hr />
 
-  <h2>Next Features to Build</h2>
-  <ul>
-    <li>Add 3D doors with glowing materials</li>
-    <li>Add canvas-wrapped artwork models and textures</li>
-    <li>Create room transitions or multi-camera views</li>
-    <li>Document full walkthrough in markdown as well</li>
-  </ul>
-</body>
+    <h2>Steps to Fix</h2>
+    <ol>
+      <li>Ensure <code>vite.config.js</code> lives inside <code>gallery3d/</code></li>
+      <li>Run <code>npm run build</code></li>
+      <li>Verify that <code>dist/index.html</code> uses <code>/gallery3d/</code> in its script paths</li>
+      <li>Set Netlify’s publish directory to <code>dist</code></li>
+      <li>For local testing, switch base to <code>'./'</code> and run <code>serve dist</code></li>
+    </ol>
+
+    <hr />
+
+    <h2>Pausing Point</h2>
+    <p>
+      The 3D gallery renders fine in dev mode. Deployment bug remains. Pausing to spend time with Ember and celebrate Matt’s birthday at the aquarium.
+    </p>
+
+    <hr />
+
+    <h2>Next Features to Build</h2>
+    <ul>
+      <li>Model 3D doors with glow effects</li>
+      <li>Design textured canvas artwork on planes</li>
+      <li>Create transitions between gallery rooms or camera perspectives</li>
+      <li>Write markdown version of full setup and troubleshooting</li>
+    </ul>
+
+    <hr />
+
+    <p>
+      View gallery at: <a href="https://arynwood.com/gallery3d" target="_blank">arynwood.com/gallery3d</a>
+    </p>
+
+    <hr />
+
+    <p>
+      <a href="https://arynwood.com/blog">Back to Arynwood Blog</a>
+    </p>
+  </body>
 </html>
