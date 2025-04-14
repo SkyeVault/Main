@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevLog250325b</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      font-family: 'Courier New', monospace;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    h1 {
+      color: #b48eff;
+      text-shadow: 0 0 2px #b48eff;
+    }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
+    a {
+      color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
+      text-decoration: underline;
+    }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+<h1>DevLog250325b</h1>
+<span class="prompt">> Log Date: 250325b</span>
+<h1 id="devlog-deploying-topsecuritynft-to-polygon-amoy">DevLog:
+Deploying TopSecurityNFT to Polygon Amoy</h1>
+<p><strong>Date:</strong> 2025-03-25<br />
+<strong>Network:</strong> Polygon Amoy Testnet<br />
+<strong>Tooling:</strong> Foundry, Web3.Storage, OpenSea, IPFS, cast</p>
+<hr />
+<h2 id="project-overview">Project Overview</h2>
+<p>This devlog documents the full process of deploying a smart contract
+called <strong>TopSecurityNFT</strong> to the Polygon Amoy testnet. The
+NFT images and metadata were hosted on IPFS using Web3.Storage.</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Created and deployed <code>TopSecurityNFT</code> smart contract</li>
+<li>Used IPFS to store 10 metadata JSON files for NFT images</li>
+<li>Minted token ID <code>1</code> to the deployer’s wallet</li>
+<li>Viewed NFT on OpenSea testnet</li>
+<li>Used Foundry for contract deployment and <code>cast</code> for
+minting</li>
+<li>Configured <code>.gitignore</code> to keep keys and cache
+private</li>
+</ul>
+<hr />
+<h2 id="ipfs-metadata-setup">IPFS Metadata Setup</h2>
+<ul>
+<li>Image Uploads: 10 PNGs to Web3.Storage</li>
+<li>Metadata Format (example):</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Aurora&#39;s Echo&quot;</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;A feathered traveler bathed in the hues of dawn...&quot;</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;image&quot;</span><span class="fu">:</span> <span class="st">&quot;ipfs://&lt;imageCID&gt;/painting_01.png&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<ul>
+<li>Metadata Folder CID:
+<code>bafybeic2f7dtbhcph4q72ja4avhesovmhmbdmpjtc45brtwbqyfroqsr3y</code></li>
+<li>Resulting <code>tokenURI</code>:<br />
+<code>ipfs://bafy.../metadata1.json</code></li>
+</ul>
+<hr />
+<h2 id="smart-contract-setup">Smart Contract Setup</h2>
+<h3 id="topsecuritynft.sol"><code>TopSecurityNFT.sol</code></h3>
+<ul>
+<li>Built with OpenZeppelin’s <code>ERC721URIStorage</code> and
+<code>Ownable</code></li>
+<li>Constructor takes <code>initialOwner</code></li>
+<li>Uses <code>baseURI</code> + token ID to generate
+<code>tokenURI</code></li>
+</ul>
+<pre class="solidity"><code>function tokenURI(uint256 tokenId) public view override returns (string memory) {
+  return string(abi.encodePacked(baseURI, &quot;metadata&quot;, Strings.toString(tokenId), &quot;.json&quot;));
+}</code></pre>
+<hr />
+<h2 id="deployment-workflow-foundry">Deployment Workflow (Foundry)</h2>
+<h3 id="env">1. <code>.env</code></h3>
+<pre class="env"><code>DEPLOYER_ADDRESS=0xYourAddressHere
+PRIVATE_KEY=your_private_key_here</code></pre>
+<h3 id="deploy-script-scriptdeploy.s.sol">2. Deploy Script:
+<code>script/Deploy.s.sol</code></h3>
+<pre class="solidity"><code>contract Deploy is Script {
+    function run() external {
+        address initialOwner = vm.envAddress(&quot;DEPLOYER_ADDRESS&quot;);
+        vm.startBroadcast();
+        new TopSecurityNFT(initialOwner);
+        vm.stopBroadcast();
+    }
+}</code></pre>
+<h3 id="deploy-to-amoy">3. Deploy to Amoy:</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">forge</span> script script/Deploy.s.sol:Deploy <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--rpc-url</span> https://rpc-amoy.polygon.technology <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--broadcast</span> <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--legacy</span> <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--sender</span> <span class="va">$DEPLOYER_ADDRESS</span> <span class="dt">\</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--private-key</span> <span class="va">$PRIVATE_KEY</span></span></code></pre></div>
+<h3 id="result">Result</h3>
+<ul>
+<li>Contract deployed:
+<code>0xE85f1711AbFb46b43220521a67519ae28c0c56fA</code></li>
+<li>View on Polygonscan Amoy:<br />
+https://amoy.polygonscan.com/address/0xE85f1711AbFb46b43220521a67519ae28c0c56fA</li>
+</ul>
+<hr />
+<h2 id="minting-nfts">Minting NFTs</h2>
+<h3 id="mint-token-1">Mint Token #1</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cast</span> send <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--rpc-url</span> https://rpc-amoy.polygon.technology <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--private-key</span> <span class="va">$PRIVATE_KEY</span> <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  0xE85f1711AbFb46b43220521a67519ae28c0c56fA <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;mintNFT(address)&quot;</span> 0xYourAddressHere</span></code></pre></div>
+<p>Transaction Hash:<br />
+https://amoy.polygonscan.com/tx/0x3ada70455ff57e84b762dc4eaf5554fd967e69ccc81d20d9e5d8a81d9f09fb72</p>
+<hr />
+<h2 id="view-on-opensea-testnet">View on OpenSea Testnet</h2>
+<p>Link:<br />
+https://testnets.opensea.io/assets/amoy/0xE85f1711AbFb46b43220521a67519ae28c0c56fA/1</p>
+<p>Note: IPFS images may take a few minutes to appear while OpenSea
+indexes metadata.</p>
+<hr />
+<h2 id="gitignore">.gitignore</h2>
+<p>Created <code>.gitignore</code> in project root
+(<code>~/main/blockchain/metaverse-sandbox/blockchain/</code>):</p>
+<pre class="gitignore"><code>.env
+broadcast/
+cache/
+out/
+foundry.toml.lock</code></pre>
+<hr />
+<h2 id="pausing-the-project">Pausing the Project</h2>
+<p>Paused development to be MOMMY. The contract is fully deployed, NFT
+minted, and metadata hosted on IPFS.</p>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Mint remaining 9 NFTs</li>
+<li>Write an automated minting script</li>
+<li>Begin work on a static or 3D NFT gallery front-end</li>
+<li>Push project to GitHub with clean documentation and license</li>
+</ul>
+<hr />
+<p>End of session.</p>
+</body>
+</html>

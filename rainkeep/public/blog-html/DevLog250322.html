@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevLog250322</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      font-family: 'Courier New', monospace;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    h1 {
+      color: #b48eff;
+      text-shadow: 0 0 2px #b48eff;
+    }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
+    a {
+      color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
+      text-decoration: underline;
+    }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+<h1>DevLog250322</h1>
+<span class="prompt">> Log Date: 250322</span>
+<p>Foundry vs Hardhat – Ethereum Development Tools</p>
+<p><strong>Topic:</strong> Comparing Foundry and Hardhat for Smart
+Contract Development</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>Foundry and Hardhat are two popular development frameworks used in
+Ethereum smart contract workflows. Both offer tools for compiling,
+testing, and deploying smart contracts, but they differ in design
+philosophy, performance, and developer experience.</p>
+<hr />
+<h2 id="hardhat">Hardhat</h2>
+<ul>
+<li>JavaScript/TypeScript-based</li>
+<li>Heavily integrated with the Node.js ecosystem</li>
+<li>Popular for frontend-integrated projects</li>
+<li>Uses Mocha/Chai for testing</li>
+<li>Offers plugins and scripting via JavaScript</li>
+<li>Strong documentation and plugin community</li>
+</ul>
+<p><strong>Strengths:</strong> - Easy for web developers familiar with
+JS - Well-supported by tutorials and tools - Great for full-stack dApp
+projects</p>
+<hr />
+<h2 id="foundry">Foundry</h2>
+<ul>
+<li>Rust-based toolchain</li>
+<li>Uses Forge (testing), Cast (CLI), and Anvil (local node)</li>
+<li>Extremely fast compile and test cycles</li>
+<li>Native Solidity test files (no JS required)</li>
+<li>Built for speed, reliability, and power users</li>
+</ul>
+<p><strong>Strengths:</strong> - Blazing fast testing and deployment -
+Native Solidity scripting and tests - Easy to integrate into low-level
+or advanced tooling setups</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Hardhat</th>
+<th>Foundry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Language</td>
+<td>JavaScript/TypeScript</td>
+<td>Solidity + Rust tools</td>
+</tr>
+<tr>
+<td>Testing</td>
+<td>Mocha + JS</td>
+<td>Native Solidity</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Slower (JS-based)</td>
+<td>Very fast (Rust core)</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Full-stack dApps</td>
+<td>Power users, CLI devs</td>
+</tr>
+</tbody>
+</table>
+<p>Both tools are excellent and often used together in learning
+environments. Foundry is gaining traction for serious protocol-level
+devs, while Hardhat remains the go-to for frontend-integrated dApp
+teams.</p>
+<p><strong>Status:</strong> Learning and experimenting with both</p>
+</body>
+</html>
