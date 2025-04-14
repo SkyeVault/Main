@@ -1,144 +1,82 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>DevLog 250413 – 3D Gallery Setup</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      body {
-        background-color: #0d0f1c;
-        color: #c9c7ff;
-        font-family: 'Courier New', monospace;
-        padding: 2rem;
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.6;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevLog 2025-04-14 – Arynwood 3D Gallery Setup</title>
+  <style>
+    body {
+      font-family: monospace;
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      padding: 2rem;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      color: #b48eff;
+      text-shadow: 0 0 2px #b48eff;
+    }
+    h2 {
+      color: #a597ff;
+      margin-top: 2rem;
+    }
+    code {
+      background: #1e1e2e;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e1e2e;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>DevLog 2025-04-14 – Arynwood 3D Gallery Setup</h1>
 
-      h1 {
-        color: #b48eff;
-        text-shadow: 0 0 2px #b48eff;
-      }
+  <h2>Project Goal</h2>
+  <p>Set up a fully functional 3D gallery using <strong>Three.js</strong> and <strong>Vite</strong>, with <code>OrbitControls</code>, lavender floors, charcoal walls, and eventually glowing doors and artwork placement.</p>
 
-      h2, h3 {
-        color: #b48eff;
-        text-shadow: 1px 1px 0 #2e254e;
-        margin-top: 1.5rem;
-        margin-bottom: 0.75rem;
-      }
+  <h2>Progress So Far</h2>
+  <ul>
+    <li>Created Vite project in <code>main/rainkeep/public/gallery3d</code></li>
+    <li>Installed Three.js via <code>npm install three</code></li>
+    <li>Replaced CDN imports with local ES module imports</li>
+    <li>Set up OrbitControls with working camera drag and zoom</li>
+    <li>Confirmed everything works in dev mode at <code>localhost:5173</code></li>
+  </ul>
 
-      ul {
-        padding-left: 1.2rem;
-      }
+  <h2>Vite Config</h2>
+  <p>We are deploying to <code>arynwood.com/gallery3d</code>, so <code>vite.config.js</code> must include:</p>
+  <pre><code>export default {
+  base: '/gallery3d/',
+};</code></pre>
 
-      li {
-        margin-bottom: 0.5rem;
-      }
+  <h2>Deployment Issue</h2>
+  <p>Gallery works locally, but shows a white screen on deployment. This is due to path resolution. Current hypothesis: paths are not aligning between Vite base config and Netlify.</p>
 
-      a {
-        color: #79b8ff;
-        text-decoration: none;
-      }
+  <h2>What to Do Next</h2>
+  <ol>
+    <li>Ensure <code>vite.config.js</code> is in <code>gallery3d/</code>, not higher up</li>
+    <li>Run <code>npm run build</code></li>
+    <li>Confirm <code>dist/index.html</code> has script paths starting with <code>/gallery3d/</code></li>
+    <li>Deploy <code>dist/</code> to Netlify with publish directory set to <code>dist</code></li>
+    <li>If testing locally: change <code>vite.config.js</code> base to <code>'./'</code> and run <code>serve dist</code></li>
+  </ol>
 
-      a:hover {
-        color: #b48eff;
-        text-decoration: underline;
-      }
+  <h2>Pausing Point</h2>
+  <p>Gallery renders fine in dev. Deployment bug is unresolved. Will return after Ember's bedtime and Matt's birthday aquarium trip.</p>
 
-      hr {
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
-        opacity: 0.4;
-        margin: 2rem 0;
-      }
-
-      pre {
-        background-color: #161822;
-        padding: 1rem;
-        overflow-x: auto;
-        border-left: 3px solid #b48eff;
-        margin-bottom: 1.5rem;
-      }
-
-      code {
-        font-family: 'Courier New', monospace;
-        color: #c9c7ff;
-      }
-
-      .prompt {
-        color: #888;
-        font-size: 0.9rem;
-        display: block;
-        margin-bottom: 1rem;
-      }
-    </style>
-  </head>
-
-  <body>
-    <h1>DevLog 250413 – 3D Gallery Setup</h1>
-    <span class="prompt">> Log Date: 250413</span>
-    <p class="excerpt">
-      Today’s milestone: scaffolding the structure of my new 3D gallery at <a href="https://arynwood.com/gallery3d" target="_blank">arynwood.com/gallery3d</a> and diving into the joys and frustrations of debugging OrbitControls in Three.js.
-    </p>
-
-    <p>
-      I officially kicked off the 3D gallery project by setting up the folder structure and initializing my HTML, CSS, and JavaScript files. The goal is to create an interactive space to view my artwork using <strong>Three.js</strong> with <strong>OrbitControls</strong>.
-    </p>
-
-    <p>
-      Right now, the canvas is rendering a black screen—which probably means I’ve hit a snag with module imports or rendering. JavaScript is not my strongest language, so I’m wading through unfamiliar waters—but that’s part of the journey.
-    </p>
-
-    <hr />
-
-    <h2>Current Progress</h2>
-    <ul>
-      <li><code>/gallery3d/</code> directory created and mapped on site</li>
-      <li>HTML scaffolded with a <code>&lt;canvas&gt;</code> for WebGL rendering</li>
-      <li>Three.js linked via CDN</li>
-      <li>OrbitControls imported from Skypack (currently debugging)</li>
-      <li>JavaScript is executing, but canvas is blank—likely a module or render loop issue</li>
-    </ul>
-
-    <hr />
-
-    <h2>Quick Tips for Setting Up Three.js</h2>
-    <ul>
-      <li><strong>Use module-based imports carefully:</strong> Always use full URLs or relative paths like <code>./three.module.js</code></li>
-      <li><strong>Add <code>type="module"</code> to your script tag:</strong></li>
-    </ul>
-
-    <pre><code>&lt;script type="module" src="./main.js"&gt;&lt;/script&gt;</code></pre>
-
-    <ul>
-      <li><strong>Size your canvas properly:</strong></li>
-    </ul>
-    <pre><code>renderer.setSize(window.innerWidth, window.innerHeight);</code></pre>
-
-    <ul>
-      <li><strong>Set your camera position:</strong></li>
-    </ul>
-    <pre><code>camera.position.z = 5;</code></pre>
-
-    <ul>
-      <li><strong>Connect OrbitControls to your renderer:</strong></li>
-    </ul>
-    <pre><code>const controls = new OrbitControls(camera, renderer.domElement);</code></pre>
-
-    <hr />
-
-    <p>
-      I’ll keep refining the viewer and aim to get basic 3D models rendering next. Once I resolve the import issue and confirm the render loop is functioning, I’ll upload custom art and explore gallery interactions.
-    </p>
-
-    <p><strong>Next step:</strong> Fix the module resolution issue and get a working Three.js canvas rendering properly.</p>
-
-    <hr />
-
-    <p>
-      Here’s a link to the live page: <a href="https://arynwood.com/gallery3d" target="_blank">arynwood.com/gallery3d</a>
-    </p>
-
-    <hr />
-  </body>
+  <h2>Next Features to Build</h2>
+  <ul>
+    <li>Add 3D doors with glowing materials</li>
+    <li>Add canvas-wrapped artwork models and textures</li>
+    <li>Create room transitions or multi-camera views</li>
+    <li>Document full walkthrough in markdown as well</li>
+  </ul>
+</body>
 </html>
