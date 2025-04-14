@@ -1,0 +1,117 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>I Was Wrong</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>I Was Wrong</h1>
+    <span class="prompt">> Log Date: 250412</span>
+    <p class="excerpt">
+      I’ve made a lot of mistakes building my Astro blog, and it’s been humbling. But with every misstep comes clarity. Today, I’m documenting the lessons learned and how I’m finally laying the foundation for something better.
+    </p>
+
+    <p>
+      Let me just say it: I was wrong—about a lot. This is what happens when you build without reading tutorials, guessing your way through code and expecting clean output. My Astro blog setup was a minefield of mistakes, but now I see it as necessary terrain in the learning curve.
+    </p>
+
+    <h2>Lesson One: Layouts Matter</h2>
+    <p>
+      Most of my markdown formatting issues? Yeah, those were likely caused by not loading my blog layout properly in Astro. Instead of having a unified structure, I was formatting each file manually. That’s not just inefficient—it’s chaos.
+    </p>
+
+    <h2>Lesson Two: Global CSS Is Your Friend</h2>
+    <p>
+      I’ve been importing CSS into every single blog post. That’s fine if you enjoy unnecessary repetition and broken styling. Turns out, all I had to do was import my global stylesheet in the layout. One file, one import—done.
+    </p>
+
+    <h2>Lesson Three: HTML ≠ Astro</h2>
+    <p>
+      The truth is, these blog posts live as HTML files. That’s cool for now, but it means I can’t just throw in Astro components and expect magic. I need to decide where Astro ends and raw HTML begins—or better yet, convert these posts into `.astro` files and unify the system.
+    </p>
+
+    <hr />
+
+    <h3>Next Steps</h3>
+    <p>
+      I'm finally ready to build the foundation for a great user experience. Layouts are the key. Style once, import everywhere, and keep it clean. Maybe it’s time I actually sit down and read some tutorials instead of playing the guessing game.
+    </p>
+
+    <pre><code>// Step forward
+import Layout from '../layouts/BaseLayout.astro'</code></pre>
+
+    <hr />
+
+    <p>Back to work, and this time—with intention.</p>
+
+    <hr />
+
+    <p>
+      Here's a link: <a href="https://arynwood.com">Arynwood Terminal</a>
+    </p>
+
+    <hr />
+  </body>
+</html>

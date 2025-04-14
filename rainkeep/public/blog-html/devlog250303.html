@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>devlog250303</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      font-family: 'Courier New', monospace;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    h1 {
+      color: #b48eff;
+      text-shadow: 0 0 2px #b48eff;
+    }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
+    a {
+      color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
+      text-decoration: underline;
+    }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+<h1>devlog250303</h1>
+<span class="prompt">> Log Date: 250303</span>
+<p>250303 ### <em>Rust, APIs, and the Joy of Debugging</em></p>
+<hr />
+<h2 id="tasks-completed"><strong>Tasks Completed</strong></h2>
+<h3 id="terminal-zsh-workflow-enhancements"><strong>1. Terminal &amp;
+Zsh Workflow Enhancements</strong></h3>
+<ul>
+<li><strong>Oh My Zsh + Powerlevel10k:</strong> Customized prompt for
+clarity and efficiency.<br />
+</li>
+<li><strong>Plugins Installed &amp; Configured:</strong>
+<ul>
+<li><code>zsh-syntax-highlighting</code> for improved readability.<br />
+</li>
+<li><code>zsh-autosuggestions</code> for command predictions.<br />
+</li>
+<li><code>fzf</code> for fuzzy searching through files and
+history.<br />
+</li>
+<li><code>autojump</code> for quick directory navigation.<br />
+</li>
+</ul></li>
+<li><strong>Optimized Command History:</strong>
+<ul>
+<li>Re-mapped <code>CTRL + R</code> to search history <strong>without
+requiring fzf.</strong><br />
+</li>
+<li>Ensured frequently used commands are surfaced quickly.<br />
+</li>
+</ul></li>
+<li><strong>Homebrew &amp; Performance Fixes:</strong>
+<ul>
+<li>Homebrew is installed at <code>/usr/local/bin/brew</code> instead of
+<code>/opt/homebrew</code>.<br />
+</li>
+<li>Identified that Homebrew is slow on macOS 12 but manageable with
+direct installs.</li>
+</ul></li>
+</ul>
+<h3 id="rust-installation-first-project-setup"><strong>2. Rust
+Installation &amp; First Project Setup</strong></h3>
+<ul>
+<li><p>Installed <strong>Rust via rustup</strong>, ensuring the correct
+environment variables were loaded.<br />
+</p></li>
+<li><p>Verified installation with:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rustc</span> <span class="at">--version</span>  </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> <span class="at">--version</span>  </span></code></pre></div></li>
+<li><p>Created a new Rust project:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new skyevault-spotify</span></code></pre></div></li>
+<li><p>Explored Rust’s package management:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> add reqwest serde_json tokio</span></code></pre></div>
+<p><em>(Adding dependencies efficiently instead of manually updating
+<code>Cargo.toml</code>.)</em></p></li>
+</ul>
+<hr />
+<h3
+id="spotify-playlist-generator---api-integration-debugging"><strong>3.
+Spotify Playlist Generator - API Integration &amp;
+Debugging</strong></h3>
+<ul>
+<li><strong>Authentication Setup:</strong>
+<ul>
+<li>Implemented OAuth2 authentication for Spotify.<br />
+</li>
+<li>Generated access token, set up auto-refresh to handle
+expiration.<br />
+</li>
+</ul></li>
+<li><strong>Rust Dependencies Used:</strong>
+<ul>
+<li><code>reqwest</code> for making API requests.<br />
+</li>
+<li><code>serde_json</code> for parsing Spotify’s JSON responses.<br />
+</li>
+</ul></li>
+<li><strong>Troubleshooting &amp; Fixes:</strong>
+<ul>
+<li>Encountered <code>reqwest</code> SSL certificate issues—fixed by
+ensuring <code>native-tls</code> was enabled.<br />
+</li>
+<li>JSON parsing errors due to mismatched struct types—resolved by
+refining <code>serde_json</code> struct definitions.<br />
+</li>
+<li>API request initially returned empty data—fixed by adjusting query
+parameters to ensure valid results.<br />
+</li>
+</ul></li>
+<li><strong>Successes:</strong>
+<ul>
+<li>Successfully authenticated with Spotify API.<br />
+</li>
+<li>Retrieved playlist data—next step is refining how results are
+displayed.<br />
+</li>
+</ul></li>
+<li><strong>Current Issue:</strong>
+<ul>
+<li>Final API response is throwing an unexpected error. It seems to be
+related to how the data is structured before rendering. Debugging
+continues.</li>
+</ul></li>
+</ul>
+<hr />
+<h2
+id="quick-tip-avoiding-full-recompiles-for-faster-rust-updates"><strong>Quick
+Tip: Avoiding Full Recompiles for Faster Rust Updates</strong></h2>
+<p>During testing, we noticed that <strong>running
+<code>cargo run</code> every time to test code changes was painfully
+slow</strong> because it was re-compiling everything from scratch. The
+workaround? <strong>Use Rust’s built-in incremental compilation
+features!</strong></p>
+<h3 id="what-was-happening"><strong>What was happening?</strong></h3>
+<p>By default, Rust compiles the <strong>entire project</strong> before
+running, which is great for performance but frustrating during active
+debugging. The process slowed us down, especially with API calls
+requiring multiple iterations to troubleshoot errors.</p>
+<h3 id="the-fix-use-cargo-check-cargo-watch"><strong>The Fix: Use
+<code>cargo check</code> &amp; <code>cargo watch</code></strong></h3>
+<p>Instead of running <code>cargo run</code> for every test, we switched
+to:</p>
+<h4 id="cargo-check-fast-compilation-without-running"><strong>1.
+<code>cargo check</code> – Fast Compilation Without
+Running</strong></h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> check</span></code></pre></div>
+<ul>
+<li>Quickly verifies that the code compiles <strong>without fully
+building and running the executable</strong>.<br />
+</li>
+<li>Perfect for catching syntax errors <strong>without waiting for a
+full recompile</strong>.</li>
+</ul>
+<h4 id="cargo-watch-auto-recompilation-on-file-save"><strong>2.
+<code>cargo watch</code> – Auto-Recompilation on File Save</strong></h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install cargo-watch  <span class="co"># One-time setup</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> watch <span class="at">-x</span> run</span></code></pre></div>
+<ul>
+<li>Watches files for changes and <strong>automatically recompiles +
+runs</strong> when a file is modified.<br />
+</li>
+<li>Saves time by eliminating the need to manually re-run
+<code>cargo run</code> each time.</li>
+</ul>
+<h3 id="outcome"><strong>Outcome:</strong></h3>
+<p>Switching to <code>cargo check</code> and <code>cargo watch</code>
+<strong>significantly reduced debugging time</strong>, making iteration
+smoother while working through Spotify API issues.</p>
+<hr />
+<h2 id="git-journal-entry---march-3-2025"><strong>Git Journal Entry -
+March 3, 2025</strong></h2>
+<h3 id="commit-message"><strong>Commit Message:</strong></h3>
+<pre><code>&quot;Optimized Zsh setup, installed Rust, and built first API connection for the Spotify playlist generator. Fixed incremental compilation issues.&quot;</code></pre>
+<h3 id="detailed-log"><strong>Detailed Log:</strong></h3>
+<p>Today, I <strong>streamlined my terminal workflow</strong>, ensuring
+Zsh is set up for peak efficiency. This included improving history
+search, adding plugins for quick navigation, and optimizing command
+completion. These small changes make a big difference in workflow
+speed.</p>
+<p>On the development side, <strong>Rust is fully installed and
+configured</strong>, and I started my first Rust-based API project: a
+<strong>Spotify playlist generator.</strong> The main challenge was
+<strong>handling authentication and structuring API requests in
+Rust</strong>, but I got it working after some deep dives into
+<code>reqwest</code> and <code>serde_json</code>.</p>
+<p>During debugging, I realized Rust’s full recompilation process was
+slowing things down. Implementing <strong><code>cargo check</code> for
+faster error-checking</strong> and
+<strong><code>cargo watch -x run</code> for automatic
+recompilation</strong> made a huge difference in workflow speed.</p>
+<p><strong>Troubleshooting highlights:</strong><br />
+- Adjusted Rust structs to properly handle JSON responses.<br />
+- Resolved SSL issues in <code>reqwest</code>.<br />
+- Fixed empty API responses by refining request parameters.<br />
+- Improved debugging efficiency by reducing unnecessary full
+rebuilds.</p>
+<p><strong>Current Roadblock:</strong><br />
+- <strong>Final API response handling is throwing errors.</strong><br />
+- Still working on refining how the data is structured before
+rendering.</p>
+<p>Overall, <strong>a solid foundation is now in place</strong> for both
+Rust development and DevOps workflow.</p>
+<hr />
+<h2 id="next-steps-for-tomorrow"><strong>Next Steps for
+Tomorrow:</strong></h2>
+<ul>
+<li><strong>Spotify Project:</strong> Debug API response issue and
+refine output structure.<br />
+</li>
+<li><strong>Rust Learning:</strong> Explore better error handling
+strategies and async programming for API requests.<br />
+</li>
+<li><strong>Git &amp; DevOps Documentation:</strong> Start drafting
+SkyeVault Ops README for project transparency.</li>
+</ul>
+<hr />
+<h2 id="final-thoughts"><strong>Final Thoughts:</strong></h2>
+<p>Rust is proving to be a powerful but meticulous language.
+<strong>Learning how to streamline debugging and reduce compilation
+time</strong> made a huge difference today. The <strong>Spotify API
+project is taking shape</strong>, and even though there’s still an error
+in the final response parsing, the overall progress has been solid.
+Excited to solve the last issue and move forward with cleaner, more
+efficient Rust workflows!</p>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevLog250402</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      font-family: 'Courier New', monospace;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    h1 {
+      color: #b48eff;
+      text-shadow: 0 0 2px #b48eff;
+    }
+
+    h2, h3 {
+      color: #b48eff;
+      text-shadow: 1px 1px 0 #2e254e;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
+    a {
+      color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b48eff;
+      text-decoration: underline;
+    }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+      margin-bottom: 1.5rem;
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+<h1>DevLog250402</h1>
+<span class="prompt">> Log Date: 250402</span>
+<h1 id="devlog-250402-debugging-slugs-in-astro">DevLog 250402 —
+Debugging Slugs in Astro</h1>
+<p>Today I’m juggling a teething baby and some buggy dynamic routing in
+my Astro blog — and somehow I’m still optimistic.</p>
+<hr />
+<h2 id="current-status">Current Status</h2>
+<ul>
+<li><p><strong>Astro + Netlify setup is live and clean</strong><br />
+<a href="https://www.arynwood.com/blog">www.arynwood.com/blog</a> is now
+the central hub for my devlogs and development journey.</p></li>
+<li><p><strong>Issue:</strong><br />
+The dynamic <code>[slug].astro</code> file is creating dead links to
+blog posts.<br />
+It’s likely a frontmatter or file path issue, possibly tied to improper
+use of <code>getStaticPaths()</code> or Markdown metadata
+inconsistencies.</p></li>
+<li><p><strong>Plan:</strong><br />
+Carve out 15 minutes this afternoon to troubleshoot and fix the routing
+syntax.<br />
+First check: Are all <code>slug</code> values in
+<code>getStaticPaths()</code> matching the actual post paths?</p></li>
+</ul>
+<hr />
+<h2 id="why-i-love-astro">Why I Love Astro</h2>
+<p>Even with the hiccups, Astro is a solid choice for my blog and future
+Web3 content. Here’s why:</p>
+<h3 id="key-features-of-astro"><strong>Key Features of
+Astro</strong></h3>
+<ul>
+<li><strong>Partial Hydration:</strong> Only JavaScript where needed —
+fast by default.</li>
+<li><strong>Markdown + MDX Support:</strong> Perfect for writing
+developer-focused content.</li>
+<li><strong>Built-in Routing:</strong> File-based routing that’s
+intuitive (when the syntax behaves).</li>
+<li><strong>Framework Agnostic:</strong> Can use React, Svelte, Vue, or
+just plain HTML.</li>
+<li><strong>Zero JavaScript by default:</strong> Lightweight builds and
+excellent Core Web Vitals.</li>
+<li><strong>Excellent for Static Sites:</strong> Great choice for a
+performance-focused devlog.</li>
+<li><strong>TailwindCSS Support:</strong> Seamless styling without the
+boilerplate.</li>
+<li><strong>Open-Source &amp; Actively Maintained:</strong> Built by a
+community I respect.</li>
+</ul>
+<hr />
+<h2 id="next-up">Next Up</h2>
+<p>Once the slug issue is fixed: - Add devlog navigation - Connect ENS
+or <code>.nft</code> domain logic - Plan a minimal 3D component for the
+homepage<br />
+- Resume work on my <strong>Metaverse Sandbox</strong> and IPFS asset
+viewer</p>
+<hr />
+<p>That’s the plan — as long as the baby nap gods are kind.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reminder: git commit now, cry later</span></span></code></pre></div>
+</body>
+</html>

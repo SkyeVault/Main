@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>DevLog 250407 — Finally Debugged Astro Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background-color: #0d0f1c;
+      color: #c9c7ff;
+      font-family: 'Courier New', monospace;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    h1 {
+      color: #b48eff;
+      text-shadow: 0 0 2px #b48eff;
+    }
+
+    h2,
+    h3 {
+      color: #b48eff;
+      text-shadow: 0 0 1px #b48eff;
+    }
+
+    a {
+      color: #79b8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #b48eff;
+    }
+
+    pre {
+      background-color: #161822;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid #b48eff;
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      color: #c9c7ff;
+    }
+
+    .prompt {
+      color: #888;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1> DevLog 250407 — Finally Debugged Astro Blog </h1>
+  <p class="prompt">> Log Date: 2025-04-07</p>
+
+  <p class="excerpt">
+    Today’s log is dedicated to cleaning up and debugging my Astro-based blog system.
+    After a week of Markdown rendering bugs and deployment issues, I now have a streamlined, phone-friendly system that
+    works consistently.
+  </p>
+  
+  <hr>
+
+  <h2>Problems Solved</h2>
+  <ul>
+    <li>Astro markdown rendering failed due to import + routing errors</li>
+    <li><code>src/pages/blog/[slug].astro</code> was not resolving <code>.md</code> files</li>
+    <li>Netlify builds broke from missing <code>static/blog-html</code> folder</li>
+    <li>Pandoc templates were too heavy for mobile workflows</li>
+    <li>Blog index lacked sorting, consistency, and polish</li>
+    <li>Markdown devlogs weren’t triggering site updates</li>
+    <li>Everyone in my house was sick and I was struggling</li>
+  </ul>
+
+  <hr>
+
+  <h2>Fixes & Solutions</h2>
+
+  <h3>Folder System</h3>
+  <ul>
+    <li>All <code>.md</code> files converted to <code>.html</code> using Pandoc</li>
+    <li>Output moved to: <code>rainkeep/static/blog-html/</code></li>
+    <li>Fallback uses static <code>.html</code> instead of dynamic Markdown</li>
+  </ul>
+
+  <h3>Markdown → HTML Script</h3>
+  <p>File: <code>convert_blog_md.sh</code></p>
+  <ul>
+    <li>Converts <code>.md</code> logs from <code>rainkeep/src/content/blog2/</code></li>
+    <li>Applies custom Pandoc template</li>
+    <li>Copies output into <code>static/blog-html/</code> for build</li>
+  </ul>
+
+  <h3>Custom Pandoc Template</h3>
+  <p>File: <code>plain-template.html</code></p>
+  <ul>
+    <li>Minimal terminal-inspired HTML</li>
+    <li>Lavender CSS accents, optimized for mobile readability</li>
+  </ul>
+
+  <h3>GitHub Action</h3>
+  <p>Workflow: <code>.github/workflows/build-devlogs.yml</code></p>
+  <ul>
+    <li>Triggers on <code>.md</code> push</li>
+    <li>Installs Pandoc</li>
+    <li>Converts logs to <code>.html</code></li>
+    <li>Pushes to <code>static/blog-html/</code> for Netlify to render</li>
+  </ul>
+
+  <hr>
+
+  <h2>Terminal UI Polishing</h2>
+  <p>File: <code>index.astro</code></p>
+  <ul>
+    <li>Hardcoded list of <code>.html</code> logs, sorted by date</li>
+    <li>Styled with lavender terminal aesthetic</li>
+    <li>Responsive layout, hover effects, clear spacing</li>
+  </ul>
+
+  <hr>
+
+  <h2>Next Steps</h2>
+  <ul>
+    <li>[ ] Auto-generate post list from <code>static/blog-html/</code></li>
+    <li>[ ] Add post excerpts from frontmatter</li>
+    <li>[ ] Create iOS Shortcut or GitHub CLI to push from phone</li>
+    <li>[ ] Build <code>/DevLog</code> terminal home with ASCII nav and category filter</li>
+  </ul>
+
+  <hr>
+
+  <p><strong>&gt; System Status:</strong> Operational<br>
+    <strong>&gt; Terminal aesthetic:</strong> Clean<br>
+    <strong>&gt; Markdown pipeline:</strong> Restored<br>
+    <strong>&gt; Logs now publishable from any device</strong>
+  </p>
+</body>
+
+</html>
