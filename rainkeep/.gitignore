@@ -1,5 +1,9 @@
-# build output
-dist/
+# Ignore all of dist
+dist/*
+# BUT allow the gallery3d build inside dist
+!dist/gallery3d/
+!dist/gallery3d/**
+
 # generated types
 .astro/
 
