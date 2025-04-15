@@ -1,8 +1,10 @@
-// rainkeep/public/gallery3d/vite.config.js
-export default {
+// vite.config.js
+import { defineConfig } from 'vite';
+
+export default defineConfig({
   base: '/gallery3d/',
   build: {
-    outDir: '../../../dist/gallery3d', // Output INTO your main site's dist
-    emptyOutDir: false                 // Don't erase the rest of dist
+    outDir: '../../../dist/gallery3d', // places build output inside your main site's dist folder
+    emptyOutDir: false                 // prevents deleting the rest of the dist folder
   }
-};
+});
