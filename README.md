@@ -33,7 +33,8 @@ README.md           # This file
 
 The rainkeep folder contains the custom blog system that powers [arynwood.com](https://arynwood.com). It is built using Astro and styled with a minimalist terminal-inspired aesthetic.
 
-- Blog posts are written in Markdown and exported to standalone HTML files.
+- Blog posts are written in standalone HTML files
+- Currently building a 3d art gallery using Three.js at rainkeep/public/gallery3d
 - The site is deployed via Netlify
 - Source: `rainkeep/src/pages/blog/` and `rainkeep/static/blog-html/`
 
@@ -51,6 +52,7 @@ The rainkeep folder contains the custom blog system that powers [arynwood.com](h
 ## Technologies in Use
 
 ### Blockchain and Web3
+- Three.js
 - Foundry and Solidity
 - IPFS, Web3.Storage
 - Polygon Amoy Testnet
