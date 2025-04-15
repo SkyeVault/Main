@@ -40,9 +40,11 @@ The rainkeep folder contains the custom blog system that powers [arynwood.com](h
 
 ---
 
-## Featured Project: Lorelei Noble Genesis
+## Featured Project: Original NFT Collection: Lorelei Noble Genesis
 
-- Deployed to: Polygon Amoy Testnet  
+- Hand-drawn original artwork converted into a NFT collection
+- Custom smart contract written in Solidity and deployed with Foundry (Rust)
+- Deployed to: Polygon Amoy Testnet (proof of concept)
 - Smart Contract Address: 0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783  
 - Hosted on IPFS: bafybeihdo27nu3iak7njllgpkmx3ra27mbazlrr444t4sdp46z3sn2v5ye  
 - OpenSea (Testnet): https://testnets.opensea.io/assets/amoy/0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783/
