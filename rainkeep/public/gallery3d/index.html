@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.skypack.dev;">
+
   <meta charset="UTF-8" />
   <title>Arynwood Gallery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,9 +13,6 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- CSP (safe default, allows external JS modules via CDN) -->
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.jsdelivr.net;">
 </head>
 <body>
   <canvas id="scene"></canvas>
