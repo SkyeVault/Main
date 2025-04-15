@@ -5,7 +5,7 @@
 
 # Overview
 
-This is the technical portfolio and development hub for Lorelei Noble. Projects include decentralized infrastructure, blockchain development, security automation, and Rust-based tooling.
+This is the technical portfolio and development hub for Lorelei Noble. Projects include a 3D sandbox using Three.js, decentralized infrastructure, blockchain development, security automation, and Rust-based tooling.
 
 This repository supports:
 - Arynwood.com — a terminal-styled hub for projects and technical logs
