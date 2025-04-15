@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8cbde920-cd5b-4822-bfce-4a41dc7e7e70/deploy-status)](https://app.netlify.com/sites/rainkeep/deploys)
 # Rainkeep — Arynwood Terminal
 
 **Rainkeep** is the codebase for [Arynwood.com](https://arynwood.com), a terminal-inspired website documenting the creation of decentralized tools, blockchain infrastructure, and open-source digital craftsmanship.
