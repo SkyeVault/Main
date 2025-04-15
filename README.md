@@ -1,6 +1,7 @@
 # Main Repository
 
 [![Rust CI](https://github.com/SkyeVault/Main/actions/workflows/ci.yml/badge.svg)](https://github.com/SkyeVault/Main/actions/workflows/ci.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8cbde920-cd5b-4822-bfce-4a41dc7e7e70/deploy-status)](https://app.netlify.com/sites/rainkeep/deploys)
 
 # Overview
 
