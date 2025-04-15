@@ -1,5 +1,5 @@
 # Ignore all of dist
-dist/*
+dist/* 
 # BUT allow the gallery3d build inside dist
 !dist/gallery3d/
 !dist/gallery3d/**
