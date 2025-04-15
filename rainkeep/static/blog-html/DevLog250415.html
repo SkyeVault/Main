@@ -1,0 +1,164 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250415 – The Long Road to gallery3d/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>DevLog 250415 – The Long Road to gallery3d/</h1>
+    <span class="prompt">&gt; Log Date: 2025-04-15</span>
+    <p class="excerpt">
+      Today marks a breakthrough. My 3D gallery is live at <a href="https://arynwood.com/gallery3d" target="_blank">arynwood.com/gallery3d</a> — and it works. Finally.
+    </p>
+
+    <h2>The Original Plan</h2>
+    <p>I started with a simple goal:<br />
+    Render a 3D scene using Three.js and deploy it via Vite.</p>
+    <p>I built the scene, got <code>npm run dev</code> working. It looked perfect locally.</p>
+    <p>But the moment I ran <code>npm run build</code> and pushed it live?<br />
+    White screen.<br />
+    <code>Uncaught TypeError: Failed to resolve module specifier "three".</code></p>
+
+    <h2>The Problems</h2>
+
+    <h3>Problem 1: "three" module couldn't resolve</h3>
+    <ul>
+      <li>Browsers don’t understand bare module specifiers like 'three'</li>
+      <li>Vite handles them internally — but the built HTML points to hashed JS files, not readable paths</li>
+    </ul>
+
+    <h3>Problem 2: JS file 404</h3>
+    <ul>
+      <li>Even after building, the script at <code>/gallery3d/assets/index-XYZ.js</code> was missing</li>
+      <li>Deployment was misaligned with Vite's expected folder structure</li>
+    </ul>
+
+    <h3>Problem 3: CSP blocked everything</h3>
+    <ul>
+      <li>The Content Security Policy (CSP) blocked inline scripts and any JS using <code>eval()</code> or <code>new Function()</code></li>
+      <li>This broke OrbitControls and parts of Three.js when using the wrong CDN</li>
+    </ul>
+
+    <h3>Problem 4: CDN quirks</h3>
+    <ul>
+      <li>jsDelivr: didn’t rewrite modules properly (caused CSP rejections)</li>
+      <li>Skypack: didn't export <code>OrbitControls</code> as expected — broke at runtime</li>
+    </ul>
+
+    <h2>The Fix</h2>
+    <p>I ditched the bundler.</p>
+    <p>Instead of fighting Vite, I:</p>
+    <ol>
+      <li>Created a simple <code>index.html</code> with <code>&lt;script type="module"&gt;</code></li>
+      <li>Used <code>main.js</code> with ES module imports directly from CDN</li>
+    </ol>
+
+    <pre><code>import * as THREE from 'https://esm.sh/three@0.158.0';
+import { OrbitControls } from 'https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls.js';</code></pre>
+
+    <ol start="3">
+      <li>Ensured CSP rules allowed loading from <code>https://esm.sh</code></li>
+      <li>Moved everything into a single, deployable <code>/gallery3d/</code> folder</li>
+    </ol>
+
+    <h2>What Worked</h2>
+    <ul>
+      <li><code>esm.sh</code> is fast, modern, and CSP-safe</li>
+      <li>No build tools needed — just drop the folder into Netlify</li>
+      <li>Works in all major browsers</li>
+      <li>Fully modular with clean source separation</li>
+    </ul>
+
+    <h2>Lessons Learned</h2>
+    <ul>
+      <li>Don’t fight your tooling if you can replace it</li>
+      <li>CDN modules are viable — if you know where to get the right version</li>
+      <li>CSP rules are strict, but with the right config, totally workable</li>
+      <li>Always test locally with <code>npx serve</code> before deploying</li>
+    </ul>
+
+    <h2>Next Steps</h2>
+    <ul>
+      <li>Add a terminal-style overlay or interactive UI</li>
+      <li>Drop in 3D models or artwork planes</li>
+      <li>Use this layout as a base for NFT galleries and Web3 spaces</li>
+    </ul>
+
+    <hr />
+
+    <p>Built under moonlight, debugged through fire.</p>
+
+    <p>
+      Here's a link to the live version:
+      <a href="https://arynwood.com/gallery3d">arynwood.com/gallery3d</a>
+    </p>
+
+    <hr />
+
+    <p>
+      <a href="https://arynwood.com/blog">Back to Arynwood Blog</a>
+    </p>
+  </body>
+</html>
