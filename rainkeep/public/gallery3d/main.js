@@ -16,7 +16,7 @@ const pmremGenerator = new THREE.PMREMGenerator(renderer);
 pmremGenerator.compileEquirectangularShader();
 
 new EXRLoader()
-  .load('/misty_pines_4k.exr', function (texture) {
+  .load('misty_pines_4k.exr', function (texture) {
     const envMap = pmremGenerator.fromEquirectangular(texture).texture;
 
     scene.background = envMap;
