@@ -4,6 +4,8 @@ import { EXRLoader } from 'https://esm.sh/three@0.158.0/examples/jsm/loaders/EXR
 
 const canvas = document.querySelector('#scene');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -14,7 +16,7 @@ const pmremGenerator = new THREE.PMREMGenerator(renderer);
 pmremGenerator.compileEquirectangularShader();
 
 new EXRLoader()
-  .load('/gallery3d/assets/misty_pines_4k.exr', function (texture) {
+  .load('/misty_pines_4k.exr', function (texture) {
     const envMap = pmremGenerator.fromEquirectangular(texture).texture;
 
     scene.background = envMap;
