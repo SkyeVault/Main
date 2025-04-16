@@ -1,30 +1,13 @@
 import * as THREE from 'https://esm.sh/three@0.158.0';
 import { OrbitControls } from 'https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls.js';
-import { EXRLoader } from 'https://esm.sh/three@0.158.0/examples/jsm/loaders/EXRLoader.js';
 
 const canvas = document.querySelector('#scene');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-renderer.outputEncoding = THREE.sRGBEncoding;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#0d0f1c');
-
-const pmremGenerator = new THREE.PMREMGenerator(renderer);
-pmremGenerator.compileEquirectangularShader();
-
-new EXRLoader()
-  .load('misty_pines_4k.exr', function (texture) {
-    const envMap = pmremGenerator.fromEquirectangular(texture).texture;
-
-    scene.background = envMap;
-    scene.environment = envMap;
-
-    texture.dispose();
-    pmremGenerator.dispose();
-  });
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 6, 10);
@@ -43,7 +26,7 @@ moonlight.position.set(5, 10, 5);
 scene.add(moonlight);
 
 const floor = new THREE.Mesh(
-  new THREE.PlaneGeometry(100, 100),
+  new THREE.PlaneGeometry(50, 50),
   new THREE.MeshStandardMaterial({ color: '#b8a0cc', roughness: 0.4, metalness: 0.1 })
 );
 floor.rotation.x = -Math.PI / 2;
@@ -71,6 +54,7 @@ const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.5, 10, 50), wallMateria
 rightWall.position.set(25, 5, 0);
 scene.add(rightWall);
 
+//window
 const rhineView = new THREE.Mesh(
   new THREE.PlaneGeometry(30, 10),
   new THREE.MeshBasicMaterial({
