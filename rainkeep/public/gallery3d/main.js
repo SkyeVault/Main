@@ -1,5 +1,6 @@
 import * as THREE from 'https://esm.sh/three@0.158.0';
 import { OrbitControls } from 'https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls.js';
+import { EXRLoader } from 'https://esm.sh/three@0.158.0/examples/jsm/loaders/EXRLoader.js';
 
 const canvas = document.querySelector('#scene');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
@@ -8,6 +9,20 @@ renderer.setPixelRatio(window.devicePixelRatio);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#0d0f1c');
+
+const pmremGenerator = new THREE.PMREMGenerator(renderer);
+pmremGenerator.compileEquirectangularShader();
+
+new EXRLoader()
+  .load('/gallery3d/assets/misty_pines_4k.exr', function (texture) {
+    const envMap = pmremGenerator.fromEquirectangular(texture).texture;
+
+    scene.background = envMap;
+    scene.environment = envMap;
+
+    texture.dispose();
+    pmremGenerator.dispose();
+  });
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 6, 10);
