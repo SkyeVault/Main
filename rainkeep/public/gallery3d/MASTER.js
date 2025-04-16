@@ -26,7 +26,7 @@ moonlight.position.set(5, 10, 5);
 scene.add(moonlight);
 
 const floor = new THREE.Mesh(
-  new THREE.PlaneGeometry(100, 100),
+  new THREE.PlaneGeometry(50, 50),
   new THREE.MeshStandardMaterial({ color: '#b8a0cc', roughness: 0.4, metalness: 0.1 })
 );
 floor.rotation.x = -Math.PI / 2;
@@ -54,6 +54,7 @@ const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.5, 10, 50), wallMateria
 rightWall.position.set(25, 5, 0);
 scene.add(rightWall);
 
+//window
 const rhineView = new THREE.Mesh(
   new THREE.PlaneGeometry(30, 10),
   new THREE.MeshBasicMaterial({
