@@ -1,0 +1,104 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250416 – Gallery Environment Iterations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>DevLog 250416 – Gallery Environment Iterations</h1>
+    <span class="prompt">> Log Date: 2025-04-16</span>
+
+    <p class="excerpt">
+      Today I tested EXR viewers and brought in an HDRI from PolyHaven, but decided it didn’t match the aesthetic I’m chasing. I'm now editing core geometry instead.
+    </p>
+
+    <p>
+      I’ve been experimenting with EXR background environments today. I imported the <code>misty_pines.exr</code> file from <a href="https://polyhaven.com" target="_blank">PolyHaven</a>, and while the image itself was beautiful, it didn’t match the feeling I want the gallery to evoke. It felt too grounded in reality for the kind of ambient, slightly surreal tone I’m going for.
+    </p>
+
+    <p>
+      Rather than try to force a match, I removed the EXR entirely and shifted focus to the space itself—specifically the floor. I enlarged the floor plane and adjusted proportions to allow for a better sense of scale and framing. The room now feels more like a gallery and less like a viewport trapped in a nature sim.
+    </p>
+
+    <p>
+      I'll continue iterating in my <strong>JSFiddle preview loader</strong>, trying out light, structure, and layout ideas until I hit something that clicks emotionally. It’s still all under construction, but each step sharpens the vision. 
+    </p>
+
+    <hr />
+
+    <h2>Takeaway</h2>
+    <p>
+      Beautiful doesn’t always mean fitting. I’m learning to lean into what serves the story of the gallery, not just what looks nice in isolation.
+    </p>
+
+    <hr />
+
+    <p>
+      Here's a link to <a href="https://polyhaven.com" target="_blank">PolyHaven</a> for free HDRIs and environment maps.
+    </p>
+
+    <hr />
+  </body>
+</html>
