@@ -1,0 +1,219 @@
+<!-- Save as: rainkeep/static/blog-html/DevLog250417.html -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250417 – JSFiddle Layout Editor + Artwork Positioning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>JSFiddle Layout Editor + Artwork Positioning</h1>
+    <span class="prompt">> Log Date: 250417</span>
+    <p class="excerpt">
+      I'm building a live placement and rotation system in JSFiddle to preview artwork positions before deployment to the Arynwood 3D gallery. This log documents the Three.js loader, wall coordinates, rotation math, and editor functionality.
+    </p>
+
+    <p>
+      Today I built a working prototype of an artwork loader using <code>THREE.TextureLoader()</code> with a mesh assignment that only paints the front face. I’m now actively using JSFiddle as a sandbox to test coordinate placements, rotations, and multi-wall positioning. I also wrote a guide below for replicating this gallery positioning system.
+    </p>
+
+    <hr />
+
+    <h2>Three.js Artwork Loader Snippet</h2>
+    <p>Only the front-facing panel is textured. Remaining sides are solid dark gray.</p>
+
+    <pre><code>const loader = new THREE.TextureLoader();
+loader.load(
+  'https://cdn.jsdelivr.net/gh/SkyeVault/Main@main/rainkeep/public/Arynwood/Untitled_Artwork%201.png',
+  function (texture) {
+    const artMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    const artwork = new THREE.Mesh(
+      new THREE.BoxGeometry(4, 5, 0.2),
+      [
+        new THREE.MeshBasicMaterial({ color: '#111' }), // left
+        new THREE.MeshBasicMaterial({ color: '#111' }), // right
+        new THREE.MeshBasicMaterial({ color: '#111' }), // top
+        new THREE.MeshBasicMaterial({ color: '#111' }), // bottom
+        artMaterial, // front
+        new THREE.MeshBasicMaterial({ color: '#111' })  // back
+      ]
+    );
+    artwork.position.set(0, 5, -24.5); // back wall center
+    scene.add(artwork);
+  },
+  undefined,
+  function (err) {
+    console.error('Error loading artwork texture:', err);
+  }
+);</code></pre>
+
+    <hr />
+
+    <h2>Live Layout Editor in JSFiddle</h2>
+    <p>To make rapid adjustments, I’m prototyping positioning logic directly in <a href="https://jsfiddle.net" target="_blank">JSFiddle</a> with live output. This lets me rotate objects visually before exporting to production builds.</p>
+
+    <h3>Key Code Structure in JSFiddle:</h3>
+    <pre><code>// Load THREE + OrbitControls via ESM
+import * as THREE from 'https://esm.sh/three@0.158.0';
+import { OrbitControls } from 'https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls.js';
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.set(0, 5, 35);
+
+const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('canvas') });
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+// Lighting
+const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+scene.add(ambient);
+
+// Controls
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 5, 0);
+controls.update();
+
+// Animation loop
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+animate();</code></pre>
+
+    <hr />
+
+    <h2>Artwork Placement Guide – Wall Coordinates</h2>
+    <p>All walls in the gallery use a bounding coordinate value of ±24.5. This creates predictable placements for any piece in the 3D space. Rotation is always applied using radians.</p>
+
+    <h3>Wall Boundaries</h3>
+    <ul>
+      <li><strong>Back Wall:</strong> z = -24.5 (faces forward)</li>
+      <li><strong>Front Wall:</strong> z = 24.5 (faces backward)</li>
+      <li><strong>Left Wall:</strong> x = -24.5 (faces right)</li>
+      <li><strong>Right Wall:</strong> x = 24.5 (faces left)</li>
+    </ul>
+
+    <h3>Standard Placement Template</h3>
+    <pre><code>artwork.position.set(x, y, z);
+artwork.rotation.y = THREE.MathUtils.degToRad(degrees);</code></pre>
+
+    <h3>Examples</h3>
+    <pre><code>// Back wall
+artwork.position.set(0, 5, -24.5);
+artwork.rotation.y = 0;
+
+// Front wall
+artwork.position.set(0, 5, 24.5);
+artwork.rotation.y = Math.PI;
+
+// Left wall
+artwork.position.set(-24.5, 5, 0);
+artwork.rotation.y = THREE.MathUtils.degToRad(90);
+
+// Right wall
+artwork.position.set(24.5, 5, 0);
+artwork.rotation.y = THREE.MathUtils.degToRad(-90);</code></pre>
+
+    <h3>Height Notes</h3>
+    <p><code>y = 5</code> works for center-aligned display at eye level (5 unit tall artwork). Adjust as needed.</p>
+
+    <hr />
+
+    <h2>Rotation Math Refresher</h2>
+    <p>Three.js uses radians — convert degrees using:</p>
+    <pre><code>THREE.MathUtils.degToRad(45); // => 0.7854</code></pre>
+
+    <p>
+      Use <code>.rotation.y</code> for turning left/right.<br />
+      Use <code>.rotation.x</code> or <code>.rotation.z</code> for floor/table displays.
+    </p>
+
+    <hr />
+
+    <h2>Future Plans</h2>
+    <ul>
+      <li>Dynamic grid layout via vector snapping</li>
+      <li>Text overlays for labels (title, artist, year)</li>
+      <li>GUI for live rotation + drag positioning</li>
+      <li>Export-to-JSON scene saving for reproducible layout</li>
+    </ul>
+
+    <hr />
+
+    <h2>License</h2>
+    <p>
+      Open-source under the MIT License.<br />
+      Created by Lorelei Noble for the Arynwood 3D Gallery project.
+    </p>
+
+    <hr />
+
+    <p>
+      Live preview at: <a href="https://arynwood.com/gallery3d">arynwood.com/gallery3d</a>
+    </p>
+
+    <hr />
+  </body>
+</html>
