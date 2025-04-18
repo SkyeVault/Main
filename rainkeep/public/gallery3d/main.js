@@ -62,6 +62,59 @@ spotlight.position.set(0, 8, 0);
 scene.add(spotlight);
 spotlight.intensity = 10;
 
+// --- BACK WALL LIGHTS (z = -20)
+const backLight1 = new THREE.PointLight('#ffffff', 15, 60);
+backLight1.position.set(-15, 9, -20);
+scene.add(backLight1);
+
+const backLight2 = new THREE.PointLight('#ffffff', 15, 60);
+backLight2.position.set(0, 9, -20);
+scene.add(backLight2);
+
+const backLight3 = new THREE.PointLight('#ffffff', 15, 60);
+backLight3.position.set(15, 9, -20);
+scene.add(backLight3);
+
+// --- FRONT WALL LIGHTS (z = 20)
+const frontLight1 = new THREE.PointLight('#ffffff', 15, 60);
+frontLight1.position.set(-15, 9, 20);
+scene.add(frontLight1);
+
+const frontLight2 = new THREE.PointLight('#ffffff', 15, 60);
+frontLight2.position.set(0, 9, 20);
+scene.add(frontLight2);
+
+const frontLight3 = new THREE.PointLight('#ffffff', 15, 60);
+frontLight3.position.set(15, 9, 20);
+scene.add(frontLight3);
+
+// --- LEFT WALL LIGHTS (x = -20)
+const leftLight1 = new THREE.PointLight('#ffffff', 15, 60);
+leftLight1.position.set(-20, 9, -15);
+scene.add(leftLight1);
+
+const leftLight2 = new THREE.PointLight('#ffffff', 15, 60);
+leftLight2.position.set(-20, 9, 0);
+scene.add(leftLight2);
+
+const leftLight3 = new THREE.PointLight('#ffffff', 15, 60);
+leftLight3.position.set(-20, 9, 15);
+scene.add(leftLight3);
+
+// --- RIGHT WALL LIGHTS (x = 20)
+const rightLight1 = new THREE.PointLight('#ffffff', 15, 60);
+rightLight1.position.set(20, 9, -15);
+scene.add(rightLight1);
+
+const rightLight2 = new THREE.PointLight('#ffffff', 15, 60);
+rightLight2.position.set(20, 9, 0);
+scene.add(rightLight2);
+
+const rightLight3 = new THREE.PointLight('#ffffff', 15, 60);
+rightLight3.position.set(20, 9, 15);
+scene.add(rightLight3);
+
+
 
 // Floor and walls
 const floor = new THREE.Mesh(
