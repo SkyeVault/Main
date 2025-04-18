@@ -10,7 +10,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 // Improve brightness and color accuracy
 renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 2.0;
+renderer.toneMappingExposure = 4.0;
 
 // Create scene and camera
 const scene = new THREE.Scene();
@@ -35,26 +35,33 @@ const moonlight = new THREE.DirectionalLight('#ffffff', 0.5);
 moonlight.position.set(5, 10, 5);
 scene.add(moonlight);
 
+const topFill = new THREE.PointLight('#ffffff', 20, 30);
+topFill.position.set(0, 10, 0);
+scene.add(topFill);
+
+
 // Strong gallery spotlights for each wall
-const spotlightBack = new THREE.PointLight('#ffffff', 6, 100);
+const spotlightBack = new THREE.PointLight('#ffffff', 20, 100);
 spotlightBack.position.set(0, 9, -20);
 scene.add(spotlightBack);
 
-const spotlightFront = new THREE.PointLight('#ffffff', 6, 100);
+const spotlightFront = new THREE.PointLight('#ffffff', 20, 100);
 spotlightFront.position.set(0, 9, 20);
 scene.add(spotlightFront);
 
-const spotlightLeft = new THREE.PointLight('#ffffff', 6, 100);
+const spotlightLeft = new THREE.PointLight('#ffffff', 20, 100);
 spotlightLeft.position.set(-20, 9, 0);
 scene.add(spotlightLeft);
 
-const spotlightRight = new THREE.PointLight('#ffffff', 6, 100);
+const spotlightRight = new THREE.PointLight('#ffffff', 20, 100);
 spotlightRight.position.set(20, 9, 0);
 scene.add(spotlightRight);
 
-const spotlight = new THREE.PointLight('#ffffff', 3.5, 100);
+const spotlight = new THREE.PointLight('#ffffff', 20, 100);
 spotlight.position.set(0, 8, 0);
 scene.add(spotlight);
+spotlight.intensity = 10;
+
 
 // Floor and walls
 const floor = new THREE.Mesh(
