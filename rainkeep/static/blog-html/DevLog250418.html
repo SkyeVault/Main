@@ -1,0 +1,164 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250418 – Gallery Artwork Wrapping and Lighting Boost</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Gallery Lighting and Artwork Expansion</h1>
+    <span class="prompt">> Log Date: 250418</span>
+    <p class="excerpt">
+      Today's update focuses on adding depth, precision, and atmosphere to the 3D gallery through improved lighting and a wrapped box display method for artwork using Three.js.
+    </p>
+
+    <p>
+      With the core gallery now functioning, I added perimeter lighting on all four walls to simulate gallery spotlights. The exposure was turned up using <code>ACESFilmicToneMapping</code> for richer, more cinematic lighting contrast.
+    </p>
+
+    <hr />
+
+    <h2>Scene Setup and Tone Mapping</h2>
+    <p>
+      The renderer is now tuned for high dynamic range output, simulating photorealism more effectively:
+    </p>
+    <pre><code>renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 4.0;</code></pre>
+
+    <hr />
+
+    <h2>Lighting Architecture</h2>
+    <p>
+      I installed wall-mounted point lights to flood the gallery with indirect bounce and fill.
+    </p>
+    <ul>
+      <li>Top fill: <code>PointLight</code> at the ceiling</li>
+      <li>Wall spotlights: 3 per wall (left, right, front, back)</li>
+      <li>Central spotlight: High-intensity center highlight</li>
+      <li>Window accent: Soft <code>#b48eff</code> moon glow</li>
+    </ul>
+
+    <p>This setup added a vibrant gallery feel without the harshness of shadows.</p>
+
+    <hr />
+
+    <h2>Artwork Wrapping with BoxGeometry</h2>
+    <p>
+      Each artwork is now wrapped in a shallow box to simulate framed canvas depth. I used <code>BoxGeometry</code> and assigned the texture only to the front face, while the sides and back are rendered in black:
+    </p>
+    <pre><code>new THREE.BoxGeometry(width, height, depth)
+// front face: artwork texture
+// sides and back: dark matte #111</code></pre>
+
+    <p>
+      This gives every piece a sense of realism and dimension instead of floating planes.
+    </p>
+
+    <hr />
+
+    <h2>Dynamic Placement Script</h2>
+    <p>
+      The walls are filled with up to 40 artworks using a script that increments texture URLs and wraps them on each wall. Skips the window cutout dynamically.
+    </p>
+
+    <pre><code>function addArtwork(i, x, y, z, rotationY) {
+  const url = `https://.../Untitled_Artwork%20${i}.png`;
+  // Loads wrapped mesh
+  // Auto-rotates per wall
+}</code></pre>
+
+    <p>
+      This gives me a scalable way to hang a large volume of pieces while maintaining symmetry and balance.
+    </p>
+
+    <hr />
+
+    <h3>Next Steps</h3>
+    <ul>
+      <li>Implement floor reflections or soft shadows</li>
+      <li>Improve camera auto-navigation or guided tour logic</li>
+      <li>Continue optimizing texture resolution vs. performance</li>
+    </ul>
+
+    <hr />
+
+    <p>
+      Here's a live link to the gallery: 
+      <a href="https://arynwood.com/gallery3d" target="_blank">arynwood.com/gallery3d</a>
+    </p>
+
+    <p>
+      View source on GitHub (soon to be public).
+    </p>
+
+    <hr />
+
+    <p>You can include <strong>styled code blocks</strong> like this:</p>
+
+    <p>And any links you want:
+      <a href="https://arynwood.com/blog">Back to Arynwood Blog</a>
+    </p>
+  </body>
+</html>
