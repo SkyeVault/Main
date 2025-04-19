@@ -17,7 +17,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color('#0d0f1c');
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 8, -50);
+camera.position.set(0, 38, -50);
 camera.lookAt(0, 5, 0);
 
 // Orbit controls for rotation and zoom
