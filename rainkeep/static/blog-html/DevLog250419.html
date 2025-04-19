@@ -1,0 +1,200 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250419 – Fine-Tuning Artwork Placement and Controls</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Gallery 3D – Personalized Placement Pipeline</h1>
+    <span class="prompt">> Log Date: 250419</span>
+    <p class="excerpt">
+      The current art wall layout is functional but too formulaic. This next sprint focuses on giving each painting its own space, light, and intention.
+    </p>
+
+    <hr />
+
+    <h2>Goals</h2>
+    <ul>
+      <li>Manually assign artwork coordinates (no loops)</li>
+      <li>Allow individual spotlight tuning per piece</li>
+      <li>Increase painting size for better visibility</li>
+      <li>Refactor orbit controls for better mobile UX</li>
+    </ul>
+
+    <hr />
+
+    <h2>Step 1: Individual Artwork Placement</h2>
+    <p>
+      Instead of the loop-based system, we’ll define each piece with an <code>addArtwork</code> call and explicit coordinates:
+    </p>
+
+    <pre><code>// Example layout with larger size
+addArtwork(1, -18, 5.2, -24.5, 0);
+addArtwork(2,  0,  5.2, -24.5, 0);
+addArtwork(3,  18, 5.2, -24.5, 0);
+addArtwork(4, -18, 5.2,  24.5, Math.PI);</code></pre>
+
+    <p>
+      This gives you full curatorial control over layout spacing, aesthetic flow, and wall balance.
+    </p>
+
+    <hr />
+
+    <h2>Step 2: Lighting Per Painting</h2>
+    <p>
+      With fixed positions, each artwork can have a dedicated <code>PointLight</code> or <code>SpotLight</code> tuned to enhance its color:
+    </p>
+
+    <pre><code>const light = new THREE.PointLight('#ffffff', 5, 10);
+light.position.set(-18, 6.5, -24);
+scene.add(light);</code></pre>
+
+    <p>
+      You can color-tune lights per mood:
+    </p>
+
+    <pre><code>new THREE.PointLight('#b48eff', 3, 8); // ethereal violet
+new THREE.PointLight('#ffdcdc', 2, 6); // warm candlelight</code></pre>
+
+    <hr />
+
+    <h2>Step 3: Adjust Artwork Size</h2>
+    <p>
+      Current size: <code>3.5w x 5h</code>. Consider trying:
+    </p>
+
+    <pre><code>const canvasWidth = 4.5;
+const canvasHeight = 6.2;</code></pre>
+
+    <p>
+      This helps especially on mobile, where the smaller scale isn’t readable.
+    </p>
+
+    <hr />
+
+    <h2>Step 4: Orbit Control Improvements</h2>
+    <p>
+      The current orbit behavior is too aggressive for mobile. Try these more subtle settings:
+    </p>
+
+    <pre><code>controls.enableZoom = true;
+controls.zoomSpeed = 0.25;
+controls.rotateSpeed = 0.3;
+controls.panSpeed = 0.4;
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 5;
+controls.maxDistance = 30;</code></pre>
+
+    <p>
+      You can also add conditionals to detect touchscreens and limit rotation axes if needed:
+    </p>
+
+    <pre><code>if ('ontouchstart' in window) {
+  controls.maxPolarAngle = Math.PI / 3;
+  controls.enablePan = false;
+}</code></pre>
+
+    <hr />
+
+    <h2>Optional: Touch Navigation Overlay</h2>
+    <p>
+      A simple fix would be a floating button panel with:
+    </p>
+    <ul>
+      <li>Zoom in/out</li>
+      <li>Rotate left/right</li>
+      <li>Reset view</li>
+    </ul>
+
+    <p>
+      We’ll explore adding this UI layer later using plain HTML buttons and event hooks on the camera.
+    </p>
+
+    <hr />
+
+    <h3>Next Tasks</h3>
+    <ol>
+      <li>Remove math loop placement</li>
+      <li>Create 10–12 <code>addArtwork</code> lines by hand with notes</li>
+      <li>Adjust orbit settings and test on iPhone</li>
+      <li>Refactor lights per object</li>
+    </ol>
+
+    <hr />
+
+    <p>
+      Visit the current build: 
+      <a href="https://arynwood.com/gallery3d" target="_blank">arynwood.com/gallery3d</a>
+    </p>
+
+    <p>
+      Back to index: 
+      <a href="https://arynwood.com/blog">Arynwood Blog</a>
+    </p>
+
+    <hr />
+  </body>
+</html>
