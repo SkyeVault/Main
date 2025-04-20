@@ -1,0 +1,161 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250420 – Visual Item Placement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>DevLog 250420 – Visual Item Placement</h1>
+    <span class="prompt">> Log Date: 2025-04-20</span>
+    <p class="excerpt">
+      Today I documented my plan for laying out a full interactive 3D boutique using Three.js. This devlog covers the first steps of spatial item placement and outlines the gallery concept I'm building.
+    </p>
+
+    <p>
+      The gallery will evolve into a stylized metaphysical boutique—a blend of e-commerce, art gallery, and Web3 experience. I’ll be integrating:
+    </p>
+    <ul>
+      <li>Clothes racks for print-on-demand apparel</li>
+      <li>A card holder rack for selling prints and postcards</li>
+      <li>Gift shop shelving featuring Etsy listings</li>
+      <li>A custom cashier desk with checkout interface</li>
+      <li>Built-in NFT minting wall with interactive smart contract integration</li>
+    </ul>
+    <p>
+      Some assets will be imported from libraries, while others will be modeled and coded by hand. Here’s how I’m setting up item placement and visual layout within the scene.
+    </p>
+
+    <hr />
+
+    <h2>Step 1: Prepare Your 3D Assets</h2>
+    <ul>
+      <li>Use <strong>.glb</strong> or <strong>.gltf</strong> formats for best compatibility</li>
+      <li>Export assets from Blender or download free models from open libraries</li>
+    </ul>
+
+    <hr />
+
+    <h2>Step 2: Plan Object Positions</h2>
+    <p>You can visually determine placement using one of two approaches:</p>
+    <ul>
+      <li><strong>Blender:</strong> Move objects in 3D space, press <code>N</code> to view transform values, then copy X/Y/Z</li>
+      <li><strong>JSFiddle Scene Preview:</strong> Use placeholder meshes like <code>BoxGeometry</code> and manually tweak <code>.position.set(x, y, z)</code></li>
+    </ul>
+
+    <hr />
+
+    <h2>Step 3: Import Items into Your Three.js Scene</h2>
+    <pre><code>// Import a GLB model with GLTFLoader
+import { GLTFLoader } from 'https://esm.sh/three@0.158.0/examples/jsm/loaders/GLTFLoader.js';
+
+const loader = new GLTFLoader();
+loader.load('models/clothing_rack.glb', function (gltf) {
+  const item = gltf.scene;
+  item.position.set(2, 0, -3);  // Adjust XYZ for spatial placement
+  item.scale.set(1.1, 1.1, 1.1);
+  scene.add(item);
+});
+</code></pre>
+
+    <hr />
+
+    <h2>Step 4: Use Grid and Axis Helpers</h2>
+    <p>These overlays help with positioning and navigation as the gallery grows:</p>
+    <pre><code>const grid = new THREE.GridHelper(20, 20);
+scene.add(grid);
+
+const axes = new THREE.AxesHelper(5);
+scene.add(axes);
+</code></pre>
+
+    <hr />
+
+    <h3>Quick Tips</h3>
+    <ul>
+      <li><strong>X</strong> = left/right</li>
+      <li><strong>Y</strong> = up/down</li>
+      <li><strong>Z</strong> = forward/backward</li>
+      <li>Scale with: <code>item.scale.set(x, y, z)</code></li>
+      <li>Rotate with: <code>item.rotation.set(x, y, z)</code></li>
+    </ul>
+
+    <hr />
+
+    <p>
+      This devlog will evolve as I begin constructing the boutique. My plan is to work iteratively—using placeholders where needed—and slowly replace each with a textured, animated model optimized for performance. The end goal is a fully interactive VR-ready metaphysical e-commerce space with Web3 integration.
+    </p>
+
+    <p>
+      Here's a link to the scene: <a href="https://arynwood.com/gallery3d">arynwood.com/gallery3d</a>
+    </p>
+
+    <hr />
+
+    <p>
+      And any links you want:
+      <a href="https://arynwood.com/blog">Back to Arynwood Blog</a>
+    </p>
+  </body>
+</html>
