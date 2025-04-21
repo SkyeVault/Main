@@ -122,5 +122,84 @@ import '../styles/global.css';
       }
     });
   </script>
+<!-- Devicon stylesheet -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+<style>
+  .tech-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 2rem;
+    justify-content: center;
+    background: #0d0f1c;
+  }
+
+  .tech-icon {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    color: #c9c7ff;
+  }
+
+  .tech-icon i,
+  .tech-icon img {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: 0 auto 0.5rem;
+  }
+</style>
+
+<div class="tech-icons">
+  <!-- JavaScript -->
+  <div class="tech-icon">
+    <i class="devicon-javascript-plain colored"></i>
+    JavaScript
+  </div>
+
+  <!-- HTML5 -->
+  <div class="tech-icon">
+    <i class="devicon-html5-plain colored"></i>
+    HTML
+  </div>
+
+  <!-- CSS3 -->
+  <div class="tech-icon">
+    <i class="devicon-css3-plain colored"></i>
+    CSS
+  </div>
+
+  <!-- Python -->
+  <div class="tech-icon">
+    <i class="devicon-python-plain colored"></i>
+    Python
+  </div>
+
+  <!-- Rust -->
+  <div class="tech-icon">
+    <i class="devicon-rust-plain colored"></i>
+    Rust
+  </div>
+
+  <!-- Bash/Shell -->
+  <div class="tech-icon">
+    <i class="devicon-bash-plain colored"></i>
+    Shell
+  </div>
+
+  <!-- Solidity (via Iconify fallback) -->
+  <div class="tech-icon">
+    <img src="https://api.iconify.design/logos:solidity.svg" alt="Solidity">
+    Solidity
+  </div>
+
+  <!-- Three.js (via Iconify) -->
+  <div class="tech-icon">
+    <img src="https://api.iconify.design/logos:threejs.svg" alt="Three.js">
+    Three.js
+  </div>
+</div>
+
 </body>
 </html>
