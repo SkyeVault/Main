@@ -72,7 +72,7 @@ import '../styles/global.css';
 <body>
   <div class="terminal">
     <div class="output">$ <span class="prompt">whoami</span></div>
-    <div class="output">Lorelei Noble — full-stack developer, artist, architect of Arynwood.</div>
+    <div class="output">Lorelei Noble — full-stack developer, artist, architect of Arynwood. <a href="/lorelei">Read more...</a>  </div>
     <div class="output">Type <span class="prompt">help</span> or try commands like <span class="prompt">projects</span>, <span class="prompt">blog</span>, <span class="prompt">artwork</span>, or <span class="prompt">contact</span>.</div>
     
     <div class="output">$ <input class="command-input" id="command" type="text" placeholder="Type a command..." autofocus></div>
@@ -94,7 +94,7 @@ import '../styles/global.css';
             response = 'Available commands: whoami, <a href="/projects">projects</a>, <a href="/blog">blog</a>, <a href="/contact">contact</a>, <a href="/syrenwork">artwork</a>';
             break;
           case 'whoami':
-            response = 'Lorelei Noble — full-stack dev, artist, architect of Arynwood.';
+            response = 'Lorelei Noble — full-stack developer, artist, architect of Arynwood. <a href="/lorelei">Read more...</a>.';
             break;
           case 'projects':
             response = '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/gallery3d">3D Metaverse Gallery</a>';
