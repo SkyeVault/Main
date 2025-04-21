@@ -1,0 +1,201 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250421 – JSON for Object Placement in the Metaverse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>JSON for Object Placement in the Metaverse</h1>
+    <span class="prompt">> Log Date: 250421</span>
+    <p class="excerpt">
+      Today I’m exploring how to use JSON files inside JavaScript to reduce load time and streamline object placement in a metaverse-style 3D project. This devlog explains where JSON comes from, its role in data-driven design, and when to break logic into new JavaScript modules.
+    </p>
+
+    <p>
+      When you're building your own metaverse project, especially something immersive like a metaphysical shop, performance matters. If you're loading too much hard-coded content into your main script, you’ll tank your framerate and delay asset rendering. Enter: <code>.json</code>.
+    </p>
+
+    <hr />
+
+    <h2>What is JSON?</h2>
+    <p>
+      JSON stands for <strong>JavaScript Object Notation</strong>. It’s a lightweight data-interchange format that’s easy to read and write. Structurally, it looks like a JavaScript object but is stored as plain text. Browsers and engines parse it quickly and easily.
+    </p>
+
+    <pre><code>{
+  "name": "Amethyst Crystal",
+  "position": [2, 1, -4],
+  "price": 18,
+  "type": "crystal"
+}</code></pre>
+
+    <p>
+      That’s an example of a single crystal item inside a <code>crystals.json</code> file. With a well-structured set of JSON files, you can offload object definitions, placement, and UI info while keeping your main JS lean and focused on logic.
+    </p>
+
+    <hr />
+
+    <h2>Folder Structure for a Metaphysical Shop</h2>
+    <pre><code>/assets/
+  /data/
+    herbs.json
+    crystals.json
+    wands.json
+    books.json
+    art.json
+  /textures/
+    herb_1.jpg
+    crystal_amethyst.jpg
+/main.js
+/register.js
+</code></pre>
+
+    <p>
+      Each category of item in the shop has its own JSON file. These are used to dynamically populate both the 3D world and the e-commerce layer.
+    </p>
+
+    <hr />
+
+    <h2>How to Load JSON in JavaScript</h2>
+    <p>
+      In your main JavaScript file, fetch your data using <code>fetch()</code>:
+    </p>
+
+    <pre><code>// Load crystals into the scene
+fetch('./assets/data/crystals.json')
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(item => {
+      placeItemInScene(item);
+    });
+  });
+
+function placeItemInScene(item) {
+  const mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0xaa88ff })
+  );
+  mesh.position.set(...item.position);
+  scene.add(mesh);
+}
+</code></pre>
+
+    <p>
+      This approach keeps data external and clean. You can even regenerate or edit your inventory without touching your JavaScript logic.
+    </p>
+
+    <hr />
+
+    <h3>When to Use JavaScript Files Instead</h3>
+    <p>
+      JSON is excellent for static or semi-static data—anything that doesn't involve behavior. But when you need methods, conditions, or real-time logic (e.g., cart totals, sales logic, player interaction), that’s when JavaScript modules come into play.
+    </p>
+
+    <p>For example:</p>
+
+    <pre><code>// register.js
+export function processPurchase(itemId, inventory) {
+  const item = inventory.find(i => i.id === itemId);
+  if (item && item.price > 0) {
+    console.log(`Purchased: ${item.name} for $${item.price}`);
+  }
+}
+</code></pre>
+
+    <hr />
+
+    <h2>JSON Limitations</h2>
+    <ul>
+      <li>No functions or methods allowed—just data</li>
+      <li>Everything must be a string, number, array, object, boolean, or null</li>
+      <li>Can't reference other files or logic natively</li>
+      <li>Needs to be parsed before use in JS</li>
+    </ul>
+
+    <p>
+      Think of JSON as the blueprint and JavaScript as the contractor. JSON tells you what objects exist, where they go, and how they’re labeled. JavaScript brings them to life and runs the business logic behind the scenes.
+    </p>
+
+    <hr />
+
+    <h2>Conclusion</h2>
+    <p>
+      If you’re building your own immersive shop in the metaverse—herbs floating in glass jars, crystals glowing, books whispering spells—structure your data in JSON and write modular JS logic to interact with it. This not only improves loading performance, but also gives you better control over expanding your virtual world down the road.
+    </p>
+
+    <p>
+      Here’s a link to my live project:
+      <a href="https://arynwood.com/gallery3d">arynwood.com/gallery3d</a>
+    </p>
+
+    <hr />
+
+    <p>
+      Back to the blog index:
+      <a href="https://arynwood.com/blog">Arynwood DevLog</a>
+    </p>
+
+  </body>
+</html>
