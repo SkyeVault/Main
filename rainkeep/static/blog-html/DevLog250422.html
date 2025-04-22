@@ -1,0 +1,104 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250422 – Created DevLog Layout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .excerpt {
+        font-style: italic;
+        color: #aaa8cc;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>DevLog 250422 – Created DevLog Layout</h1>
+    <span class="prompt">&gt; Log Date: 2025-04-22</span>
+    <p class="excerpt">
+      Today I created a reusable DevLog.layout.astro file to standardize all future logs and prepare for the Astro migration.
+    </p>
+
+    <p>
+      I built a new layout component in Astro to reflect the style of all my previous hand-written HTML logs. It keeps the same dark background, lavender text, and styled code blocks — but is now reusable across the entire blog.
+    </p>
+
+    <hr />
+
+    <h2>Next Steps</h2>
+    <p>
+      I’ll begin converting each individual HTML log in <code>rainkeep/static/blog-html/</code> to Astro format so that they can be indexed properly and benefit from layout and slot-based structure.
+    </p>
+    <p>
+      Once that’s done, I’ll revisit the <code>getStaticPaths()</code> slug bug in my Astro blog to make sure each post loads cleanly via dynamic routes.
+    </p>
+
+    <hr />
+
+    <p>
+      Here's a link: <a href="https://arynwood.com/blog">Back to Arynwood Blog</a>
+    </p>
+
+    <hr />
+  </body>
+</html>
