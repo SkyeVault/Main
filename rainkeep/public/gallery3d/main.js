@@ -10,7 +10,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 // Improve brightness and color accuracy
 renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 4.0;
+renderer.toneMappingExposure = 1.5;
 
 // Create scene and camera
 const scene = new THREE.Scene();
