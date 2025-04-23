@@ -30,6 +30,17 @@ import '../styles/global.css';
     .prompt {
       color: #b9aaff;
     }
+    .blinking-cursor::after {
+      content: '_';
+      animation: blink 1s step-start infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
 
     .output {
       margin-bottom: 1rem;
@@ -75,7 +86,9 @@ import '../styles/global.css';
     <div class="output">Lorelei Noble — full-stack developer, artist, architect of Arynwood. <a href="/lorelei">Read more...</a>  </div>
     <div class="output">Type <span class="prompt">help</span> or try commands like <span class="prompt">projects</span>, <span class="prompt">blog</span>, <span class="prompt">artwork</span>, or <span class="prompt">contact</span>.</div>
     
+    <div class="output">$ <span class="prompt blinking-cursor"></span></div>
     <div class="output">$ <input class="command-input" id="command" type="text" placeholder="Type a command..." autofocus></div>
+
     
     <a href="https://www.arynwood.com/classic" class="gui-toggle block">
   [ Switch to classic view ]
@@ -83,44 +96,70 @@ import '../styles/global.css';
 
 
   <script>
-    const input = document.getElementById('command');
-    input.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter') {
-        const cmd = input.value.trim().toLowerCase();
-        let response = '';
+  const input = document.getElementById('command');
+  const terminal = document.querySelector('.terminal');
 
-        switch (cmd) {
-          case 'help':
-            response = 'Available commands: whoami, <a href="/projects">projects</a>, <a href="/blog">blog</a>, <a href="/contact">contact</a>, <a href="/syrenwork">artwork</a>';
-            break;
-          case 'whoami':
-            response = 'Lorelei Noble — full-stack developer, artist, architect of Arynwood. <a href="/lorelei">Read more...</a>.';
-            break;
-          case 'projects':
-            response = '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/gallery3d">3D Metaverse Gallery</a>';
-            break;
-          case 'blog':
-            response = 'Read the blog: <a href="/blog">DevLogs</a>';
-            break;
-          case 'contact':
-            response = 'Email: <a href="mailto:loreleihnoble@gmail.com">Gmail</a> | LinkedIn: <a href="https://www.linkedin.com/in/lorelein/">LinkedIn</a> | GitHub: <a href="https://github.com/SkyeVault" target="_blank">SkyeVault</a>';
-            break;
-          case 'artwork':
-            response = 'Explore the gallery: <a href="https://arynwood.com/syrenwork" target="_blank">Syrenwork Gallery</a>';
-            break;
-          default:
-            response = `Command not found: ${cmd}`;
-        }
+  function getFortune() {
+    const fortunes = [
+      "A bug is just an undocumented feature.",
+      "The glass is half full... of lavender code.",
+      "Push with confidence. Debug with grace.",
+      "You are exactly where you need to compile."
+    ];
+    return fortunes[Math.floor(Math.random() * fortunes.length)];
+  }
 
-        const terminal = document.querySelector('.terminal');
+  function handleCommand(cmd) {
+    switch (cmd) {
+      case 'help':
+        return 'Available commands: whoami, projects, blog, contact, artwork, sudo, ls, cd .., clear, exit, cat, fortune';
+      case 'whoami':
+        return 'Lorelei Noble — full-stack developer, artist, architect of Arynwood. <a href="/lorelei">Read more...</a>.';
+      case 'projects':
+        return '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/gallery3d">3D Metaverse Gallery</a>';
+      case 'blog':
+        return 'Read the blog: <a href="/blog">DevLogs</a>';
+      case 'contact':
+        return 'Email: <a href="mailto:loreleihnoble@gmail.com">Gmail</a> | LinkedIn: <a href="https://www.linkedin.com/in/lorelein/">LinkedIn</a> | GitHub: <a href="https://github.com/SkyeVault" target="_blank">SkyeVault</a>';
+      case 'artwork':
+        return 'Explore the gallery: <a href="https://arynwood.com/syrenwork" target="_blank">Syrenwork Gallery</a>';
+      case 'sudo':
+        return 'Permission denied: This terminal respects boundaries.';
+      case 'ls':
+        return 'index.html  lorelei/  syrenwork/  gallery3d/  projects/';
+      case 'cd ..':
+        return 'Backed out of digital space... but you’re already at root.';
+      case 'clear':
+        terminal.innerHTML = '';
+        return '';
+      case 'exit':
+        return 'Closing session... just kidding. You live here now.';
+      case 'cat':
+      case 'cat lorelei.txt':
+        return 'Lorelei Noble: Full-stack dev, glass artist, and code conjurer. Learn more: <a href="/lorelei">/lorelei</a>';
+      case 'fortune':
+        return getFortune();
+      default:
+        return `Command not found: ${cmd}`;
+    }
+  }
+
+  input.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+      const cmd = input.value.trim().toLowerCase();
+      const response = handleCommand(cmd);
+
+      if (cmd !== 'clear') {
         const newOutput = document.createElement('div');
         newOutput.className = 'output';
         newOutput.innerHTML = `$ <span class="prompt">${cmd}</span><br>${response}`;
         terminal.insertBefore(newOutput, input.parentNode);
-
-        input.value = '';
       }
-    });
-  </script>
+
+      input.value = '';
+    }
+  });
+</script>
+
 </body>
 </html>
