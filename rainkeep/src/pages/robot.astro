@@ -38,12 +38,21 @@ const pageTitle = "Arynwood Robot";
         margin-bottom: 1.5rem;
       }
 
-      iframe {
+      .responsive-iframe {
+        position: relative;
         width: 100%;
-        height: 700px;
-        border: none;
+        padding-top: 56.25%; /* 16:9 aspect ratio */
         border-radius: 16px;
         overflow: hidden;
+      }
+
+      .responsive-iframe iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
       }
 
       a {
@@ -58,16 +67,17 @@ const pageTitle = "Arynwood Robot";
     </style>
   </head>
   <body>
-    <h1>Veylan</h1>
-    
 
-    <iframe
-	src="https://arynwood-veylan.hf.space"
-	frameborder="0"
-	width="900"
-	height="500"
-></iframe>
+    <h1>Arynwood Robot</h1>
+    <p>Explore your aesthetic terminal mind.</p>
 
+    <div class="responsive-iframe">
+      <iframe
+        src="https://arynwood-veylan.hf.space"
+        loading="lazy"
+        allow="clipboard-write"
+      ></iframe>
+    </div>
 
     <p>
       Learn more at <a href="https://huggingface.co/Arynwood-Design">Hugging Face</a>
