@@ -1,0 +1,117 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250424 – Hugging Face Experiments</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>DevLog 250424 – Hugging Face Experiments</h1>
+    <span class="prompt">> Log Date: 2025-04-24</span>
+    <p class="excerpt">
+      Today I tested multiple Hugging Face models and finally stood up a free version of my Arynwood Robot — currently named Veylan. This post documents where I hit walls with local installs, where I found success, and what remains to be styled and refined.
+    </p>
+
+    <p>
+      I started the day by attempting to install <code>phi-4</code> locally. This model was just released by Microsoft and is promising in benchmarks — however, my 2016 MacBook Air simply couldn't handle it. No GPU, and barely any VRAM. I saw errors and slowdowns almost immediately when loading the weights via <code>transformers</code>.
+    </p>
+
+    <p>
+      After abandoning the local route, I pivoted to trying a series of Hugging Face-hosted models. I attempted to stand up Spaces using <code>microsoft/phi-2</code>, <code>mistralai/Mistral-7B-Instruct</code>, and <code>HuggingFaceH4/zephyr-7b-beta</code>. However, most of these either required paid inference endpoints, exceeded free-tier compute limits, or returned “no API found” errors because the model was incompatible with static CPU deployments.
+    </p>
+
+    <h2>Current Implementation</h2>
+    <p>
+      I finally had success by using <code>HuggingFaceH4/zephyr-7b-beta</code> via the <code>InferenceClient</code> with Gradio’s <code>ChatInterface</code>. This setup doesn’t require API keys as long as the model supports hosted inference. I created a new Space named <strong>veylan</strong>, and used a simplified <code>app.py</code> that streams responses.
+    </p>
+
+    <pre><code>client = InferenceClient("HuggingFaceH4/zephyr-7b-beta")</code></pre>
+
+    <p>
+      The assistant currently accepts a user-defined system message and has sliders for <code>max_tokens</code>, <code>temperature</code>, and <code>top_p</code>. It's clean, fast, and feels close to the goal. 
+    </p>
+
+    <hr />
+
+    <h3>What’s Left</h3>
+    <ul>
+      <li>Custom CSS pass: needs softer lavender glow and spacing tweaks</li>
+      <li>Header/description updates to better reflect the project vision</li>
+      <li>Add example prompts for inspiration</li>
+      <li>Optional: toggle between tones (technical vs poetic)</li>
+    </ul>
+
+    <p>
+      Next steps: finish styling the interface, refine the assistant voice, and eventually explore hosting an actual open-source model myself if I ever get better hardware. For now, the project lives in the cloud and is fully functional — no API keys, no fees.
+    </p>
+
+    <hr />
+
+    <p>
+      Here's a link: <a href="https://huggingface.co/spaces/Arynwood-Design/veylan">Visit Veylan on Hugging Face</a>
+    </p>
+
+    <hr />
+  </body>
+</html>
