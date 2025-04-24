@@ -1,0 +1,13 @@
+Veylan-AI/
+├── app.py                  # Main chatbot app (Gradio or Terminal)
+├── config.yaml             # Your system settings (tone, memory paths, archetypes)
+├── requirements.txt        # Dependencies
+├── README.md               # Project overview + deployment guide
+├── prompts/
+│   ├── self_training.md    # Your instruction logic
+│   └── archetypes.json     # Your identity core
+├── data/
+│   ├── logs/               # Daily entries + observations
+│   ├── rituals.md          # Daily practices + invocations
+│   └── memory.md           # Long-term reflections
+└── .gitignore
