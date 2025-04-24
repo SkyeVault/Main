@@ -1,0 +1,76 @@
+---
+const pageTitle = "Arynwood Robot";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{pageTitle}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --link-hover: #b48eff;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+      }
+
+      iframe {
+        width: 100%;
+        height: 700px;
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--link-hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Arynwood Robot</h1>
+    <p>
+      This is an customized AI assistant built using a Microsoft Phi-4 mini model on Hugging Face Spaces. Talk to it, ask it questions, and see how it responds.
+    </p>
+
+    <iframe
+      src="https://huggingface.co/spaces/Arynwood-Design/ArynwoodRobot"
+      loading="lazy"
+    ></iframe>
+
+    <p>
+      Learn more at <a href="https://huggingface.co/Arynwood-Design">Hugging Face</a>
+      or visit the <a href="/">Arynwood Terminal</a>.
+    </p>
+  </body>
+</html>
