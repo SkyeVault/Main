@@ -1,0 +1,140 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250423 – Terminal Homepage and HF Bot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .excerpt {
+        font-style: italic;
+        color: #aaa8cc;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>DevLog 250423 – Terminal Home & HF Bot Setup</h1>
+    <span class="prompt">&gt; Log Date: 2025-04-23</span>
+    <p class="excerpt">
+      Continued building my terminal-themed homepage and began developing a Hugging Face AI bot with plans to customize it for documentation and portfolio use.
+    </p>
+
+    <p>
+      Today I worked on refining my terminal homepage styling and layout. There are a few other cleanup tasks I want to tackle soon — mostly reworking older HTML into Astro format, optimizing mobile spacing, and trimming unused scripts.
+    </p>
+
+    <hr />
+
+    <h2>Custom Hugging Face Bot Setup</h2>
+    <p>I also began creating a personal AI bot on Hugging Face, using <code>app.py</code> as the entry point for logic and document loading. Here's a quick-start tutorial to help others set up their own:</p>
+
+    <h3>1. Clone the Hugging Face Gradio Space</h3>
+    <pre><code>git clone https://huggingface.co/spaces/your-username/your-space</code></pre>
+
+    <h3>2. Edit <code>app.py</code> with Custom Prompt Logic</h3>
+    <p>Basic template using the <code>huggingface_hub</code> Inference API:</p>
+    <pre><code>import gradio as gr
+from huggingface_hub import InferenceClient
+
+client = InferenceClient("HuggingFaceH4/zephyr-7b-beta")
+
+def respond(message, history, system_message, max_tokens, temperature, top_p):
+    messages = [{"role": "system", "content": system_message}]
+    for user, bot in history:
+        if user: messages.append({"role": "user", "content": user})
+        if bot: messages.append({"role": "assistant", "content": bot})
+    messages.append({"role": "user", "content": message})
+    
+    response = ""
+    for msg in client.chat_completion(messages, max_tokens=max_tokens, stream=True):
+        response += msg.delta
+    return response
+</code></pre>
+
+    <h3>3. Upload Local Docs</h3>
+    <p>To give your bot context, upload `.txt`, `.md`, or `.json` files into the root of the Space. You'll need to write a custom parser or embed them directly into the prompt context during inference.</p>
+
+    <h3>4. Push to Hugging Face</h3>
+    <pre><code>git add .
+git commit -m "Initial bot setup"
+git push</code></pre>
+
+    <hr />
+
+    <h2>Next Step: Choosing the Best Model</h2>
+    <p>
+      I'm currently researching the most performant open models. I’ve been leaning toward the new release of <strong>LLaMA 4</strong>, which was just announced and appears to offer strong performance in open weights.
+    </p>
+    <p>
+      Once I've chosen the final model, I’ll optimize prompt logic and memory handling for technical doc retrieval, code walkthroughs, and developer help.
+    </p>
+
+    <hr />
+
+    <p>
+      Here's a link: <a href="https://arynwood.com/blog">Back to Arynwood Blog</a>
+    </p>
+
+    <hr />
+  </body>
+</html>
