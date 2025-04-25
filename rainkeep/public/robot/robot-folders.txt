@@ -10,4 +10,20 @@ Veylan-AI/
 │   ├── logs/               # Daily entries + observations
 │   ├── rituals.md          # Daily practices + invocations
 │   └── memory.md           # Long-term reflections
-└── .gitignore
+└── .
+
+
+additional ideas
+
+local_ai_router/
+├── main.py                  # FastAPI router
+├── agents/
+│   ├── writer_mistral.py    # Text generation via Mistral
+│   ├── coder_codex.py       # Code generation via Codex
+│   ├── image_sd.py          # Image generation via Stable Diffusion
+│   ├── vision_clip.py       # Image-text matching with CLIP
+│   └── phi_assistant.py     # Default assistant agent
+├── routing/
+│   └── router.py            # Dynamic task routing logic
+└── memory/
+    └── memory_store.json    # Lightweight memory/logging
