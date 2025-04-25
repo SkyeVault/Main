@@ -1,0 +1,96 @@
+
+==============================
+OpenManus AI Agent Framework
+Customized Training Manual
+==============================
+
+Overview:
+---------
+This document outlines how to build and run your own modular AI agent system using FastAPI and OpenManus-style architecture. It is tailored to your preferences — offline, local, transparent, and stylized with a lavender cyberpunk terminal aesthetic.
+
+Directory Structure:
+--------------------
+your_ai_system/
+├── main.py                   # FastAPI app entrypoint
+├── agents/                   # Modular AI agents
+│   ├── writer_mistral.py
+│   ├── coder_codex.py
+│   ├── artist_sd.py
+│   ├── vision_clip.py
+│   └── phi_orchestrator.py
+├── routing/
+│   └── router.py             # Dynamic routing logic
+├── memory/
+│   └── logs.json             # Message log store
+├── requirements.txt          # Dependencies
+└── README.md                 # Project documentation
+
+Installation Steps:
+-------------------
+1. Install system dependencies:
+   sudo apt update
+   sudo apt install python3 python3-pip git -y
+
+2. Set up the Python environment:
+   python3 -m venv ai_env
+   source ai_env/bin/activate
+
+3. Clone or initialize the project:
+   mkdir your_ai_system && cd your_ai_system
+   git init
+
+4. Create and populate requirements.txt:
+   fastapi
+   uvicorn
+   transformers
+   torch
+   torchvision
+   diffusers
+   open_clip_torch
+
+5. Install Python dependencies:
+   pip install -r requirements.txt
+
+6. Run the FastAPI server:
+   uvicorn main:app --reload
+
+API Usage:
+----------
+Endpoint: POST /process/
+Headers: Content-Type: application/json
+Body:
+{
+  "role": "writer",
+  "message": "Write a devlog entry for today."
+}
+
+Routing Logic:
+--------------
+- 'writer' -> Mistral agent for structured writing
+- 'coder'  -> Codex agent for code generation
+- 'artist' -> Stable Diffusion for image creation
+- 'vision' -> CLIP agent for visual matching
+- default  -> Phi assistant for lightweight fallback
+
+Agent Behavior:
+---------------
+Each agent must expose a function (e.g. generate, reply) that accepts a string input and returns a string output.
+
+Personalization Notes:
+----------------------
+- Uses warm, transparent tone
+- All markdown styled, no emojis
+- Devlogs and documentation are structured and clear
+- Aesthetic: lavender, dark mode, hacker fonts
+- Assistant defaults to honesty and usefulness over guessing
+
+Future Expansion:
+-----------------
+- Add health checks via background tasks
+- Enable logging in memory/logs.json
+- Integrate IPFS or local file tools
+- Add CLI to interact from zsh/terminal
+
+==============================
+End of Manual
+==============================
