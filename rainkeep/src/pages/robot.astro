@@ -81,5 +81,31 @@ const pageTitle = "Arynwood Robot";
       Learn more at <a href="https://huggingface.co/Arynwood-Design">Hugging Face</a>
       or visit the <a href="/">Arynwood Terminal</a>.
     </p>
+
+    <h1>Technical Insight - Building the Arynwood Bot</h1>
+
+    <p>This project started with a simple goal, to understand what makes a chatbot feel alive.  
+    Using the free tier on Hugging Face, I worked with the zephyr-7b-beta model, a base that was already lightweight enough to experiment with but still powerful enough to hold a real conversation.</p>
+
+    <p>Because of hardware constraints, I did not train a new model from scratch. Instead, I focused on direct system message editing and adjusting runtime parameters like temperature, top-p sampling, and token limits.  
+    Temperature controls how much randomness the bot uses. Higher values make it more creative and unpredictable, lower values make it more logical and focused.  
+    Top-p sampling changes how many possible next words the bot can choose from, balancing between creativity and precision.  
+    Max new tokens determines how much text the model is allowed to generate in a single response, which also helps prevent it from running out of memory on small servers.</p>
+
+    <p>Inside the app.py file, I built a custom interface with sliders for these controls, so every conversation could be shaped in real time without needing to reprogram the bot.  
+    By shaping the system message carefully, I could tune the bot’s tone, style, and internal assumptions without touching the model weights.  
+    This gave me surprising freedom to craft a personality that fits the atmosphere I want for Arynwood, without any heavy compute resources or paid infrastructure.</p>
+
+    <p>While zephyr-7b-beta cannot match the depth of commercial models like GPT-4, it does something just as important.  
+    It gives me control.  
+    It lets me see what happens when you adjust the temperature to 1.2 instead of 0.7, or when you open up the top-p to allow more creative drift.</p>
+
+    <p>The hands-on experience has been essential.  
+    It has shown me how lightweight language models can be customized, how system messages act like the skeleton of a bot’s mind, and how important it is to work within memory and inference limits when you are not relying on expensive APIs.</p>
+
+    <p>This version of Veylan is a starting point.  
+    I plan to expand this work by hosting multiple small bots locally on my own machine, each one adapted for different tasks like coding, creative writing, and self-guided learning.  
+    But everything begins here, with a simple Hugging Face deployment, a modified system prompt, and a desire to understand the architecture of intelligence.</p>
+
   </body>
 </html>
