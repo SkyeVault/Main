@@ -1,1 +1,129 @@
-h
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250425 – Pushing the Limits of Zephyr Bot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #b48eff;
+        text-shadow: 0 0 2px #b48eff;
+      }
+
+      h2, h3 {
+        color: #b48eff;
+        text-shadow: 1px 1px 0 #2e254e;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
+        opacity: 0.4;
+        margin: 2rem 0;
+      }
+
+      a {
+        color: #79b8ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #161822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid #b48eff;
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: #c9c7ff;
+      }
+
+      .prompt {
+        color: #888;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>DevLog 250425 – Pushing the Limits of Zephyr Bot</h1>
+    <span class="prompt">> Log Date: 2025-04-25</span>
+    <p class="excerpt">
+      Today I reached the limit of what my local machine can handle with my Zephyr bot project. I stretched the system until it cracked, and realized it's time for some serious upgrades.
+    </p>
+
+    <p>
+      I spent today editing and updating the personality features for my Hugging Face-based Zephyr bot. I added logging functions and tried introducing more customized behavior into <code>app.py</code>. However, the 16GB memory of my Hugging Face free tier quickly showed its limits.
+    </p>
+
+    <p>
+      Every new tweak and addition pushed the system harder. After a few iterations, my laptop — already strained — simply couldn’t handle it. I attempted to install and run <strong>phi-4</strong> locally, and it essentially crashed the machine. Opening Blender? Forget about it. Running a personal LLM? Out of reach for now.
+    </p>
+
+    <hr />
+
+    <h2>Upgrade Plans</h2>
+    <p>
+      It's clear that if I want to continue building my own AI systems and running models locally, I need stronger hardware. 
+      I'm currently looking at starting with an <strong>M4 Mac Mini</strong> with at least <strong>16GB RAM</strong>. This would give me enough baseline performance to continue growing my skills without hitting a memory wall every few steps.
+    </p>
+
+    <p>
+      Long term, I want to build a full customized system — designed specifically for AI development, 3D rendering, and local LLM hosting. I imagine an expandable workstation where I can host my bots, build my art, and continue crafting every part of the system.
+    </p>
+
+    <hr />
+
+    <h2>Reflection</h2>
+    <p>
+      Hugging Face free tier has been an excellent playground. It showed me where my limits currently are, but more importantly, it showed me where I want to go. 
+      Pushing Zephyr bot to its current limits taught me a lot about architecture, memory usage, and the reality of running AI models in constrained environments.
+    </p>
+
+    <p>
+      I will continue tweaking <code>app.py</code> and refining the experience. In the meantime, it’s time to build a stronger foundation for the future.
+    </p>
+
+    <hr />
+
+    <h3>Today's Key Commands</h3>
+    <pre><code># Sample startup
+huggingface-cli login
+python app.py
+
+# Sample install attempt for phi-4
+pip install phi-4
+
+# Blender crash confirmed
+open -a Blender
+    </code></pre>
+
+    <hr />
+
+    <p>
+      Back to the main terminal: <a href="https://arynwood.com/blog">Arynwood DevLog</a>
+    </p>
+
+  </body>
+</html>
