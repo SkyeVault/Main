@@ -20,7 +20,7 @@ fn main() {
 ---
 
 ## **2. Variables & Data Types**  
-- **Variables are immutable by default;** use `mut` for mutability.  
+- **Variables  are immutable by default;** use `mut` for mutability.  
 - **Rust enforces strict type safety.**  
 
 ```rust
