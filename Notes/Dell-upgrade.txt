@@ -1,0 +1,29 @@
+Ultimate Dell T3600 Upgrade Guide (2025)
+
+Purpose:
+- Build a fully upgraded Dell T3600 for AI development (Ollama, Hugging Face, Windsurf)
+- Capable of 3D design, 4K content, and bot hosting
+- Cooling and power optimized for no-AC environment
+- Ubuntu OS now, Windows 11 dual-boot ready
+
+---
+
+Upgrade Parts List:
+
+- GPU: NVIDIA GeForce RTX 4070 12GB GDDR6X
+- RAM: 64GB DDR3-1600 ECC RDIMM (4 × 16GB Samsung or Hynix modules)
+- Primary SSD: Samsung 870 EVO 1TB SATA SSD (2.5”)
+- Secondary Storage: Samsung 970 EVO Plus 2TB NVMe SSD + PCIe x4 adapter
+- CPU Upgrade (optional): Intel Xeon E5-1650 v2 (6 cores, 3.5 GHz base, 3.9 GHz turbo)
+- PSU Upgrade (if needed): Dell Precision 635W PSU (Part NFRTK)
+- Cooling: Clean all fans, replace CPU thermal paste (Arctic MX-4 or Noctua NT-H1)
+- Windows 11 Prep: TPM/Secure Boot bypass installer ready
+
+---
+
+Order of Installation:
+
+1. Backup all important files.
+2. Update BIOS to Dell A18 (critical for CPU/GPU compatibility).
+3. Install PSU upgrade (only if currently 425W).
+4. Upgrade CPU (only if changing to E5-1650
