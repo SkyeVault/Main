@@ -73,6 +73,28 @@ const { title, date, excerpt } = Astro.props;
         color: #aaa8cc;
         margin-bottom: 1rem;
       }
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.button-link {
+  background-color: #161822;
+  border: 1px solid #b48eff;
+  color: #c9c7ff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: 'Courier New', monospace;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.button-link:hover {
+  background-color: #2e254e;
+  color: #b48eff;
+}
     </style>
   </head>
   <body>
