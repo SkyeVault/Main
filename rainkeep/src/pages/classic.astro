@@ -3,37 +3,14 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
 <HamburgerNav title="Arynwood — Classic View">
-  <style>
-    :root {
-      --bg: #000000;
-      --text: #dcdcdc;
-      --accent: #b48eff;
-      --link: #79b8ff;
-      --link-hover: #b48eff;
-      --box-bg: #010101;
-      --box-border: #2e254e;
-      --box-shadow: rgba(181, 103, 218, 0.8);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 1.5rem;
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
+  <style is:global>
     .container {
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem;
-      background-color: var(--box-bg);
+      background-color: #010101;
       border-radius: 1px;
-      box-shadow: 0 0 30px var(--box-shadow);
+      box-shadow: 0 0 30px rgba(181, 103, 218, 0.8);
     }
 
     h1, h2 {
@@ -51,22 +28,6 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
       margin-top: 2rem;
     }
 
-    a {
-      color: var(--link);
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: var(--link-hover);
-      text-decoration: underline;
-    }
-
-    ul {
-      padding-left: 1.25rem;
-      list-style-type: square;
-      margin-bottom: 1rem;
-    }
-
     .link-row {
       display: flex;
       flex-wrap: wrap;
@@ -80,7 +41,7 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
       padding: 0.4rem 0.75rem;
       text-align: center;
       background-color: #161822;
-      border: 1px solid var(--box-border);
+      border: 1px solid #2e254e;
       border-radius: 4px;
       transition: background 0.2s ease;
       min-width: 100px;
@@ -102,48 +63,18 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
     .back-link:hover {
       color: #b9aaff;
     }
-
-    @media screen and (max-width: 600px) {
-      body {
-        padding: 1rem;
-      }
-
-      .container {
-        padding: 1.25rem;
-      }
-
-      .link-row {
-        flex-direction: row;
-        justify-content: center;
-      }
-
-      .link-row a {
-        flex: 1 1 45%;
-        max-width: none;
-        font-size: 0.9rem;
-        padding: 0.5rem 0.75rem;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      h2 {
-        font-size: 1.2rem;
-      }
-    }
   </style>
 
   <div class="container">
     <h1>Arynwood — Home</h1>
     <p>
-      Welcome to Arynwood — A portfolio and transparent coding hub for Lorelei Noble. Here you'll find links to my current projects, artwork galleries, and build logs. I document everything from front-end design to smart contract deployments.
+      Welcome to Arynwood — A portfolio and transparent coding hub for Lorelei Noble. Here you'll find links to my current projects, artwork galleries, and build logs.
     </p>
 
     <div class="section">
       <h2>About</h2>
       <p>
-        I'm <strong>Lorelei Noble</strong> — a full-stack developer, digital artist, and creator of Arynwood. I work across physical and digital mediums, blending code, visual art, and immersive technology to build experiences rooted in both technical precision and aesthetic clarity.
+        I'm <strong>Lorelei Noble</strong> — a full-stack developer, digital artist, and creator of Arynwood.
       </p>
       <div class="link-row">
         <a href="/lorelei">About Me</a>
@@ -154,25 +85,15 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
       <h2>Projects</h2>
       <ul>
         <li><a href="/projects">Spotify Playlist Maker</a></li>
-        This published Rust crate uses the Spotify API to automate custom playlist generation based on user input and filters.
-
         <li><a href="/projects">NFT Collection</a></li>
-        Deployed on the Polygon Amoy Testnet and indexed on OpenSea, this project features a smart contract stack using Foundry, Solidity, and OpenZeppelin standards.
-
         <li><a href="/gallery3d">Metaverse Viewer</a></li>
-        A fully immersive 3D Web3 experience built with Next.js, Three.js, and IPFS — includes a mintable NFT gallery and on-chain provenance tools.
-
-        <li><a href="/robot">Arynwood Robot</a></li>
-        A conversational assistant UI running Zephyr with plans to transition to a fully offline, locally hosted LLM secured on upgraded hardware.
-        <span class="note">(local bot coming soon)</span>
+        <li><a href="/robot">Arynwood Robot</a> <span class="note">(local bot coming soon)</span></li>
       </ul>
     </div>
 
     <div class="section">
       <h2>Blog</h2>
-      <p>
-        Visit the <a href="/blog">Arynwood Blog</a> for deep dives into build processes, creative documentation, and design philosophy across projects.
-      </p>
+      <p>Visit the <a href="/blog">Arynwood Blog</a> for build logs and philosophy.</p>
       <div class="link-row">
         <a href="/blog">DevLogs</a>
       </div>
@@ -180,9 +101,6 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
 
     <div class="section">
       <h2>Artwork</h2>
-      <p>
-        Explore my visual work via <a href="/syrenwork">Syrenwork</a> — a curated space for digital art, seamless patterns, stained glass designs, and experimental gallery layouts.
-      </p>
       <div class="link-row">
         <a href="/syrenwork">2D Gallery</a>
         <a href="/gallery3d">3D Gallery</a>
