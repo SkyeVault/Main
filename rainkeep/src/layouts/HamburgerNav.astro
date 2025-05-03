@@ -90,9 +90,14 @@ const { title } = Astro.props;
       }
 
       main {
+        transition: margin-left 0.3s ease;
+        margin-left: 0;
         padding: 5rem 2rem 2rem 2rem;
         max-width: 800px;
-        margin: 0 auto;
+      }
+
+      body.menu-open main {
+        margin-left: 250px;
       }
 
       @media screen and (max-width: 600px) {
@@ -103,10 +108,10 @@ const { title } = Astro.props;
     </style>
   </head>
   <body>
-    <button class="menu-toggle" onclick="document.getElementById('nav').classList.toggle('open')">☰ Menu</button>
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
 
     <nav id="nav">
-      <button class="close-nav" onclick="document.getElementById('nav').classList.remove('open')">×</button>
+      <button class="close-nav" onclick="toggleMenu()">×</button>
       <ul>
         <li><a href="/">Terminal</a></li>
         <li><a href="/classic">Classic View</a></li>
@@ -124,5 +129,13 @@ const { title } = Astro.props;
       <h1>{title}</h1>
       <slot />
     </main>
+
+    <script>
+      function toggleMenu() {
+        const nav = document.getElementById('nav');
+        nav.classList.toggle('open');
+        document.body.classList.toggle('menu-open');
+      }
+    </script>
   </body>
 </html>
