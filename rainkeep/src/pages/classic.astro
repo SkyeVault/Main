@@ -2,7 +2,67 @@
 import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
-<HamburgerNav title="Classic View">
-  <p>This is the Classic View content. It now loads below the hamburger nav.</p>
-  <p>Click the menu button to access full navigation across the site.</p>
+<HamburgerNav title="Arynwood — Classic View">
+  <div class="container">
+    <p>
+      Welcome to Arynwood — A portfolio and transparent coding hub for Lorelei Noble. Here you'll find links to my current projects, artwork galleries, and build logs. I document everything from front-end design to smart contract deployments.
+    </p>
+
+    <section class="section">
+      <h2>About</h2>
+      <p>
+        I'm <strong>Lorelei Noble</strong> — a full-stack developer, digital artist, and creator of Arynwood. I work across physical and digital mediums, blending code, visual art, and immersive technology to build experiences rooted in both technical precision and aesthetic clarity.
+      </p>
+      <div class="link-row">
+        <a href="/lorelei">About Me</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Projects</h2>
+      <ul>
+        <li><a href="/projects">Spotify Playlist Maker</a></li>
+        <li><a href="/projects">NFT Collection</a></li>
+        <li><a href="/gallery3d">Metaverse Viewer</a></li>
+        <li><a href="/robot">Arynwood Robot</a> <span class="note">(local bot coming soon)</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Blog</h2>
+      <p>
+        Visit the <a href="/blog">Arynwood Blog</a> for deep dives into build processes, creative documentation, and design philosophy across projects.
+      </p>
+      <div class="link-row">
+        <a href="/blog">DevLogs</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Artwork</h2>
+      <p>
+        Explore my visual work via <a href="/syrenwork">Syrenwork</a> — a curated space for digital art, seamless patterns, stained glass designs, and experimental gallery layouts.
+      </p>
+      <div class="link-row">
+        <a href="/syrenwork">2D Gallery</a>
+        <a href="/gallery3d">3D Gallery</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Contact + Social</h2>
+      <div class="link-row">
+        <a href="mailto:loreleihnoble@gmail.com">Email</a>
+        <a href="https://github.com/SkyeVault" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/lorelein/" target="_blank">LinkedIn</a>
+        <a href="https://www.etsy.com/shop/Syrenwork" target="_blank">Etsy</a>
+        <a href="https://www.instagram.com/syrenwork" target="_blank">Instagram</a>
+        <a href="https://bsky.app/profile/syrenwork.bsky.social" target="_blank">Bluesky</a>
+        <a href="https://discordapp.com/users/syrenwork" target="_blank">Discord</a>
+        <a href="https://www.spoonflower.com/profiles/syrenwork?sort=classic" target="_blank">Spoonflower</a>
+      </div>
+    </section>
+
+    <a href="/" class="back-link">[ Return to terminal view ]</a>
+  </div>
 </HamburgerNav>
