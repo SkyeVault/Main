@@ -2,22 +2,7 @@
 import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
-<HamburgerNav title="Arynwood — Classic View">
-  <style is:global>
-    h1 {
-      color: #b48eff;
-      text-shadow: 0 0 2px #b48eff;
-    }
-    .debug-box {
-      background: #161822;
-      padding: 2rem;
-      border: 1px solid #2e254e;
-      margin-top: 3rem;
-    }
-  </style>
-
-  <div class="debug-box">
-    <h1>Hello from Classic Page</h1>
-    <p>If you see this, layout + slot injection is working.</p>
-  </div>
+<HamburgerNav title="Classic View">
+  <h1 style="color: red;">Layout Loaded</h1>
+  <p>This is content from the classic page.</p>
 </HamburgerNav>
