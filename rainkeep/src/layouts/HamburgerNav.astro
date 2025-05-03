@@ -3,7 +3,7 @@ const { title, children } = Astro.props;
 ---
 
 <div>
-  <button class="menu-toggle" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+  <button class="menu-toggle" onclick="document.getElementById('nav').classList.toggle('open')">☰ Menu</button>
 
   <nav id="nav">
     <ul>
@@ -26,10 +26,10 @@ const { title, children } = Astro.props;
 
   <style is:global>
     body {
-      background: #0d0f1c;
+      margin: 0;
+      background-color: #0d0f1c;
       color: #c9c7ff;
       font-family: 'JetBrains Mono', monospace;
-      margin: 0;
     }
 
     .menu-toggle {
@@ -39,8 +39,8 @@ const { title, children } = Astro.props;
       background: #161822;
       border: 1px solid #2e254e;
       color: #79b8ff;
-      font-size: 1.2rem;
-      padding: 0.5rem 0.75rem;
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
       border-radius: 4px;
       cursor: pointer;
       z-index: 1001;
@@ -67,6 +67,7 @@ const { title, children } = Astro.props;
     nav ul {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
 
     nav li {
@@ -76,16 +77,24 @@ const { title, children } = Astro.props;
     nav a {
       color: #79b8ff;
       text-decoration: none;
+      font-size: 1rem;
     }
 
     nav a:hover {
       color: #b48eff;
+      text-decoration: underline;
     }
 
     main {
-      padding: 4rem 2rem 2rem 2rem;
+      margin-left: 0;
+      padding: 5rem 2rem 2rem 2rem;
       max-width: 800px;
-      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      main {
+        margin-left: 0;
+      }
     }
   </style>
 </div>
