@@ -1,7 +1,7 @@
 ---
 import fs from 'fs';
 import path from 'path';
-import '../../styles/tailwind.css';
+import HamburgerNav from '../../layouts/HamburgerNav.astro';
 
 const posts = [
   "DevLog250503",
@@ -65,132 +65,38 @@ function getExcerpt(file) {
   const fullPath = path.resolve(blogPath, `${file}.html`);
   if (!fs.existsSync(fullPath)) return 'No snippet available.';
   const content = fs.readFileSync(fullPath, 'utf8');
-  const match = content.match(/<p class=\"excerpt\">(.*?)<\/p>/s);
+  const match = content.match(/<p class="excerpt">(.*?)<\/p>/s);
   return match ? match[1].trim() : 'No snippet available.';
 }
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title> Developer Logs </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      background-color: #0d0f1c;
-      color: #c9c7ff;
-      font-family: 'Courier New', monospace;
-      margin: 0;
-      padding: 2rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
+<HamburgerNav title="Developer Logs">
+  <div class="container">
+    <p class="excerpt">
+      Welcome to the Arynwood Blog. This space serves as the technical documentation log for all current and future coding projects.
+      The site itself is being actively built — and the development process is fully transparent. You can follow the evolution of every system,
+      contract, and line of logic through these devlogs. Visit the GitHub repository:<br />
+      <a href="https://github.com/skyevault/main/tree/main/rainkeep" target="_blank" rel="noopener">
+        github.com/skyevault/main/tree/main/rainkeep
+      </a>
+    </p>
 
-    h1 {
-      color: #b48eff;
-      text-shadow: 0 0 2px #b48eff;
-      font-size: 1.6rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #444;
-      padding-bottom: 0.5rem;
-    }
-
-    p.intro {
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      color: #c9c7ff;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    li {
-      margin-bottom: 2rem;
-    }
-
-    .prompt {
-      color: #8a8a99;
-      font-size: 0.9rem;
-      display: block;
-      margin-bottom: 0.25rem;
-    }
-
-    .snippet {
-      color: #aaa;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-    }
-
-    a {
-      color: #79b8ff;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: color 0.2s ease;
-      display: inline-block;
-    }
-
-    a:hover {
-      color: #b48eff;
-      text-decoration: underline;
-    }
-
-    .footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      text-align: center;
-      color: #777;
-    }
-
-    @media (max-width: 500px) {
-      body {
-        padding: 1rem;
-        font-size: 0.95rem;
+    <ul>
+      {
+        posts.map(file => (
+          <li style="margin-bottom: 2rem;">
+            <span class="prompt">$ cd ./blog-html/{file}.html</span><br />
+            <a href={`/blog-html/${file}.html`}>
+              {file}
+            </a>
+            <p class="snippet">{getExcerpt(file)}</p>
+          </li>
+        ))
       }
-      h1 {
-        font-size: 1.4rem;
-      }
-      a {
-        font-size: 1rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <h1> Developer Logs </h1>
+    </ul>
 
-  <p class="intro">
-    Welcome to the Arynwood Blog. This space serves as the technical documentation log for all current and future coding projects.
-    The site itself is being actively built — and the development process is fully transparent. You can follow the evolution of every system,
-    contract, and line of logic through these devlogs. Visit the GitHub repository here:<br />
-    <a href="https://github.com/skyevault/main/tree/main/rainkeep" target="_blank" rel="noopener">
-      github.com/skyevault/main/tree/main/rainkeep
-    </a>
-    <br /><br />
-    Projects include a 2D and 3D metaverse — fully on-chain, using the Polygon Amoy testnet for early deployment and proof-of-concept testing.
-  </p>
-
-  <ul>
-    {
-      posts.map(file => (
-        <li>
-          <span class="prompt">$ cd ./blog-html/{file}.html</span>
-          <a href={`/blog-html/${file}.html`}>
-            {file}
-          </a>
-          <p class="snippet">{getExcerpt(file)}</p>
-        </li>
-      ))
-    }
-  </ul>
-
-  <div class="footer">
-    Back to <a href="/">Terminal Home</a> • <a href="/projects">Projects</a> • <a href="/contact">Contact</a>
+    <div class="footer" style="margin-top: 3rem; font-size: 0.9rem; text-align: center; color: #777;">
+      Back to <a href="/">Terminal Home</a> • <a href="/projects">Projects</a> • <a href="/contact">Contact</a>
+    </div>
   </div>
-</body>
-</html>
+</HamburgerNav>
