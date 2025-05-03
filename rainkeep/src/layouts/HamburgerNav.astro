@@ -103,5 +103,13 @@ const { title, children } = Astro.props;
     <main>
       {children}
     </main>
+
+    <script>
+      document.querySelectorAll('#nav a').forEach(link =>
+        link.addEventListener('click', () =>
+          document.getElementById('nav').classList.remove('open')
+        )
+      );
+    </script>
   </body>
 </html>
