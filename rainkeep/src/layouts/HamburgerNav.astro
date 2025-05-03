@@ -7,170 +7,178 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      :root {
-        --bg: #0d0f1c;
-        --text: #c9c7ff;
-        --accent: #b48eff;
-        --link: #79b8ff;
-        --hover: #b48eff;
-        --box: #161822;
-        --border: #2e254e;
-        --note: #888;
-        --excerpt: #aaa8cc;
-      }
+<style>
+  :root {
+    --bg: #0d0f1c;
+    --text: #c9c7ff;
+    --accent: #b48eff;
+    --link: #79b8ff;
+    --hover: #b48eff;
+    --box: #161822;
+    --border: #2e254e;
+    --note: #888;
+    --excerpt: #aaa8cc;
+  }
 
-      body {
-        margin: 0;
-        background-color: var(--bg);
-        color: var(--text);
-        font-family: 'Courier New', monospace;
-        padding: 2rem;
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.6;
-      }
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Courier New', monospace;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
 
-      h1 {
-        color: var(--accent);
-        text-shadow: 0 0 2px var(--accent);
-      }
+  h1 {
+    color: var(--accent);
+    text-shadow: 0 0 2px var(--accent);
+  }
 
-      h2, h3 {
-        color: var(--accent);
-        text-shadow: 1px 1px 0 var(--border);
-        margin-top: 1.5rem;
-        margin-bottom: 0.75rem;
-      }
+  h2, h3 {
+    color: var(--accent);
+    text-shadow: 1px 1px 0 var(--border);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
 
-      hr {
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, var(--border), var(--accent), var(--border));
-        opacity: 0.4;
-        margin: 2rem 0;
-      }
+  hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, var(--border), var(--accent), var(--border));
+    opacity: 0.4;
+    margin: 2rem 0;
+  }
 
-      a,
-      a:visited,
-      a:focus,
-      a:active {
-        color: var(--link);
-        text-decoration: none;
-      }
+  a,
+  a:visited,
+  a:focus,
+  a:active {
+    color: var(--link);
+    text-decoration: none;
+  }
 
-      a:hover {
-        color: var(--hover);
-        text-decoration: underline;
-      }
+  a:hover {
+    color: var(--hover);
+    text-decoration: underline;
+  }
 
-      .note {
-        font-size: 0.85rem;
-        color: var(--note);
-      }
+  .note {
+    font-size: 0.85rem;
+    color: var(--note);
+  }
 
-      .excerpt {
-        font-style: italic;
-        color: var(--excerpt);
-        margin-bottom: 1rem;
-      }
+  .excerpt {
+    font-style: italic;
+    color: var(--excerpt);
+    margin-bottom: 1rem;
+  }
 
-      pre {
-        background-color: var(--box);
-        padding: 1rem;
-        overflow-x: auto;
-        border-left: 3px solid var(--accent);
-        margin-bottom: 1.5rem;
-      }
+  pre {
+    background-color: var(--box);
+    padding: 1rem;
+    overflow-x: auto;
+    border-left: 3px solid var(--accent);
+    margin-bottom: 1.5rem;
+  }
 
-      code {
-        font-family: 'Courier New', monospace;
-        color: var(--text);
-      }
+  code {
+    font-family: 'Courier New', monospace;
+    color: var(--text);
+  }
 
-      .prompt {
-        color: var(--note);
-        font-size: 0.9rem;
-        display: block;
-        margin-bottom: 1rem;
-      }
+  .prompt {
+    color: var(--note);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
 
-      .link-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        margin-top: 1rem;
-      }
+  .link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
 
-      .button-link {
-        background-color: var(--box);
-        border: 1px solid var(--accent);
-        color: var(--text);
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        text-decoration: none;
-        transition: background-color 0.2s ease, color 0.2s ease;
-      }
+  .button-link {
+    background-color: var(--box);
+    border: 1px solid var(--accent);
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
 
-      .button-link:hover {
-        background-color: var(--border);
-        color: var(--accent);
-      }
+  .button-link:hover {
+    background-color: var(--border);
+    color: var(--accent);
+  }
 
-      .menu-toggle {
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        background: var(--box);
-        border: 1px solid var(--border);
-        color: var(--link);
-        font-size: 1rem;
-        padding: 0.5rem 0.75rem;
-        border-radius: 4px;
-        cursor: pointer;
-        z-index: 1001;
-      }
+  .container {
+    margin-top: 2rem;
+  }
 
-      .menu-box {
-        display: none;
-        position: absolute;
-        top: 3.5rem;
-        left: 1rem;
-        background: var(--box);
-        border: 1px solid var(--border);
-        padding: 1rem;
-        z-index: 1000;
-        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
-      }
+  .section {
+    margin-top: 2rem;
+  }
 
-      .menu-box.show {
-        display: block;
-      }
+  .menu-toggle {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: var(--box);
+    border: 1px solid var(--border);
+    color: var(--link);
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1001;
+  }
 
-      .menu-box ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
+  .menu-box {
+    display: none;
+    position: absolute;
+    top: 3.5rem;
+    left: 1rem;
+    background: var(--box);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+  }
 
-      .menu-box li {
-        margin-bottom: 0.75rem;
-      }
+  .menu-box.show {
+    display: block;
+  }
 
-      .menu-box a {
-        color: var(--link);
-        text-decoration: none;
-      }
+  .menu-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 
-      .menu-box a:hover {
-        color: var(--hover);
-        text-decoration: underline;
-      }
+  .menu-box li {
+    margin-bottom: 0.75rem;
+  }
 
-      main {
-        padding: 5rem 0 2rem;
-      }
-    </style>
+  .menu-box a {
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  .menu-box a:hover {
+    color: var(--hover);
+    text-decoration: underline;
+  }
+
+  main {
+    padding: 5rem 0 2rem;
+  }
+</style>
   </head>
   <body>
     <button class="menu-toggle" id="menuToggle">☰</button>
