@@ -1,111 +1,55 @@
 ---
-const pageTitle = "Arynwood Robot";
+const title = "Arynwood Robot";
+import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{pageTitle}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      :root {
-        --bg: #0d0f1c;
-        --text: #c9c7ff;
-        --accent: #b48eff;
-        --link: #79b8ff;
-        --link-hover: #b48eff;
-      }
+<HamburgerNav {title}>
+  <div class="responsive-iframe">
+    <iframe
+      src="https://arynwood-veylan.hf.space"
+      loading="lazy"
+      allow="clipboard-write"
+    ></iframe>
+  </div>
 
-      body {
-        background-color: var(--bg);
-        color: var(--text);
-        font-family: 'Courier New', monospace;
-        padding: 2rem;
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.6;
-      }
+  <p>
+    Learn more at <a href="https://huggingface.co/Arynwood-Design">Hugging Face</a>
+    or return to the <a href="/">Arynwood Terminal</a>.
+  </p>
 
-      h1 {
-        color: var(--accent);
-        text-shadow: 0 0 2px var(--accent);
-        font-size: 1.75rem;
-        margin-bottom: 1rem;
-      }
+  <h1>Technical Insight — Building the Arynwood Bot</h1>
 
-      p {
-        margin-bottom: 1.5rem;
-      }
+  <p>
+    This project started with a simple goal: to understand what makes a chatbot feel alive.
+    Using the free tier on Hugging Face, I worked with the Zephyr-7B-Beta model — lightweight enough to experiment with,
+    but still powerful enough to hold a real conversation.
+  </p>
 
-      .responsive-iframe {
-        position: relative;
-        width: 100%;
-        height: 900px;
-        padding-top: 56.25%; /* 16:9 aspect ratio */
-        border-radius: 16px;
-        overflow: hidden;
-      }
+  <p>
+    Because of hardware constraints, I didn’t train a new model from scratch. Instead, I focused on system message editing
+    and adjusting runtime parameters like <em>temperature</em>, <em>top-p sampling</em>, and <em>max new tokens</em>.
+  </p>
 
-      .responsive-iframe iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-      }
+  <p>
+    Temperature controls how much randomness the bot uses. Higher values make it more creative and unpredictable; lower values
+    make it more logical and focused. Top-p sampling affects how many possible next words the bot can choose from — balancing
+    between creativity and precision. Max new tokens determines how much text the model is allowed to generate in a single response,
+    helping it avoid memory crashes on small servers.
+  </p>
 
-      a {
-        color: var(--link);
-        text-decoration: none;
-      }
+  <p>
+    Inside the <code>app.py</code> file, I built a custom interface with sliders for these controls so every conversation could be
+    shaped in real-time — without touching the core logic. By tuning the system message, I could alter the bot’s tone and internal
+    assumptions without needing to retrain it.
+  </p>
 
-      a:hover {
-        color: var(--link-hover);
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-  <body>
+  <p>
+    Zephyr-7B-Beta isn’t GPT-4. But it gives me something just as important: <strong>control</strong>.
+    It lets me explore, experiment, and build a system I fully understand.
+  </p>
 
-    <div class="responsive-iframe">
-      <iframe
-        src="https://arynwood-veylan.hf.space"
-        loading="lazy"
-        allow="clipboard-write"
-      ></iframe>
-    </div>
-
-    <p>
-      Learn more at <a href="https://huggingface.co/Arynwood-Design">Hugging Face</a>
-      or visit the <a href="/">Arynwood Terminal</a>.
-    </p>
-
-    <h1>Technical Insight - Building the Arynwood Bot</h1>
-
-    <p>This project started with a simple goal, to understand what makes a chatbot feel alive.  
-    Using the free tier on Hugging Face, I worked with the zephyr-7b-beta model, a base that was already lightweight enough to experiment with but still powerful enough to hold a real conversation.</p>
-
-    <p>Because of hardware constraints, I did not train a new model from scratch. Instead, I focused on direct system message editing and adjusting runtime parameters like temperature, top-p sampling, and token limits.  
-    Temperature controls how much randomness the bot uses. Higher values make it more creative and unpredictable, lower values make it more logical and focused.  
-    Top-p sampling changes how many possible next words the bot can choose from, balancing between creativity and precision.  
-    Max new tokens determines how much text the model is allowed to generate in a single response, which also helps prevent it from running out of memory on small servers.</p>
-
-    <p>Inside the app.py file, I built a custom interface with sliders for these controls, so every conversation could be shaped in real time without needing to reprogram the bot.  
-    By shaping the system message carefully, I could tune the bot’s tone, style, and internal assumptions without touching the model weights.  
-    This gave me surprising freedom to craft a personality that fits the atmosphere I want for Arynwood, without any heavy compute resources or paid infrastructure.</p>
-
-    <p>While zephyr-7b-beta cannot match the depth of commercial models like GPT-4, it does something just as important.  
-    It gives me control.  
-    It lets me see what happens when you adjust the temperature to 1.2 instead of 0.7, or when you open up the top-p to allow more creative drift.</p>
-
-    <p>The hands-on experience has been essential.  
-    It has shown me how lightweight language models can be customized, how system messages act like the skeleton of a bot’s mind, and how important it is to work within memory and inference limits when you are not relying on expensive APIs.</p>
-
-    <p>This version of Veylan is a starting point.  
-    I plan to expand this work by hosting multiple small bots locally on my own machine, each one adapted for different tasks like coding, creative writing, and self-guided learning.  
-    But everything begins here, with a simple Hugging Face deployment, a modified system prompt, and a desire to understand the architecture of intelligence.</p>
-
-  </body>
-</html>
+  <p>
+    This version of Veylan is a prototype. I plan to expand the work by hosting multiple local bots — each adapted for coding,
+    writing, and research. Everything begins here: one deployment, one custom prompt, and one core question about intelligence.
+  </p>
+</HamburgerNav>
