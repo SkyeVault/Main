@@ -1,0 +1,73 @@
+---
+const { title, children } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        background-color: #0d0f1c;
+        color: #c9c7ff;
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      header {
+        background-color: #0d0f1c;
+        border-bottom: 1px solid #2e254e;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      nav li a {
+        color: #79b8ff;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      nav li a:hover {
+        color: #b48eff;
+        text-decoration: underline;
+      }
+
+      main {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Terminal</a></li>
+          <li><a href="/classic">Classic View</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/blog">DevLogs</a></li>
+          <li><a href="/gallery3d">3D Gallery</a></li>
+          <li><a href="/syrenwork">2D Gallery</a></li>
+          <li><a href="/robot">Arynwood Robot</a></li>
+          <li><a href="/lorelei">About</a></li>
+          <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      {children}
+    </main>
+  </body>
+</html>
