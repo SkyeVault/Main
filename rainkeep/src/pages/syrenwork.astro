@@ -1,134 +1,53 @@
 ---
 // src/pages/Syrenwork.astro
 const title = "Artwork Gallery";
+import HamburgerNav from '../layouts/HamburgerNav.astro';
 import ArynwoodGallery from '../components/ArynwoodGallery.astro';
-import '../styles/global.css';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{title}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/src/styles/global.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      main {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 2rem;
-      }
+<HamburgerNav {title}>
+  <main>
+    <p>
+      <strong>Welcome to Syrenwork</strong>, a digital art collection of hand-drawn original paintings. This body of work explores transformation, light, and emotion through layered illustration and interactive visual media. Rooted in a love for transmutation and symbolic design, Syrenwork blends organic textures with digital precision — each piece inviting reflection and connection in a virtual space.
+    </p>
 
-      h1 {
-        color: #b48eff;
-        text-shadow: 0 0 2px #b48eff;
-      }
+    <p>
+      I’m <strong>Lorelei Noble</strong>, an artist and craftsperson working across digital and physical mediums. While Syrenwork is devoted exclusively to digital art, I also offer templates, fabrication, and consulting services in stained glass, wood, and metal. My work includes interior components, installations, and collaborative design systems — all shaped by a commitment to intentional craftsmanship and visual resonance.
+    </p>
 
-      h2 {
-        color: #b48eff;
-        text-shadow: 1px 1px 0 #2e254e;
-        margin-top: 2rem;
-      }
+    <p>
+      In addition to the Syrenwork collection, I create seamless patterns available on fabric and wallpaper through Spoonflower, and offer print-on-demand artwork in my Etsy shop. For high-resolution fine art prints, visit my Pictorem gallery. You can also follow my process and visual experiments on Instagram.
+    </p>
 
-      p, a {
-        font-size: 1rem;
-        line-height: 1.6;
-      }
+    <div class="link-row">
+      <a href="/gallery3d" class="button-link">3D Gallery</a>
+      <a href="/blog" class="button-link">DevLog</a>
+      <a href="/projects" class="button-link">NFT Collection</a>
+    </div>
 
-      a {
-        color: #79b8ff;
-        text-decoration: none;
-      }
+    <hr />
 
-      a:hover {
-        color: #b48eff;
-        text-decoration: underline;
-      }
+    <div class="link-row">
+      <a href="https://www.pictorem.com/gallery/Syrenwork" target="_blank" class="button-link">Prints</a>
+      <a href="https://www.etsy.com/shop/Syrenwork" target="_blank" class="button-link">Etsy</a>
+      <a href="https://www.instagram.com/syrenwork" target="_blank" class="button-link">Instagram</a>
+      <a href="https://www.spoonflower.com/profiles/syrenwork?sort=classic" target="_blank" class="button-link">Spoonflower</a>
+    </div>
 
-      hr {
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
-        opacity: 0.4;
-        margin: 2rem 0;
-      }
+    <h2>Digital Art Collection</h2>
+    <ArynwoodGallery />
 
-      .link-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-bottom: 2rem;
-      }
+    <hr />
 
-      .link-row a {
-        flex: 1 1 auto;
-        min-width: 120px;
-        text-align: center;
-        background-color: #161822;
-        padding: 0.5rem;
-        border: 1px solid #2e254e;
-        border-radius: 4px;
-      }
+    <p>
+      Want to collaborate or request a custom piece? Contact me through my
+      <a href="/contact" target="_blank">Contact Page</a> or explore more behind-the-scenes writing and build logs on the
+      <a href="/blog">Arynwood Blog</a>.
+    </p>
+  </main>
 
-      img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 1rem 0;
-      }
-    </style>
-  </head>
-
-  <body>
-    <main>
-      <h1>{title}</h1>
-
-      <p>
-        <strong>Welcome to Syrenwork</strong>, a digital art collection of hand-drawn original paintings. This body of work explores transformation, light, and emotion through layered illustration and interactive visual media. Rooted in a love for transmutation and symbolic design, Syrenwork blends organic textures with digital precision — each piece inviting reflection and connection in a virtual space.
-      </p>
-
-      <p>
-        I’m <strong>Lorelei Noble</strong>, an artist and craftsperson working across digital and physical mediums. While Syrenwork is devoted exclusively to digital art, I also offer templates, fabrication, and consulting services in stained glass, wood, and metal. My work includes interior components, installations, and collaborative design systems — all shaped by a commitment to intentional craftsmanship and visual resonance.
-      </p>
-
-      <p>
-        In addition to the Syrenwork collection, I create seamless patterns available on fabric and wallpaper through Spoonflower, and offer print-on-demand artwork in my Etsy shop. For high-resolution fine art prints, visit my Pictorem gallery. You can also follow my process and visual experiments on Instagram.
-      </p>
-
-      <div class="link-row">
-        <a href="/gallery3d">3D Gallery</a>
-        <a href="/blog">DevLog</a>
-        <a href="/projects">NFT Collection</a>
-      </div>
-
-      <hr />
-
-      <div class="link-row">
-        <a href="https://www.pictorem.com/gallery/Syrenwork" target="_blank">Prints</a>
-        <a href="https://www.etsy.com/shop/Syrenwork" target="_blank">Etsy</a>
-        <a href="https://www.instagram.com/syrenwork" target="_blank">Instagram</a>
-        <a href="https://www.spoonflower.com/profiles/syrenwork?sort=classic" target="_blank">Spoonflower</a>
-      </div>
-
-
-      <h2>Digital Art Collection</h2>
-      <ArynwoodGallery />
-
-      <hr />
-
-      <p>
-        Want to collaborate or request a custom piece? Contact me through my
-        <a href="/contact" target="_blank">Contact Page</a> or explore more behind-the-scenes writing and build logs on the
-        <a href="/blog">Arynwood Blog</a>.
-      </p>
-    </main>
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"
-      defer
-    ></script>
-  </body>
-</html>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"
+    defer
+  ></script>
+</HamburgerNav>
