@@ -1,88 +1,9 @@
 ---
-import '../styles/tailwind.css';
-import '../styles/global.css';
+import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects — Arynwood Terminal</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 2rem;
-      background-color: #0e0e0e;
-      color: #dcdcdc;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .terminal {
-      max-width: 800px;
-      margin: auto;
-      background-color: #121212;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(185, 170, 255, 0.2);
-    }
-
-    .prompt {
-      color: #b9aaff;
-    }
-
-    h1 {
-      color: #b9aaff;
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid #3b2c61;
-      padding-bottom: 0.5rem;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    li {
-      margin-bottom: 2rem;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    a,
-    a:visited,
-    a:focus,
-    a:active {
-      color: #b9aaff;
-      text-decoration: underline;
-    }
-
-    a:hover {
-      color: #b48eff;
-    }
-
-    .note {
-      font-size: 0.85rem;
-      color: #888;
-    }
-
-    .gui-toggle {
-      margin-top: 2rem;
-      color: #888;
-      cursor: pointer;
-      font-size: 0.9rem;
-      text-align: right;
-    }
-
-    .gui-toggle:hover {
-      color: #b9aaff;
-    }
-  </style>
-</head>
-<body>
-  <div class="terminal">
-    <h1>Projects</h1>
+<HamburgerNav title="Projects">
+  <div class="container terminal">
     <ul>
       <li>
         My 3D Metaverse Gallery is an interactive virtual space built using Three.js. It features dynamically loaded artwork textures, orbit controls, and a custom spotlight system designed to simulate the ambiance of a modern digital exhibition hall.
@@ -123,5 +44,4 @@ import '../styles/global.css';
 
     <div class="gui-toggle"><a href="/">[ Back to terminal home ]</a></div>
   </div>
-</body>
-</html>
+</HamburgerNav>
