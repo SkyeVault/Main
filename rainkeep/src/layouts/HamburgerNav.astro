@@ -32,8 +32,8 @@ const { title, children } = Astro.props;
         background: var(--box);
         border: 1px solid var(--border);
         color: var(--link);
-        font-size: 1rem;
-        padding: 0.6rem 1rem;
+        font-size: 1.2rem;
+        padding: 0.5rem 0.75rem;
         border-radius: 4px;
         cursor: pointer;
         z-index: 1001;
@@ -60,7 +60,7 @@ const { title, children } = Astro.props;
       nav ul {
         list-style: none;
         padding: 0;
-        margin: 2rem 0 0 0;
+        margin: 0;
       }
 
       nav li {
@@ -78,14 +78,14 @@ const { title, children } = Astro.props;
         text-decoration: underline;
       }
 
-      .close-btn {
+      .close-nav {
         position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
+        top: 1rem;
+        right: 1rem;
         background: none;
         border: none;
-        color: var(--hover);
-        font-size: 1.5rem;
+        color: var(--link);
+        font-size: 1.2rem;
         cursor: pointer;
       }
 
@@ -94,68 +94,13 @@ const { title, children } = Astro.props;
         padding: 5rem 2rem 2rem 2rem;
         max-width: 800px;
       }
-
-      /* Classic View Styles */
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem;
-        background-color: #010101;
-        border-radius: 1px;
-        box-shadow: 0 0 30px rgba(181, 103, 218, 0.8);
-      }
-
-      .section {
-        margin-top: 2rem;
-      }
-
-      .link-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin: 1rem 0;
-      }
-
-      .link-row a {
-        flex: 0 1 auto;
-        font-size: 0.85rem;
-        padding: 0.4rem 0.75rem;
-        text-align: center;
-        background-color: #161822;
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        transition: background 0.2s ease;
-        min-width: 100px;
-        max-width: 150px;
-      }
-
-      .link-row a:hover {
-        background-color: #1f2130;
-      }
-
-      .back-link {
-        display: block;
-        margin-top: 3rem;
-        text-align: right;
-        font-size: 0.9rem;
-        color: #888;
-      }
-
-      .back-link:hover {
-        color: #b9aaff;
-      }
-
-      .note {
-        font-size: 0.85rem;
-        color: #888;
-      }
     </style>
   </head>
   <body>
     <button class="menu-toggle" onclick="document.getElementById('nav').classList.toggle('open')">☰ Menu</button>
 
     <nav id="nav">
-      <button class="close-btn" onclick="document.getElementById('nav').classList.remove('open')">×</button>
+      <button class="close-nav" onclick="document.getElementById('nav').classList.remove('open')">×</button>
       <ul>
         <li><a href="/">Terminal</a></li>
         <li><a href="/classic">Classic View</a></li>
@@ -170,7 +115,8 @@ const { title, children } = Astro.props;
     </nav>
 
     <main>
-      {children}
+      <h1>{title}</h1>
+      <slot />
     </main>
   </body>
 </html>
