@@ -2,13 +2,14 @@
 import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
-<HamburgerNav title="Arynwood — Classic View">
+<HamburgerNav title="Classic View">
   <div class="container">
+    <h1>Arynwood — Home</h1>
     <p>
       Welcome to Arynwood — A portfolio and transparent coding hub for Lorelei Noble. Here you'll find links to my current projects, artwork galleries, and build logs. I document everything from front-end design to smart contract deployments.
     </p>
 
-    <section class="section">
+    <div class="section">
       <h2>About</h2>
       <p>
         I'm <strong>Lorelei Noble</strong> — a full-stack developer, digital artist, and creator of Arynwood. I work across physical and digital mediums, blending code, visual art, and immersive technology to build experiences rooted in both technical precision and aesthetic clarity.
@@ -16,19 +17,27 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
       <div class="link-row">
         <a href="/lorelei">About Me</a>
       </div>
-    </section>
+    </div>
 
-    <section class="section">
+    <div class="section">
       <h2>Projects</h2>
       <ul>
         <li><a href="/projects">Spotify Playlist Maker</a></li>
-        <li><a href="/projects">NFT Collection</a></li>
-        <li><a href="/gallery3d">Metaverse Viewer</a></li>
-        <li><a href="/robot">Arynwood Robot</a> <span class="note">(local bot coming soon)</span></li>
-      </ul>
-    </section>
+        This published Rust crate uses the Spotify API to automate custom playlist generation based on user input and filters.
 
-    <section class="section">
+        <li><a href="/projects">NFT Collection</a></li>
+        Deployed on the Polygon Amoy Testnet and indexed on OpenSea, this project features a smart contract stack using Foundry, Solidity, and OpenZeppelin standards.
+
+        <li><a href="/gallery3d">Metaverse Viewer</a></li>
+        A fully immersive 3D Web3 experience built with Next.js, Three.js, and IPFS — includes a mintable NFT gallery and on-chain provenance tools.
+
+        <li><a href="/robot">Arynwood Robot</a></li>
+        A conversational assistant UI running Zephyr with plans to transition to a fully offline, locally hosted LLM secured on upgraded hardware.
+        <span class="note">(local bot coming soon)</span>
+      </ul>
+    </div>
+
+    <div class="section">
       <h2>Blog</h2>
       <p>
         Visit the <a href="/blog">Arynwood Blog</a> for deep dives into build processes, creative documentation, and design philosophy across projects.
@@ -36,9 +45,9 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
       <div class="link-row">
         <a href="/blog">DevLogs</a>
       </div>
-    </section>
+    </div>
 
-    <section class="section">
+    <div class="section">
       <h2>Artwork</h2>
       <p>
         Explore my visual work via <a href="/syrenwork">Syrenwork</a> — a curated space for digital art, seamless patterns, stained glass designs, and experimental gallery layouts.
@@ -47,9 +56,9 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
         <a href="/syrenwork">2D Gallery</a>
         <a href="/gallery3d">3D Gallery</a>
       </div>
-    </section>
+    </div>
 
-    <section class="section">
+    <div class="section">
       <h2>Contact + Social</h2>
       <div class="link-row">
         <a href="mailto:loreleihnoble@gmail.com">Email</a>
@@ -61,7 +70,7 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
         <a href="https://discordapp.com/users/syrenwork" target="_blank">Discord</a>
         <a href="https://www.spoonflower.com/profiles/syrenwork?sort=classic" target="_blank">Spoonflower</a>
       </div>
-    </section>
+    </div>
 
     <a href="/" class="back-link">[ Return to terminal view ]</a>
   </div>
