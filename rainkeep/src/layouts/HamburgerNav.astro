@@ -83,23 +83,11 @@ const { title, children } = Astro.props;
         max-width: 800px;
         margin: 0 auto;
       }
-
-      @media screen and (max-width: 768px) {
-        nav.open + main {
-          filter: brightness(0.6);
-        }
-      }
     </style>
-    <script>
-      function toggleNav() {
-        const nav = document.getElementById('nav');
-        nav.classList.toggle('open');
-      }
-    </script>
   </head>
 
   <body>
-    <button class="menu-toggle" onclick="toggleNav()">☰ Menu</button>
+    <button class="menu-toggle" id="toggleBtn">☰ Menu</button>
 
     <nav id="nav">
       <ul>
@@ -119,5 +107,13 @@ const { title, children } = Astro.props;
       <h1>{title}</h1>
       {children}
     </main>
+
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        const btn = document.getElementById('toggleBtn');
+        const nav = document.getElementById('nav');
+        btn.addEventListener('click', () => nav.classList.toggle('open'));
+      });
+    </script>
   </body>
 </html>
