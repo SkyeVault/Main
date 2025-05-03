@@ -1,5 +1,5 @@
 ---
-const { title, children } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <html lang="en">
@@ -90,9 +90,15 @@ const { title, children } = Astro.props;
       }
 
       main {
-        margin-left: 0;
         padding: 5rem 2rem 2rem 2rem;
         max-width: 800px;
+        margin: 0 auto;
+      }
+
+      @media screen and (max-width: 600px) {
+        main {
+          padding-top: 6rem;
+        }
       }
     </style>
   </head>
