@@ -1,5 +1,5 @@
 ---
-const { title, children } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <html lang="en">
@@ -79,7 +79,7 @@ const { title, children } = Astro.props;
       }
 
       main {
-        padding: 4rem 2rem 2rem 2rem;
+        padding: 5rem 2rem 2rem 2rem;
         max-width: 800px;
         margin: 0 auto;
       }
@@ -105,7 +105,7 @@ const { title, children } = Astro.props;
 
     <main>
       <h1>{title}</h1>
-      {children}
+      <slot />
     </main>
 
     <script is:inline>
