@@ -1,141 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arynwood — Classic View</title>
-<style>
-  :root {
-    --bg: #000000;
-    --text: #dcdcdc;
-    --accent: #b48eff;
-    --link: #79b8ff;
-    --link-hover: #b48eff;
-    --box-bg: #010101;
-    --box-border: #2e254e;
-    --box-shadow: rgba(181, 103, 218, 0.8);
-  }
+---
+import UniversalNav from '../layouts/UniversalNav.astro';
+---
 
-  * {
-    box-sizing: border-box;
-  }
+<UniversalNav title="Arynwood — Classic View">
+  <style>
+    :root {
+      --bg: #000000;
+      --text: #dcdcdc;
+      --accent: #b48eff;
+      --link: #79b8ff;
+      --link-hover: #b48eff;
+      --box-bg: #010101;
+      --box-border: #2e254e;
+      --box-shadow: rgba(181, 103, 218, 0.8);
+    }
 
-  body {
-    margin: 0;
-    padding: 1.5rem;
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: var(--box-bg);
-    border-radius: 1px;
-    box-shadow: 0 0 30px var(--box-shadow);
-  }
-
-  h1, h2 {
-    color: #b48eff;
-    text-shadow: 0 0 2px #b48eff;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    margin-bottom: 1rem;
-    line-height: 1.6;
-  }
-
-  .section {
-    margin-top: 2rem;
-  }
-
-  a {
-    color: var(--link);
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: var(--link-hover);
-    text-decoration: underline;
-  }
-
-  ul {
-    padding-left: 1.25rem;
-    list-style-type: square;
-    margin-bottom: 1rem;
-  }
-
-  .link-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 1rem 0;
-  }
-
-  .link-row a {
-    flex: 0 1 auto;
-    font-size: 0.85rem;
-    padding: 0.4rem 0.75rem;
-    text-align: center;
-    background-color: #161822;
-    border: 1px solid var(--box-border);
-    border-radius: 4px;
-    transition: background 0.2s ease;
-    min-width: 100px;
-    max-width: 150px;
-  }
-
-  .link-row a:hover {
-    background-color: #1f2130;
-  }
-
-  .back-link {
-    display: block;
-    margin-top: 3rem;
-    text-align: right;
-    font-size: 0.9rem;
-    color: #888;
-  }
-
-  .back-link:hover {
-    color: #b9aaff;
-  }
-
-  @media screen and (max-width: 600px) {
     body {
-      padding: 1rem;
+      margin: 0;
+      padding: 1.5rem;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .container {
-      padding: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: var(--box-bg);
+      border-radius: 1px;
+      box-shadow: 0 0 30px var(--box-shadow);
+    }
+
+    h1, h2 {
+      color: #b48eff;
+      text-shadow: 0 0 2px #b48eff;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .section {
+      margin-top: 2rem;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+      list-style-type: square;
+      margin-bottom: 1rem;
     }
 
     .link-row {
-      flex-direction: row;
-      justify-content: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
     }
 
     .link-row a {
-      flex: 1 1 45%;
-      max-width: none;
+      flex: 0 1 auto;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.75rem;
+      text-align: center;
+      background-color: #161822;
+      border: 1px solid var(--box-border);
+      border-radius: 4px;
+      transition: background 0.2s ease;
+      min-width: 100px;
+      max-width: 150px;
+    }
+
+    .link-row a:hover {
+      background-color: #1f2130;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 3rem;
+      text-align: right;
       font-size: 0.9rem;
-      padding: 0.5rem 0.75rem;
+      color: #888;
     }
 
-    h1 {
-      font-size: 1.5rem;
+    .back-link:hover {
+      color: #b9aaff;
     }
 
-    h2 {
-      font-size: 1.2rem;
+    @media screen and (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .container {
+        padding: 1.25rem;
+      }
+
+      .link-row {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .link-row a {
+        flex: 1 1 45%;
+        max-width: none;
+        font-size: 0.9rem;
+        padding: 0.5rem 0.75rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
     }
-  }
-</style>
-</head>
-<body>
+  </style>
+
   <div class="container">
     <h1>Arynwood — Home</h1>
     <p>
@@ -147,28 +145,28 @@
       <p>
         I'm <strong>Lorelei Noble</strong> — a full-stack developer, digital artist, and creator of Arynwood. I work across physical and digital mediums, blending code, visual art, and immersive technology to build experiences rooted in both technical precision and aesthetic clarity.
       </p>
-<div class="link-row">
+      <div class="link-row">
         <a href="/lorelei">About Me</a>
       </div>
     </div>
 
-  <div class="section">
-  <h2>Projects</h2>
-  <ul>
-    <li><a href="/projects">Spotify Playlist Maker</a></li>
-    This published Rust crate uses the Spotify API to automate custom playlist generation based on user input and filters.
+    <div class="section">
+      <h2>Projects</h2>
+      <ul>
+        <li><a href="/projects">Spotify Playlist Maker</a></li>
+        This published Rust crate uses the Spotify API to automate custom playlist generation based on user input and filters.
 
-    <li><a href="/projects">NFT Collection</a></li>
-    Deployed on the Polygon Amoy Testnet and indexed on OpenSea, this project features a smart contract stack using Foundry, Solidity, and OpenZeppelin standards.
+        <li><a href="/projects">NFT Collection</a></li>
+        Deployed on the Polygon Amoy Testnet and indexed on OpenSea, this project features a smart contract stack using Foundry, Solidity, and OpenZeppelin standards.
 
-    <li><a href="/gallery3d">Metaverse Viewer</a></li>
-    A fully immersive 3D Web3 experience built with Next.js, Three.js, and IPFS — includes a mintable NFT gallery and on-chain provenance tools.
+        <li><a href="/gallery3d">Metaverse Viewer</a></li>
+        A fully immersive 3D Web3 experience built with Next.js, Three.js, and IPFS — includes a mintable NFT gallery and on-chain provenance tools.
 
-    <li><a href="/robot">Arynwood Robot</a></li>
-    A conversational assistant UI running Zephyr with plans to transition to a fully offline, locally hosted LLM secured on upgraded hardware.
-    <span class="note">(local bot coming soon)</span>
-  </ul>
-</div>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        A conversational assistant UI running Zephyr with plans to transition to a fully offline, locally hosted LLM secured on upgraded hardware.
+        <span class="note">(local bot coming soon)</span>
+      </ul>
+    </div>
 
     <div class="section">
       <h2>Blog</h2>
@@ -199,13 +197,12 @@
         <a href="https://www.linkedin.com/in/lorelein/" target="_blank">LinkedIn</a>
         <a href="https://www.etsy.com/shop/Syrenwork" target="_blank">Etsy</a>
         <a href="https://www.instagram.com/syrenwork" target="_blank">Instagram</a>
-        <a href="https://bsky.app/profile/syrenwork.bsky.social" target="blank">Bluesky</a>
-        <a href="https://discordapp.com/users/syrenwork" target="blank">Discord</a>
+        <a href="https://bsky.app/profile/syrenwork.bsky.social" target="_blank">Bluesky</a>
+        <a href="https://discordapp.com/users/syrenwork" target="_blank">Discord</a>
         <a href="https://www.spoonflower.com/profiles/syrenwork?sort=classic" target="_blank">Spoonflower</a>
       </div>
     </div>
 
     <a href="/" class="back-link">[ Return to terminal view ]</a>
   </div>
-</body>
-</html>
+</UniversalNav>
