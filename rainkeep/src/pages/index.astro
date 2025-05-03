@@ -113,40 +113,42 @@ import '../styles/global.css';
       return fortunes[Math.floor(Math.random() * fortunes.length)];
     }
 
-    function handleCommand(cmd) {
-      switch (cmd) {
-        case 'help':
-          return 'Available commands: whoami, projects, blog, contact, artwork, sudo, ls, cd .., clear, exit, cat, fortune';
-        case 'whoami':
-          return 'Lorelei Noble — full-stack developer, artist, architect of Arynwood. <a href="/lorelei">Read more...</a>.';
-        case 'projects':
-          return '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/gallery3d">3D Metaverse Gallery</a>';
-        case 'blog':
-          return 'Read the blog: <a href="/blog">DevLogs</a>';
-        case 'contact':
-          return 'Email: <a href="mailto:loreleihnoble@gmail.com">Gmail</a> | LinkedIn: <a href="https://www.linkedin.com/in/lorelein/">LinkedIn</a> | GitHub: <a href="https://github.com/SkyeVault" target="_blank">SkyeVault</a>';
-        case 'artwork':
-          return 'Explore the gallery: <a href="https://arynwood.com/syrenwork" target="_blank">Syrenwork Gallery</a>';
-        case 'sudo':
-          return 'Permission denied: This terminal respects boundaries.';
-        case 'ls':
-          return 'index.html  lorelei/  syrenwork/  gallery3d/  projects/';
-        case 'cd ..':
-          return 'Backed out of digital space... but you’re already at root.';
-        case 'clear':
-          terminal.innerHTML = '';
-          return '';
-        case 'exit':
-          return 'Closing session... just kidding. You live here now.';
-        case 'cat':
-        case 'cat lorelei.txt':
-          return 'Lorelei Noble: Full-stack developer, artist, and code conjurer. Learn more: <a href="/lorelei">/lorelei</a>';
-        case 'fortune':
-          return getFortune();
-        default:
-          return `Command not found: ${cmd}`;
-      }
-    }
+function handleCommand(cmd) {
+  switch (cmd) {
+    case 'help':
+      return 'Available commands: whoami, projects, blog, contact, artwork, localbot, sudo, ls, cd .., clear, exit, cat, fortune';
+    case 'whoami':
+      return 'Lorelei Noble — full-stack developer, artist, architect of Arynwood. <a href="/lorelei">Read more...</a>.';
+    case 'projects':
+      return '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/gallery3d">3D Metaverse Gallery</a>, <a href="/robot">Arynwood Robot</a>';
+    case 'localbot':
+      return 'Arynwood Robot is evolving. Local model coming soon with offline inference, private data handling, and full autonomy. <a href="/robot">Monitor progress here</a>.';
+    case 'blog':
+      return 'Read the blog: <a href="/blog">DevLogs</a>';
+    case 'contact':
+      return 'Email: <a href="mailto:loreleihnoble@gmail.com">Gmail</a> | LinkedIn: <a href="https://www.linkedin.com/in/lorelein/">LinkedIn</a> | GitHub: <a href="https://github.com/SkyeVault" target="_blank">SkyeVault</a>';
+    case 'artwork':
+      return 'Explore the gallery: <a href="https://arynwood.com/syrenwork" target="_blank">Syrenwork Gallery</a>';
+    case 'sudo':
+      return 'Permission denied: This terminal respects boundaries.';
+    case 'ls':
+      return 'index.html  lorelei/  syrenwork/  gallery3d/  projects/  robot/';
+    case 'cd ..':
+      return 'Backed out of digital space... but you’re already at root.';
+    case 'clear':
+      terminal.innerHTML = '';
+      return '';
+    case 'exit':
+      return 'Closing session... just kidding. You live here now.';
+    case 'cat':
+    case 'cat lorelei.txt':
+      return 'Lorelei Noble: Full-stack developer, artist, and code conjurer. Learn more: <a href="/lorelei">/lorelei</a>';
+    case 'fortune':
+      return getFortune();
+    default:
+      return `Command not found: ${cmd}`;
+  }
+}
 
     input.addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
