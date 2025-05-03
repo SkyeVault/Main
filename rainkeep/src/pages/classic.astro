@@ -4,123 +4,20 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
 
 <HamburgerNav title="Arynwood — Classic View">
   <style is:global>
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      background-color: #010101;
-      border-radius: 1px;
-      box-shadow: 0 0 30px rgba(181, 103, 218, 0.8);
-    }
-
-    h1, h2 {
+    h1 {
       color: #b48eff;
       text-shadow: 0 0 2px #b48eff;
-      margin-bottom: 1rem;
     }
-
-    p {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    .section {
-      margin-top: 2rem;
-    }
-
-    .link-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 1rem 0;
-    }
-
-    .link-row a {
-      flex: 0 1 auto;
-      font-size: 0.85rem;
-      padding: 0.4rem 0.75rem;
-      text-align: center;
-      background-color: #161822;
+    .debug-box {
+      background: #161822;
+      padding: 2rem;
       border: 1px solid #2e254e;
-      border-radius: 4px;
-      transition: background 0.2s ease;
-      min-width: 100px;
-      max-width: 150px;
-    }
-
-    .link-row a:hover {
-      background-color: #1f2130;
-    }
-
-    .back-link {
-      display: block;
       margin-top: 3rem;
-      text-align: right;
-      font-size: 0.9rem;
-      color: #888;
-    }
-
-    .back-link:hover {
-      color: #b9aaff;
     }
   </style>
 
-  <div class="container">
-    <h1>Arynwood — Home</h1>
-    <p>
-      Welcome to Arynwood — A portfolio and transparent coding hub for Lorelei Noble. Here you'll find links to my current projects, artwork galleries, and build logs.
-    </p>
-
-    <div class="section">
-      <h2>About</h2>
-      <p>
-        I'm <strong>Lorelei Noble</strong> — a full-stack developer, digital artist, and creator of Arynwood.
-      </p>
-      <div class="link-row">
-        <a href="/lorelei">About Me</a>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Projects</h2>
-      <ul>
-        <li><a href="/projects">Spotify Playlist Maker</a></li>
-        <li><a href="/projects">NFT Collection</a></li>
-        <li><a href="/gallery3d">Metaverse Viewer</a></li>
-        <li><a href="/robot">Arynwood Robot</a> <span class="note">(local bot coming soon)</span></li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Blog</h2>
-      <p>Visit the <a href="/blog">Arynwood Blog</a> for build logs and philosophy.</p>
-      <div class="link-row">
-        <a href="/blog">DevLogs</a>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Artwork</h2>
-      <div class="link-row">
-        <a href="/syrenwork">2D Gallery</a>
-        <a href="/gallery3d">3D Gallery</a>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Contact + Social</h2>
-      <div class="link-row">
-        <a href="mailto:loreleihnoble@gmail.com">Email</a>
-        <a href="https://github.com/SkyeVault" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/lorelein/" target="_blank">LinkedIn</a>
-        <a href="https://www.etsy.com/shop/Syrenwork" target="_blank">Etsy</a>
-        <a href="https://www.instagram.com/syrenwork" target="_blank">Instagram</a>
-        <a href="https://bsky.app/profile/syrenwork.bsky.social" target="_blank">Bluesky</a>
-        <a href="https://discordapp.com/users/syrenwork" target="_blank">Discord</a>
-        <a href="https://www.spoonflower.com/profiles/syrenwork?sort=classic" target="_blank">Spoonflower</a>
-      </div>
-    </div>
-
-    <a href="/" class="back-link">[ Return to terminal view ]</a>
+  <div class="debug-box">
+    <h1>Hello from Classic Page</h1>
+    <p>If you see this, layout + slot injection is working.</p>
   </div>
 </HamburgerNav>
