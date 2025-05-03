@@ -1,98 +1,9 @@
 ---
-import '../styles/tailwind.css';
-import '../styles/global.css';
+const title = "Lorelei Noble";
+import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Lorelei Noble</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      body {
-        background-color: #0d0f1c;
-        color: #c9c7ff;
-        font-family: 'Courier New', monospace;
-        padding: 2rem;
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.6;
-      }
 
-      h1 {
-        color: #b48eff;
-        text-shadow: 0 0 2px #b48eff;
-      }
-
-      h2, h3 {
-        color: #b48eff;
-        text-shadow: 1px 1px 0 #2e254e;
-        margin-top: 1.5rem;
-        margin-bottom: 0.75rem;
-      }
-
-      hr {
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
-        opacity: 0.4;
-        margin: 2rem 0;
-      }
-
-      a {
-        color: #79b8ff;
-        text-decoration: none;
-      }
-
-      a:hover {
-        color: #b48eff;
-        text-decoration: underline;
-      }
-
-      pre {
-        background-color: #161822;
-        padding: 1rem;
-        overflow-x: auto;
-        border-left: 3px solid #b48eff;
-        margin-bottom: 1.5rem;
-      }
-
-      code {
-        font-family: 'Courier New', monospace;
-        color: #c9c7ff;
-      }
-
-      .prompt {
-        color: #888;
-        font-size: 0.9rem;
-        display: block;
-        margin-bottom: 1rem;
-      }
-.link-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.button-link {
-  background-color: #161822;
-  border: 1px solid #b48eff;
-  color: #c9c7ff;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-family: 'Courier New', monospace;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.button-link:hover {
-  background-color: #2e254e;
-  color: #b48eff;
-}
-    </style>
-  </head>
-<body>
-  <h1>Hi, I’m Lorelei Noble.</h1>
+<HamburgerNav {title}>
   <p class="prompt">&gt; Full-Stack Developer and Graphic Artist</p>
 
   <p class="excerpt">
@@ -100,47 +11,62 @@ import '../styles/global.css';
   </p>
 
   <p>
-    I’m a creative technologist with a passion for integrating autimation and art into meaningful experiences. This website is my portfolio and documentation hub—a place where I blend the technical and the beautiful, the structured and the intuitive.
+    I’m a creative technologist with a passion for integrating automation and art into meaningful experiences.
+    This website is my portfolio and documentation hub — a place where I blend the technical and the beautiful,
+    the structured and the intuitive.
   </p>
 
   <hr />
 
   <h2>Where I Started</h2>
   <p>
-    My journey with computers began when I was five years old, learning through command-line games and exploring early software. By thirteen, I was programming in Visual Basic. Even as my career shifted, technology remained a constant thread. As an entrepreneur and teacher, I built my own websites, managed digital tools, and created learning content for my students.
+    My journey with computers began when I was five years old, learning through command-line games and exploring early software.
+    By thirteen, I was programming in Visual Basic. Even as my career shifted, technology remained a constant thread.
+    As an entrepreneur and teacher, I built my own websites, managed digital tools, and created learning content for my students.
   </p>
 
   <p>
-    From 2016 to 2024, I followed a deep calling to discover new places and new parts of myself. I lived in Austin, San Franscisco, and Seattle. I worked in clinics and studios, building everything from spreadsheets to structures. I worked as a clinical massage instructor, a director of admissions, and clinic supervisor. My strength has always been transforming knowledge into systems that empower others.
+    From 2016 to 2024, I followed a deep calling to discover new places and parts of myself — living in Austin, San Francisco, and Seattle.
+    I worked in clinics and studios, building everything from spreadsheets to structures, serving as an instructor, clinic director,
+    and systems designer.
   </p>
 
   <hr />
 
   <h2>The Artistic Shift</h2>
   <p>
-    In 2020, I began working in the arts and everything shifted to a more creative outlet. I learned TIG welding. I fused glass in kilns. I began cutting and soldering stained glass, working with wood, and building functional pieces of beauty—including my own off-grid cabin in the Washington Peninsula. That experience taught me how to create 3D files, design for reality, and imagine new worlds.
+    In 2020, I began working in the arts and everything shifted toward creative output. I learned TIG welding. I fused glass in kilns.
+    I began cutting and soldering stained glass, working with wood, and building functional pieces of beauty — including my own off-grid
+    cabin in the Washington Peninsula. That experience taught me how to create 3D files, design for reality, and imagine new worlds.
   </p>
 
   <hr />
 
   <h2>Where I Am Now</h2>
   <p>
-    Today, I’m a full-time mom while actively building my knowledge base as a developer. I specialize in full stack development, 3D applications, and fantasy-inspired digital environments. I work with HTML, CSS, JavaScript, Rust, Python, and Solidity. I’m gaining experience in AWS, cybersecurity practices, and automations.
+    Today, I’m a full-time mom while actively building my knowledge base as a developer. I specialize in full stack development,
+    3D applications, and fantasy-inspired digital environments. I work with HTML, CSS, JavaScript, Rust, Python, and Solidity.
+    I’m gaining experience in AWS, cybersecurity practices, and automations.
   </p>
 
   <p>
-    Although I’m accepted into the WGU Cybersecurity program, I’m devoting this season to hands-on development, learning through real-world projects while raising my child with presence and intention.
+    Although I’m accepted into the WGU Cybersecurity program, I’m devoting this season to hands-on development,
+    learning through real-world projects while raising my child with presence and intention.
   </p>
 
   <hr />
 
   <h2>Where I’m Going</h2>
   <p>
-    I want to build systems that make people’s lives feel a little more magical. If someone wants a weather app in their closet that changes the color of the wall to help them dress for the day, I want to say: <strong>sure, no problem.</strong> If someone wants to automate client emails, build a fantasy-themed storefront, or run their business through a decentralized smart contract, I want to say: <strong>sure, no problem.</strong>
+    I want to build systems that make people’s lives feel a little more magical. If someone wants a weather app in their closet
+    that changes the color of the wall to help them dress for the day, I want to say: <strong>sure, no problem.</strong>
+    If someone wants to automate client emails, build a fantasy-themed storefront, or run their business through
+    a decentralized smart contract, I want to say: <strong>sure, no problem.</strong>
   </p>
 
   <p>
-    I see myself building smart homes, immersive galleries, e-commerce platforms, and secure infrastructure—always weaving together code and design. My path bridges logic and creativity, grounded in intuition and elevated by imagination.
+    I see myself building smart homes, immersive galleries, e-commerce platforms, and secure infrastructure —
+    always weaving together code and design. My path bridges logic and creativity, grounded in intuition and elevated by imagination.
   </p>
 
   <p>
@@ -150,7 +76,6 @@ import '../styles/global.css';
 
   <hr />
 
-<div class="section">
   <h2>Contact + Social</h2>
   <div class="link-row">
     <a class="button-link" href="mailto:loreleihnoble@gmail.com">Email</a>
@@ -162,11 +87,11 @@ import '../styles/global.css';
     <a class="button-link" href="https://discordapp.com/users/syrenwork" target="_blank">Discord</a>
     <a class="button-link" href="https://www.spoonflower.com/profiles/syrenwork?sort=classic" target="_blank">Spoonflower</a>
   </div>
-</div>
 
   <hr />
-<a href="/" class="button-link">Home</a>
-<a href="/blog" class="button-link">DevLogs</a>
+
+  <div class="link-row">
+    <a href="/" class="button-link">Home</a>
+    <a href="/blog" class="button-link">DevLogs</a>
   </div>
-</body>
-</html>
+</HamburgerNav>
