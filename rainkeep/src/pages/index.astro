@@ -1,5 +1,5 @@
 ---
-const title = "Terminal";
+const title = "Arynwood Terminal";
 import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
@@ -7,20 +7,19 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
   <style>
     .terminal-screen {
       font-family: 'Courier New', monospace;
+      padding-top: 1rem;
       color: var(--text);
       max-width: 100%;
-      margin-top: 1rem;
     }
 
     .output {
-      margin-bottom: 0.75rem;
-      line-height: 1.5;
+      margin-bottom: 1rem;
+      white-space: pre-wrap;
     }
 
     .prompt {
       color: var(--accent);
-      margin-right: 0.3rem;
-      white-space: nowrap;
+      margin-right: 0.25rem;
     }
 
     .command-input {
@@ -55,19 +54,17 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
     .command-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 0.5rem;
-    }
-
-    .command-list a {
-      white-space: nowrap;
+      gap: 1rem;
+      margin-top: 0.25rem;
     }
   </style>
 
   <div class="terminal-screen" id="terminal">
     <div class="output">$ <span class="prompt">whoami</span></div>
     <div class="output">Lorelei Noble — full-stack developer, artist, architect of Arynwood.</div>
-    <div class="output">Type <span class="prompt">help</span> or try commands like:</div>
+
+    <div class="output">Type <span class="prompt">help</span> to get started.</div>
+    <div class="output">or try commands like:</div>
     <div class="command-list">
       <a class="prompt" href="/projects">projects</a>
       <a class="prompt" href="/blog">blog</a>
@@ -80,7 +77,7 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
       <input class="command-input" id="command" type="text" placeholder="Type a command..." autofocus />
     </div>
 
-    <a href="/classic" class="gui-toggle">[ Switch to classic view ]</a>
+    <a href="/classic" class="gui-toggle">[ View site in standard layout ]</a>
   </div>
 
   <script is:global>
