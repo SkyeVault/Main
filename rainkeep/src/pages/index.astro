@@ -57,22 +57,26 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
       gap: 1rem;
       margin-top: 0.25rem;
     }
+
+    .spacer {
+      margin-bottom: 2rem;
+    }
   </style>
 
   <div class="terminal-screen" id="terminal">
     <div class="output">$ <span class="prompt">whoami</span></div>
     <div class="output">Lorelei Noble — full-stack developer, artist, architect of Arynwood.</div>
 
-    <div class="output">To get started, type <span class="prompt">help</span>.</div>
+    <div class="output">To get started, type <span class="prompt">help</span></div>
     <div class="output">or try commands like:</div>
     <div class="command-list">
-      <a class="prompt" href="/projects">projects</a>
-      <a class="prompt" href="/blog">blog</a>
-      <a class="prompt" href="/syrenwork">artwork</a>
-      <a class="prompt" href="/contact">contact</a>
+      <span class="prompt">projects</span>
+      <span class="prompt">blog</span>
+      <span class="prompt">artwork</span>
+      <span class="prompt">contact</span>
     </div>
 
-    <div class="output" style="display: flex; align-items: center;">
+    <div class="output spacer" style="display: flex; align-items: center;">
       <span class="prompt">$</span>
       <input class="command-input" id="command" type="text" placeholder="Type a command..." autofocus />
     </div>
