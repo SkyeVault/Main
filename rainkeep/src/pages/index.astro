@@ -1,57 +1,70 @@
 ---
-import '../styles/tailwind.css';
-import '../styles/global.css';
+const title = "Arynwood Terminal";
+import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arynwood Terminal</title>
+<HamburgerNav {title}>
+  <div class="terminal-frame">
+    <div class="terminal-buttons">
+      <span class="btn red"></span>
+      <span class="btn yellow"></span>
+      <span class="btn green"></span>
+    </div>
+
+    <div class="output">$ <span class="prompt">whoami</span></div>
+    <div class="output">Lorelei Noble — full-stack developer, artist, architect of Arynwood.</div>
+    <div class="output">Type <span class="prompt">help</span> or try commands like <span class="prompt">projects</span>, <span class="prompt">blog</span>, <span class="prompt">artwork</span>, or <span class="prompt">contact</span>.</div>
+
+    <div class="output" style="display: flex; align-items: center;">
+      <span class="prompt">$</span>
+      <input class="command-input" id="command" type="text" placeholder="Type a command..." autofocus />
+    </div>
+
+    <a href="/classic" class="gui-toggle block">[ Switch to classic view ]</a>
+  </div>
+
   <style>
-    body {
-      margin: 0;
+    .terminal-frame {
+      max-width: 800px;
+      margin: 2rem auto;
+      background-color: var(--box);
       padding: 2rem;
-      background-color: #0e0e0e;
-      color: #dcdcdc;
-      font-family: 'JetBrains Mono', monospace;
+      border-radius: 6px;
+      box-shadow: 0 0 20px rgba(181, 103, 218, 0.4);
+      border: 1px solid var(--border);
     }
 
-    .terminal {
-      max-width: 800px;
-      margin: auto;
-      background-color: #010101;
-      padding: 2rem;
-      border-radius: 1px;
-      box-shadow: 0 0 20px rgba(181, 103, 218, 0.8);
+    .terminal-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .terminal-buttons .btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn.red { background-color: #ff5f56; }
+    .btn.yellow { background-color: #ffbd2e; }
+    .btn.green { background-color: #27c93f; }
+
+    .output {
+      margin-bottom: 1.2rem;
     }
 
     .prompt {
-      color: #b9aaff;
+      color: var(--accent);
       margin-right: 0.5rem;
-    }
-
-    .blinking-cursor {
-      display: inline-block;
-      width: 1ch;
-      color: #b48eff;
-      animation: blink 1s step-start infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    .output {
-      margin-bottom: 1rem;
     }
 
     .command-input {
       background: none;
       border: none;
-      color: #dcdcdc;
+      color: var(--text);
       font: inherit;
       width: 100%;
       outline: none;
@@ -60,48 +73,31 @@ import '../styles/global.css';
 
     .gui-toggle {
       margin-top: 2rem;
-      color: #888;
+      color: var(--note);
       cursor: pointer;
       font-size: 0.9rem;
       text-align: right;
     }
 
     .gui-toggle:hover {
-      color: #b9aaff;
+      color: var(--hover);
     }
 
-    .terminal .output a {
+    .terminal-frame .output a {
       all: unset;
-      color: #b9aaff;
+      color: var(--link);
       text-decoration: underline;
       cursor: pointer;
     }
 
-    .terminal .output a:hover {
-      color: #ff99cc;
+    .terminal-frame .output a:hover {
+      color: var(--hover);
     }
   </style>
-</head>
-<body>
-  <div class="terminal">
-    <div class="output">$ <span class="prompt">whoami</span></div>
-    <div class="output">Lorelei Noble — full-stack developer, artist, architect of Arynwood.</div>
-    <div class="output">Type <span class="prompt">help</span> or try commands like <span class="prompt">projects</span>, <span class="prompt">blog</span>, <span class="prompt">artwork</span>, or <span class="prompt">contact</span>.</div>
-    
-    <!-- Terminal Input Row with Blinking Cursor -->
-    <div class="output" style="display: flex; align-items: center;">
-      <span class="prompt">$</span>
-      <input class="command-input" id="command" type="text" placeholder="Type a command..." autofocus />
-    </div>
 
-    <a href="https://www.arynwood.com/classic" class="gui-toggle block">
-      [ Switch to classic view ]
-    </a>
-  </div>
-
-  <script>
+  <script is:global>
     const input = document.getElementById('command');
-    const terminal = document.querySelector('.terminal');
+    const terminal = document.querySelector('.terminal-frame');
 
     function getFortune() {
       const fortunes = [
@@ -113,44 +109,44 @@ import '../styles/global.css';
       return fortunes[Math.floor(Math.random() * fortunes.length)];
     }
 
-function handleCommand(cmd) {
-  switch (cmd) {
-    case 'help':
-      return 'Available commands: whoami, projects, blog, contact, artwork, localbot, sudo, ls, cd .., clear, exit, cat, fortune';
-    case 'whoami':
-      return 'Lorelei Noble — full-stack developer, artist, architect of Arynwood.';
-    case 'projects':
-      return '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/gallery3d">3D Metaverse Gallery</a>, <a href="/robot">Arynwood Robot</a>';
-    case 'localbot':
-      return 'Arynwood Robot is evolving. Local model coming soon with offline inference, private data handling, and full autonomy. <a href="/robot">Monitor progress here</a>.';
-    case 'blog':
-      return 'Read the blog: <a href="/blog">DevLogs</a>';
-    case 'contact':
-      return 'Email: <a href="mailto:loreleihnoble@gmail.com">Gmail</a> | LinkedIn: <a href="https://www.linkedin.com/in/lorelein/">LinkedIn</a> | GitHub: <a href="https://github.com/SkyeVault" target="_blank">SkyeVault</a>';
-    case 'artwork':
-      return 'Explore the gallery: <a href="https://arynwood.com/syrenwork" target="_blank">Syrenwork Gallery</a>';
-    case 'sudo':
-      return 'Permission denied: This terminal respects boundaries.';
-    case 'ls':
-      return 'index.html  lorelei/  syrenwork/  gallery3d/  projects/  robot/';
-    case 'cd ..':
-      return 'Backed out of digital space... but you’re already at root.';
-    case 'clear':
-      terminal.innerHTML = '';
-      return '';
-    case 'exit':
-      return 'Closing session... just kidding. You live here now.';
-    case 'cat':
-    case 'cat lorelei.txt':
-      return 'Lorelei Noble: Full-stack developer, artist, and code conjurer. Learn more: <a href="/lorelei">/lorelei</a>';
-    case 'fortune':
-      return getFortune();
-    default:
-      return `Command not found: ${cmd}`;
-  }
-}
+    function handleCommand(cmd) {
+      switch (cmd) {
+        case 'help':
+          return 'Available commands: whoami, projects, blog, contact, artwork, localbot, sudo, ls, cd .., clear, exit, cat, fortune';
+        case 'whoami':
+          return 'Lorelei Noble — full-stack developer, artist, architect of Arynwood.';
+        case 'projects':
+          return '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/gallery3d">3D Metaverse Gallery</a>, <a href="/robot">Arynwood Robot</a>';
+        case 'localbot':
+          return 'Arynwood Robot is evolving. Local model coming soon with offline inference, private data handling, and full autonomy. <a href="/robot">Monitor progress here</a>.';
+        case 'blog':
+          return 'Read the blog: <a href="/blog">DevLogs</a>';
+        case 'contact':
+          return 'Email: <a href="mailto:loreleihnoble@gmail.com">Gmail</a> | LinkedIn: <a href="https://www.linkedin.com/in/lorelein/">LinkedIn</a> | GitHub: <a href="https://github.com/SkyeVault" target="_blank">SkyeVault</a>';
+        case 'artwork':
+          return 'Explore the gallery: <a href="https://arynwood.com/syrenwork" target="_blank">Syrenwork Gallery</a>';
+        case 'sudo':
+          return 'Permission denied: This terminal respects boundaries.';
+        case 'ls':
+          return 'index.html  lorelei/  syrenwork/  gallery3d/  projects/  robot/';
+        case 'cd ..':
+          return 'Backed out of digital space... but you’re already at root.';
+        case 'clear':
+          terminal.innerHTML = '';
+          return '';
+        case 'exit':
+          return 'Closing session... just kidding. You live here now.';
+        case 'cat':
+        case 'cat lorelei.txt':
+          return 'Lorelei Noble: Full-stack developer, artist, and code conjurer. Learn more: <a href="/lorelei">/lorelei</a>';
+        case 'fortune':
+          return getFortune();
+        default:
+          return `Command not found: ${cmd}`;
+      }
+    }
 
-    input.addEventListener('keydown', function (event) {
+    input?.addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
         const cmd = input.value.trim().toLowerCase();
         const response = handleCommand(cmd);
@@ -166,5 +162,4 @@ function handleCommand(cmd) {
       }
     });
   </script>
-</body>
-</html>
+</HamburgerNav>
