@@ -1,124 +1,212 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>DevLog 250503 – Hardware Upgrade for Local Bot Development</title>
+    <title>DevLog: Hamburger Layout Added</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
       body {
-        background-color: #0d0f1c;
-        color: #c9c7ff;
+        background-color: var(--bg);
+        color: var(--text);
         font-family: 'Courier New', monospace;
-        padding: 2rem;
+        padding-top: 5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 2rem;
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
       }
 
       h1 {
-        color: #b48eff;
-        text-shadow: 0 0 2px #b48eff;
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
       }
 
       h2, h3 {
-        color: #b48eff;
-        text-shadow: 1px 1px 0 #2e254e;
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
         margin-top: 1.5rem;
         margin-bottom: 0.75rem;
       }
 
-      hr {
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, #2e254e, #b48eff, #2e254e);
-        opacity: 0.4;
-        margin: 2rem 0;
-      }
-
       a {
-        color: #79b8ff;
+        color: var(--link);
         text-decoration: none;
       }
 
       a:hover {
-        color: #b48eff;
+        color: var(--hover);
         text-decoration: underline;
       }
 
       pre {
-        background-color: #161822;
+        background-color: var(--box);
         padding: 1rem;
         overflow-x: auto;
-        border-left: 3px solid #b48eff;
+        border-left: 3px solid var(--accent);
         margin-bottom: 1.5rem;
       }
 
       code {
         font-family: 'Courier New', monospace;
-        color: #c9c7ff;
+        color: var(--text);
       }
 
       .prompt {
-        color: #888;
+        color: var(--note);
         font-size: 0.9rem;
         display: block;
         margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
       }
     </style>
   </head>
 
   <body>
-    <h1>DevLog 250503 – Hardware Upgrade for Local Bot Development</h1>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog: Hamburger Layout Added</h1>
     <span class="prompt">> Log Date: 250503</span>
     <p class="excerpt">
-      Netlify build minutes are replenished, but I’ve shifted gears—preparing my hardware for a new season of local AI development. Security and self-reliance are the guiding principles now.
+      This update documents the addition of a top-left hamburger menu across all main pages and new HTML navigation within each blog post for seamless reader experience.
     </p>
 
     <p>
-      May marks a fresh reset—300 free build minutes now available on Netlify. But rather than pushing site updates, I’ve taken a strategic pause to focus on my local development environment. The goal is simple: streamline my system to support a fully offline, self-hosted AI assistant project.
+      I updated the HTML templates across my Astro site to include a responsive hamburger menu in the top left corner. The menu expands into a dropdown navigation box that links to all major sections of Arynwood: the terminal homepage, gallery views, projects, blog, and contact info.
+    </p>
+
+    <h2>New Hamburger Navigation Layout</h2>
+    <p>
+      This is part of a larger effort to unify the user experience and keep the terminal theme consistent across pages. Each blog post now includes the menu so readers can return to other parts of the site without hitting the back button or getting lost. The HTML template is mobile-first, lightweight, and styled with my lavender terminal aesthetic.
     </p>
 
     <p>
-      In a world where data is the most valuable currency, I find myself asking: What companies do I trust with my most sensitive digital intentions? That question pushed me toward a new direction—one where I own my infrastructure, manage my own models, and only connect to the web to download new libraries when absolutely necessary. From here on, privacy and security take center stage.
+      All new DevLogs will include this layout moving forward, and I’m retrofitting older entries to match. This decision was made to enhance cohesion and reduce bounce rates across blog entries.
     </p>
 
     <hr />
 
-    <h2>Upgrading the Dell T3600 Workstation</h2>
+    <h2>Next Steps</h2>
     <p>
-      The Dell T3600 has been a solid machine, but it's time to bring it up to speed. After careful research, I opted for the NVIDIA RTX 3060 as a budget-friendly yet capable GPU to support local model training and inference. The old Quadro 5000 served me well for its era, but it's finally time to let go—fifteen years later, the CAD card has started to sizzle.
-    </p>
-
-    <p>
-      Alongside the GPU, a 2TB SSD will allow me to dual-boot Ubuntu and move cleanly between Linux and any fallback systems. I’ve already maxed out RAM at 64GB, so the rest is plug-and-play. A 6-to-8 pin power adapter completes the shopping list.
+      Now that the hamburger layout is active, my next goal is to refactor some of the content in <code>/blog/index.astro</code> to ensure each DevLog entry clearly shows the excerpt and date. I also want to standardize the way project documentation appears inside each log.
     </p>
 
     <hr />
 
-    <h3>Tariffs, Timing, and Trust</h3>
-    <p>
-      With tariffs in place, I’m admittedly a little behind the curve on sourcing affordable hardware—but this upgrade marks an intentional move toward independence. I want to own my tools, understand them intimately, and build in a space that feels entirely mine.
-    </p>
+    <h2>Snippet: Menu Button Script</h2>
+    <pre><code>
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('menuToggle');
+  const box = document.getElementById('menuBox');
 
-    <p>
-      I look forward to booting the new system and beginning my local bot project in earnest. It’s more than a build—it’s a commitment to sovereignty in a digital age.
-    </p>
+  toggle.addEventListener('click', () => {
+    box.classList.toggle('show');
+  });
 
-    <hr />
-
-    <pre><code>// Final upgrade checklist:
-- [x] NVIDIA RTX 3060 GPU
-- [x] 2TB SSD (for Ubuntu dual boot)
-- [x] 6 to 8 pin adapter
-- [x] 64GB RAM already installed
-- [ ] Awaiting parts delivery
+  document.addEventListener('click', (e) => {
+    if (!box.contains(e.target) && e.target !== toggle) {
+      box.classList.remove('show');
+    }
+  });
+});
     </code></pre>
 
-    <hr />
-
     <p>
-      Here's a link: <a href="https://arynwood.com">Arynwood Terminal</a>
+      Here's a link: <a href="https://arynwood.com/blog">Return to DevLogs</a>
     </p>
 
     <hr />
+    <p>— Lorelei Noble</p>
   </body>
 </html>
