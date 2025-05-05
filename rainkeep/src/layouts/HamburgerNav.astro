@@ -25,7 +25,7 @@ const { title, showFrame = true } = Astro.props;
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Courier New', monospace;
-    padding: 1rem 2rem 0.5rem;
+    padding: 1rem clamp(1rem, 4vw, 3rem);
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
