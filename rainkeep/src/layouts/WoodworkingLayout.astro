@@ -1,0 +1,165 @@
+---
+// MatthewLayout.astro
+const { title, showFrame = true } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Cardo&family=Work+Sans:wght@300;500&display=swap" rel="stylesheet">
+    <style is:global>
+      :root {
+        --bg: #11110f;
+        --text: #e5e1d8;
+        --accent: #aa7e52;
+        --link: #cba56b;
+        --hover: #e8c59d;
+        --box: #1b1a17;
+        --border: #3a2e23;
+        --note: #999286;
+        --excerpt: #c6bcae;
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Work Sans', sans-serif;
+        padding: 1rem clamp(1rem, 4vw, 3rem);
+        max-width: 960px;
+        margin-inline: auto;
+        line-height: 1.7;
+      }
+
+      h1, h2, h3 {
+        font-family: 'Cardo', serif;
+        color: var(--accent);
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      .gallery-frame {
+        background-color: var(--box);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        box-shadow: 0 0 20px rgba(171, 132, 90, 0.15);
+        padding: 2rem;
+        margin-top: 3rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: fixed;
+        top: 3.5rem;
+        right: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(171, 132, 90, 0.2);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.9rem;
+        color: var(--note);
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">Menu</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/commissions">Commissions</a></li>
+        <li><a href="/studio">Studio</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    {showFrame ? (
+      <div class="gallery-frame">
+        <main>
+          <h1>{title}</h1>
+          <slot />
+        </main>
+      </div>
+    ) : (
+      <main>
+        <h1>{title}</h1>
+        <slot />
+      </main>
+    )}
+
+    <script is:global>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => box.classList.toggle('show'));
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <footer>
+      <p>&copy; 2025 Matthew Merwin</p>
+      <p>Website by Arynwood</p>
+    </footer>
+  </body>
+</html>
