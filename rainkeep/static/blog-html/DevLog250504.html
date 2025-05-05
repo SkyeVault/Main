@@ -1,0 +1,201 @@
+<!-- File: rainkeep/static/blog-html/DevLog250504.html -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Finalizing My Astro Theme</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>Finalizing My Astro Theme</h1>
+    <span class="prompt">> Log Date: 250504</span>
+    <p class="excerpt">
+      Today I finalized my personal Astro theme for the Arynwood site. I’ve created a flexible terminal wrapper that applies to most pages, and I'm now optimizing my development workflow with a clear path forward.
+    </p>
+
+    <p>
+      I added a universal terminal wrapper component with a toggle to disable it on pages where it's unnecessary—like <code>/robot</code>, where the embedded iframe looked awkward inside the terminal UI. I also implemented a right-side hamburger menu for site-wide navigation and included aesthetic traffic light controls in the corner for that retro-terminal feel.
+    </p>
+
+    <hr />
+
+    <h2>Astro Workflow Upgrades</h2>
+    <p>
+      I now understand the full capacity of Astro and how useful it will be for future scalability. While I’m still using HTML blog posts for now (because I have a system in place), I plan to convert them into Astro files and revisit dynamic slug routing for auto-loading blog content.
+    </p>
+
+    <p>
+      Having a unified theme means I can change styles globally without manually editing every page. This will come in handy as I fine-tune the design. I'm also planning to write a script to automate blog generation and save it to a new folder—this will streamline everything.
+    </p>
+
+    <hr />
+
+    <h3>Next Steps</h3>
+    <ul>
+      <li>Convert all existing `.html` blog posts into `.astro` components</li>
+      <li>Rebuild the dynamic blog post loader using slugs</li>
+      <li>Create a custom script to generate blog posts and structure folders</li>
+      <li>Continue tweaking the global theme and test minor refinements</li>
+    </ul>
+
+    <hr />
+
+    <p>
+      I’m super happy with how efficient Astro is when importing styles and structuring components. It finally feels like I have a system I can build on without starting from scratch every time. If you are reading this, May the Fourth be with you 05/04
+    </p>
+    
+
+    <p>— Lorelei Noble</p>
+    <p><a href="/blog">← Back to DevLogs</a></p>
+
+    <hr />
+  </body>
+</html>
