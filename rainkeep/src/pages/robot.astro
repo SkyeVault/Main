@@ -3,6 +3,7 @@ const title = "Veylan v0.2";
 import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
+
 <style>
 .responsive-iframe {
   width: 100%;
@@ -18,7 +19,7 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
 }
 </style>
 
-<HamburgerNav {title}>
+<HamburgerNav title={title} showFrame={false}>
   <div class="responsive-iframe">
     <iframe
       src="https://arynwood-veylan.hf.space"
