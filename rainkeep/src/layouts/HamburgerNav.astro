@@ -26,14 +26,13 @@ const { title, showFrame = true } = Astro.props;
   color: var(--text);
   font-family: 'Courier New', monospace;
   padding: 1rem clamp(1rem, 4vw, 3rem);
-  max-width: 100%;
-  width: 100%;
+  max-width: 600px;
   line-height: 1.6;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   body {
-    max-width: 90%;
+    max-width: 800px;
   }
 }
 
