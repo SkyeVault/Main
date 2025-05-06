@@ -1,0 +1,34 @@
+---
+const title = "Veylan v0.2";
+import HamburgerNav from '../layouts/HamburgerNav.astro';
+---
+
+
+<style>
+.responsive-iframe {
+  width: 100%;
+  height: 1100px;
+  max-width: 100%;
+  margin: 2rem 0;
+}
+
+.responsive-iframe iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
+
+<HamburgerNav title={title} showFrame={false}>
+  <div class="responsive-iframe">
+    <iframe
+      src="https://arynwood-veylan.hf.space"
+      loading="lazy"
+      allow="clipboard-write"
+    ></iframe>
+  </div>
+
+  <p>
+    Return to the <a href="/">Arynwood Terminal</a>.
+  </p>
+</HamburgerNav>
