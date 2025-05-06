@@ -34,3 +34,7 @@ pnpm-debug.log*
 ../combined.txt
 ../repo_dump.txt
 ../repodump.py
+
+/public/robot/veylan/
+/public/robot/veylan-env/
+
