@@ -30,3 +30,7 @@ pnpm-debug.log*
 # irc chat
 /packages/kiwiirc/
 /public/chat/
+
+../combined.txt
+../repo_dump.txt
+../repodump.py
