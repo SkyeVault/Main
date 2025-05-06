@@ -26,3 +26,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# irc chat
+/packages/kiwiirc/
+/public/chat/
