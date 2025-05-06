@@ -1,29 +1,29 @@
 ---
-const title = "Arynwood IRC";
+const title = "Arynwood IRC Chat";
 import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
 <style>
-.responsive-iframe {
+.chat-frame {
   width: 100%;
   height: 1100px;
-  max-width: 100%;
-  margin: 2rem 0;
-}
-
-.responsive-iframe iframe {
-  width: 100%;
-  height: 100%;
   border: none;
+  margin-top: 1rem;
+  border-radius: 6px;
+  background-color: #000; /* Optional: dark background */
 }
 </style>
 
-<HamburgerNav title={title} showFrame={false}>
-  <div class="responsive-iframe">
-    <iframe src="https://kiwiirc.com/client?settings=755b408a4a216e02c0c31ffff2d4e489" style="border:0; width:100%; height:450px;"></iframe>
-  </div>
+<HamburgerNav title={title}>
+  <iframe
+    src="/chat/"
+    class="chat-frame"
+    loading="lazy"
+    title="IRC Chat"
+    allowtransparency="true"
+  ></iframe>
 
-  <p>
-    Return to the <a href="/">Arynwood Terminal</a>.
+  <p class="mt-6 text-sm text-gray-400 text-center">
+    Return to <a href="/" class="underline">Arynwood Terminal</a>.
   </p>
 </HamburgerNav>
