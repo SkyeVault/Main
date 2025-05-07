@@ -1,0 +1,193 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250507 – IRC Chat Integration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="/chat">IRC Chat</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250507 – IRC Chat Integration</h1>
+    <span class="prompt">> Log Date: 250507</span>
+    <p class="excerpt">
+      Final integration of public IRC chat for Arynwood.com. We explored several methods and landed on a clean, stable solution with OFTC WebChat.
+    </p>
+
+    <h2>Goal</h2>
+    <p>Add a fully functional public IRC chat embed to <a href="https://arynwood.com/chat">arynwood.com/chat</a>, free of cost and hosted via Netlify.</p>
+
+    <h2>Initial Strategy</h2>
+    <h3>Attempt 1: KiwiIRC Embed</h3>
+    <pre><code>&lt;iframe src="https://kiwiirc.com/nextclient/#irc.libera.chat/#arynwood" /&gt;</code></pre>
+    <p>Resulted in double nested window and connection failure due to unknown iframe issues.</p>
+
+    <h2>GitHub Issues</h2>
+    <p>Large repo size due to bot folders and binary files. Used `git filter-repo` to remove them and fixed index lock. Push succeeded after cleanup.</p>
+
+    <h2>Attempt 2: The Lounge on Fly.io</h2>
+    <p>Deploying self-hosted IRC client worked locally but failed due to Fly VM stability issues and permission errors.</p>
+
+    <h2>Final Solution (Success!)</h2>
+    <p>Used the OFTC webchat generator. Embed works flawlessly with no server hosting required.</p>
+    <pre><code>&lt;iframe src="https://webchat.oftc.net/?channels=arynwood&amp;uio=MTE9MjY3cc" width="647" height="400"&gt;&lt;/iframe&gt;</code></pre>
+
+    <h2>Outcome</h2>
+    <ul>
+      <li>✅ Anonymous public chat</li>
+      <li>✅ Free hosting</li>
+      <li>✅ No login or backend setup required</li>
+      <li>✅ Successfully deployed to <a href="https://arynwood.com/chat">arynwood.com/chat</a></li>
+    </ul>
+
+    <hr />
+    <p>Signed,<br />Lorelei Noble</p>
+    <p><a href="/blog">&larr; Back to DevLogs</a></p>
+  </body>
+</html>
