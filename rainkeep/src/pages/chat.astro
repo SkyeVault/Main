@@ -4,27 +4,27 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
 <style>
-  .irc-container {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 1rem;
-    border-radius: 12px;
-    background-color: #0d0f1c;
-    box-shadow: 0 0 15px rgba(180, 142, 255, 0.4);
-  }
-
-  iframe.irc-frame {
+  .irc-frame {
     width: 100%;
     height: 600px;
     border: none;
     border-radius: 8px;
     background-color: #000;
+    margin-top: 1.5rem;
+  }
+
+  .irc-header {
+    text-align: center;
+    font-family: monospace;
+    font-size: 1.5rem;
+    color: #b48eff;
+    text-shadow: 0 0 3px #b48eff;
   }
 
   .irc-footer {
-    color: #888;
-    font-size: 0.875rem;
     text-align: center;
+    font-size: 0.875rem;
+    color: #888;
     margin-top: 1rem;
   }
 
@@ -34,25 +34,24 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
   }
 
   .irc-footer a:hover {
-    color: #c9c7ff;
+    color: #fff;
   }
 </style>
 
 <HamburgerNav title={title}>
-  <div class="irc-container">
-    <h1 class="text-lavender text-xl font-bold mb-4 text-center">
-      Join the Arynwood IRC Channel
-    </h1>
+  <div>
+    <h1 class="irc-header">Join the Arynwood IRC Channel</h1>
 
     <iframe
-  src="https://webchat.oftc.net/?nick=Guest123&channels=arynwood"
-  class="irc-frame"
-></iframe>
+      src="https://kiwiirc.com/nextclient/irc.libera.chat/#arynwood"
+      class="irc-frame"
+      loading="lazy"
+      title="Arynwood Chat"
+    ></iframe>
 
-    <p class="irc-footer">
-      Connected to <code>#arynwood</code> on <a href="https://libera.chat">libera.chat</a>.<br />
-      Powered by <a href="https://kiwiirc.com">KiwiIRC</a>.
-    </p>
+    <div class="irc-footer">
+      Connected to <code>#arynwood</code> on <a href="https://libera.chat">Libera.Chat</a><br />
+      Web chat powered by <a href="https://kiwiirc.com">KiwiIRC</a>
+    </div>
   </div>
 </HamburgerNav>
-
