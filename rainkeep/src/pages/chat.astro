@@ -3,28 +3,29 @@ const title = "Arynwood IRC Chat";
 import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 <style>
-.irc-frame {
-  width: 100%;
-  height: 600px;
-  border: none;
-  border-radius: 8px;
-  background-color: #000;
-  margin-top: 1.5rem;
-  max-width: 100%;
-}
-
-/* Responsive height scaling for mobile */
-@media (max-width: 768px) {
   .irc-frame {
-    height: 400px;
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 8px;
+    background-color: #000;
+    margin-top: 1.5rem;
+    max-width: 100%;
+    box-shadow: 0 0 4px #b48eff;
   }
-}
 
-@media (max-width: 480px) {
-  .irc-frame {
-    height: 320px;
+  /* Responsive scaling */
+  @media (max-width: 768px) {
+    .irc-frame {
+      height: 400px;
+    }
   }
-}
+
+  @media (max-width: 480px) {
+    .irc-frame {
+      height: 320px;
+    }
+  }
 
   .irc-header {
     text-align: center;
@@ -32,6 +33,7 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
     font-size: 1.5rem;
     color: #b48eff;
     text-shadow: 0 0 3px #b48eff;
+    margin-top: 2rem;
   }
 
   .irc-footer {
@@ -53,9 +55,17 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
 
 <HamburgerNav title={title}>
   <div>
+    <h1 class="irc-header">Live Chat — #arynwood @ OFTC</h1>
 
-    <iframe src="https://webchat.oftc.net/?channels=arynwood&uio=MTE9MjY3cc" width="647" height="400"></iframe>
+    <iframe
+      src="https://webchat.oftc.net/?channels=arynwood&uio=MTE9MjY3cc"
+      class="irc-frame"
+      title="Arynwood IRC Chat"
+      loading="lazy"
+    ></iframe>
 
-    
+    <p class="irc-footer">
+      Return to the <a href="/">Arynwood Terminal</a>
+    </p>
   </div>
 </HamburgerNav>
