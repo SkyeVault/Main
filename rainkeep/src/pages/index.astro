@@ -101,13 +101,15 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
     function handleCommand(cmd) {
       switch (cmd) {
         case 'help':
-          return 'Available commands: whoami, projects, blog, contact, artwork, localbot, sudo, ls, cd .., clear, exit, cat, fortune';
+          return 'Available commands: whoami, projects, blog, contact, artwork, robot, chat, sudo, ls, cd .., clear, exit, cat, fortune';
         case 'whoami':
           return 'Lorelei Noble — full-stack developer, artist, architect of Arynwood.';
         case 'projects':
           return '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/gallery3d">3D Metaverse Gallery</a>, <a href="/robot">Arynwood Robot</a>';
-        case 'localbot':
+        case 'robot':
           return 'Arynwood Robot is evolving. Local model coming soon with offline inference, private data handling, and full autonomy. <a href="/robot">Monitor progress here</a>.';
+        case 'chat':
+          return 'Join the conversation in real time: <a href="https://www.arynwood.com/chat" target="_blank">www.arynwood.com/chat</a>';
         case 'blog':
           return 'Read the blog: <a href="/blog">DevLogs</a>';
         case 'contact':
