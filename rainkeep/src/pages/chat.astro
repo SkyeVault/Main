@@ -2,16 +2,29 @@
 const title = "Arynwood IRC Chat";
 import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
-
 <style>
+.irc-frame {
+  width: 100%;
+  height: 600px;
+  border: none;
+  border-radius: 8px;
+  background-color: #000;
+  margin-top: 1.5rem;
+  max-width: 100%;
+}
+
+/* Responsive height scaling for mobile */
+@media (max-width: 768px) {
   .irc-frame {
-    width: 100%;
-    height: 600px;
-    border: none;
-    border-radius: 8px;
-    background-color: #000;
-    margin-top: 1.5rem;
+    height: 400px;
   }
+}
+
+@media (max-width: 480px) {
+  .irc-frame {
+    height: 320px;
+  }
+}
 
   .irc-header {
     text-align: center;
