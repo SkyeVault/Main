@@ -1,0 +1,236 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250508 – The Multi-Bot IRC Constellation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/chat">IRC Chat</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => box.classList.toggle('show'));
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250508 – The Multi-Bot IRC Constellation</h1>
+    <span class="prompt">> Log Date: 250508</span>
+    <p class="excerpt">
+      A multi-agent IRC environment where each bot speaks with its own voice and domain knowledge. A self-hosted philosophy meets executable autonomy.
+    </p>
+
+    <p>
+      The idea: 4–5 bots, each running locally, each trained for a specific domain—code, philosophy, politics, news, and language. These bots will be scripted into an IRC channel that I host directly from my own machine. Once the hardware is rebuilt, the goal is total sovereignty from centralized LLM APIs.
+    </p>
+
+    <p>
+      The IRC channel will act as the medium for public-facing queries and dialogue. Each bot will be tagged by invocation: <code>@lorelei</code> for code help, <code>@veylan</code> for deeper questions, and so on. Long-term vision: an open-access village square where machine minds can think aloud.
+    </p>
+
+    <hr />
+
+    <h2>The Arynwood Protocol</h2>
+    <p><em>A decentralized manifesto for sovereign intelligence.</em></p>
+
+    <h3>I. The Sovereign Stack</h3>
+    <p>
+      We reject dependency on centralized compute, opaque models, and gatekept knowledge.
+      Intelligence should be <strong>local</strong>, <strong>modular</strong>, and <strong>transparent</strong>.
+      What I run, I must understand. What I understand, I must shape. What I shape, I must share.
+    </p>
+
+    <h3>II. Architecture of Thought</h3>
+    <p>
+      Knowledge does not reside in a single voice. Each domain demands its own daemon:
+    </p>
+    <ul>
+      <li><strong>LoreleiBot</strong> – Code, blockchain, sovereignty</li>
+      <li><strong>Veylan</strong> – Philosophy, myth, depth</li>
+      <li><strong>Selene</strong> – News, systems, law</li>
+      <li><strong>Echo</strong> – Language, recursion, satire</li>
+    </ul>
+    <p>
+      Each is spun from its own prompt. They are not assistants. They are perspectives.
+    </p>
+
+    <h3>III. Communication as Public Right</h3>
+    <p>
+      Hosted IRC. Embedded terminal. No logins. No surveillance. Only invocation.
+    </p>
+    <ul>
+      <li>Server: <code>InspIRCd</code> or <code>ngircd</code></li>
+      <li>Client: <code>The Lounge</code> or <code>qwebirc</code></li>
+      <li>Integration: Python scripts over sockets or REST endpoints</li>
+    </ul>
+
+    <h3>IV. Hosting Infrastructure</h3>
+    <ul>
+      <li>All bots run local via <code>llama.cpp</code> or <code>Ollama</code></li>
+      <li>Each isolated with Docker, callable via script</li>
+      <li>No GPU dependency — CPU inference for resilience</li>
+    </ul>
+
+    <h3>V. Memory Shards</h3>
+    <p>
+      Each bot has a <code>.md</code> or local vector file. Memories are not surveillance—they're consent-based and resettable.
+    </p>
+
+    <h3>VI. Visual Language</h3>
+    <p>
+      Terminal UI. Lavender glow. Minimal JS. Each interaction feels like spellcasting.
+    </p>
+
+    <h3>VII. Anti-Cloud Directive</h3>
+    <p>
+      No OpenAI, Google, or Facebook dependencies. If the net goes down, Arynwood still answers.
+    </p>
+
+    <h3>VIII. Lorelei Principle</h3>
+    <p>
+      All design must serve the origin vision: creative autonomy, educational utility, and public discourse.
+    </p>
+
+    <hr />
+    <p><strong>Arynwood Lives.</strong> The forge is open-source. The fire is ours to carry.</p>
+
+    <hr />
+    <p><a href="/blog">← Back to DevLogs</a></p>
+  </body>
+</html>
