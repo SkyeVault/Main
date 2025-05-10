@@ -10,7 +10,7 @@ This checklist includes free, reputable certifications and training paths to hel
       https://www.freecodecamp.org/learn
 - [ ] **freeCodeCamp – JavaScript Algorithms and Data Structures**
 - [ ] **CS50x by Harvard – Introduction to Computer Science**  
-      https://cs50.harvard.edu/x/
+      https://cs50.harvard.edu/x/ 
 
 ---
 
