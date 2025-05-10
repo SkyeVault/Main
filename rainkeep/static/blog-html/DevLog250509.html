@@ -1,0 +1,214 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250509 – Mother's Day Hardware Hack + IBM Prompt Tactics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250509 – Mother's Day Hardware Hack + IBM Prompt Tactics</h1>
+    <span class="prompt">> Log Date: 250509</span>
+    <p class="excerpt">
+      I received all the parts for my T3600 GPU upgrade—my Mother's Day celebration starts with thermal paste, dusting fans, and powering up dreams. Oh, and IBM taught me how to talk to bots better.
+    </p>
+
+    <p>
+      Let’s spin the review wheel: the <strong>Gigabyte Windforce RTX 3060</strong> (12GB VRAM) is here, looking like it’s ready to chew through Blender cycles and spit out shimmering geometry. The 2TB SSD arrived alongside it—no more swap file anxiety—and I grabbed a 6-to-8 pin PCIe power adapter so this hungry GPU can breathe freely inside my old Dell T3600 chassis.
+    </p>
+
+    <hr />
+
+    <h2>Unwrapping My Dream Build</h2>
+    <p>
+      Cracking open the workstation is a sacred ritual. PSU dust? Blown. Motherboard? Inspected and cleaned. The goal: install everything cleanly and keep my airflow optimized for those long render sessions. This rig is going to support local AI agents and Blender renders without breaking a sweat.
+    </p>
+
+    <pre><code>GPU: Gigabyte Windforce RTX 3060 12GB  
+SSD: 2TB Internal  
+Adapter: 6-to-8 Pin PCIe  
+System: Dell Precision T3600 Workstation  
+OS: Linux (eventually dual boot with Windows)</code></pre>
+
+    <hr />
+
+    <h2>Prompt Engineering with IBM</h2>
+    <p>
+      In parallel with hardware upgrades, I completed a free IBM certification on prompt engineering. It covered advanced frameworks like <strong>Tree of Thought</strong>, multi-shot prompting, and goal-oriented chaining. These aren’t just tricks—they’re essential tools for managing local agents with task trees, recursion, and fallback paths.
+    </p>
+
+    <p>
+      Some takeaway gems:
+      <ul>
+        <li><strong>Tree of Thought:</strong> Organize prompts into decision nodes—helps bots solve more complex logic problems.</li>
+        <li><strong>Self-Ask with Search:</strong> Break big questions into subprocesses.</li>
+        <li><strong>Reflexion + Critique Mode:</strong> Let agents grade their own responses and retry if confidence is low.</li>
+      </ul>
+    </p>
+
+    <hr />
+
+    <h3>Next Goals</h3>
+    <p>
+      With my system nearly upgraded and my prompt skills sharpened, I’m aiming to create a multi-bot architecture that runs locally—each agent handling a domain: code, philosophy, news, and archives. These will be Python-powered and IRC-accessible.
+    </p>
+
+    <hr />
+
+    <p>
+      Happy Mother’s Day to me. This is the kind of love letter I want: an open chassis, a working fan curve, and the smell of fresh thermal paste. Time to bring the bots online.
+    </p>
+
+    <hr />
+
+    <p>
+      Return to <a href="/blog">DevLogs</a>
+    </p>
+  </body>
+</html>
