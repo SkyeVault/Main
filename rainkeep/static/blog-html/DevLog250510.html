@@ -1,0 +1,227 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250510 – Local AI Model Research for The Forge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250510 – Local AI Model Research for The Forge</h1>
+    <span class="prompt">> Log Date: 250510</span>
+
+    <p class="excerpt">
+      Today’s goal was to determine which open-source LLMs I can run locally using my upgraded Dell T3600 workstation. With 64GB RAM, 12GB VRAM, and 2TB SSD, I’m preparing to light the fire in the Forge and populate it with multiple specialized agents.
+    </p>
+
+    <p>
+      This post documents a review of five top local LLMs that align with my spec requirements, plus a strategy for how many can run simultaneously. The Forge will eventually host multiple bots, each tailored to a specific domain of knowledge—philosophy, code, news, and beyond.
+    </p>
+
+    <hr />
+
+    <h2>Top 5 LLMs Compatible with My Setup</h2>
+
+    <h3>1. Mistral 7B</h3>
+    <p><strong>Pros:</strong> Fast, efficient, Apache 2.0 licensed, and solid for general use.</p>
+    <p><strong>Cons:</strong> Needs prompt tuning for better domain alignment.</p>
+
+    <h3>2. LLaMA 3 8B</h3>
+    <p><strong>Pros:</strong> Great accuracy, 128K token support, backed by Meta.</p>
+    <p><strong>Cons:</strong> Pushing VRAM limits at 12GB unless quantized (Q4/Q5).</p>
+
+    <h3>3. DeepSeek V2 7B</h3>
+    <p><strong>Pros:</strong> Blazing fast inference, low memory footprint, math-friendly.</p>
+    <p><strong>Cons:</strong> Less documentation, fewer fine-tuned variants.</p>
+
+    <h3>4. Qwen 2.5 7B</h3>
+    <p><strong>Pros:</strong> Versatile, actively maintained, low VRAM overhead.</p>
+    <p><strong>Cons:</strong> Mid-tier performance on highly technical tasks.</p>
+
+    <h3>5. Dolphin 2.9.3 (RP-tuned Mistral)</h3>
+    <p><strong>Pros:</strong> Great for creative dialog, responsive and expressive tone.</p>
+    <p><strong>Cons:</strong> Not ideal for factual tasks, RP focus may bias output.</p>
+
+    <hr />
+
+    <h2>How Many Models Can I Run at Once?</h2>
+    <p>
+      With 64GB of RAM and 12GB of VRAM, I can confidently run:
+    </p>
+    <ul>
+      <li><strong>2–3 quantized 7B models</strong> simultaneously (4-bit or 5-bit).</li>
+      <li>Or <strong>1x 8B full precision model + 1x 7B quantized model</strong> with swap buffers.</li>
+    </ul>
+    <p>
+      Using <code>llama.cpp</code>, <code>koboldcpp</code>, or <code>exllama2</code> backends, the Forge can dynamically allocate agents by role. This allows me to host a live IRC channel where each LLM bot handles a different topic, self-contained and locally run.
+    </p>
+
+    <hr />
+
+    <h2>Toolchain for Model Management</h2>
+    <ul>
+      <li><strong>LM Studio</strong> – GUI for easy loading and testing.</li>
+      <li><strong>Ollama</strong> – One-command model loader and API server.</li>
+      <li><strong>llama.cpp</strong> – Native terminal control, supports quantization.</li>
+    </ul>
+
+    <hr />
+
+    <h2>Next Steps</h2>
+    <p>
+      I'll begin downloading these models and organizing them within the Forge directory. Each will serve as a unique modular brain in my upcoming IRC setup. A control interface will allow hot-swapping roles on demand.
+    </p>
+
+    <hr />
+
+    <p>
+      View all logs at <a href="/blog">DevLogs</a>
+    </p>
+
+    <hr />
+  </body>
+</html>
