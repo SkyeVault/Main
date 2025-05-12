@@ -1,0 +1,68 @@
+---
+import HamburgerNav from '../layouts/HamburgerNav.astro';
+---
+
+<HamburgerNav title="DevLog 250511 — Dockerizing My Workflow">
+  <article class="terminal-screen">
+    <h1>DevLog 250511 — Dockerizing My Workflow</h1>
+    <span class="prompt">&gt; Log Date: 250511</span>
+
+    <p class="excerpt">
+      With a fresh SSD, upgraded GPU, and Ubuntu installed, I’m setting a new foundation for all future development—centered around Docker.
+    </p>
+
+    <p>
+      After years of battling messy environments and system bloat, I’m switching to a container-based workflow. Docker will be my core tool for organizing, building, and scaling projects across AI, 3D, and infrastructure tasks.
+    </p>
+
+    <h2>Why Docker?</h2>
+
+    <p><strong>Clean Environments for Bots:</strong> Each bot gets its own isolated setup, avoiding package conflicts and letting me recreate the same working environment every time.</p>
+
+    <p><strong>Reproducible Builds:</strong> No more "it worked before" headaches. Docker ensures every version and setting is preserved, making it easier to collaborate, share, and restart.</p>
+
+    <p><strong>Modular Project Structure:</strong> I’m giving each major project—like my 3D gallery or local assistant—its own container, with clean boundaries and defined lifecycles.</p>
+
+    <p><strong>GPU Access for AI Projects:</strong> With the NVIDIA Container Toolkit, I can give containers secure access to GPU acceleration for models, rendering, or inference.</p>
+
+    <p><strong>Quick Reset & Scalability:</strong> I can stop, update, and redeploy containers at will—opening up possibilities for running multiple isolated services on the same machine.</p>
+
+    <h2>Projects I’ll Be Using Docker For</h2>
+
+    <ul>
+      <li>AI Bots and Assistants (Python, Transformers, GPU-enabled)</li>
+      <li>IRC Bots and Terminal Agents (Python/Rust with local scripting)</li>
+      <li>Three.js Server for 3D gallery experiences</li>
+      <li>Blender Automation for scripted rendering or animation pipelines</li>
+      <li>Rust and CLI Dev Tools with reproducible builds</li>
+    </ul>
+
+    <h2>Other Docker-Friendly Ideas</h2>
+
+    <ul>
+      <li>Web scraping modules with isolated network behavior</li>
+      <li>Cybersecurity labs using UFW, Nmap, fail2ban, etc.</li>
+      <li>Tor Gateway or VPN container to explore anonymous networking</li>
+      <li>Media encoding pipelines for automated GIF/video generation</li>
+      <li>Local monitoring dashboards (e.g. Grafana, Netdata)</li>
+    </ul>
+
+    <h2>System Setup Checklist</h2>
+
+    <ul>
+      <li>Install Ubuntu on separate SSD partition (dual boot ready)</li>
+      <li>Set GRUB boot order to default to Ubuntu</li>
+      <li>Install proprietary NVIDIA drivers for GPU performance</li>
+      <li>Install Docker CE and NVIDIA Container Toolkit</li>
+      <li>Create a <code>/Projects</code> directory on SSD for all dev work</li>
+      <li>Set up Git, SSH keys, and VS Code extensions</li>
+      <li>Prepare base Dockerfiles for Python, Node.js, and Blender</li>
+    </ul>
+
+    <p>
+      This is the beginning of a clean and powerful development system.
+      Every project gets its own container, clean dependencies, and space to thrive.
+      For the first time, I have the hardware—and now the strategy—to bring everything to life.
+    </p>
+  </article>
+</HamburgerNav>
