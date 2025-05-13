@@ -1,0 +1,287 @@
+<!-- File: rainkeep/static/blog-html/DevLog250512.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250512 — Docker Setup Strategy for Modular Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .signature {
+        margin-top: 3rem;
+        font-size: 0.9rem;
+        color: var(--note);
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        color: var(--link);
+      }
+
+      /* Hamburger Styles */
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250512 — Docker Setup Strategy for Modular Projects</h1>
+    <span class="prompt">&gt; Log Date: 250512</span>
+    <p class="excerpt">
+      After setting up my new GPU and SSD with Ubuntu, I’m moving toward a streamlined, containerized development stack. This post documents my full Docker setup plan—from system installation to GitHub architecture—for AI bots, headless Blender, and more.
+    </p>
+
+    <h2>1. Free Docker Setup on Ubuntu</h2>
+    <pre><code>sudo apt update
+sudo apt install ca-certificates curl gnupg lsb-release
+
+# Add Docker's GPG key
+sudo mkdir -m 0755 -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+# Add Docker repository
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Install Docker
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Optional: run Docker without sudo
+sudo usermod -aG docker $USER</code></pre>
+
+    <p>Reboot and verify:</p>
+    <pre><code>docker --version
+docker run hello-world</code></pre>
+
+    <h2>2. Container Structure by Project Type</h2>
+
+    <h3>AI Bots</h3>
+    <pre><code>/Projects/ai-bots/
+├── lorebot/
+│   ├── Dockerfile
+│   ├── bot.py
+│   └── requirements.txt
+├── daemonbot/
+├── watcherbot/</code></pre>
+
+    <pre><code># Sample Dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["python", "bot.py"]</code></pre>
+
+    <p>Build and run:</p>
+    <pre><code>docker build -t lorebot .
+docker run -d --name lorebot lorebot</code></pre>
+
+    <h3>Headless Blender</h3>
+    <pre><code>FROM ubuntu:22.04
+
+RUN apt update &amp;&amp; apt install -y \ 
+    wget unzip python3 python3-pip \ 
+    libx11-6 libxi6 libxxf86vm1 libxrandr2 libxinerama1 libxcursor1 libgl1-mesa-glx
+
+RUN wget https://mirror.clarkson.edu/blender/release/Blender3.6/blender-3.6.0-linux-x64.tar.xz &amp;&amp; \
+    tar -xvf blender-3.6.0-linux-x64.tar.xz &amp;&amp; \
+    mv blender-3.6.0-linux-x64 /opt/blender
+
+ENV PATH="/opt/blender:$PATH"
+CMD ["blender", "--version"]</code></pre>
+
+    <p>To render:</p>
+    <pre><code>docker run --rm -v $(pwd):/blender blender-container blender -b scene.blend -o //frame_ -F PNG -x 1 -a</code></pre>
+
+    <h3>Three.js Dev Server</h3>
+    <pre><code>FROM node:20
+WORKDIR /app
+COPY . .
+RUN npm install
+CMD ["npm", "run", "dev"]</code></pre>
+
+    <h3>Security Lab / TOR Gateway</h3>
+    <pre><code>FROM kalilinux/kali-rolling
+RUN apt update &amp;&amp; apt install -y nmap ufw tor</code></pre>
+
+    <h2>3. GitHub Project Structure</h2>
+    <pre><code>SkyeVault/
+├── docker-templates/
+├── ai-bots/
+│   ├── lorebot/
+│   ├── daemonbot/
+│   └── watcherbot/
+├── 3d-gallery/
+│   ├── server/
+│   └── textures/
+├── render-pipeline/
+│   └── headless-blender/
+├── security-labs/
+│   ├── tor-node/
+│   └── firewall-demo/
+└── README.md</code></pre>
+
+    <h2>4. Optional Tips</h2>
+    <ul>
+      <li>Use <code>docker-compose.yml</code> for multi-container orchestration</li>
+      <li>Keep sensitive config in <code>.env</code> files</li>
+      <li>Automate build/run with <code>setup.sh</code> per project</li>
+      <li>Push images to Docker Hub (optional)</li>
+    </ul>
+
+    <p>
+      This container strategy gives me ultimate control over dependencies, reproducibility, and performance—especially with headless rendering and AI inference. I finally have the GPU, the disk space, and now a scalable system.
+    </p>
+
+    <p class="signature">
+      — Lorelei Noble
+    </p>
+
+    <a class="back-link" href="/blog">&larr; Back to DevLogs</a>
+  </body>
+</html>
