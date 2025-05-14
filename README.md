@@ -36,6 +36,7 @@ The rainkeep folder contains the custom blog system that powers [arynwood.com](h
 - Blog posts are written in standalone HTML files
 - Currently building a 3d art gallery using Three.js at rainkeep/public/gallery3d
 - New chatbot feature can be tested at arynwood.com/robot
+- New chatroom arynwood.com/chat
 - The site is deployed via Netlify
 - Source: `rainkeep/src/pages/blog/` and `rainkeep/static/blog-html/`
 
