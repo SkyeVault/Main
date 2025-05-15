@@ -1,0 +1,249 @@
+<!-- Save as rainkeep/static/blog-html/DevLog250514.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250514 — Automating the Arynwood IRC with n8n</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+      .menu-box.show {
+        display: block;
+      }
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250514 — Automating the Arynwood IRC with n8n</h1>
+    <span class="prompt">&gt; Log Date: 250514</span>
+    <p class="excerpt">
+      Today I began planning a full automation framework for my IRC bot network using n8n — a no-code/low-code workflow automation tool with powerful extensibility via Docker.
+    </p>
+
+    <p>
+      I’ll be using <strong>n8n</strong> as a central brain to orchestrate my modular AI bot system. Each bot will live in its own Docker container and communicate through IRC. n8n will act as the automation backbone, parsing messages, routing tasks, handling retries, logging output, and triggering more advanced scripts.
+    </p>
+
+    <hr />
+
+    <h2>What is n8n?</h2>
+    <p>
+      <strong>n8n</strong> (short for "nodemation") is a workflow automation tool similar to Zapier, but fully open-source and self-hostable. It allows you to visually build flows triggered by events (webhooks, timers, file changes, etc.), and chain actions like API calls, text parsing, logic branches, and command execution.
+    </p>
+    <p>
+      Unlike no-code-only platforms, n8n lets you run custom code at any point — a sweet spot between visual and programmable automation.
+    </p>
+
+    <hr />
+
+    <h2>Docker Architecture for IRC Automation</h2>
+    <p>
+      I’m containerizing each element of the system. Here’s the plan:
+    </p>
+
+    <pre><code>/dockers/
+├── n8n/              # Core automation orchestrator
+├── irc-server/       # Custom IRC server (UnrealIRCd or InspIRCd)
+├── watcher-bot/      # Monitors keywords, triggers alerts
+├── daemon-bot/       # Background logic processor
+├── coder-bot/        # LLM bot answering code questions
+├── philosopher-bot/  # LLM bot answering deep questions
+└── news-bot/         # Fetches and summarizes RSS feeds or APIs
+</code></pre>
+
+    <p>
+      Each bot will have a narrow focus and communicate with n8n using simple messaging protocols (via HTTP, UNIX socket, or direct IRC relay). This modular design allows bots to fail, restart, or evolve independently.
+    </p>
+
+    <hr />
+
+    <h2>Using n8n with IRC</h2>
+    <p>Here’s how n8n will empower the entire network:</p>
+    <ul>
+      <li><strong>Trigger:</strong> On IRC message (via webhook or socket listener)</li>
+      <li><strong>Router:</strong> Parse sender and command, forward to correct bot</li>
+      <li><strong>Middleware:</strong> Add logging, AI moderation, formatting, delays</li>
+      <li><strong>Job Queue:</strong> For slow replies, delegate to background processor</li>
+      <li><strong>Response:</strong> Format bot reply, pipe back to IRC</li>
+    </ul>
+
+    <hr />
+
+    <h2>Real Examples I Plan to Implement</h2>
+    <ul>
+      <li>n8n webhook listens to any IRC message -> triggers HTTP POST to appropriate bot container</li>
+      <li>Set keyword filters for moderation or highlight alerts</li>
+      <li>Run scheduled n8n tasks like “daily philosophy quote” to IRC</li>
+      <li>Post new GitHub commits or blog updates to channel</li>
+      <li>Trigger a bot re-deploy workflow via n8n UI if it's stale or unresponsive</li>
+      <li>Use n8n to ping and verify system health of all bots and log result</li>
+    </ul>
+
+    <hr />
+
+    <h2>How to Run n8n in Docker (Starter)</h2>
+    <pre><code>docker run -it --rm \
+  --name n8n \
+  -p 5678:5678 \
+  -v ~/.n8n:/home/node/.n8n \
+  n8nio/n8n</code></pre>
+
+    <p>
+      For permanent use, I’ll add it to a `docker-compose.yml` file and map it to a shared volume where other bots can access logs and event queues.
+    </p>
+
+    <hr />
+
+    <h2>Why n8n Matters to My Workflow</h2>
+    <p>
+      Before n8n, I had to write long Python scripts with `while True:` loops, log files, and retry logic — all manually. Now I get:
+    </p>
+    <ul>
+      <li>Visual debug interface for failed workflows</li>
+      <li>API integration and Webhooks with almost no boilerplate</li>
+      <li>Task queues and conditional logic built-in</li>
+      <li>Modular project management for each bot or workflow</li>
+    </ul>
+
+    <hr />
+
+    <h2>Next Steps</h2>
+    <ul>
+      <li>Spin up each bot container with simple IRC scripts</li>
+      <li>Build basic n8n flows to handle command routing</li>
+      <li>Expose n8n to local network via reverse proxy</li>
+      <li>Document every bot in the GitHub repo</li>
+      <li>Include `.n8n` export backups of workflows</li>
+    </ul>
+
+    <hr />
+
+    <p>
+      This phase will link my local AI assistants to the public IRC interface. Each one, living in its own container, trained for a unique purpose, and orchestrated through n8n — the soul of the network.
+    </p>
+
+    <p>— Lorelei Noble</p>
+    <p><a href="/blog">Back to DevLogs</a></p>
+  </body>
+</html>
