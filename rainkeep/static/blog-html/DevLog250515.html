@@ -1,0 +1,260 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250515 — Grounding the Web3 Build</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250515 — Grounding the Web3 Build</h1>
+    <span class="prompt">> Log Date: 250515</span>
+
+    <p class="excerpt">
+      No more drift. This week is about one thing: making FoundrySpace.nft functional. Bots can wait. Blender can wait. But this Web3 portal must breathe.
+    </p>
+
+    <p>
+      The Forge is down. My main machine BSOD’d. This delay clarified what matters: getting FoundrySpace.nft online with a working service page, live minting flow, and commission portal. IRC stays to honor the ethos. Telegram remains in the shadows, a whisper channel for alerts. The rest is noise.
+    </p>
+
+    <hr />
+
+    <h2>Core Focus Areas</h2>
+    <ul>
+      <li><strong>Service Page:</strong> index.html with gallery links, mint option, and commission portal</li>
+      <li><strong>Minting Page:</strong> Connect wallet, upload art + metadata to IPFS, call existing Polygon Amoy contract</li>
+      <li><strong>Commission Flow:</strong> Embed form with webhook to n8n + Telegram notification</li>
+    </ul>
+
+    <hr />
+
+    <h2>Infrastructure and Tools</h2>
+    <ul>
+      <li><strong>Hosting:</strong> IPFS (Web3.Storage) or Fleek (GitHub-based auto-deploy)</li>
+      <li><strong>Smart Contract:</strong> Deployed, active on Polygon Amoy</li>
+      <li><strong>n8n:</strong> Webhook handling, metadata automation, Telegram alerts</li>
+      <li><strong>Docker:</strong> Post-repair; for bot logic, n8n, and auxiliary tools</li>
+    </ul>
+
+    <hr />
+
+    <h2>Fleek vs Manual IPFS Hosting</h2>
+
+    <h3>Manual IPFS (Web3.Storage)</h3>
+    <ul>
+      <li>+ Total control over CID versioning and updates</li>
+      <li>+ Can test builds before committing live</li>
+      <li>– Tedious manual uploads each time you update</li>
+      <li>– No auto-deploy pipeline</li>
+    </ul>
+
+    <h3>Fleek (with GitHub CI)</h3>
+    <ul>
+      <li>+ Continuous deployment from GitHub</li>
+      <li>+ IPFS CID updates automatically</li>
+      <li>+ Works well with static sites and CI workflows</li>
+      <li>– You lose version pinning unless tracked manually</li>
+      <li>– Abstracted away from raw IPFS process</li>
+    </ul>
+
+    <p>Verdict: Start with Web3.Storage to control every piece. Shift to Fleek once workflows stabilize.</p>
+
+    <hr />
+
+    <h2>Next 3 Days</h2>
+
+    <h3>Day 1 — Setup</h3>
+    <ul>
+      <li>Create <code>foundryspace-site</code> repo</li>
+      <li>Add <code>index.html</code>, <code>mint.html</code>, and <code>commission.html</code></li>
+      <li>Write clear <code>README.md</code> to set scope and architecture</li>
+    </ul>
+
+    <h3>Day 2 — Deployment</h3>
+    <ul>
+      <li>Upload to Web3.Storage OR connect Fleek to repo</li>
+      <li>Route <code>foundryspace.nft</code> to latest CID or Fleek deployment</li>
+      <li>Update Rainkeep hamburger menu with new link</li>
+    </ul>
+
+    <h3>Day 3 — Minting Flow</h3>
+    <ul>
+      <li>Enable MetaMask connection</li>
+      <li>Upload image + metadata to IPFS using ethers.js</li>
+      <li>Call Polygon Amoy contract and mint to wallet</li>
+    </ul>
+
+    <hr />
+
+    <h2>Deferred for Now</h2>
+    <ul>
+      <li>Bot relays (wait for Forge fix)</li>
+      <li>3D Blender gallery</li>
+      <li>Telegram channel launch</li>
+      <li>Mainnet deployment + NFT sales strategy</li>
+    </ul>
+
+    <hr />
+
+    <h3>Oath for the Week</h3>
+    <p>
+      I will not overbuild.<br />
+      I will not drift.<br />
+      I will launch FoundrySpace.nft as a usable portal, no matter how simple.<br />
+      Perfection lives in the forge.<br />
+      Progress is the hammer.
+    </p>
+
+    <hr />
+
+    <p style="text-align: right;"><em>— Lorelei Noble</em></p>
+    <p><a href="/blog">Back to DevLogs</a></p>
+  </body>
+</html>
