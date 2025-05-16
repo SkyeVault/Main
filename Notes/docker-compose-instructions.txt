@@ -1,0 +1,104 @@
+FoundryStack Setup Guide — Ubuntu Edition
+==========================================
+
+This guide walks you through setting up a local automation and data stack using:
+- Docker
+- Docker Compose
+- PostgreSQL
+- PGAdmin (PostgreSQL GUI)
+- n8n (Automation platform)
+
+This will give you a private, sovereign toolchain for use with your site, minting, commissions, and bots.
+
+----------------------------------------------------
+STEP 1: Install Docker and Docker Compose
+----------------------------------------------------
+
+Open Terminal and run:
+
+sudo apt update
+sudo apt install -y docker.io docker-compose
+sudo systemctl start docker
+sudo systemctl enable docker
+
+Add your user to the docker group (optional but recommended):
+
+sudo usermod -aG docker $USER
+# Log out and back in after running this
+
+Check if Docker is working:
+
+docker --version
+docker compose version
+
+----------------------------------------------------
+STEP 2: Create Your Project Directory
+----------------------------------------------------
+
+mkdir ~/foundryforge-stack
+cd ~/foundryforge-stack
+
+Save your 'docker-compose.yml' file here.
+
+----------------------------------------------------
+STEP 3: Launch the Stack
+----------------------------------------------------
+
+Run this from inside your foundryforge-stack folder:
+
+docker compose up -d
+
+This will spin up:
+- PostgreSQL (DB)
+- PGAdmin (DB interface)
+- n8n (Automation)
+
+----------------------------------------------------
+STEP 4: Access Your Tools
+----------------------------------------------------
+
+n8n:
+  http://localhost:5678
+  Username: forge
+  Password: forge123
+
+PGAdmin:
+  http://localhost:5050
+  Email: admin@foundry.local
+  Password: admin123
+
+To connect to PostgreSQL from PGAdmin:
+  Host: postgres
+  Port: 5432
+  DB: n8n_db
+  User: n8n_user
+  Password: strongpassword
+
+----------------------------------------------------
+STEP 5: Stop or Restart the Stack
+----------------------------------------------------
+
+To stop:
+  docker compose down
+
+To restart:
+  docker compose up -d
+
+----------------------------------------------------
+Extras:
+----------------------------------------------------
+
+You can now use n8n to:
+- Receive form submissions from your website
+- Store them in PostgreSQL
+- Trigger Telegram or email alerts
+- Later: run bots, integrate with Web3, and more
+
+You can also use PGAdmin to explore and manage your database visually.
+
+----------------------------------------------------
+Next Steps:
+----------------------------------------------------
+- Customize your n8n workflows
+- Add a backup routine or integrate IPFS
+- Add an IPFS node to this stack later
