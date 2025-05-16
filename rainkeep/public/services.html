@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoundrySpace — Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --text: #e5e5e5;
+      --accent: #a772ff;
+      --button: #262626;
+      --box: #1a1a1a;
+      --border: #3a3a3a;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      color: var(--accent);
+    }
+
+    section {
+      background-color: var(--box);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+      border-radius: 6px;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      background: var(--button);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: inherit;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 1rem;
+      background-color: var(--accent);
+      color: #000;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c59fff;
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: #999;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>FoundrySpace Services</h1>
+
+  <section id="wallet">
+    <h2>Connect Your Wallet</h2>
+    <button onclick="connectWallet()">Connect with MetaMask</button>
+    <div class="note" id="wallet-address"></div>
+  </section>
+
+  <section id="mint">
+    <h2>Mint Your Own NFT</h2>
+    <form id="mint-form">
+      <label for="title">Title</label>
+      <input type="text" id="title" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" rows="3" required></textarea>
+
+      <label for="image">Artwork Image</label>
+      <input type="file" id="image" accept="image/*" required>
+
+      <button type="submit">Upload & Mint</button>
+    </form>
+    <div class="note">This will use Polygon testnet. Make sure you have MetaMask installed.</div>
+  </section>
+
+  <section id="commissions">
+    <h2>Request a Commission</h2>
+    <p>We offer:</p>
+    <ul>
+      <li>Custom NFT creation</li>
+      <li>3D artwork or character modeling</li>
+      <li>Fully branded Web3 space deployments</li>
+    </ul>
+
+    <form id="commission-form">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required>
+
+      <label for="details">What are you looking for?</label>
+      <textarea id="details" rows="4" required></textarea>
+
+      <button type="submit">Send Request</button>
+    </form>
+    <div class="note">You'll receive a response via email within 48 hours.</div>
+  </section>
+
+  <script>
+    async function connectWallet() {
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          document.getElementById('wallet-address').innerText = `Connected: ${accounts[0]}`;
+        } catch (err) {
+          alert('Wallet connection failed.');
+        }
+      } else {
+        alert('MetaMask not found. Please install it.');
+      }
+    }
+
+    document.getElementById('commission-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Commission request submitted. Integration with n8n webhook will go here.');
+    });
+
+    document.getElementById('mint-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Upload to IPFS and minting logic goes here.');
+    });
+  </script>
+
+</body>
+</html>
