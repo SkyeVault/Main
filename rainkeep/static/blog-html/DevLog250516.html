@@ -1,0 +1,230 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250516 — Structuring the Forge While the Screen Stays Dark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250516 — Structuring the Forge While the Screen Stays Dark</h1>
+    <span class="prompt">> Log Date: 250516</span>
+
+    <p class="excerpt">
+      While the screen stays dark, the architecture sharpens. The Forge may be silent, but the blueprints are humming with readiness. Infrastructure is being shaped for seamless deployment once hardware returns to life.
+    </p>
+
+    <p>
+      The Forge is down — persistent BSOD and black screen with no POST, no signal, no beeps. I’ve done everything from CMOS resets to SSD swaps and booting without the GPU. Likely a board-level failure or voltage issue. Until I confirm the culprit or replace the motherboard, I’m building from the outside in: services, automation flows, and data scaffolds that are ready to run the second power returns.
+    </p>
+
+    <hr />
+
+    <h2>services.html</h2>
+    <p>
+      Core UI built for FoundrySpace’s service portal at <code>/service</code>. This page includes:
+    </p>
+    <ul>
+      <li>MetaMask wallet connect stub</li>
+      <li>Minting form with placeholder logic for IPFS + ethers.js</li>
+      <li>Commission form routed through webhook to n8n</li>
+    </ul>
+    <p>
+      Logic is modular — Web3 handlers and automation backends are separated into their own script blocks for clarity and reusability. This file becomes the gateway to all decentralized interactions.
+    </p>
+
+    <hr />
+
+    <h2>docker-compose.yml</h2>
+    <p>
+      Defined and validated Docker services for the local stack:
+    </p>
+    <ul>
+      <li><strong>PostgreSQL:</strong> Persistent DB backend for storing commission requests</li>
+      <li><strong>PGAdmin:</strong> GUI for managing tables, schemas, and testing queries</li>
+      <li><strong>n8n:</strong> Automation backend triggered by service form webhooks</li>
+    </ul>
+    <p>
+      Environment variables, volume mounts, and health checks are wired. Boot command:
+    </p>
+
+    <pre><code>docker compose up -d</code></pre>
+
+    <p>
+      This runs locally for full sovereignty — no third-party SaaS in the loop. Offline-ready, portable, and customizable.
+    </p>
+
+    <hr />
+
+    <h2>PostgreSQL Setup Plan</h2>
+    <p>
+      PostgreSQL will handle structured data storage for commission requests and backend metadata:
+    </p>
+    <ul>
+      <li>n8n flow will POST commission form data into a target table</li>
+      <li>PGAdmin interface will allow manual inspection and exports</li>
+      <li>Future goal: daily backups to IPFS or timestamped JSON snapshots</li>
+    </ul>
+
+    <hr />
+
+    <h2>Mindset</h2>
+    <p>
+      This is what technical resilience looks like: when the screen stays black, the configs grow sharper. I can’t boot Blender, but I can build pipelines. I can’t render the gallery, but I can wire the service stack. Every file laid today becomes a brick in a house that will launch with zero friction the moment the Forge wakes.
+    </p>
+
+    <hr />
+
+    <p>
+      Signed,<br />
+      <strong>Lorelei Noble</strong>
+    </p>
+    <p><a href="/blog">Return to DevLogs</a></p>
+
+    <hr />
+  </body>
+</html>
