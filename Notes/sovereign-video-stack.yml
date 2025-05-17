@@ -19,6 +19,24 @@ services:
       - sd_data:/data
     restart: unless-stopped
 
+  animdiff:
+    image: ghcr.io/continue-research/animatediff-webui:latest
+    container_name: animatediff
+    ports:
+      - "7861:7860"
+    volumes:
+      - animdiff_data:/data
+    restart: unless-stopped
+
+  comfyui:
+    image: comfyui/comfyui:latest
+    container_name: comfyui
+    ports:
+      - "8188:8188"
+    volumes:
+      - comfyui_data:/workspace
+    restart: unless-stopped
+
   whisper:
     image: ghcr.io/openai/whisper:latest
     container_name: whisper
@@ -67,6 +85,8 @@ services:
 volumes:
   ollama_data:
   sd_data:
+  animdiff_data:
+  comfyui_data:
   whisper_data:
   n8n_data:
   postgres_data:
