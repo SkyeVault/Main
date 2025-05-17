@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+  stable-diffusion:
+    image: ghcr.io/abraham-ai/sd-webui:latest
+    container_name: stable_diffusion
+    ports:
+      - "7860:7860"
+    volumes:
+      - sd_data:/data
+    restart: unless-stopped
+
+  whisper:
+    image: ghcr.io/openai/whisper:latest
+    container_name: whisper
+    volumes:
+      - whisper_data:/app/audio
+    restart: unless-stopped
+
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - DB_TYPE=sqlite
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=forge
+      - N8N_BASIC_AUTH_PASSWORD=forge123
+      - TZ=America/New_York
+    volumes:
+      - n8n_data:/home/node/.n8n
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@foundry.local
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    environment:
+      POSTGRES_USER: n8n_user
+      POSTGRES_PASSWORD: strongpassword
+      POSTGRES_DB: n8n_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+  sd_data:
+  whisper_data:
+  n8n_data:
+  postgres_data:
