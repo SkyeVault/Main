@@ -1,0 +1,98 @@
+SOVEREIGN CREATOR TOOLKIT — OPEN-SOURCE ALTERNATIVE STACK
+==========================================================
+
+This toolkit mirrors the workflow of high-output AI creators without relying on expensive SaaS. Everything here is free, open-source, or self-hostable — perfect for a sovereign builder like you.
+
+----------------------------------------------------------
+RESEARCH & SCRIPTING
+----------------------------------------------------------
+
+1. Local LLM (Claude-style writing assistant)
+   - Tool: LM Studio + Mistral, Dolphin, or Zephyr models
+   - Use: Write scripts, transform research into dialogue
+   - Link: https://lmstudio.ai
+
+2. Whisper (Voice-to-text for AI summarization)
+   - Tool: OpenAI Whisper (open-source)
+   - Use: Transcribe videos, podcasts, lectures into text
+   - Repo: https://github.com/openai/whisper
+
+3. n8n + Web Parser / RSS feed / Scraper
+   - Tool: n8n (self-hosted)
+   - Use: Automate content aggregation (articles, headlines, etc.)
+   - Link: https://n8n.io
+
+----------------------------------------------------------
+VIDEO RECORDING & EYE TRACKING
+----------------------------------------------------------
+
+4. OBS Studio
+   - Tool: OBS (Open Broadcaster Software)
+   - Use: Screen + webcam capture (custom layouts, overlays)
+   - Link: https://obsproject.com
+
+5. NVIDIA Broadcast Alternative
+   - Tool: vdo.ninja or OBS plugins
+   - Use: Background blur, eye contact AI with webcam filter
+   - Link: https://vdo.ninja
+
+----------------------------------------------------------
+IMAGE GENERATION & DYNAMIC VISUALS
+----------------------------------------------------------
+
+6. Stable Diffusion
+   - Tool: Automatic1111 WebUI or ComfyUI
+   - Use: Generate realistic scenes, characters, concepts
+   - Repo: https://github.com/AUTOMATIC1111/stable-diffusion-webui
+
+7. AnimateDiff (for motion B-roll)
+   - Tool: AnimateDiff + Stable Diffusion
+   - Use: Animate static images into video-like sequences
+   - Repo: https://github.com/guoyww/AnimateDiff
+
+8. Deforum or Pika
+   - Tool: Deforum (SD animation scripts)
+   - Use: Create zooms, pans, surreal B-roll
+   - Repo: https://github.com/deforum-art/sd-webui-deforum
+
+----------------------------------------------------------
+VIDEO EDITING & SUBTITLES
+----------------------------------------------------------
+
+9. Shotcut or Kdenlive
+   - Tool: Open-source video editors (cross-platform)
+   - Use: Final video cuts, layers, transitions
+   - Links: https://shotcut.org | https://kdenlive.org
+
+10. Whisper + ffmpeg subtitles
+    - Use: Generate subtitles with timing
+    - Command:
+      whisper your_video.mp4 --task translate
+      ffmpeg -i your_video.mp4 -vf subtitles=your_video.srt output.mp4
+
+----------------------------------------------------------
+AUTOMATION / INTEGRATION
+----------------------------------------------------------
+
+11. n8n (again)
+    - Uses:
+      - Auto-transcribe new videos
+      - Push captions to IPFS
+      - Schedule posts
+      - Alert via Telegram
+    - Self-hosted stack recommended (Docker)
+
+12. Optional: Ollama for local LLM access via terminal
+    - Repo: https://ollama.com
+    - Use: Simple CLI access to models like LLaMA, Mistral, Code LLMs
+
+----------------------------------------------------------
+Summary:
+----------------------------------------------------------
+This stack gives you total control of your content workflow:
+- Local tools, no subscriptions
+- Offline-capable
+- AI-driven scripting, visuals, subtitles
+- Automation-ready via n8n
+
+You can build this now — your GPU and drive space are your only limits.
