@@ -1,0 +1,226 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250517 — Full Stack Vision for Sovereign AI Creation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => box.classList.toggle('show'));
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) box.classList.remove('show');
+        });
+      });
+    </script>
+
+    <h1>DevLog 250517 — Full Stack Vision for Sovereign AI Creation</h1>
+    <span class="prompt">&gt; Log Date: 250517</span>
+
+    <p class="excerpt">
+      The goal today: architect a full-stack, open-source, Docker-powered video generation pipeline that lets me make art, animation, music, and narration — all from prompts — and upload it to IPFS and optionally mint as NFTs. Total sovereignty, total freedom.
+    </p>
+
+    <p>
+      This is the first time I’ve written out the full ecosystem from prompt to published. It’s more than a wishlist. It’s an execution map — one I’ll walk through piece by piece as I build the tools, train the models, and push every part to my local Forge machine. Each component is free, local, and modular. I’m keeping SaaS out. I'm keeping gatekeepers out.
+    </p>
+
+    <hr />
+
+    <h2>Hardware Foundation</h2>
+    <p>
+      The T3600 workstation — affectionately named the Forge — is my platform. With 2TB SSD storage, 12GB VRAM RTX 3060, and Ubuntu dual booted, it’s built for the kind of edge-computing I want to do. Once the BSOD issues are resolved, I’ll finish stacking the rest of the build.
+    </p>
+
+    <hr />
+
+    <h2>Toolchain Layers</h2>
+    <p>
+      I’m organizing the pipeline into clear layers: generation, sound, assembly, and automation. Each tool serves a focused role, and they all integrate via Docker and n8n. No fluff. Just what’s needed to render visions and ship them to the world.
+    </p>
+
+    <hr />
+
+    <h3>Prompt-to-Video Stack</h3>
+    <pre><code>Ollama          → LLM for scripts and story prompts  
+Stable Diff     → Art generation (A1111 or ComfyUI)  
+AnimateDiff     → Frame-based animation  
+TTS             → Coqui or Tortoise for narration  
+Whisper         → Transcription  
+LMMS + Magenta  → Soundtrack  
+ffmpeg          → Assembly  
+n8n + PostgreSQL → Orchestration  
+Web3.Storage    → IPFS backup  
+ethers.js       → Optional NFT minting  
+</code></pre>
+
+    <hr />
+
+    <h2>Automation Pipeline</h2>
+    <p>n8n is the backbone. Every stage will be callable from terminal, web form, or webhook.</p>
+    <pre><code>
+1. Submit prompt
+2. Script generated (Ollama)
+3. Art rendered (txt2img → AnimateDiff)
+4. Voice + subtitles generated
+5. Music added (LMMS/Magenta)
+6. Video stitched (ffmpeg)
+7. Uploaded (YouTube + IPFS)
+8. Optional NFT minted with CID metadata</code></pre>
+
+    <hr />
+
+    <h2>Next Steps</h2>
+    <ul>
+      <li>Finalize Docker stack + `.env` management</li>
+      <li>Start saving workflows to <code>/foundryforge-stack</code></li>
+      <li>Train LoRA models on my own artwork</li>
+      <li>Map terminal commands to all n8n endpoints</li>
+    </ul>
+
+    <hr />
+
+    <p>
+      This stack isn’t just functional — it’s a creative liberation engine. It’s built from scratch to ensure that no platform owns my output, no API rate limit slows me down, and no trend dictates my aesthetic.
+    </p>
+
+    <p>Signed,<br />Lorelei Noble</p>
+
+    <p><a href="/blog">← Back to DevLogs</a></p>
+
+    <hr />
+  </body>
+</html>
