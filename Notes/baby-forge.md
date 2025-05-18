@@ -1,84 +1,98 @@
+# BabyForge — Sovereign AI Pipeline for Prompt-to-Video Creation
 
+**BabyForge** is a fully local, open-source creative pipeline for turning art, prompts, or photos into animated, voiced, and published video clips — without using any cloud-based tools or subscriptions. It's designed to support your own art style, narration, and music, with complete control.
 
-⸻
+---
 
-BabyForge — Open Source Mad Talking Baby Pipeline
+## Features
 
-Turn your art, photos, or AI portraits into talking baby videos — locally, privately, and with your own creative direction.
+- Generate baby-styled or fantasy-style images with **Stable Diffusion**
+- Animate them using **AnimateDiff** and **SadTalker**
+- Create expressive voiceovers with **Tortoise TTS**
+- Merge visuals and audio using **ffmpeg**
+- Automate everything using **n8n**
+- Track metadata and CID links using **PostgreSQL**
+- Mint on Web3 or upload to IPFS using CLI tools
 
-100% free, offline-capable, and powered by Stable Diffusion, SadTalker, Tortoise TTS, and n8n.
+---
 
-⸻
+## Folder Structure
 
-Folder Structure
-
+```bash
 babyforge/
-├── docker-compose.yml               # Full local AI pipeline
-├── n8n_workflows/
-│   └── babyforge_pipeline.json      # n8n flow to control the process
-├── scripts/                         # Executable helper scripts
-│   ├── generate_baby_image.sh       # Runs SD with baby LoRA or prompt
-│   ├── generate_voice_tortoise.sh   # Generates .wav using Tortoise TTS
-│   ├── animate_talker.sh            # Runs SadTalker
-│   └── render_final_video.sh        # Uses ffmpeg to merge everything
+├── babyforge_stack.yml               # Docker Compose file
+├── scripts/
+│   ├── generate_baby_image.sh        # Run SD with LoRA for baby art
+│   ├── generate_voice_tortoise.sh    # Generate .wav from script
+│   ├── animate_talker.sh             # Use SadTalker to animate face
+│   └── render_final_video.sh         # Combine audio + video
 ├── output/
-│   ├── baby.png                     # Output image
-│   ├── voice.wav                    # Generated voice
-│   ├── anim.mp4                     # Talking baby video
-│   └── final.mp4                    # Final merged video
-└── models/
-    └── sd-lora-baby-style/          # LoRA trained on baby aesthetic
+│   ├── baby.png                      # Output image
+│   ├── voice.wav                     # Generated voice
+│   ├── anim.mp4                      # Animated face
+│   └── final.mp4                     # Final merged video
+├── models/
+│   └── sd-lora-baby-style/           # LoRA-trained models
+└── n8n_workflows/
+    └── babyforge_pipeline.json       # n8n automation workflow
+```
 
+---
 
-⸻
+## Getting Started
 
-Required Docker Services
-	•	stable-diffusion-webui (AUTOMATIC1111)
-	•	sadtalker (face animation)
-	•	tortoise-tts (voice synthesis)
-	•	n8n (automation trigger)
-	•	optional: ffmpeg (can be host-based)
+### 1. Clone and Enter the Project
 
-⸻
+```bash
+git clone https://your-repo-url/babyforge.git
+cd babyforge
+```
 
-Scripts Overview
+### 2. Launch the Stack
 
-generate_baby_image.sh
+```bash
+docker compose -f babyforge_stack.yml up -d
+```
 
+---
+
+## Script: Image Generation
+
+```bash
 #!/bin/bash
-# Generates a baby-style image from a text prompt
+# generate_baby_image.sh
 
-PROMPT="baby version of a stained glass artist in cathedral"
-curl -X POST http://localhost:7860/sdapi/v1/txt2img \
-  -H 'Content-Type: application/json' \
-  -d "{
-        \"prompt\": \"${PROMPT}, toddler, photorealistic, 9:16, studio lighting\",
+PROMPT="baby version of a stained glass artist in a cathedral"
+curl -X POST http://localhost:7860/sdapi/v1/txt2img   -H 'Content-Type: application/json'   -d "{
+        \"prompt\": \"${PROMPT}, photorealistic, toddler, cinematic lighting, 9:16\",
         \"steps\": 25,
         \"width\": 512,
         \"height\": 912,
         \"sampler_index\": \"Euler a\"
       }" | jq -r '.images[0]' | base64 -d > output/baby.png
+```
 
+---
 
-⸻
+## Script: Voice Generation with Tortoise TTS
 
-generate_voice_tortoise.sh
-
+```bash
 #!/bin/bash
-# Requires Tortoise TTS installed locally
+# generate_voice_tortoise.sh
 
 python3 tortoise/do_tts.py \
   --text "Welcome to my magical stained glass tutorial!" \
   --voice "baby" \
   --output_path output/voice.wav
+```
 
+---
 
-⸻
+## Script: Animate Face with SadTalker
 
-animate_talker.sh
-
+```bash
 #!/bin/bash
-# Uses SadTalker to animate a still image using the generated voice
+# animate_talker.sh
 
 python3 sadtalker/inference.py \
   --driven_audio output/voice.wav \
@@ -87,33 +101,37 @@ python3 sadtalker/inference.py \
   --enhancer gfpgan \
   --still_mode \
   --preprocess full
+```
 
+---
 
-⸻
+## Script: Final Merge with FFmpeg
 
-render_final_video.sh
-
+```bash
 #!/bin/bash
-# Uses ffmpeg to merge the animation with the voice audio
+# render_final_video.sh
 
 ffmpeg -i output/anim/result.mp4 -i output/voice.wav \
   -c:v copy -c:a aac -shortest output/final.mp4
+```
 
+---
 
-⸻
+## Automation (n8n)
 
-n8n Integration
+Import `babyforge_pipeline.json` in your n8n dashboard:
 
-Flow: babyforge_pipeline.json
+- **Trigger:** Webhook or schedule
+- **Steps:** Each script in order
+- **Extras:** Add Telegram alert or upload to IPFS automatically
 
-Steps:
-	1.	Webhook Trigger: Starts with a prompt or upload
-	2.	Execute Command Node: Runs generate_baby_image.sh
-	3.	Execute Command Node: Runs generate_voice_tortoise.sh
-	4.	Execute Command Node: Runs animate_talker.sh
-	5.	Execute Command Node: Runs render_final_video.sh
-	6.	(Optional): Upload to IPFS, YouTube, or notify via Telegram
+---
 
-⸻
+## Roadmap
 
-Let me know if you want this bundled into a GitHub repo template or ready-to-run Docker image next.
+- Add Ollama + Claude-style prompt agent
+- Support custom script generation from LLM
+- Support real-time user input from terminal or chat
+- Auto-mint final output as NFT or gallery listing
+
+---
