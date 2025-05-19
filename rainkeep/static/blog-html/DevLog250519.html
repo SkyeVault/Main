@@ -1,0 +1,198 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250519 — After Midnight Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+```
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Courier New', monospace;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  h1 {
+    color: var(--accent);
+    text-shadow: 0 0 2px var(--accent);
+    margin-top: 4rem;
+  }
+
+  h2, h3 {
+    color: var(--accent);
+    text-shadow: 1px 1px 0 var(--border);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  a {
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--hover);
+    text-decoration: underline;
+  }
+
+  pre {
+    background-color: var(--box);
+    padding: 1rem;
+    overflow-x: auto;
+    border-left: 3px solid var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  code {
+    font-family: 'Courier New', monospace;
+    color: var(--text);
+  }
+
+  .prompt {
+    color: var(--note);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .menu-toggle {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: var(--box);
+    border: 1px solid var(--border);
+    color: var(--link);
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .menu-box {
+    display: none;
+    position: absolute;
+    top: 3.5rem;
+    left: 1rem;
+    background: var(--box);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+  }
+
+  .menu-box.show {
+    display: block;
+  }
+
+  .menu-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .menu-box li {
+    margin-bottom: 0.75rem;
+  }
+
+  .menu-box a {
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  .menu-box a:hover {
+    color: var(--hover);
+    text-decoration: underline;
+  }
+</style>
+```
+
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+```
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('menuToggle');
+    const box = document.getElementById('menuBox');
+
+    toggle.addEventListener('click', () => {
+      box.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!box.contains(e.target) && e.target !== toggle) {
+        box.classList.remove('show');
+      }
+    });
+  });
+</script>
+
+<h1>DevLog 250519 — After Midnight Edition</h1>
+<span class="prompt">> Log Date: 250519</span>
+
+<p class="excerpt">
+  Completed the Forge’s foundational layer. This is a checkpoint entry: Mistral is running, n8n is live, GitHub is synced, and Docker Compose is fully functional. The system is no longer theoretical — it’s active.
+</p>
+
+<h2>Step-by-Step Setup Log</h2>
+<ol>
+  <li>Installed NVIDIA drivers for RTX 3060 and validated with <code>nvidia-smi</code></li>
+  <li>Set up dual-boot Ubuntu and designated this build as the Forge</li>
+  <li>Installed Docker, Docker Compose v2, Git, and SSH</li>
+  <li>Authenticated GitHub access via SSH key to <code>skyevault</code></li>
+  <li>Created project directories: <code>forge-stack</code>, <code>nft-engine</code>, <code>animation-forge</code></li>
+  <li>Scaffolded <code>docker-compose.yml</code> to run n8n and Ollama</li>
+  <li>Pulled Mistral via <code>docker exec -it ... ollama pull mistral</code></li>
+  <li>Opened n8n dashboard at <code>localhost:5678</code> with basic auth from <code>.env</code></li>
+  <li>Cloned main repo from GitHub to <code>~/dev/main</code> using SSH</li>
+</ol>
+
+<h3>Why This Matters</h3>
+<p>
+  I can now automate any process with n8n workflows, feed prompts to a local LLM (Mistral), and expand with new containers: Whisper, Blender headless, TTS, AnimateDiff. Each module stays modular, versioned, and isolated.
+</p>
+
+<h2>Next Steps</h2>
+<ul>
+  <li>Create first n8n workflow to send prompts to Mistral and return results</li>
+  <li>Set up headless Blender rendering for animation-forge</li>
+  <li>Document and commit base stack to GitHub for public versioning</li>
+  <li>Write metadata processor for <code>nft-engine</code></li>
+</ul>
+
+<p>— Lorelei Noble</p>
+<p><a href="/blog">← Back to DevLogs</a></p>
+```
+
+  </body>
+</html>
