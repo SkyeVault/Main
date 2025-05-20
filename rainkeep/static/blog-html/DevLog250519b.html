@@ -1,49 +1,202 @@
-# DevLog 250528 — Sovereign Stack Boot Sequence
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250528 — Sovereign Stack Boot Sequence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
 
-> Log Date: 250528
-> Location: LoreForge Ubuntu Dual Boot
-> Status: System activated, local-first architecture initialized
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
 
----
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
 
-Today marks the official beginning of my sovereign automation system. I spent the entire day building and debugging the Forge Stack — a foundational containerized architecture for bots, AI, render automation, and smart contract flows. It includes:
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
 
-* **n8n** for automation
-* **Ollama** running **Mistral** for local language generation
-* **Docker Compose** for orchestration
-* **Python scripts** for IRC chat integration
-* **GitHub SSH connection** from my new Ubuntu system
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
 
----
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
 
-### Hardware Foundation
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
 
-* Successfully installed and verified **NVIDIA 535 drivers** for RTX 3060
-* Resolved `nvidia-smi` failure by:
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
 
-  * Purging old NVIDIA packages
-  * Blacklisting Nouveau
-  * Reinstalling from scratch
-* Blender now launching (GPU compatibility confirmed)
-* Forge runs whisper-quiet thanks to SSD upgrade
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
 
----
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
 
-### Docker + Compose + Git Integration
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
 
-* Encountered initial issues with `docker compose` command not recognized
-* Fixed by manually installing **Docker Compose v2** via GitHub CLI plugin method
-* Initialized full `docker-compose.yml` for n8n + Ollama
-* Created `.env` file for secure credentials
-* GitHub SSH key created and connected via `id_ed25519`
-* First repository structure defined as `forge-stack`
+      .menu-box.show {
+        display: block;
+      }
 
----
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-### Directory Structure
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
 
-```
-forge-stack/
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => box.classList.toggle('show'));
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) box.classList.remove('show');
+        });
+      });
+    </script>
+
+    <h1>DevLog 250528 — Sovereign Stack Boot Sequence</h1>
+    <span class="prompt">&gt; Log Date: 250528<br />&gt; Location: LoreForge Ubuntu Dual Boot<br />&gt; Status: System activated, local-first architecture initialized</span>
+
+    <p class="excerpt">
+      Today marks the official beginning of my sovereign automation system. I spent the entire day building and debugging the Forge Stack — a foundational containerized architecture for bots, AI, render automation, and smart contract flows.
+    </p>
+
+    <p>
+      It includes:
+      <ul>
+        <li><strong>n8n</strong> for automation</li>
+        <li><strong>Ollama</strong> running <strong>Mistral</strong> for local language generation</li>
+        <li><strong>Docker Compose</strong> for orchestration</li>
+        <li><strong>Python scripts</strong> for IRC chat integration</li>
+        <li><strong>GitHub SSH connection</strong> from my new Ubuntu system</li>
+      </ul>
+    </p>
+
+    <hr />
+
+    <h2>Hardware Foundation</h2>
+    <ul>
+      <li>Successfully installed and verified <code>NVIDIA 535 drivers</code> for RTX 3060</li>
+      <li>Resolved <code>nvidia-smi</code> failure by:
+        <ul>
+          <li>Purging old NVIDIA packages</li>
+          <li>Blacklisting Nouveau</li>
+          <li>Reinstalling from scratch</li>
+        </ul>
+      </li>
+      <li>Blender now launching (GPU compatibility confirmed)</li>
+      <li>Forge runs whisper-quiet thanks to SSD upgrade</li>
+    </ul>
+
+    <hr />
+
+    <h2>Docker + Compose + Git Integration</h2>
+    <ul>
+      <li>Encountered initial issues with <code>docker compose</code> command not recognized</li>
+      <li>Fixed by manually installing <strong>Docker Compose v2</strong> via GitHub CLI plugin method</li>
+      <li>Initialized full <code>docker-compose.yml</code> for n8n + Ollama</li>
+      <li>Created <code>.env</code> file for secure credentials</li>
+      <li>GitHub SSH key created and connected via <code>id_ed25519</code></li>
+      <li>First repository structure defined as <code>forge-stack</code></li>
+    </ul>
+
+    <hr />
+
+    <h2>Directory Structure</h2>
+    <pre><code>forge-stack/
 ├── docker/
 │   └── docker-compose.yml
 ├── n8n/
@@ -52,45 +205,52 @@ forge-stack/
 │   └── architecture.md
 ├── .env         (gitignored)
 ├── .gitignore
-└── README.md
-```
+└── README.md</code></pre>
 
-Naming conventions for future submodules:
+    <p>Naming conventions for future submodules:</p>
+    <ul>
+      <li><code>animation-forge</code> → Blender and video pipeline</li>
+      <li><code>nft-engine</code> → metadata, minting, and smart contracts</li>
+      <li><code>sovereign-stack</code> → n8n, Ollama, Whisper, IRC bots, etc</li>
+    </ul>
 
-* `animation-forge` → Blender and video pipeline
-* `nft-engine` → metadata, minting, and smart contracts
-* `sovereign-stack` → n8n, Ollama, Whisper, IRC bots, etc
+    <hr />
 
----
+    <h2>IRC + Bot Work</h2>
+    <p>
+      I'm training bots to interact with the IRC chatroom using Mistral, Docker, n8n, and Python. Each bot can have colored responses using mIRC codes, injected into the outbound text:
+    </p>
 
-### IRC + Bot Work
+    <pre><code> MISTRAL_COLOR = "\x0313"  # Pink
+ RESET = "\x0f"
+ response = f"{MISTRAL_COLOR}Mistral says: ...{RESET}"</code></pre>
 
-I'm training bots to interact with the IRC chatroom using Mistral, Docker, n8n, and Python. Each bot can have colored responses using mIRC codes, injected into the outbound text:
+    <p>
+      Goal: each containerized bot has its own color identity and can parse triggers from the IRC stream. Eventually, n8n will forward filtered RSS news content and Mistral summaries directly into chat.
+    </p>
 
-```python
-MISTRAL_COLOR = "\x0313"  # Pink
-RESET = "\x0f"
-response = f"{MISTRAL_COLOR}Mistral says: ...{RESET}"
-```
+    <hr />
 
-Goal: each containerized bot has its own color identity and can parse triggers from the IRC stream. Eventually, n8n will forward filtered RSS news content and Mistral summaries directly into chat.
+    <h2>Issues Faced</h2>
+    <ul>
+      <li>Docker permissions blocked Mistral pull command → fixed with <code>usermod -aG docker $USER</code></li>
+      <li><code>docker compose</code> not found → fixed by installing v2 plugin manually</li>
+      <li>System freeze near the end of the session → forced reboot and verified system stability</li>
+    </ul>
 
----
+    <hr />
 
-### Issues Faced
+    <h2>Final Notes</h2>
+    <p>
+      <em>I am declaring my digital independence.</em> These tools are the foundation for a fully self-hosted creative and automation workflow, with optional Web3 integration. Every decision is built on trust in my own tools rather than commercial ad pipelines. My system will parse facts, not feeds.
+    </p>
 
-* Docker permissions blocked Mistral pull command → fixed with `usermod -aG docker $USER`
-* `docker compose` not found → fixed by installing v2 plugin manually
-* System freeze near the end of the session → forced reboot and verified system stability
+    <p>Ready to push <code>forge-stack</code> live.<br />More to come tomorrow as I configure workflows, run Mistral, and expand the modular repos.</p>
 
----
+    <p>Signed,<br />Lorelei Noble</p>
 
-### Final Notes
+    <p><a href="/blog">← Back to DevLogs</a></p>
 
-> I am declaring my digital independence. These tools are the foundation for a fully self-hosted creative and automation workflow, with optional Web3 integration. Every decision is built on trust in my own tools rather than commercial ad pipelines. My system will parse facts, not feeds.
-
-Ready to push `forge-stack` live.
-More to come tomorrow as I configure workflows, run Mistral, and expand the modular repos.
-
-— Lorelei Noble
-[Back to DevLogs](/blog)
+    <hr />
+  </body>
+</html>
