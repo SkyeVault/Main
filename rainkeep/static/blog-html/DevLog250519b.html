@@ -1,0 +1,96 @@
+# DevLog 250528 — Sovereign Stack Boot Sequence
+
+> Log Date: 250528
+> Location: LoreForge Ubuntu Dual Boot
+> Status: System activated, local-first architecture initialized
+
+---
+
+Today marks the official beginning of my sovereign automation system. I spent the entire day building and debugging the Forge Stack — a foundational containerized architecture for bots, AI, render automation, and smart contract flows. It includes:
+
+* **n8n** for automation
+* **Ollama** running **Mistral** for local language generation
+* **Docker Compose** for orchestration
+* **Python scripts** for IRC chat integration
+* **GitHub SSH connection** from my new Ubuntu system
+
+---
+
+### Hardware Foundation
+
+* Successfully installed and verified **NVIDIA 535 drivers** for RTX 3060
+* Resolved `nvidia-smi` failure by:
+
+  * Purging old NVIDIA packages
+  * Blacklisting Nouveau
+  * Reinstalling from scratch
+* Blender now launching (GPU compatibility confirmed)
+* Forge runs whisper-quiet thanks to SSD upgrade
+
+---
+
+### Docker + Compose + Git Integration
+
+* Encountered initial issues with `docker compose` command not recognized
+* Fixed by manually installing **Docker Compose v2** via GitHub CLI plugin method
+* Initialized full `docker-compose.yml` for n8n + Ollama
+* Created `.env` file for secure credentials
+* GitHub SSH key created and connected via `id_ed25519`
+* First repository structure defined as `forge-stack`
+
+---
+
+### Directory Structure
+
+```
+forge-stack/
+├── docker/
+│   └── docker-compose.yml
+├── n8n/
+│   └── workflows/ (JSON exports)
+├── docs/
+│   └── architecture.md
+├── .env         (gitignored)
+├── .gitignore
+└── README.md
+```
+
+Naming conventions for future submodules:
+
+* `animation-forge` → Blender and video pipeline
+* `nft-engine` → metadata, minting, and smart contracts
+* `sovereign-stack` → n8n, Ollama, Whisper, IRC bots, etc
+
+---
+
+### IRC + Bot Work
+
+I'm training bots to interact with the IRC chatroom using Mistral, Docker, n8n, and Python. Each bot can have colored responses using mIRC codes, injected into the outbound text:
+
+```python
+MISTRAL_COLOR = "\x0313"  # Pink
+RESET = "\x0f"
+response = f"{MISTRAL_COLOR}Mistral says: ...{RESET}"
+```
+
+Goal: each containerized bot has its own color identity and can parse triggers from the IRC stream. Eventually, n8n will forward filtered RSS news content and Mistral summaries directly into chat.
+
+---
+
+### Issues Faced
+
+* Docker permissions blocked Mistral pull command → fixed with `usermod -aG docker $USER`
+* `docker compose` not found → fixed by installing v2 plugin manually
+* System freeze near the end of the session → forced reboot and verified system stability
+
+---
+
+### Final Notes
+
+> I am declaring my digital independence. These tools are the foundation for a fully self-hosted creative and automation workflow, with optional Web3 integration. Every decision is built on trust in my own tools rather than commercial ad pipelines. My system will parse facts, not feeds.
+
+Ready to push `forge-stack` live.
+More to come tomorrow as I configure workflows, run Mistral, and expand the modular repos.
+
+— Lorelei Noble
+[Back to DevLogs](/blog)
