@@ -1,0 +1,190 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250520 — Bot Freeze & Crown Sweep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250520 — Bot Freeze & Crown Sweep</h1>
+    <span class="prompt">&gt; Log Date: 250520</span>
+
+    <p class="excerpt">
+      After getting the Forge Stack running and spinning up a few too many bots, my system started freezing. I'm pausing active dev to let things cool while I regroup and reinforce my security.
+    </p>
+
+    <p>
+      System freeze likely stems from resource overload or a rogue background process inside one of the containers. I won’t be able to troubleshoot until I have solid blocks of free time again, so I’m dropping back to tutorial-watching mode and refining my playbook.
+    </p>
+
+    <hr />
+
+    <h2>Back to Passive Mode</h2>
+    <p>
+      In the meantime, shoutout to a certain crown thief for the reminder to:
+    </p>
+    <ul>
+      <li>update my IRC room modes</li>
+      <li>Sweep security system</li>
+      <li>Reevaluate auto-op logic</li>
+    </ul>
+
+    <p>
+      The stack is still intact. I’m just letting the fire simmer low until I can return to active build cycles.
+    </p>
+
+    <hr />
+
+    <p>— Lorelei Noble</p>
+    <p><a href="/blog">Back to DevLogs</a></p>
+
+    <hr />
+  </body>
+</html>
