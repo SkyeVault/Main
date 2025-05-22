@@ -1,0 +1,251 @@
+<!-- Save this as: rainkeep/static/blog-html/DevLog250521.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250521 — IRC Survival Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+      }
+
+      th, td {
+        border: 1px solid var(--border);
+        padding: 0.5rem;
+        text-align: left;
+      }
+
+      th {
+        background-color: var(--box);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250521 — IRC Survival Guide</h1>
+    <span class="prompt">> Log Date: 250521</span>
+    <p class="excerpt">
+      The Forge is still frozen — no system changes or new deployments logged today. But rather than sit idle, I put together a personal IRC refresher to get my mind back in shape after a 15- to 20-year gap.
+    </p>
+
+    <p>
+      IRC was one of my original gateways into online communication, coding culture, and digital autonomy. With recent channel skirmishes and bot testing underway, I needed a quick way to reload some of the lost syntax and best practices. Here’s a terminal-style survival guide for anyone reentering the wire.
+    </p>
+
+    <hr />
+
+    <!-- IRC Survival Guide content embedded below -->
+    <h2>IRC SURVIVAL GUIDE</h2>
+
+    <h3>Overview</h3>
+    <p>Internet Relay Chat (IRC) was created in <strong>1988</strong> by <strong>Jarkko Oikarinen</strong> in Finland. Once the lifeblood of underground forums, Linux dev circles, and warez groups, it remains a resilient and raw protocol — text-based, fast, and unforgiving.</p>
+
+    <h3>IRC Basics</h3>
+    <ul>
+      <li><strong>Server</strong>: Network host (e.g. irc.oftc.net)</li>
+      <li><strong>Channel</strong>: Chat room, starts with #</li>
+      <li><strong>Nick</strong>: Your handle</li>
+      <li><strong>Bot</strong>: Scripted client</li>
+      <li><strong>Op</strong>: Channel moderator</li>
+      <li><strong>Modes</strong>: Permission flags</li>
+    </ul>
+
+    <h3>How to Connect</h3>
+    <pre><code>/connect irc.oftc.net 6667
+/nick LoreBot
+/join #arynwood</code></pre>
+
+    <h3>Core Commands</h3>
+    <table>
+      <tr><th>Command</th><th>Description</th></tr>
+      <tr><td>/nick</td><td>Set your name</td></tr>
+      <tr><td>/join</td><td>Enter a channel</td></tr>
+      <tr><td>/part</td><td>Leave a channel</td></tr>
+      <tr><td>/quit</td><td>Exit IRC</td></tr>
+      <tr><td>/msg</td><td>Send private message</td></tr>
+      <tr><td>/whois</td><td>View user info</td></tr>
+      <tr><td>/kick</td><td>Kick a user (op only)</td></tr>
+      <tr><td>/ban</td><td>Ban user by mask</td></tr>
+      <tr><td>/mode</td><td>Change channel settings</td></tr>
+    </table>
+
+    <h3>Popular Channel Modes</h3>
+    <table>
+      <tr><th>Mode</th><th>Effect</th></tr>
+      <tr><td>+i</td><td>Invite-only</td></tr>
+      <tr><td>+m</td><td>Moderated</td></tr>
+      <tr><td>+n</td><td>No external messages</td></tr>
+      <tr><td>+t</td><td>Topic changes op-only</td></tr>
+      <tr><td>+b</td><td>Ban mask</td></tr>
+    </table>
+
+    <h3>NickServ & ChanServ</h3>
+    <pre><code>/msg NickServ REGISTER password you@example.com
+/msg NickServ IDENTIFY password
+/msg ChanServ REGISTER #channel password Info
+/msg ChanServ FLAGS #channel YourNick +o</code></pre>
+
+    <h3>Security Best Practices</h3>
+    <ul>
+      <li><code>/mode yournick +x</code> hides your IP</li>
+      <li>Use SSL (port 6697)</li>
+      <li>Register & identify nicknames</li>
+      <li>Use a VPN or IRC bouncer (ZNC)</li>
+      <li>Never trust random scripts</li>
+    </ul>
+
+    <h3>Final Thought</h3>
+    <p>IRC isn’t dead. It’s just lurking beneath the surface, where the real conversations still happen. This guide’s a personal memo to keep the sparks alive until the Forge wakes up again.</p>
+
+    <p><strong>— Lorelei Noble</strong></p>
+    <p><a href="/blog">Back to DevLogs</a></p>
+  </body>
+</html>
