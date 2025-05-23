@@ -23,6 +23,7 @@ Tech Stack:
 - Solidity, Foundry, OpenZeppelin
 - Python, Rust, CLI tools, zsh, fzf, three.js
 - web3.Storage, IPFS, Unstoppable Domains
+- Ubuntu
 - Uses GitHub for all documentation and portfolio publishing
 
 AI Agent Behavior:
