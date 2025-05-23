@@ -1,34 +1,83 @@
 ---
-// Woodworking.astro
 import WoodworkingLayout from '../layouts/WoodworkingLayout.astro';
+
+const metaTitle = 'Matthew Merwin – Sculptural Works in Wood, Bronze & 3D';
+const metaDescription = 'Artist and builder with 20+ years experience in Bucks County. Explore handcrafted sculptures and digital 3D work by Matthew Merwin.';
 ---
 
-<WoodworkingLayout title="Matthew Merwin – Sculptural Woodworks">
+<html lang="en">
+  <head>
+    <title>{metaTitle}</title>
+    <meta name="description" content={metaDescription} />
+  </head>
 
-  <p class="excerpt">Functional form. Timeless design. Hand-sculpted in wood and bronze.</p>
+  <WoodworkingLayout title="Matthew Merwin – Sculptural Works in Wood & Beyond">
+    <p class="excerpt">Organic forms. Durable beauty. Art in wood, bronze, aluminum, clay, and 3D space.</p>
 
-  <h2>Featured Work</h2>
-  <div class="gallery-frame">
-    <p><strong>Title:</strong> Walnut & Bronze Coffee Table</p>
-    <p><strong>Description:</strong> Hand-sculpted edges, dovetail joinery, oil-rubbed bronze accents.</p>
-    <p><a href="/portfolio">View Full Portfolio</a></p>
-  </div>
+    <section>
+      <h2>About the Artist</h2>
+      <p>
+        Matthew Merwin is a sculptor, builder, and digital artist based in Bucks County, Pennsylvania.
+        With over 20 years of experience in woodworking, barn restoration, and fine home construction, his work
+        bridges traditional craftsmanship with contemporary form.  
+      </p>
+      <p>
+        Whether carving walnut by hand or sculpting digitally in Nomad on his iPad, Matthew’s pieces carry
+        the rhythm of the human hand and the precision of artistic intention. His practice includes work
+        in <strong>wood</strong>, <strong>bronze</strong>, <strong>aluminum</strong>, <strong>clay</strong>, and <strong>3D modeling tools</strong>—all
+        approached with deep respect for material and story.
+      </p>
+    </section>
 
-  <h2>Commissions</h2>
-  <p>Looking for a bespoke piece? I collaborate with collectors, designers, and architects to create heirloom-quality works.</p>
-  <p><a class="button-link" href="/commissions">Start a Commission</a></p>
+    <section>
+      <h2>Featured Sculpture</h2>
+      <div class="gallery-frame">
+        <p><strong>Title:</strong> Walnut & Bronze Coffee Table</p>
+        <p><strong>Description:</strong> Fluid, sculptural edges. Dovetail joinery. Custom oil-rubbed bronze inlay.</p>
+        <p><a href="/portfolio">View Full Portfolio</a></p>
+      </div>
+    </section>
 
-  <h2>Studio Philosophy</h2>
-  <p class="excerpt">“Each piece begins with a conversation — with the material, the space, and the hands that shape it.”</p>
+    <section>
+      <h2>Digital & 3D Work</h2>
+      <p>
+        In addition to physical sculpture, Matthew creates 3D digital works using apps like <strong>Nomad</strong>, blending his
+        knowledge of form with new tools. These pieces can be used for <em>rendering concepts, product design, 3D printing, NFTs,</em> and more.
+      </p>
+      <p>
+        His digital process mirrors his physical work: intuitive, precise, and built to last.
+      </p>
+    </section>
 
-  <h2>Navigation Sample</h2>
-  <p>Use the top-right menu to visit:</p>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/portfolio">Portfolio</a></li>
-    <li><a href="/commissions">Commissions</a></li>
-    <li><a href="/studio">Studio</a></li>
-    <li><a href="/contact">Contact</a></li>
-  </ul>
+    <section>
+      <h2>Commission a Piece</h2>
+      <p>
+        Looking for a custom sculpture or functional art object? Matthew works with collectors, architects, and designers
+        to bring bespoke visions to life. His commissions range from heirloom furniture to public installations to digital assets.
+      </p>
+      <p><a class="button-link" href="/commissions">Start a Commission</a></p>
+    </section>
 
-</WoodworkingLayout>
+    <section>
+      <h2>Studio Ethos</h2>
+      <blockquote>
+        “Each piece begins with a conversation — with the material, the space, and the hands that shape it.”
+      </blockquote>
+      <p>
+        Rooted in Bucks County’s rich maker tradition, Matthew’s work is grounded in humility, precision, and the belief that
+        beautiful things should be both seen and used.
+      </p>
+    </section>
+
+    <section>
+      <h2>Explore More</h2>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/commissions">Commissions</a></li>
+        <li><a href="/studio">Studio</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </section>
+  </WoodworkingLayout>
+</html>
