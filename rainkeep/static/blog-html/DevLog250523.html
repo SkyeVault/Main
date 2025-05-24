@@ -1,0 +1,225 @@
+<!-- Save as: rainkeep/static/blog-html/DevLog250523.html -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250523 — Quiet in the Noise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250523 — Quiet in the Noise</h1>
+    <span class="prompt">> Log Date: 250523</span>
+
+    <p class="excerpt">
+      Today felt like standing still while the world rushed forward. I couldn't work on projects. Couldn't build. Just sat with the weight of it all... the AI race, the system silence, and the deeper truth of why I started this whole thing in the first place.
+    </p>
+
+    <p>
+      Today was heavy.
+    </p>
+
+    <p>
+      Not the kind of heaviness that comes from grinding through work or pushing a project to the finish line. It was the quiet kind. The kind that settles in when the world feels like it's racing ahead without you, leaving you on the side of the road holding your hat and wondering if anyone will ever care about the things you build by hand.
+    </p>
+
+    <p>
+      I couldn't work on anything today. My main system is still down, silent. The Forge has gone dark and with it, most of my momentum. Meanwhile, the big players are out there launching world-shifting tools, models with names like myth and thunder, building software empires while I’m just trying to hold on to a dream.
+    </p>
+
+    <p>
+      And I feel it.
+    </p>
+
+    <p>
+      That creeping sadness. The sense that maybe all this work — the portfolio, the docker stacks, the minting scripts, the IRC channels, the gallery, the blog — maybe none of it matters. Maybe it's just noise in the ocean of noise. Maybe I’m shouting into the wind.
+    </p>
+
+    <p>
+      But then I remember what this was always about.
+    </p>
+
+    <p>
+      It’s not about going viral or getting VC-backed. It's not about competing with Google or OpenAI or Anthropic. It's not even about keeping up. It's about building a life that makes sense. About soldering stained glass in the rain. About the soft hum of a cabin, off-grid and lit with purpose. About creating something that holds its own weight in the real world.
+    </p>
+
+    <p>
+      I’m not trying to win.
+    </p>
+
+    <p>
+      I’m trying to return.
+    </p>
+
+    <p>
+      Return to Washington. Return to the tin roof and the cedar air and the realness of a fire that crackles because I lit it, not because a machine told it to spark. I’m trying to return to something human. Something rooted. Something worth waking up for.
+    </p>
+
+    <p>
+      Let the world automate. I will still make things by hand. Let the world chase scale. I will chase soul.
+    </p>
+
+    <p>
+      I don’t know how long it’ll take. I just know I’m still walking.
+    </p>
+
+    <p>
+      Even on days like this.
+    </p>
+
+    <p>
+      Especially on days like this.
+    </p>
+
+    <p>— Lorelei Noble</p>
+    <p><a href="/blog">Back to DevLogs</a></p>
+  </body>
+</html>
