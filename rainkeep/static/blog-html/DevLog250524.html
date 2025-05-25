@@ -1,0 +1,235 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250524 — Contact Forms with Netlify & Astro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250524 — Contact Forms with Netlify & Astro</h1>
+    <span class="prompt">> Log Date: 250524</span>
+    <p class="excerpt">
+      Today I wrangled form submission logic into my Astro projects with a sprinkle of Netlify magic and no backend server needed. Let’s talk about how a little HTML can open big conversations.
+    </p>
+
+    <p>
+      In this walkthrough, I’ll show you how I used Netlify Forms with Astro to collect contact info from potential collaborators, stalkers, and lost friends from IRC. All using static HTML — no database, no server, no drama.
+    </p>
+
+    <hr />
+
+    <h2>Step 1 — Build the HTML Form</h2>
+    <p>
+      No JavaScript. No client-side chaos. Just raw lavender HTML. Netlify parses this from your static build and generates an endpoint for free.
+    </p>
+
+    <pre><code>&lt;form name="contact" method="POST" data-netlify="true"&gt;
+  &lt;input type="hidden" name="form-name" value="contact" /&gt;
+
+  &lt;p&gt;
+    &lt;label&gt;Your Name: &lt;input type="text" name="name" /&gt;&lt;/label&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label&gt;Your Email: &lt;input type="email" name="email" /&gt;&lt;/label&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label&gt;Message: &lt;textarea name="message"&gt;&lt;/textarea&gt;&lt;/label&gt;
+  &lt;/p&gt;
+  &lt;p&gt;&lt;button type="submit"&gt;Send&lt;/button&gt;&lt;/p&gt;
+&lt;/form&gt;
+</code></pre>
+
+    <hr />
+
+    <h3>Step 2 — Deploy to Netlify</h3>
+    <p>
+      Once you push your Astro build to Netlify, it automatically scans your HTML for <code>data-netlify="true"</code> and creates a submission endpoint. Boom. You now have serverless form handling.
+    </p>
+
+    <hr />
+
+    <h3>Step 3 — Confirm It’s Working</h3>
+    <p>
+      Go to your Netlify dashboard → select your site → Forms tab. If your form shows up there, you nailed it. Try submitting a test message and give yourself a high-five.
+    </p>
+
+    <hr />
+
+    <h2>Bonus — Spam Protection</h2>
+    <p>
+      Add a honeypot field that bots won’t resist. Netlify will ignore submissions with this filled.
+    </p>
+
+    <pre><code>&lt;form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field"&gt;
+  &lt;input type="hidden" name="form-name" value="contact" /&gt;
+  &lt;p hidden&gt;&lt;label&gt;Don’t fill this out: &lt;input name="bot-field" /&gt;&lt;/label&gt;&lt;/p&gt;
+  ...
+&lt;/form&gt;
+</code></pre>
+
+    <hr />
+
+    <p>
+      Contact form done, lavender-glowing and ready to accept input from friends, clients, and possibly confused AIs.
+    </p>
+
+    <p>
+      Here's a link to <a href="https://docs.netlify.com/forms/setup/">Netlify Form Docs</a> if you want more than jokes and pre tags.
+    </p>
+
+    <hr />
+
+    <p>See you in the logs,<br />Lorelei Noble</p>
+    <p><a href="/blog">Back to DevLogs</a></p>
+
+    <hr />
+  </body>
+</html>
