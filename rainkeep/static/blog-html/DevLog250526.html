@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250526 — VPN + Tor Privacy Stack (Manual Install Route)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250526 — VPN + Tor Privacy Stack (Manual Install Route)</h1>
+    <span class="prompt">> Log Date: 250526</span>
+    <p class="excerpt">
+      Today’s focus was building a privacy-first internet stack without relying on bloated GUI apps or broken packages. After fighting through ProtonVPN dependency hell, I landed on a clean OpenVPN route and layered in Tor Browser for maximum anonymity.
+    </p>
+
+    <p>
+      My Ubuntu system is now running ProtonVPN through manually imported `.ovpn` configs and routing Tor Browser traffic through the tunnel. Every step required manual intervention—perfect for a dev who wants absolute control and minimal bloat.
+    </p>
+
+    <hr />
+
+    <h2>Initial Failures & Roadblocks</h2>
+    <ul>
+      <li>`.deb` method failed (Proton dependencies not satisfiable)</li>
+      <li>Flatpak installed but app was deprecated</li>
+      <li>AppImage link dead — classic ghostware</li>
+    </ul>
+
+    <pre><code>sudo dpkg -i protonvpn-stable-release_1.0.8_all.deb
+sudo apt update
+sudo apt install protonvpn</code></pre>
+
+    <hr />
+
+    <h2>Manual OpenVPN Setup</h2>
+    <pre><code>sudo apt install openvpn network-manager-openvpn network-manager-openvpn-gnome</code></pre>
+    <p>Imported <code>.ovpn</code> configs from Proton's dashboard → entered OpenVPN credentials manually via Network Settings</p>
+
+    <hr />
+
+    <h3>Stability Fixes</h3>
+    <pre><code># Disable IPv6
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+sudo sysctl -p</code></pre>
+
+    <p>
+      Set routing to "use connection only for resources on its network" in <code>nm-connection-editor</code>
+    </p>
+
+    <pre><code># DNS Fix
+sudo apt install resolvconf
+sudo systemctl enable resolvconf
+sudo systemctl start resolvconf</code></pre>
+
+    <p>Set manual DNS in VPN config: <code>10.8.8.1, 1.1.1.1, 9.9.9.9</code></p>
+
+    <hr />
+
+    <h2>Tor Browser Manual Install</h2>
+    <pre><code>tar -xvJf tor-browser-linux-x86_64-14.5.2.tar.xz
+cd tor-browser
+chmod +x start-tor-browser.desktop
+./start-tor-browser.desktop --detach</code></pre>
+    <p>Tor launches and tunnels through ProtonVPN. ISP sees VPN, not Tor.</p>
+
+    <hr />
+
+    <h2>Current Stack</h2>
+    <ul>
+      <li>VPN via OpenVPN (.ovpn, manual credentials)</li>
+      <li>Tor Browser layered on top</li>
+      <li>System: Ubuntu 20.04, zsh shell</li>
+    </ul>
+
+    <hr />
+
+    <h2>Next Steps: Firewall + Kill Switch</h2>
+    <ol>
+      <li>Enable UFW and deny all but VPN interface</li>
+      <li>Write a VPN kill switch script</li>
+      <li>Auto-connect VPN via systemd or crontab</li>
+      <li>Create AppArmor policy for Tor isolation</li>
+      <li>Optional: Build an .onion relay</li>
+    </ol>
+
+    <pre><code>sudo ufw default deny outgoing
+sudo ufw default deny incoming
+sudo ufw allow out on tun0 from any to any
+sudo ufw enable</code></pre>
+
+    <hr />
+
+    <p>
+      From broken packages to full-stack privacy routing, today was a study in persistence. The terminal is my castle.  
+    </p>
+
+    <p>— Lorelei Noble<br />rainkeep devlogs</p>
+  </body>
+</html>
