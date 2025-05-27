@@ -1,0 +1,208 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250527 — Shell Scripts & Sneaky Bots</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250527 — Shell Scripts & Sneaky Bots</h1>
+    <span class="prompt">> Log Date: 2025-05-27</span>
+    <p class="excerpt">
+      Today's focus was on automation and stealth — crafting a startup shell script that initiates privacy tools and working behind the scenes on an Instagram tool that's still under wraps.
+    </p>
+
+    <p>
+      I wrote a shell script today that automates a secure launch sequence. Whether I log in or type <code>./start.sh</code>, the goal is the same: cloak up and enter the net with privacy armor on. The script connects to ProtonVPN using OpenVPN, launches the Tor browser, and opens a secure email interface. It cuts out repetitive manual steps and keeps me moving fast.
+    </p>
+
+    <p>
+      The setup isn’t flashy, but it’s effective. I’m prioritizing anonymity and reducing any traceable surface. I also started laying the groundwork for a tool that automates Instagram tasks, though I’m keeping the full scope low-key for now.
+    </p>
+
+    <hr />
+
+    <h2>Script Preview</h2>
+    <p>The shell script looks something like this:</p>
+
+    <pre><code>#!/bin/bash
+
+# Connect to ProtonVPN
+sudo openvpn --config ~/vpn/proton_free.ovpn --daemon
+
+# Launch Tor Browser
+cd ~/tor-browser/Browser
+./start-tor-browser &
+
+# Open secure mail (placeholder)
+xdg-open https://mail2torwwfyh2h3n.onion &
+
+echo "Privacy suite activated."</code></pre>
+
+    <hr />
+
+    <h3>Next Steps</h3>
+    <ul>
+      <li>Harden firewall settings (UFW config)</li>
+      <li>Add fail2ban to monitor auth logs</li>
+      <li>Automate local logs for bot startup and VPN verification</li>
+      <li>Build out the Instagram automation engine with ethical limits</li>
+    </ul>
+
+    <hr />
+
+    <p>
+      Here's a link back to the <a href="/blog">DevLogs</a> page.
+    </p>
+
+    <hr />
+  </body>
+</html>
