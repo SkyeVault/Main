@@ -1,3 +1,12 @@
+# Disclaimer
+
+#This project is intended for **educational and testing purposes only**.
+
+# Automating interactions with Instagram via unofficial methods may violate Instagram’s Terms of Service. The author assumes no responsibility for how this script is used. Use at your own risk, and only with test accounts or platforms you own.
+
+# Do not use this tool to spam, harass, or violate platform guidelines.
+
+
 import random
 import time
 from getpass import getpass
