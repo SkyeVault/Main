@@ -1,0 +1,228 @@
+<!-- Save this as rainkeep/static/blog-html/DevLog250529.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250529 — Remote Access and Blender Victory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250529 — Remote Access and Blender Victory</h1>
+    <span class="prompt">> Log Date: 250529</span>
+    <p class="excerpt">
+      After two years of grinding and rebuilding my stack from scratch, I finally opened Blender on my MacBook. It is slow and not very clear, but it runs. This log also documents the setup of RustDesk for secure remote access between devices without paid software or static IPs.
+    </p>
+
+    <p>
+      Today I installed RustDesk on Ubuntu and successfully connected from my MacBook. I was able to control my Linux machine and verify that my graphics stack was working. More importantly, after all this time and effort, I reached a major milestone. Blender opened. For the first time since starting this entire journey, I have a working environment where I can launch 3D tools, test workflows, and start building the future I envisioned.
+    </p>
+
+    <hr />
+
+    <h2>Setup Overview</h2>
+    <p>Installed RustDesk using the .deb package:</p>
+    <pre><code>sudo apt install ./rustdesk-1.4.0-x86_64.deb</code></pre>
+
+    <p>Checked interfaces and IP addresses:</p>
+    <pre><code>ip a</code></pre>
+
+    <p>Quick local IP check:</p>
+    <pre><code>hostname -I</code></pre>
+
+    <p>Used RustDesk to connect remotely from:</p>
+    <pre><code>user@000.00.00.0</code></pre>
+
+    <hr />
+
+    <h2>Lessons Learned</h2>
+    <ul>
+      <li>RustDesk is a capable and free alternative to commercial screen sharing apps</li>
+      <li>The .deb install method is the easiest route</li>
+      <li>LAN connections do not require a relay server</li>
+      <li>Docker bridges show up in <code>ip a</code> output and can be ignored</li>
+    </ul>
+
+    <hr />
+
+    <h3>Quick Recap</h3>
+    <ol>
+      <li>Boot the Ubuntu machine</li>
+      <li>Run <code>ip a</code> or <code>hostname -I</code> to get your address</li>
+      <li>Install RustDesk with <code>sudo apt install ./rustdesk.deb</code></li>
+      <li>Launch with <code>rustdesk &</code> or from the GUI</li>
+      <li>Connect from another device using IP or ID</li>
+    </ol>
+
+    <hr />
+
+    <h2>Blender Status</h2>
+    <p>
+      I opened Blender on my MacBook. It is not fast and not entirely stable, but it works. The program loads, responds, and renders. I can now officially say this setup is 3D capable. That opens the door for real animation and scene development using my own machine.
+    </p>
+
+    <hr />
+
+    <h2>Next Steps</h2>
+    <ul>
+      <li>Set RustDesk to launch on boot if I want unattended access</li>
+      <li>Explore private relay setup for secure remote access outside the LAN</li>
+      <li>Test Eevee and reduce samples to improve Blender performance</li>
+    </ul>
+
+    <hr />
+
+    <p>
+      Here's a link: <a href="https://arynwood.com">Arynwood Terminal</a>
+    </p>
+
+    <hr />
+  </body>
+</html>
