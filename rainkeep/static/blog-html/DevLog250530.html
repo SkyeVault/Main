@@ -1,0 +1,256 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250530 - Grocery Automation App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250530 - Grocery Automation App</h1>
+    <span class="prompt">> Log Date: 250530</span>
+    <p class="excerpt">
+      Today I mapped out an automation system to solve a recurring problem. We needed a shared grocery list app that builds throughout the week, organizes items by aisle, and places a weekly order for pickup.
+    </p>
+
+    <p>
+      The stack uses n8n for orchestration, Selenium for browser control, local JSON storage for the list, and Mistral 7B via IRC to format groceries from natural language. It’s fully offline-compatible and runs locally, no cloud dependencies. The eventual goal is a button that orders groceries from Giant every Wednesday without having to think about it.
+    </p>
+
+    <hr />
+
+    <h2>Project Architecture</h2>
+    <p>Here’s how everything connects:</p>
+    <ul>
+      <li><code>n8n</code> triggers the workflow every Wednesday at noon</li>
+      <li><code>Selenium</code> opens Firefox and searches the grocery site</li>
+      <li><code>IRC + Mistral</code> generates JSON entries from prompts</li>
+      <li>All data is stored locally in <code>grocery_list.json</code></li>
+    </ul>
+
+    <hr />
+
+    <h2>Dependencies</h2>
+    <pre><code>sudo apt install firefox
+pip install selenium
+pip install huggingface_hub
+pip install python-dotenv</code></pre>
+
+    <hr />
+
+    <h3>Sample JSON Format</h3>
+    <pre><code>[
+  { "item": "bananas", "aisle": "Produce", "quantity": 6, "unit": "pieces" },
+  { "item": "oat milk", "aisle": "Dairy", "quantity": 2, "unit": "cartons" },
+  { "item": "pie crust", "aisle": "Bakery", "quantity": 1 },
+  { "item": "mac & cheese", "aisle": "Pantry", "quantity": 3, "unit": "boxes" }
+]</code></pre>
+
+    <hr />
+
+    <h3>Test Script with Selenium</h3>
+    <p>This test reads the grocery list and searches each item on Giant’s site:</p>
+    <pre><code>import time, json
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
+
+with open("grocery_list.json") as f:
+    items = json.load(f)
+
+options = Options()
+driver = webdriver.Firefox(options=options)
+driver.get("https://giantfoodstores.com")
+
+time.sleep(5)
+
+for entry in items:
+    search_term = entry["item"]
+    try:
+        search_box = driver.find_element(By.NAME, "search")
+        search_box.clear()
+        search_box.send_keys(search_term)
+        search_box.submit()
+        time.sleep(4)
+    except Exception as e:
+        print(f"Error searching {search_term}: {e}")
+
+driver.quit()</code></pre>
+
+    <hr />
+
+    <h2>n8n Workflow Plan</h2>
+    <ol>
+      <li>Cron Trigger: every Wednesday at 12:00</li>
+      <li>Read File Node: parse <code>grocery_list.json</code></li>
+      <li>Execute Command Node: run the Selenium script</li>
+      <li>Optional: parse Selenium results or logs for confirmation</li>
+    </ol>
+
+    <hr />
+
+    <h2>Next Features</h2>
+    <ul>
+      <li>Convert recipes to ingredient lists</li>
+      <li>Run a local IRC bot to handle grocery prompts</li>
+      <li>Push-button grocery ordering from JSON</li>
+      <li>Automated list backups with timestamps</li>
+      <li>Notification system on order completion</li>
+    </ul>
+
+    <hr />
+
+    <h2>Final Thoughts</h2>
+    <p>This system keeps control in our hands. The list is local. The automation is modular. It doesn’t require a third-party app. Just code, chat, and JSON. It’s the beginning of something simple and powerful that fits real life instead of disrupting it.</p>
+
+    <hr />
+
+    <p><a href="/blog">← Back to DevLogs</a></p>
+
+  </body>
+</html>
