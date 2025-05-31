@@ -235,8 +235,29 @@
       I explored what to expect in school: AWS, firewalls, VPNs, digital forensics, and packet analysis. Started building projects that will evolve into my portfolio. Scripts like the VPN launcher will be tracked and versioned.
     </p>
 
+
     <hr />
 
+    <h2>System Overhaul: GPU, SSD, and Terminal Tools</h2>
+    <p>
+      I upgraded my development machine with a new GPU and SSD, then performed a clean OS install to get a fresh, fast environment. I configured the terminal exactly how I like it:
+    </p>
+    <ul>
+      <li>Installed <code>oh-my-zsh</code> with <code>Powerlevel10k</code> theme</li>
+      <li>Enabled <code>zsh-syntax-highlighting</code> and <code>zsh-autosuggestions</code></li>
+      <li>Manually configured <code>fzf</code> and <code>autojump</code> for fast navigation</li>
+      <li>Mapped <code>CTRL + R</code> to history search (without fzf dependency)</li>
+      <li>Set custom dark terminal color scheme for daily comfort and visibility</li>
+    </ul>
+    <p>
+      Homebrew was installed at <code>/usr/local/bin/brew</code> (instead of <code>/opt/homebrew</code>) to match my macOS version and avoid slowdown. Everything runs smoothly now and feels like mine.
+    </p>
+
+    <pre><code>brew install fzf autojump
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh-syntax-highlighting
+</code></pre>
+
+    <hr />
     <h2>Tech Theme of the Month</h2>
     <p>
       The recurring theme of May was building sovereignty with every tool. I’m not building flashy demos—I’m creating a local-first, secure, resilient system to support creative work and family life.
