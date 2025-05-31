@@ -1,3 +1,5 @@
+# see grocery_script.py for updated script
+
 # before atarting, run these commands in terminal
 # sudo apt update
 # sudo apt install python3-pip firefox
