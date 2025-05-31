@@ -1,0 +1,253 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250531 – May Wrap-Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250531 – May Wrap-Up</h1>
+    <span class="prompt">> Log Date: 2025-05-31</span>
+    <p class="excerpt">
+      As a stay-at-home mom, sometimes I only get 15 minutes to myself in a day, but during nap times and other short opportunities I fully dive into my tech projects. Here’s what I did this month:
+    </p>
+
+    <p>
+      May was full of breakthroughs across multiple categories: Docker stacks, automation bots, cybersecurity workflows, and even launching Blender for the first time on my MacBook. I kept everything moving forward a little at a time. This is my full May 2025 build log.
+    </p>
+
+    <hr />
+
+    <h2>Grocery Bot + Selenium Pipeline</h2>
+    <p>
+      I built a working script in Python using Undetected ChromeDriver and proxy rotation to automate grocery ordering from Giant. Telegram input triggers a webhook that creates a JSON list, which the bot reads to autofill carts online. Each list is unique to the week and will eventually categorize items by aisle.
+    </p>
+
+    <hr />
+
+    <h2>Docker AI Stack</h2>
+    <p>
+      I planned out a complete Docker-based content creation stack with:
+    </p>
+    <ul>
+      <li>Stable Diffusion XL</li>
+      <li>AnimateDiff</li>
+      <li>SadTalker</li>
+      <li>Whisper</li>
+      <li>Tortoise TTS</li>
+      <li>Ollama</li>
+      <li>n8n</li>
+      <li>PostgreSQL + PGAdmin</li>
+    </ul>
+    <p>
+      The vision is to build a sovereign, modular creative system that replaces subscription services with locally-hosted open tools. This will eventually become part of a public repo.
+    </p>
+
+    <hr />
+
+    <h2>Blender Runs on Mac (Finally)</h2>
+    <p>
+      After two years of dreaming about it, I finally launched Blender on my MacBook using RustDesk for remote access. It’s slow, but it works. This unlocks future plans for cloud-based rendering and local 3D edits.
+    </p>
+
+    <hr />
+
+    <h2>Instagram Bot Dev</h2>
+    <p>
+      I started building a stealthy Instagram automation tool that loops follows, likes, comments, and hashtags with randomized intervals. Firefox + Selenium + InstaPy form the foundation. Future updates will include dynamic targeting via scraped Reddit lists.
+    </p>
+
+    <hr />
+
+    <h2>Shell Scripting for VPN + TOR</h2>
+    <p>
+      I wrote a shell script that starts ProtonVPN, launches Tor, and opens secure email automatically. It runs on login or on `./start.sh`. I also explored saving VPN credentials securely and began planning next steps for firewall hardening.
+    </p>
+
+    <pre><code>sudo openvpn --config ~/vpn/proton_free.ovpn --daemon</code></pre>
+
+    <hr />
+
+    <h2>Resume Builder + Auto Apply Tool</h2>
+    <p>
+      I'm planning a job tool that accepts 6–10 inputs, auto-generates resumes, scrapes job listings, and emails applications. It’s both a personal tool and a potential client service for people who struggle with applications.
+    </p>
+
+    <hr />
+
+    <h2>Blog + DevLog Infrastructure</h2>
+    <p>
+      All DevLogs now follow a consistent styled HTML format with hamburger nav. I improved excerpt handling and form integration with Netlify on Astro. My site now includes styled forms, DevLog archives, and dropdown nav that works on mobile.
+    </p>
+
+    <hr />
+
+    <h2>Cybersecurity Degree Prep</h2>
+    <p>
+      I explored what to expect in school: AWS, firewalls, VPNs, digital forensics, and packet analysis. Started building projects that will evolve into my portfolio. Scripts like the VPN launcher will be tracked and versioned.
+    </p>
+
+    <hr />
+
+    <h2>Tech Theme of the Month</h2>
+    <p>
+      The recurring theme of May was building sovereignty with every tool. I’m not building flashy demos—I’m creating a local-first, secure, resilient system to support creative work and family life.
+    </p>
+
+    <hr />
+
+    <p>
+      Here's a link: <a href="/blog">Back to Blog</a>
+    </p>
+
+    <hr />
+  </body>
+</html>
