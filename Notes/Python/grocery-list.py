@@ -9,51 +9,51 @@
 # chmod +x geckodriver
 # sudo mv geckodriver /usr/local/bin/
 
+import time, json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.keys import Keys
 import time
-import json
 
-# Step 1: Set up Firefox with visible window
-options = webdriver.FirefoxOptions()
-options.headless = False  # Show the browser window so you can solve CAPTCHA
-driver = webdriver.Firefox(options=options)
+# Set up Firefox
+driver = webdriver.Firefox()
+driver.maximize_window()
 
-# Step 2: Load the Giant Food website
-driver.get("https://giantfood.com")
-time.sleep(3)  # Give initial page time to load
+# Step 1: Visit Giant Food Stores
+driver.get("https://giantfoodstores.com/")
+time.sleep(5)  # Let the page load fully
 
-# Step 3: Wait for manual CAPTCHA solve
-def wait_for_captcha():
-    print("Please solve the CAPTCHA manually in the browser window...")
-    while True:
-        try:
-            driver.find_element(By.CSS_SELECTOR, "button[data-testid='header-search-button']")
-            print("CAPTCHA solved. Continuing...")
-            break
-        except NoSuchElementException:
-            time.sleep(2)
+# Step 2: Accept cookies if the popup exists
+try:
+    accept_btn = driver.find_element(By.ID, "onetrust-accept-btn-handler")
+    accept_btn.click()
+    print("Cookies accepted.")
+    time.sleep(2)
+except:
+    print("No cookie banner found.")
 
-wait_for_captcha()
+# Step 3: Find the search bar and search for 'bananas'
+try:
+    search_icon = driver.find_element(By.CSS_SELECTOR, "button[data-testid='header-search-button']")
+    search_icon.click()
+    time.sleep(2)
 
-# Step 4: Load grocery items from local JSON file
-with open("grocery_list.json") as f:
-    items = json.load(f)
+    search_input = driver.find_element(By.ID, "search-input")
+    search_input.send_keys("bananas")
+    search_input.send_keys(Keys.RETURN)
+    print("Searching for bananas...")
+    time.sleep(6)
 
-# Step 5: Loop through each item and search
-for item in items:
-    print(f"Searching: {item}")
-    try:
-        search_box = driver.find_element(By.CSS_SELECTOR, "input[data-testid='header-search-input']")
-        search_box.clear()
-        search_box.send_keys(item)
-        search_button = driver.find_element(By.CSS_SELECTOR, "button[data-testid='header-search-button']")
-        search_button.click()
-        time.sleep(5)  # Wait for search results
-    except Exception as e:
-        print(f"Error during search: {e}")
-        continue
+    # Step 4: Confirm that results appear
+    results = driver.find_elements(By.CSS_SELECTOR, "div[data-testid='product-card']")
+    if results:
+        print(f"Found {len(results)} results for bananas.")
+    else:
+        print("No search results found.")
 
-print("Done searching all items.")
+except Exception as e:
+    print("Error during search:", e)
+
+# Step 5: Finish
+time.sleep(5)
 driver.quit()
