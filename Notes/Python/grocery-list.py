@@ -1,3 +1,4 @@
+# code no workey
 # see grocery_script.py for updated script
 
 # before atarting, run these commands in terminal
