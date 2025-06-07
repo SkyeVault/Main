@@ -1,0 +1,22 @@
+{
+  "name": "IOC Enrichment",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://www.virustotal.com/api/v3/files/{{your_hash}}",
+        "method": "GET",
+        "headers": [
+          {
+            "name": "x-apikey",
+            "value": "YOUR_VIRUSTOTAL_API_KEY"
+          }
+        ]
+      },
+      "name": "Query VT Hash",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [450, 300]
+    }
+  ],
+  "connections": {}
+}
