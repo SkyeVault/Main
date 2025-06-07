@@ -1,0 +1,45 @@
+{
+  "name": "Suspicious Login Alert",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"country\"]}}",
+              "operation": "notEqual",
+              "value2": "US"
+            }
+          ]
+        }
+      },
+      "name": "Check Country",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "webhookUri": "https://discord.com/api/webhooks/YOUR_ID",
+        "content": "Suspicious login detected!"
+      },
+      "name": "Send Alert",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Check Country": {
+      "main": [
+        [
+          {
+            "node": "Send Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
