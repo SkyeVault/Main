@@ -1,0 +1,19 @@
+{
+  "name": "IP Blacklist",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "http://your-server/firewall/block",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "{\n  \"ip\": \"203.0.113.10\"\n}"
+      },
+      "name": "Block IP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [450, 300]
+    }
+  ],
+  "connections": {}
+}
