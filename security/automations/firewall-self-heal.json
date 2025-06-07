@@ -1,0 +1,38 @@
+{
+  "name": "Firewall Self-Heal",
+  "nodes": [
+    {
+      "parameters": {
+        "command": "diff /etc/firewall.conf /etc/firewall_backup.conf",
+        "sshCredential": "your_ssh_credential"
+      },
+      "name": "Compare Configs",
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "command": "cp /etc/firewall_backup.conf /etc/firewall.conf",
+        "sshCredential": "your_ssh_credential"
+      },
+      "name": "Restore Firewall",
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Compare Configs": {
+      "main": [
+        [
+          {
+            "node": "Restore Firewall",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
