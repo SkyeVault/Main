@@ -1,0 +1,66 @@
+{
+  "name": "Data Exfil Watch",
+  "nodes": [
+    {
+      "parameters": {
+        "command": "du -sh /home/user/important-folder",
+        "sshCredential": "your_ssh_credential"
+      },
+      "name": "Check Folder Size",
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [300, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json[\"stdout\"]}}",
+              "operation": "larger",
+              "value2": "100M"
+            }
+          ]
+        }
+      },
+      "name": "Is Size Suspicious?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "webhookUri": "https://discord.com/api/webhooks/YOUR_ID",
+        "content": "Potential data exfiltration detected!"
+      },
+      "name": "Notify Admin",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 1,
+      "position": [700, 300]
+    }
+  ],
+  "connections": {
+    "Check Folder Size": {
+      "main": [
+        [
+          {
+            "node": "Is Size Suspicious?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Size Suspicious?": {
+      "true": [
+        [
+          {
+            "node": "Notify Admin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
