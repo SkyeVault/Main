@@ -1,0 +1,47 @@
+{
+  "name": "Phishing Scan",
+  "nodes": [
+    {
+      "parameters": {
+        "emailAccount": "IMAP",
+        "criteria": "UNSEEN"
+      },
+      "name": "Check Email",
+      "type": "n8n-nodes-base.imapEmail",
+      "typeVersion": 1,
+      "position": [300, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://www.virustotal.com/api/v3/files",
+        "method": "POST",
+        "jsonParameters": true,
+        "headers": [
+          {
+            "name": "x-apikey",
+            "value": "YOUR_VIRUSTOTAL_API_KEY"
+          }
+        ],
+        "options": {},
+        "bodyParametersJson": "{\n  \"file\": \"={{$json[\"attachment\"]}}\"\n}"
+      },
+      "name": "VirusTotal Scan",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [600, 300]
+    }
+  ],
+  "connections": {
+    "Check Email": {
+      "main": [
+        [
+          {
+            "node": "VirusTotal Scan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
