@@ -1,0 +1,255 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250607 — Cybersecurity Automation Study (n8n Edition)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250607 — Cybersecurity Automation Study (n8n Edition)</h1>
+    <span class="prompt">> Log Date: 250607</span>
+    <p class="excerpt">
+      Most of this week was quiet study time. Between naps and late-night windows, I went deep into n8n courses and mapped out automation strategies focused on cybersecurity.
+    </p>
+
+    <p>
+      I’ve been keeping my head down and following a trail that leads to sovereign security — one flow at a time. n8n is more than an automation platform. When you configure it right, it becomes a modular intrusion sensor, an alert system, a cleanup script, and a forensics bot — all on your terms.
+    </p>
+
+    <hr />
+
+    <h2>Top 10 Cybersecurity Use Cases with n8n</h2>
+
+    <h3>1. Automated IP Blacklisting</h3>
+    <p>
+      Use a webhook or fail2ban output to detect brute-force attempts. Send the IP to an external blocklist or update your own firewall config using an SSH node.
+    </p>
+
+    <pre><code>iptables -A INPUT -s 203.0.113.10 -j DROP</code></pre>
+
+    <h3>2. Threat Intelligence Feeds</h3>
+    <p>
+      Poll feeds from AlienVault OTX, AbuseIPDB, or VirusTotal. Filter for relevance and write to logs, databases, or even push notifications.
+    </p>
+
+    <pre><code>
+GET https://otx.alienvault.com/api/v1/indicators
+→ Filter + SplitInBatches → Save to MongoDB or JSON
+    </code></pre>
+
+    <h3>3. Suspicious Login Detection</h3>
+    <p>
+      Monitor login logs for patterns like time-of-day anomalies or logins from new geo-IP regions. Trigger alerts through Discord, Matrix, or email.
+    </p>
+
+    <pre><code>if geo_country !== "US" → trigger notify.alert()</code></pre>
+
+    <h3>4. Automated Log Parsing</h3>
+    <p>
+      Connect n8n to a tailing log file via a polling script or direct integration with journald. Parse syslog data and extract indicators of compromise (IOCs).
+    </p>
+
+    <h3>5. Phishing Triage Bot</h3>
+    <p>
+      Email → n8n IMAP Node → Parse attachments → Submit to VirusTotal → Generate case file in JSON or markdown.
+    </p>
+
+    <h3>6. Self-Healing Security Rules</h3>
+    <p>
+      Detect if a firewall or WAF config is missing entries. Use n8n to regenerate missing rules by comparing the current state to a saved backup.
+    </p>
+
+    <h3>7. IOC Enrichment Workflows</h3>
+    <p>
+      Paste in a suspicious hash or URL. n8n can enrich it with context (GeoIP, ASN, WHOIS, blacklist history), and then append the results to your local threat notes.
+    </p>
+
+    <h3>8. Honeypot Alert System</h3>
+    <p>
+      Monitor incoming requests to a decoy port or service. When hit, trigger a full trace route, notify you in real time, and log the full request headers and payloads.
+    </p>
+
+    <h3>9. Data Exfil Detection</h3>
+    <p>
+      Monitor outbound bandwidth or file write access in sensitive directories. If thresholds are exceeded, fire an alert and optionally disable the interface or account.
+    </p>
+
+    <h3>10. Offline-to-Online Recon Sync</h3>
+    <p>
+      Scrape a set of domain assets, cross-match DNS and SSL certs, and run security headers checks. Automate the entire recon pipeline from inside n8n.
+    </p>
+
+    <hr />
+
+    <h2>Why n8n Works So Well for Security</h2>
+    <p>
+      Unlike cloud automation platforms, n8n runs locally or on your private server. That means no telemetry, no 3rd-party data handling unless you explicitly configure it.
+    </p>
+    <p>
+      Each node is modular and chainable. Combine API calls, SSH commands, filesystem checks, and conditional logic to create flows that react in real time — even when you're offline.
+    </p>
+
+    <h3>Bonus: Test Like a Hacker, Build Like a Guardian</h3>
+    <p>
+      It’s not about being paranoid. It’s about being prepared. I’ve started mocking attack simulations in flows just to see if I can catch my own footsteps.
+    </p>
+
+    <hr />
+
+    <p>
+      The idea is not just to automate, but to <em>own</em> the automation layer. This week laid the foundation for that — quietly, steadily, with my focus on becoming a true security practitioner.
+    </p>
+
+    <p>Signed,</p>
+    <p><strong>Lorelei Noble</strong></p>
+    <p><a href="/blog">&larr; Back to DevLogs</a></p>
+
+    <hr />
+  </body>
+</html>
