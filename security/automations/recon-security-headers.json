@@ -1,0 +1,16 @@
+{
+  "name": "Recon - Security Headers",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://securityheaders.com/?q=example.com&followRedirects=on",
+        "method": "GET"
+      },
+      "name": "Check Headers",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [300, 300]
+    }
+  ],
+  "connections": {}
+}
