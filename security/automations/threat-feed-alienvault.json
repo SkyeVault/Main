@@ -1,0 +1,16 @@
+{
+  "name": "Threat Feed - AlienVault",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://otx.alienvault.com/api/v1/indicators/export",
+        "method": "GET"
+      },
+      "name": "Get OTX Feed",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [450, 300]
+    }
+  ],
+  "connections": {}
+}
