@@ -1,0 +1,15 @@
+{
+  "name": "Log Parser",
+  "nodes": [
+    {
+      "parameters": {
+        "functionCode": "return items.map(item => {\n  return {\n    json: {\n      logLine: item.json.line\n    }\n  };\n});"
+      },
+      "name": "Extract Logs",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [450, 300]
+    }
+  ],
+  "connections": {}
+}
