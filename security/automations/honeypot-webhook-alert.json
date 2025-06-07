@@ -1,0 +1,38 @@
+{
+  "name": "Honeypot Trigger",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "honeypot",
+        "httpMethod": "GET"
+      },
+      "name": "Honeypot Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [300, 300]
+    },
+    {
+      "parameters": {
+        "webhookUri": "https://discord.com/api/webhooks/YOUR_ID",
+        "content": "Honeypot was triggered!"
+      },
+      "name": "Send Alert",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 1,
+      "position": [600, 300]
+    }
+  ],
+  "connections": {
+    "Honeypot Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
