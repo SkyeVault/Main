@@ -1,0 +1,284 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250608 – Sovereign Memory Shell with Ollama</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250608 – Sovereign Memory Shell with Ollama</h1>
+    <span class="prompt">> Log Date: 250608</span>
+    <p class="excerpt">
+      Today I finalized a local shell script memory interface for Ollama using Mistral. This system allows contextual memory with no cloud APIs, and sets the foundation for a privacy-first development partner with long-term recall.
+    </p>
+
+    <p>
+      This log documents the initial build of a persistent memory shell around the Ollama local LLM runtime. The goal is to establish a loop where each question builds on the last and the assistant truly remembers. Everything runs locally using `bash`, `jq`, and `curl`, with Mistral as the foundation model.
+    </p>
+
+    <hr />
+
+    <h2>System Specs</h2>
+    <ul>
+      <li>Dell T3600 Workstation</li>
+      <li>RTX 3060 GPU</li>
+      <li>64 GB RAM</li>
+      <li>2 TB SSD</li>
+      <li>Ubuntu-based OS</li>
+    </ul>
+
+    <hr />
+
+    <h2>Project Structure</h2>
+    <pre><code>sovereign-chat/
+├── instructions/
+│   └── system.txt
+├── memory/
+│   ├── chatlog.txt
+│   └── session-YYYYMMDD.txt
+├── prompts/
+│   └── input.txt
+├── run_chat.sh
+└── .env (optional)
+</code></pre>
+
+    <hr />
+
+    <h2>Instruction Layer</h2>
+    <p>
+      The assistant’s tone and behavioral bounds are set in <code>instructions/system.txt</code>.
+    </p>
+
+    <pre><code>You are a sovereign AI assistant built to help Lorelei Noble with her projects in storytelling, stained glass, and creative automation. Lorelei’s style is intuitive, poetic, nature-driven, and emotionally intelligent.
+
+Do not use emojis. Always speak in a grounded, clear tone. Prioritize code and architecture for systems that run locally and protect privacy.
+
+If she asks about design, blend function with beauty. If she is stuck emotionally, respond with compassion.</code></pre>
+
+    <hr />
+
+    <h2>Prompt Handling</h2>
+    <p>
+      <code>prompts/input.txt</code> is the live user prompt. This is overwritten or rewritten between each run. It simulates a local input field that doesn’t rely on stdin or chat UI.
+    </p>
+
+    <p>
+      <code>memory/chatlog.txt</code> holds all past conversations. This grows over time, and a <code>tail -n</code> pull brings in recent memory to inform the next reply.
+    </p>
+
+    <hr />
+
+    <h2>Main Script – <code>run_chat.sh</code></h2>
+    <p>This file ties the loop together. It reads the system instructions, appends the memory, inserts the current input, and parses the response.</p>
+
+    <pre><code>#!/bin/bash
+
+MODEL="mistral"
+SYSTEM_FILE="instructions/system.txt"
+CHATLOG_FILE="memory/chatlog.txt"
+INPUT_FILE="prompts/input.txt"
+
+system_prompt=$(<"$SYSTEM_FILE")
+memory_context=$(tail -n 20 "$CHATLOG_FILE")
+user_input=$(<"$INPUT_FILE")
+
+full_prompt="$system_prompt\n\nPrevious conversation:\n$memory_context\n\nLorelei: $user_input\nAssistant:"
+
+response=$(curl -s http://localhost:11434/api/generate \
+  -d "$(jq -n \
+    --arg model "$MODEL" \
+    --arg prompt "$full_prompt" \
+    --argjson stream false \
+    '{model: $model, prompt: $prompt, stream: $stream}')" \
+)
+
+reply=$(echo "$response" | jq -r .response)
+
+echo -e "\nAssistant: $reply\n"
+
+{
+  echo -e "Lorelei: $user_input"
+  echo -e "Assistant: $reply"
+  echo ""
+} >> "$CHATLOG_FILE"</code></pre>
+
+    <hr />
+
+    <h2>Dependencies</h2>
+    <ul>
+      <li>Ollama with Mistral preloaded: <code>ollama run mistral</code></li>
+      <li><code>curl</code> for HTTP post</li>
+      <li><code>jq</code> for JSON response parsing</li>
+    </ul>
+
+    <hr />
+
+    <h2>Execution</h2>
+    <pre><code>chmod +x run_chat.sh
+./run_chat.sh</code></pre>
+
+    <p>
+      Each time you run the shell, the prompt is rebuilt using the last 20 lines of memory and the system.txt instructions. The response is echoed and added back into memory, creating an ever-deepening contextual thread.
+    </p>
+
+    <hr />
+
+    <h2>Next Steps</h2>
+    <ul>
+      <li>Refactor into modular Bash functions</li>
+      <li>Save each session with timestamped logs</li>
+      <li>Auto-convert logs to Markdown or publishable format</li>
+      <li>Enable n8n triggers for new input</li>
+      <li>Optional Telegram or web UI bridge</li>
+      <li>Push to GitHub with privacy README and install guide</li>
+    </ul>
+
+    <hr />
+
+    <p>— Lorelei Noble<br /><a href="/blog">Back to DevLogs</a></p>
+  </body>
+</html>
