@@ -1,0 +1,9 @@
+product-name = "ArynCore"
+version = "0.1.0"
+identifier = "com.aryncore.app"
+
+[build]
+before-dev-command = "cd ../interface/ui && npm run dev"
+before-build-command = "cd ../interface/ui && npm run build"
+dev-url = "http://localhost:5173"
+frontend-dist = "../interface/ui/dist"

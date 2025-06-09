@@ -1,0 +1,12 @@
+body {
+  background-color: #1a1a1a;
+  color: #d8b4fe;
+  font-family: 'Fira Code', monospace;
+  padding: 2rem;
+}
+.text-lavender {
+  color: #d8b4fe;
+}
+.bg-zinc-900 {
+  background-color: #18181b;
+}
