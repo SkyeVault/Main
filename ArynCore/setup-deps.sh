@@ -16,3 +16,11 @@ sudo apt update && sudo apt install -y \
   pkg-config \
   libayatana-appindicator3-dev \
   librsvg2-dev
+  libglib2.0-dev \
+  libgobject-2.0-dev \
+  libgtk-3-dev \
+  libgdk-pixbuf2.0-dev \
+  libpango1.0-dev \
+  libatk1.0-dev \
+  libwebkit2gtk-4.0-dev \
+  pkg-config
