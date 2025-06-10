@@ -1,7 +1,7 @@
 
 ---
 
-##  NewsBot — Daily News Scraper + Summarizer
+##  NewsBot Daily News Scraper + Summarizer
 
 NewsBot is a lightweight Python tool that scrapes approved news sites, extracts recent articles, and passes them into a summarizer for a daily digest.
 
