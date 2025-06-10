@@ -39,8 +39,8 @@ jq -n \
   echo "Assistant: (image stored for training)"
 } >> "$CHATLOG_FILE"
 
-echo "✅ Image stored at: $TARGET_PATH"
-echo "📝 Metadata logged: $METAFILE"
+echo "Image stored at: $TARGET_PATH"
+echo "Metadata logged: $METAFILE"
 
 # Optional: open the image
 xdg-open "$TARGET_PATH" >/dev/null 2>&1 &
