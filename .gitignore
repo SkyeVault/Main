@@ -1,1 +1,4 @@
 .DS_Store
+
+ArynCore/docker/ollama/id_ed25519
+ArynCore/docker/ollama/id_ed25519.pub
