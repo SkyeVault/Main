@@ -1,4 +1,4 @@
-# ArynCore Docker Stack – Usage Cheat Sheet
+# ArynCore Docker Stack Usage Cheat Sheet
 
 This stack contains multiple AI and automation tools running locally via Docker. Use this reference to interact with each service.
 
