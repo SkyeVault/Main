@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250612 – Aryncore Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250612 – Aryncore Online</h1>
+    <span class="prompt">> Log Date: 250612</span>
+
+    <p>
+      Today marks a turning point in my infrastructure. Thanks to Havok2, who offered me access to a dedicated server in a professional datacenter, I now have a remote base of operations for testing and public development. This server is not symbolic, it’s real hardware, and it gives me the capacity to build systems that don’t just run on a local machine. I’m calling it Aryncore server.
+    </p>
+
+    <p>
+      Aryncore is the backend and GUI for systems moving forward. It’s the bones and wiring. It supports me so I can host my own tools, build out automations, and test the modular, sovereign infrastructure I believe in. Everything I run here is self-contained, observable, and meant to scale through simplicity.
+    </p>
+
+    <p>
+      The system design splits responsibility. Aryncore handles API triggers, automations, lightweight LLMs, and public interfaces. The Forge, my GPU station at home, handles graphics, AI generation, video, and heavier workloads. These two communicate over a direct pipeline that avoids cloud intermediaries.
+    </p>
+
+    <h2>Here’s the current plan</h2>
+
+    <pre><code>User request goes to the Aryncore server
+→ n8n catches the trigger
+→ workflow or script runs
+→ if visual output is needed, job gets routed to Forge
+→ Forge completes the render
+→ output returns to Aryncore server
+→ Aryncore publishes, delivers, or archives the file</code></pre>
+
+    <p>
+      This lets me keep my home network private while still exposing endpoints and tools to the public. The separation of logic and rendering means neither machine is overloaded. Each serves its purpose.
+    </p>
+
+    <h2>The current stack includes</h2>
+    <ul>
+      <li>Docker, running every service in clean containers</li>
+      <li>n8n, watching for triggers and moving data through the pipeline</li>
+      <li>NKN, enabling node-to-node messaging without static IPs or surveillance points</li>
+      <li>Ollama, running local LLMs for summarization and automation</li>
+    </ul>
+
+    <h2>Upcoming tasks</h2>
+    <ul>
+      <li>Secure the server with UFW, SSH key-only, and basic hardening</li>
+      <li>Configure n8n with webhooks, watch folders, and persistent logs</li>
+      <li>Containerize Ollama and test prompt-to-response endpoints</li>
+      <li>Write a syncing script to bridge Aryncore and Forge</li>
+      <li>Launch the first automation, probably a whisper-to-caption service</li>
+      <li>Set up /logs and /public folders to expose results and test uptime</li>
+    </ul>
+
+    <p>
+      Gratitude to Havok2. That sponsorship is more than helpful. It enables the foundation for real work, done on neutral ground, without cloud dependencies. This kind of access makes independent software development viable.
+    </p>
+
+    <p>
+      I’m building systems meant to grow.
+    </p>
+
+    <hr />
+    <p>
+      <a href="/blog">← Back to DevLogs</a>
+    </p>
+  </body>
+</html>
