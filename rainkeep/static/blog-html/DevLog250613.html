@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250613 – Server Setup for Development</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250613 – Server Setup for Development</h1>
+    <span class="prompt">> Log Date: 250613</span>
+    <p class="excerpt">
+      Today I configured a remote Ubuntu server from scratch, equipping it with xRDP, Docker, and local LLM support via Ollama for CPU inference. This guide includes the full shell history and future-proofing notes.
+    </p>
+
+    <p>
+      This machine will act as a remote development environment for my AI tooling and automation stack, centered around Docker containers and CPU-friendly models. I configured a full desktop interface via Xfce, installed Ollama and pulled lightweight models, and prepped the system for future services like n8n and WebUIs.
+    </p>
+
+    <hr />
+
+    <h2>System Overview</h2>
+    <ul>
+      <li>OS: Ubuntu Server (Debian base)</li>
+      <li>Remote Access: SSH, RDP via xRDP</li>
+      <li>Environment: Xfce desktop</li>
+      <li>Use Case: CPU LLMs, Docker services, remote automation</li>
+    </ul>
+
+    <hr />
+
+    <h2>1. Install GUI + Remote Access</h2>
+    <pre><code>sudo apt update && sudo apt upgrade -y
+sudo apt install xfce4 xfce4-goodies xrdp -y
+sudo systemctl enable xrdp
+sudo systemctl start xrdp
+echo "startxfce4" > ~/.xsession
+chmod +x ~/.xsession
+sudo systemctl restart xrdp</code></pre>
+
+    <p>If login fails via RDP:</p>
+    <pre><code>rm ~/.xsession
+rm ~/.Xauthority
+echo "exec startxfce4" > ~/.xsessionrc
+chmod +x ~/.xsessionrc
+sudo systemctl restart xrdp</code></pre>
+
+    <hr />
+
+    <h2>2. Install Firefox for GUI Access</h2>
+    <pre><code>sudo apt install firefox -y</code></pre>
+
+    <hr />
+
+    <h2>3. Development Dependencies</h2>
+    <p>This script installs GTK, build tools, and other common libraries for UI-based dev or GUI containers:</p>
+    <pre><code>sudo apt install -y software-properties-common
+sudo add-apt-repository universe
+sudo apt update
+sudo apt install -y build-essential curl wget libssl-dev libgtk-3-dev \
+libappindicator3-dev libx11-dev libgdk-pixbuf2.0-dev libpango1.0-dev \
+libatk1.0-dev libglib2.0-dev libglib2.0-bin libgobject-2.0-dev \
+pkg-config libayatana-appindicator3-dev librsvg2-dev \
+libwebkit2gtk-4.1-dev</code></pre>
+
+    <hr />
+
+    <h2>4. Ollama LLMs for CPU</h2>
+    <pre><code>curl -fsSL https://ollama.com/install.sh | sh
+exec zsh
+ollama pull mistral
+ollama pull codellama:7b
+ollama pull gemma:2b
+ollama pull llama2:7b
+ollama pull orca-mini
+ollama pull phi</code></pre>
+
+    <hr />
+
+    <h2>5. Docker Installation</h2>
+    <pre><code>sudo apt install docker.io docker-compose -y
+sudo usermod -aG docker $USER
+newgrp docker</code></pre>
+
+    <hr />
+
+    <h2>6. Ollama via Docker</h2>
+    <pre><code>mkdir -p ~/docker/ollama
+cd ~/docker/ollama</code></pre>
+
+    <p><strong>docker-compose.yml:</strong></p>
+    <pre><code>version: "3.8"
+
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  ollama_data:</code></pre>
+
+    <p>Spin it up:</p>
+    <pre><code>docker compose up -d
+docker exec -it ollama bash</code></pre>
+
+    <p>Inside the container:</p>
+    <pre><code>ollama pull mistral
+ollama pull codellama:7b
+ollama pull gemma:2b
+ollama pull llama2:7b
+ollama pull orca-mini
+ollama pull phi</code></pre>
+
+    <hr />
+
+    <h2>7. Disk + Docker Audit Commands</h2>
+    <pre><code>df -hT
+sudo du -h --max-depth=1 / | sort -hr
+du -h --max-depth=1 ~ | sort -hr
+sudo apt install -y fdupes
+fdupes -r ~
+docker ps -a
+docker images
+docker volume ls
+docker system df</code></pre>
+
+    <hr />
+
+    <h2>Next Steps</h2>
+    <ul>
+      <li>Deploy n8n under <code>~/docker/n8n</code></li>
+      <li>Explore Web UI wrappers for Ollama</li>
+      <li>Link a shared local folder to containers</li>
+      <li>Set up watchdog scripts for memory or disk</li>
+    </ul>
+
+    <hr />
+    <p>— Lorelei Noble</p>
+    <p><a href="/blog">Return to DevLogs</a></p>
+  </body>
+</html>
