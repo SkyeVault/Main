@@ -1,7 +1,13 @@
-# setup-deps.sh
 #!/bin/bash
-sudo apt update && sudo apt install -y \
-  libwebkit2gtk-4.0-dev \
+
+# Enable universe repository for extra packages
+sudo apt update
+sudo apt install -y software-properties-common
+sudo add-apt-repository universe
+sudo apt update
+
+# Install development dependencies
+sudo apt install -y \
   build-essential \
   curl \
   wget \
@@ -13,14 +19,9 @@ sudo apt update && sudo apt install -y \
   libpango1.0-dev \
   libatk1.0-dev \
   libglib2.0-dev \
+  libglib2.0-bin \
+  libgobject-2.0-dev \
   pkg-config \
   libayatana-appindicator3-dev \
-  librsvg2-dev
-  libglib2.0-dev \
-  libgobject-2.0-dev \
-  libgtk-3-dev \
-  libgdk-pixbuf2.0-dev \
-  libpango1.0-dev \
-  libatk1.0-dev \
-  libwebkit2gtk-4.0-dev \
-  pkg-config
+  librsvg2-dev \
+  libwebkit2gtk-4.1-dev || true
