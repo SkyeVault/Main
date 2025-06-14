@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250614 – MCP Design and Editor Tools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250614 – MCP Design and Editor Tools</h1>
+    <span class="prompt">> Log Date: 250614</span>
+    <p class="excerpt">
+      Today I drafted the architecture for my MCP (Master Control Program) a sovereign system that connects my desktop forge, remote server, and laptop utility node using NKN, Rust, n8n, Python, and Tauri.
+    </p>
+
+    <p>
+      The vision is to orchestrate container-based workflows, AI tasks, and automation triggers across all of my machines using a decentralized and secure messaging layer. NKN handles the relay. Rust compiles the orchestration logic. Tauri will host the GUI. Python bridges system utilities. And n8n provides the visual automation layer.
+    </p>
+
+    <hr />
+
+    <h2>Component Overview</h2>
+    <ul>
+      <li><strong>NKN:</strong> Peer-to-peer message routing between all nodes</li>
+      <li><strong>n8n:</strong> Drag-and-drop logic for automation flows</li>
+      <li><strong>Rust:</strong> Core command orchestrator and binary logic</li>
+      <li><strong>Tauri:</strong> Cross-platform GUI with native shell hooks</li>
+      <li><strong>Python:</strong> Scripts for file ops, sync jobs, and LLM tasks</li>
+    </ul>
+
+    <hr />
+
+    <h2>Use Case Example</h2>
+    <p>
+      A button in the GUI might trigger a NKN message to the server:
+    </p>
+    <pre><code>nkn.send("server.mcp", "ollama run mistral")</code></pre>
+    <p>
+      The server runs the LLM task and reports status back to the MCP, which then updates the GUI or calls a webhook to sync output to a render directory.
+    </p>
+
+    <hr />
+
+    <h2>New Utility: Arynwood Editor</h2>
+    <p>
+      I also deployed a custom HTML/Markdown editor at <a href="https://arynwood.com/editor">arynwood.com/editor</a>. This tool helps me draft posts like this one directly in the browser with full style preview, markdown-to-HTML toggle, and save/export support. It runs independently of my terminal but matches the vibe of the rest of the DevLog suite.
+    </p>
+
+    <hr />
+
+    <h2>Linux Terminal Cheatsheet</h2>
+    <p>
+      I created a simple notes file to document my most-used Linux and shell commands. You can find it on GitHub under:
+    </p>
+    <pre><code>main/notes/terminal</code></pre>
+    <p>
+      It's a live reference I’ll keep updating with shortcuts, syntax reminders, and obscure bash tricks.
+    </p>
+
+    <hr />
+    <p>— Lorelei Noble</p>
+    <p><a href="/blog">Return to DevLogs</a></p>
+  </body>
+</html>
