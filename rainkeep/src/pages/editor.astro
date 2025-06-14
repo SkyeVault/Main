@@ -1,0 +1,67 @@
+---
+const title = "Markdown Editor";
+import HamburgerNav from '../layouts/HamburgerNav.astro';
+---
+
+<HamburgerNav {title}>
+  <p class="prompt">&gt; Type in markdown and see the finished page</p>
+  <p class="excerpt">This is a live markdown editor</p>
+
+  <style>
+    .editor-container {
+      display: flex;
+      height: 80vh;
+      margin-top: 1rem;
+      border: 1px solid #444;
+    }
+    textarea, iframe {
+      width: 50%;
+      height: 100%;
+      border: none;
+      padding: 1rem;
+      box-sizing: border-box;
+      font-family: monospace;
+      font-size: 1rem;
+    }
+    textarea {
+      background: #1e1e1e;
+      color: #f8f8f2;
+      resize: none;
+    }
+    iframe {
+      background: #fff;
+    }
+  </style>
+
+  <div class="editor-container">
+    <textarea id="editor" placeholder="Write your markdown, code, or prompt here..."></textarea>
+    <iframe id="preview"></iframe>
+  </div>
+
+  <script is:inline>
+    function renderMarkdown(text) {
+      return text
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+        .replace(/`(.*?)`/gim, '<code>$1</code>')
+        .replace(/\n$/gim, '<br />');
+    }
+
+    const editor = document.getElementById('editor');
+    const preview = document.getElementById('preview');
+
+    editor.addEventListener('input', () => {
+      const content = renderMarkdown(editor.value);
+      preview.srcdoc = `
+        <html><body style="font-family: sans-serif; padding:1em;">
+        ${content}
+        </body></html>`;
+    });
+
+    editor.value = "# Welcome\\nType markdown here.";
+    editor.dispatchEvent(new Event('input'));
+  </script>
+</HamburgerNav>
