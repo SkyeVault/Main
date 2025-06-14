@@ -8,37 +8,73 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
   <p class="excerpt">This is a live markdown editor</p>
 
   <style>
-    .editor-container {
+    .tab-buttons {
       display: flex;
-      height: 80vh;
       margin-top: 1rem;
-      border: 1px solid #444;
+      background: #111;
+      border-bottom: 1px solid #444;
     }
-    textarea, iframe {
-      width: 50%;
-      height: 100%;
+    .tab-button {
+      flex: 1;
+      padding: 0.75rem;
+      text-align: center;
+      background: #111;
+      color: #ccc;
       border: none;
-      padding: 1rem;
-      box-sizing: border-box;
+      cursor: pointer;
       font-family: monospace;
       font-size: 1rem;
     }
-    textarea {
+    .tab-button.active {
+      background: #222;
+      color: #fff;
+      border-bottom: 2px solid #8f6ef7;
+    }
+    .tab-panel {
+      display: none;
+      height: 60vh;
+      width: 100%;
+    }
+    .tab-panel.active {
+      display: block;
+    }
+    #editorArea {
       background: #1e1e1e;
       color: #f8f8f2;
+      font-family: monospace;
+      padding: 1rem;
+      width: 100%;
+      height: 100%;
+      border: none;
       resize: none;
+      font-size: 1rem;
     }
-    iframe {
-      background: #fff;
+    #previewArea {
+      background: #111;
+      color: #eee;
+      padding: 1rem;
+      overflow-y: auto;
+      font-family: sans-serif;
     }
   </style>
 
-  <div class="editor-container">
-    <textarea id="editor" placeholder="Write your markdown, code, or prompt here..."></textarea>
-    <iframe id="preview"></iframe>
+  <div class="tab-buttons">
+    <button class="tab-button active" onclick="showTab('editor')">Editor</button>
+    <button class="tab-button" onclick="showTab('preview')">Preview</button>
+  </div>
+
+  <div id="editorTab" class="tab-panel active">
+    <textarea id="editorArea" placeholder="Write your markdown, code, or prompt here..."></textarea>
+  </div>
+
+  <div id="previewTab" class="tab-panel">
+    <div id="previewArea"></div>
   </div>
 
   <script is:inline>
+    const editor = document.getElementById('editorArea');
+    const preview = document.getElementById('previewArea');
+
     function renderMarkdown(text) {
       return text
         .replace(/^# (.*$)/gim, '<h1>$1</h1>')
@@ -47,21 +83,21 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
         .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/gim, '<em>$1</em>')
         .replace(/`(.*?)`/gim, '<code>$1</code>')
-        .replace(/\n$/gim, '<br />');
+        .replace(/\n/gim, '<br />');
     }
 
-    const editor = document.getElementById('editor');
-    const preview = document.getElementById('preview');
+    function showTab(tab) {
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
 
-    editor.addEventListener('input', () => {
-      const content = renderMarkdown(editor.value);
-      preview.srcdoc = `
-        <html><body style="font-family: sans-serif; padding:1em;">
-        ${content}
-        </body></html>`;
-    });
+      document.querySelector(`.tab-button[onclick*="${tab}"]`).classList.add('active');
+      document.getElementById(`${tab}Tab`).classList.add('active');
+
+      if (tab === 'preview') {
+        preview.innerHTML = renderMarkdown(editor.value);
+      }
+    }
 
     editor.value = "# Welcome\\nType markdown here.";
-    editor.dispatchEvent(new Event('input'));
   </script>
 </HamburgerNav>
