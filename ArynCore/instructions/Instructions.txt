@@ -1,0 +1,58 @@
+﻿These are the notes written (by human) Lorelei Noble
+The purpose of this document is to serve as an automatically updated instruction text for the LLM powered system, ArynCore.
+ArynCore is a personal automation hub for business, coding, development, web-building and solutions.
+At the center of this system is a local LLM that is currently operating under dockerfile.
+The command to start the LLM is 
+``` docker start -ai docker-ollama-1 `` then ```mistral ```
+I would like to begin the process of developing a graphic user interface which allows building a complete system which connects the mistral bot, stable diffusion, or other image editing and generation software.
+My current system is a Dell t3600 with a NVIDIA RTX 3060, and runs Ubuntu on a 2 tb SSD. Please remember this while approaching development solutions.  The entire system must be local and open source.  No paid services or virtual machines should be used for this project to meet privacy requirements.  The model must be able to connect to the internet but it must not store files on the cloud or anywhere acessible by a third party without authorization. 
+
+The system must be able to log and interpret previous chat history and conversations. 
+The system must be able to read and analyze images
+The system must be able to generate video, being careful not to tax the gpu.
+The system is capable of text to speech and speech to text.
+The system connects to n8n for automation.
+The primary goal of the system is to generate content for classes, social media posts, news, and educational resources. The model is good for code and programming languages.
+
+Goals:
+I would like to create GUI files. A front end manager for the back end software.
+I would like to connect mistral, stable diffusion, TTS, whisper, tortoise, and other open source software to create a fully functioning assistant. The backend of the software holds logs, 
+
+at ``` cd ~/dev/main/ArynCore ```
+```
+❯ ls
+config.sh  instructions  memory             prompts      send_image.sh  ui.sh
+engine.sh  interface     package-lock.json  run_chat.sh  src-tauri
+❯ -d -L 3 ~/dev/main/ArynCore
+zsh: command not found: -d
+❯ tree -d -L 3 ~/dev/main/ArynCore
+/home/lorebot/dev/main/ArynCore
+├── instructions
+├── interface
+│   ├── config
+│   ├── instructions
+│   ├── media
+│   ├── memory
+│   ├── public
+│   ├── src
+│   ├── ui
+│   │   ├── node_modules
+│   │   ├── public
+│   │   └── src
+│   └── workflows
+├── memory
+├── prompts
+└── src-tauri
+    ├── capabilities
+    ├── icons
+    ├── src
+    └── target
+        └── debug
+
+21 directories
+~/dev/main/ArynCore main !2 ?1 ❯ 
+```
+
+I would like to create a seamless chat window that is clear when Mistral is talking to me with code.  There is a code editor in the chat to make edits to all messages to create any code structure needed including markdown as a primate communication language.
+
+
