@@ -93,11 +93,34 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
 1. Numbered
 
 [Link](https://example.com)
-`Inline code`
-```
-code block
-```
+\`Inline code\`
+\`\`\`
+Code block
+\`\`\`
+
 > Blockquote
+    </pre>
+  </details>
+
+  <details class="cheatsheet">
+    <summary>HTML Cheatsheet</summary>
+    <pre>
+&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;p&gt;Paragraph text&lt;/p&gt;
+
+&lt;strong&gt;Bold&lt;/strong&gt; and &lt;em&gt;Italic&lt;/em&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;List item&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;a href="https://example.com"&gt;Link&lt;/a&gt;
+&lt;img src="image.jpg" alt="desc" /&gt;
+
+&lt;code&gt;Inline code&lt;/code&gt;
+&lt;pre&gt;
+  Code block
+&lt;/pre&gt;
     </pre>
   </details>
 
@@ -135,6 +158,7 @@ code block
         .replace(/\*(.*?)\*/gim, '<em>$1</em>')
         .replace(/~~(.*?)~~/gim, '<del>$1</del>')
         .replace(/`(.*?)`/gim, '<code>$1</code>')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank">$1</a>')
         .replace(/\n/gim, '<br />');
     }
 
