@@ -1,11 +1,11 @@
 ---
-const title = "Markdown Editor";
+const title = "Astro Editor – Markdown & HTML";
 import HamburgerNav from '../layouts/HamburgerNav.astro';
 ---
 
 <HamburgerNav {title}>
-  <p class="prompt">&gt; Type in markdown and see the finished page</p>
-  <p class="excerpt">This is a live markdown editor</p>
+  <p class="prompt">&gt; Switch between Markdown or HTML editing and preview your work</p>
+  <p class="excerpt">Write in either editor and see your result live</p>
 
   <style>
     .tab-buttons {
@@ -38,7 +38,7 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
     .tab-panel.active {
       display: block;
     }
-    #editorArea {
+    textarea {
       background: #1e1e1e;
       color: #f8f8f2;
       font-family: monospace;
@@ -55,16 +55,64 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
       padding: 1rem;
       overflow-y: auto;
       font-family: sans-serif;
+      height: 60vh;
+      width: 100%;
+    }
+
+    details.cheatsheet {
+      margin-top: 1rem;
+      background: #181818;
+      border: 1px solid #333;
+      padding: 1rem;
+      font-family: monospace;
+      color: #ccc;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #8f6ef7;
+    }
+
+    .cheatsheet pre {
+      margin-top: 0.5rem;
+      white-space: pre-wrap;
+      font-size: 0.95rem;
+      line-height: 1.4;
     }
   </style>
 
+  <details class="cheatsheet">
+    <summary>Markdown Cheatsheet</summary>
+    <pre>
+# Heading 1
+## Heading 2
+**Bold**, *Italic*, ~~Strikethrough~~
+
+- Bullet
+1. Numbered
+
+[Link](https://example.com)
+`Inline code`
+```
+code block
+```
+> Blockquote
+    </pre>
+  </details>
+
   <div class="tab-buttons">
-    <button class="tab-button active" onclick="showTab('editor')">Editor</button>
-    <button class="tab-button" onclick="showTab('preview')">Preview</button>
+    <button class="tab-button active" onclick="showEditor('markdown')">Markdown</button>
+    <button class="tab-button" onclick="showEditor('html')">HTML</button>
+    <button class="tab-button" onclick="showEditor('preview')">Preview</button>
   </div>
 
-  <div id="editorTab" class="tab-panel active">
-    <textarea id="editorArea" placeholder="Write your markdown, code, or prompt here..."></textarea>
+  <div id="markdownTab" class="tab-panel active">
+    <textarea id="markdownEditor" placeholder="Write Markdown here..."></textarea>
+  </div>
+
+  <div id="htmlTab" class="tab-panel">
+    <textarea id="htmlEditor" placeholder="Write raw HTML here..."></textarea>
   </div>
 
   <div id="previewTab" class="tab-panel">
@@ -72,8 +120,11 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
   </div>
 
   <script is:inline>
-    const editor = document.getElementById('editorArea');
-    const preview = document.getElementById('previewArea');
+    const markdownEditor = document.getElementById('markdownEditor');
+    const htmlEditor = document.getElementById('htmlEditor');
+    const previewArea = document.getElementById('previewArea');
+
+    let lastEdited = 'markdown';
 
     function renderMarkdown(text) {
       return text
@@ -82,11 +133,12 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
         .replace(/^### (.*$)/gim, '<h3>$1</h3>')
         .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+        .replace(/~~(.*?)~~/gim, '<del>$1</del>')
         .replace(/`(.*?)`/gim, '<code>$1</code>')
         .replace(/\n/gim, '<br />');
     }
 
-    function showTab(tab) {
+    function showEditor(tab) {
       document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
 
@@ -94,10 +146,30 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
       document.getElementById(`${tab}Tab`).classList.add('active');
 
       if (tab === 'preview') {
-        preview.innerHTML = renderMarkdown(editor.value);
+        if (lastEdited === 'markdown') {
+          previewArea.innerHTML = renderMarkdown(markdownEditor.value);
+        } else if (lastEdited === 'html') {
+          previewArea.innerHTML = htmlEditor.value;
+        }
       }
     }
 
-    editor.value = "# Welcome\\nType markdown here.";
+    markdownEditor.addEventListener('input', () => {
+      lastEdited = 'markdown';
+    });
+
+    htmlEditor.addEventListener('input', () => {
+      lastEdited = 'html';
+    });
+
+    markdownEditor.value = `# Welcome
+This is your **Markdown Editor**
+
+- Try writing headers
+- Lists
+- Code blocks
+
+[Click here](https://openai.com)
+`;
   </script>
 </HamburgerNav>
