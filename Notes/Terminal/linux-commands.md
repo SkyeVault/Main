@@ -62,6 +62,16 @@ sort file             # Sort lines
 uniq file             # Remove duplicates
 ```
 
+## Text Editing
+```
+nano filename            # Open or create a file with Nano
+nano +12 filename        # Open file at line 12
+nano -l filename         # Show line numbers
+CTRL + O                 # Save in Nano
+CTRL + X                 # Exit Nano
+CTRL + K / CTRL + U      # Cut / Uncut line
+```
+
 ## User Management
 
 ```bash
