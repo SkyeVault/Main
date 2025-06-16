@@ -172,7 +172,7 @@
 const client = new NKNClient({ identifier: 'server-node' });
 client.on('connect', () => console.log('Connected:', client.addr));
 client.on('message', (src, payload) => console.log(`From ${src}: ${payload}`));</code></pre>
-    <p>And another on LoreForge using <code>lore-node</code> as the identifier. Messaging works both ways — a small but powerful confirmation that my mesh is functional.</p>
+    <p>And another on LoreForge using <code>lore-node</code> as the identifier. Messaging works both ways , a small but powerful confirmation that my mesh is functional.</p>
 
     <hr />
 
@@ -182,7 +182,7 @@ client.on('message', (src, payload) => console.log(`From ${src}: ${payload}`));<
       <li><code>server.arynwood.com → 162.248.7.248</code></li>
       <li><code>n8n.arynwood.com → 162.248.7.248</code></li>
     </ul>
-    <p>This lets me separate services across named endpoints — a key step for readability and future cert renewals.</p>
+    <p>This lets me separate services across named endpoints , a key step for readability and future cert renewals.</p>
 
     <hr />
 
@@ -206,7 +206,7 @@ server {
   }
 }</code></pre>
 
-    <p>Ran <code>sudo certbot --nginx -d n8n.arynwood.com</code> and <code>server.arynwood.com</code> — everything passed.</p>
+    <p>Ran <code>sudo certbot --nginx -d n8n.arynwood.com</code> and <code>server.arynwood.com</code> , everything passed.</p>
 
     <hr />
 
@@ -229,7 +229,7 @@ server {
     <ul>
       <li>Test POST to <code>/webhook-test/mistral</code> worked as expected.</li>
       <li>Activated the workflow: production POST to <code>/webhook/mistral</code> returns success.</li>
-      <li>Visiting via browser (GET) gives a 404 — correct behavior.</li>
+      <li>Visiting via browser (GET) gives a 404 , correct behavior.</li>
     </ul>
 
     <pre><code>curl -X POST https://n8n.arynwood.com/webhook/mistral \
