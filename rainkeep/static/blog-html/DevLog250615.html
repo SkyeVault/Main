@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250616 – MCP & n8n Dashboard Setup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250616 – MCP & n8n Dashboard Setup</h1>
+    <span class="prompt">> Log Date: 250616</span>
+
+    <p class="excerpt">
+      My first test build of the MCP (Master Control Program) is live. It’s simple, raw, and local-first — but I officially have a working dashboard, secure routing, and NKN messaging between machines. The system is starting to form its own nervous system.
+    </p>
+
+    <p>
+      Today’s work pulled together several key parts of the sovereign stack: decentralized messaging, HTTPS routing, reverse proxies, and service aggregation through a dashboard. While this is still foundational, it sets the tone for the kind of command center I want — fast, private, modular.
+    </p>
+
+    <hr />
+
+    <h2>NKN Mesh Messaging</h2>
+    <p>I installed <code>nkn-client</code> and created a lightweight listener on both nodes. One on the server:</p>
+    <pre><code>const NKNClient = require('nkn-client');
+const client = new NKNClient({ identifier: 'server-node' });
+client.on('connect', () => console.log('Connected:', client.addr));
+client.on('message', (src, payload) => console.log(`From ${src}: ${payload}`));</code></pre>
+    <p>And another on LoreForge using <code>lore-node</code> as the identifier. Messaging works both ways — a small but powerful confirmation that my mesh is functional.</p>
+
+    <hr />
+
+    <h2>DNS + Subdomain Routing</h2>
+    <p>Configured the following A records on Netlify:</p>
+    <ul>
+      <li><code>server.arynwood.com → 162.248.7.248</code></li>
+      <li><code>n8n.arynwood.com → 162.248.7.248</code></li>
+    </ul>
+    <p>This lets me separate services across named endpoints — a key step for readability and future cert renewals.</p>
+
+    <hr />
+
+    <h2>NGINX Reverse Proxy + Certbot HTTPS</h2>
+    <p>I installed NGINX and configured reverse proxies for both the base dashboard and n8n. Then I used Certbot to issue Let's Encrypt SSL certificates.</p>
+
+    <pre><code># Example config for n8n reverse proxy
+server {
+  listen 80;
+  server_name n8n.arynwood.com;
+
+  location / {
+    proxy_pass http://localhost:5678;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+}</code></pre>
+
+    <p>Ran <code>sudo certbot --nginx -d n8n.arynwood.com</code> and <code>server.arynwood.com</code> — everything passed.</p>
+
+    <hr />
+
+    <h2>MCP Dashboard v0.1</h2>
+    <p>Here’s the barebones HTML index served at <code>/var/www/html/index.html</code>:</p>
+    <pre><code>&lt;h1&gt;Arynwood MCP Dashboard&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://n8n.arynwood.com"&gt;n8n Workflows&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://ollama.arynwood.com"&gt;Ollama LLM&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/whisper-ui"&gt;Whisper Transcriber&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/forge"&gt;LoreForge GPU Panel&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/bots"&gt;MCP Bots&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+    <p>I kept it simple on purpose — future versions will include dynamic routing and authentication.</p>
+
+    <hr />
+
+    <h2>Webhook Test with n8n</h2>
+    <p>I wired a test workflow with a Webhook node pointing to <code>/mistral</code>:</p>
+    <ul>
+      <li>Test POST to <code>/webhook-test/mistral</code> worked as expected.</li>
+      <li>Activated the workflow: production POST to <code>/webhook/mistral</code> returns success.</li>
+      <li>Visiting via browser (GET) gives a 404 — correct behavior.</li>
+    </ul>
+
+    <pre><code>curl -X POST https://n8n.arynwood.com/webhook/mistral \
+  -H "Content-Type: application/json" \
+  -d '{"prompt":"Your prompt here"}'</code></pre>
+
+    <hr />
+
+    <h2>Reflection</h2>
+    <p>At this stage, it's not about polish — it's about wiring the right neurons. This setup proves the basic infrastructure works: secure routing, message transport, service orchestration. The MCP is still embryonic, but it’s alive.</p>
+
+    <p>Next up: integrating Ollama directly into workflows, building auth around dashboards, and giving this system a face.</p>
+
+    <p>— Lorelei Noble</p>
+    <p><a href="/blog">↩ Back to DevLogs</a></p>
+
+    <hr />
+  </body>
+</html>
