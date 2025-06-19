@@ -1,0 +1,260 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250618 – MCP Diagnostics with Grafana & Prometheus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250618 – MCP Diagnostics with Grafana & Prometheus</h1>
+    <span class="prompt">> Log Date: 250618</span>
+    <p class="excerpt">
+      This week I worked on building a real-time diagnostics panel using Prometheus and Grafana to visualize CPU, GPU, memory, and disk health across my MCP network.
+    </p>
+
+    <p>
+      I spent the past couple of days stitching together the core observability stack of my MCP project. Prometheus is set up and scraping system metrics. Grafana dashboards are working and beautiful—but I’m hung up on the next step: embedding those dashboards directly into my UI via iframe. It’s a small wall but one I’ll climb.
+    </p>
+
+    <hr />
+
+    <h2>How Grafana and Prometheus Work Together</h2>
+    <p>
+      Prometheus is a time-series database that scrapes metrics from exporters—like <code>node-exporter</code> for CPU and memory, or <code>dcgm-exporter</code> for NVIDIA GPU stats. These metrics are then visualized through Grafana, which acts as the front-end brain of the entire monitoring system.
+    </p>
+    <p>
+      A basic Prometheus configuration file looks like this:
+    </p>
+
+    <pre><code>global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'node'
+    static_configs:
+      - targets: ['forge-node-exporter:9100']
+
+  - job_name: 'gpu'
+    static_configs:
+      - targets: ['dcgm-exporter:9400']</code></pre>
+
+    <p>
+      The file is mounted inside the Prometheus container:
+    </p>
+
+    <pre><code>volumes:
+  - ./prometheus.yml:/etc/prometheus/prometheus.yml</code></pre>
+
+    <p>
+      Once up and running, Prometheus listens on port 9090. You can hit <code>localhost:9090</code> and explore live metrics at <code>/metrics</code> or test targets in the <code>/targets</code> tab.
+    </p>
+
+    <hr />
+
+    <h2>Grafana Dashboards and Embedding Issue</h2>
+    <p>
+      Grafana is running and I’ve built out a dashboard for:
+      <ul>
+        <li>CPU usage</li>
+        <li>RAM</li>
+        <li>Disk read/write</li>
+        <li>GPU load & temperature</li>
+      </ul>
+      However, embedding these in an iframe for my UI panel is still tripping me up due to authorization headers and security policy on modern browsers. It might require Grafana API keys or rewriting CSP headers through a reverse proxy.
+    </p>
+
+    <hr />
+
+    <h2>MCP Diagnostic Panel Plans</h2>
+    <p>
+      My next step is building a full diagnostic UI that will monitor:
+    </p>
+    <ul>
+      <li>Server CPU, GPU, memory</li>
+      <li>Home machine performance and disk I/O</li>
+      <li>Container health and logs</li>
+      <li>Event triggers to n8n</li>
+    </ul>
+    <p>
+      I’ll unify this with a Python script that stitches together live feeds from 8 LLM bots, each with their own role. It’ll act like a systems crew—talking, checking logs, responding to performance changes.
+    </p>
+
+    <hr />
+
+    <h2>File Structure Snapshot</h2>
+    <pre><code>/forge/docker/monitoring/prometheus/
+├── docker-compose.yml
+├── prometheus.yml
+└── dashboards/
+    └── system-health.json</code></pre>
+
+    <p>
+      All services are running in Docker. Each container logs to a volume or pipe, and I’m scripting auto-healing logic for anything that crashes. It’s early, but it’s forming the backbone of my local-first command center.
+    </p>
+
+    <hr />
+
+    <h2>Next Steps</h2>
+    <ul>
+      <li>Fix iframe embedding of Grafana dashboards</li>
+      <li>Set up n8n workflows triggered by system metrics</li>
+      <li>Finish full UI layout for MCP overview panel</li>
+      <li>Link in container watchdog for uptime & resource leaks</li>
+    </ul>
+
+    <p>
+      This stack is what I’ll eventually run across multiple machines. It's minimal, sharp, and entirely sovereign.
+    </p>
+
+    <p>— Lorelei Noble</p>
+    <p><a href="/blog">&larr; Back to DevLogs</a></p>
+  </body>
+</html>
