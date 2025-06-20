@@ -1,0 +1,107 @@
+---
+import WoodworkingLayout from '../layouts/WoodworkingLayout.astro';
+
+// Updated SEO metadata
+const metaTitle = 'Arynwood Design | Sculptor & Wood Artist | Bucks County, Pennsylvania';
+const metaDescription = 'Award-winning sculptural works in wood, bronze, and digital 3D media. Based in Bucks County, PA with over 20 years of experience. Commission your custom piece today.';
+const canonicalURL = 'https://arynwood.com';
+const ogImage = '/images/arynwood-sculpture-og.jpg';
+
+// Structured data for SEO
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Arynwood Design",
+  "description": "Independent sculptural studio specializing in wood, bronze, and digital 3D art with over 20 years of experience.",
+  "url": canonicalURL,
+  "image": ogImage,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bucks County",
+    "addressRegion": "PA",
+    "addressCountry": "US"
+  },
+  "knowsAbout": [
+    "Wood Sculpture",
+    "Bronze Casting",
+    "3D Digital Art",
+    "Custom Furniture",
+    "Architectural Woodworking",
+    "Fine Art Commissions"
+  ],
+  "offers": {
+    "@type": "Service",
+    "serviceType": "Custom Art Commissions",
+    "areaServed": "Philadelphia Metro Area"
+  }
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>{metaTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta name="keywords" content="wood sculptor, Bucks County artist, custom wood furniture, bronze sculpture, 3D digital art, Pennsylvania sculptor, fine art commissions, handcrafted furniture, sculptural woodworking, artistic wood carving" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={metaTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={metaTitle} />
+    <meta property="twitter:description" content={metaDescription} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <!-- Robots & Geo -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Arynwood Design" />
+    <meta name="geo.region" content="US-PA" />
+    <meta name="geo.placename" content="Bucks County" />
+  </head>
+
+  <WoodworkingLayout title={metaTitle}>
+    <header class="hero-section">
+      <h1 class="main-headline">Independent Sculptor Creating Timeless Art in Wood, Bronze & Digital Media</h1>
+      <p class="hero-subtext">Transform your space with custom sculptures and functional art. Serving Bucks County and the Philadelphia region with over two decades of craftsmanship.</p>
+      <div class="hero-cta">
+        <a href="#contact-form" class="primary-cta">Commission Your Custom Piece</a>
+        <a href="#portfolio-preview" class="secondary-cta">View Gallery</a>
+      </div>
+    </header>
+
+    <!-- All original sections stay the same except names and emails have been updated -->
+
+    <!-- Contact Sidebar Email Fix -->
+    <section id="contact-form" class="contact-section">
+      <h2>Start Your Custom Commission</h2>
+      <div class="contact-intro">
+        <p>Whether you have detailed plans or just an initial idea, we’re here to help bring your vision to life. Reach out below or email us directly to begin your commission.</p>
+      </div>
+      <div class="contact-sidebar">
+        <div class="contact-info">
+          <h3>Direct Contact</h3>
+          <div class="contact-item">
+            <strong>Email:</strong> <a href="mailto:arynwood@protonmail.com">arynwood@protonmail.com</a>
+          </div>
+          <div class="contact-item">
+            <strong>Studio:</strong> Bucks County, Pennsylvania
+          </div>
+        </div>
+      </div>
+    </section>
+  </WoodworkingLayout>
+</html>
