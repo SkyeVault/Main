@@ -44,7 +44,7 @@
         },
         "targets": [
           {
-            "expr": "100 * (1 - avg(rate(node_cpu_seconds_total{mode=\"idle\"}[1m])))",
+            "expr": "100 * (1 - avg(rate(node_cpu_seconds_total{instance=\"162.248.7.248:9100\", mode=\"idle\"}[1m])))",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -96,7 +96,7 @@
         },
         "targets": [
           {
-            "expr": "(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / 1024 / 1024 / 1024",
+            "expr": "(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / 1024 / 1024 / 1024{instance=\"162.248.7.248:9100\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -148,7 +148,7 @@
         },
         "targets": [
           {
-            "expr": "100 * (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes))",
+            "expr": "100 * (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)){instance=\"162.248.7.248:9100\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -199,7 +199,7 @@
         },
         "targets": [
           {
-            "expr": "100 * (node_filesystem_size_bytes{fstype!~\"tmpfs|overlay\"} - node_filesystem_free_bytes{fstype!~\"tmpfs|overlay\"}) / node_filesystem_size_bytes{fstype!~\"tmpfs|overlay\"}",
+            "expr": "100 * (node_filesystem_size_bytes{instance=\"162.248.7.248:9100\", fstype!~\"tmpfs|overlay\"} - node_filesystem_free_bytes{fstype!~\"tmpfs|overlay\"}) / node_filesystem_size_bytes{fstype!~\"tmpfs|overlay\"}",
             "legendFormat": "{{mountpoint}}",
             "refId": "A"
           }
@@ -245,7 +245,7 @@
         },
         "targets": [
           {
-            "expr": "node_load1",
+            "expr": "node_load1{instance=\"162.248.7.248:9100\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -297,7 +297,7 @@
         },
         "targets": [
           {
-            "expr": "rate(node_network_receive_bytes_total[1m])",
+            "expr": "rate(node_network_receive_bytes_total[1m]){instance=\"162.248.7.248:9100\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -349,7 +349,7 @@
         },
         "targets": [
           {
-            "expr": "rate(node_network_transmit_bytes_total[1m])",
+            "expr": "rate(node_network_transmit_bytes_total[1m]){instance=\"162.248.7.248:9100\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -401,7 +401,7 @@
         },
         "targets": [
           {
-            "expr": "time() - node_boot_time_seconds",
+            "expr": "time() - node_boot_time_seconds{instance=\"162.248.7.248:9100\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
