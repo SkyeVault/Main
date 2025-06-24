@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250623 SadTalker + MCP Persona Update</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250623 SadTalker + MCP Persona Update</h1>
+    <span class="prompt">> Log Date: 2025-06-23</span>
+    <p class="excerpt">
+      The focus this week was tight and productive: getting SadTalker integrated with the GPU watch pipeline and updating the persona system within the MCP architecture. These updates push the system toward more expressive multi-agent responses.
+    </p>
+
+    <p>
+      I finalized the folder structure and moved all animated render output into a dedicated flow. SadTalker now listens for both image and voice input, generates animated heads, and drops video output into the appropriate directory. I also formalized the personalities within the MCP via a clear <code>persona_map.json</code> config.
+    </p>
+
+    <hr />
+
+    <h2> SadTalker Setup Highlights</h2>
+    <ul>
+      <li>Cloned SadTalker into <code>models/sad-talker</code></li>
+      <li>Installed torch and torchaudio (GPU support enabled)</li>
+      <li>Wrote <code>run_sadtalker.py</code> to trigger video generation from source</li>
+      <li>Built a watchdog to detect image drops in <code>stable_input/</code> and pair with <code>audio_input/voice.wav</code></li>
+      <li>All video output drops into <code>stable_output/sadtalker/</code></li>
+    </ul>
+
+    <hr />
+
+    <h2> Folder Structure Overview</h2>
+    <pre><code>models/sad-talker/
+scripts/run_sadtalker.py
+scripts/sadtalker_watch.py
+
+triggers/gpu_watch/
+├── stable_input/
+├── audio_input/
+└── stable_output/
+    └── sadtalker/</code></pre>
+
+    <hr />
+
+    <h3>persona_map.json</h3>
+    <p>Updated to reflect distinct roles and script paths for each bot:</p>
+    <pre><code>{
+  "central": {"name": "Aryn", "role": "MCP Interface and Coordinator", "personality": "Friendly, energetic, helpful"},
+  "doc": {"name": "Doc", "role": "Technical Architect", "personality": "Doctoral, structured, calm"},
+  "kona": {"name": "Kona", "role": "Creative AI Assistant", "personality": "Warm, intuitive, artistic"},
+  "glyph": {"name": "Glyph", "role": "Automation & Data", "personality": "Efficient, task-focused"},
+  "estra": {"name": "Estra", "role": "Writer & Editor", "personality": "Dark humor, concise"},
+  "sad-talker": {
+    "enabled": true,
+    "script": "scripts/run_sadtalker.py",
+    "description": "Generate motion video from image/audio"
+  }
+}</code></pre>
+
+    <hr />
+
+    <h2>🛠️ Run the SadTalker Workflow</h2>
+    <ol>
+      <li>Drop a <code>.png</code> into <code>stable_input/</code></li>
+      <li>Ensure <code>voice.wav</code> is present in <code>audio_input/</code></li>
+      <li>Run the script:</li>
+    </ol>
+
+    <pre><code>python scripts/sadtalker_watch.py</code></pre>
+
+    <p>Video will appear in <code>stable_output/sadtalker/</code></p>
+
+    <hr />
+
+    <h2>Next Tasks</h2>
+    <ul>
+      <li> Finalize model checkpoint downloads</li>
+      <li> Git add, commit, and push from both nodes</li>
+      <li>[ ] Add auto-audio trigger for standalone voice generation</li>
+      <li>[ ] Add basic log output (filename, status)</li>
+      <li>[ ] Wire to n8n for post-process flow or Telegram share</li>
+    </ul>
+
+    <hr />
+
+    <p>
+      GitHub repo: <a href="https://github.com/skyevault/aryncore-mcp">skyevault/aryncore-mcp</a>
+    </p>
+
+    <hr />
+
+    <p>Signed,<br />
+    Lorelei Noble</p>
+    <p><a href="/blog">Back to DevLogs</a></p>
+
+    <hr />
+  </body>
+</html>
