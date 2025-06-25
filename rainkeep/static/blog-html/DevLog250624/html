@@ -1,0 +1,222 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250624 MCP Status Update with Automatic1111 & Ollama Serve</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+      .menu-box.show {
+        display: block;
+      }
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250624 MCP Status Update with Automatic1111 & Ollama Serve</h1>
+    <span class="prompt">> Log Date: 2025-06-25</span>
+    <p class="excerpt">
+      Spent today advancing the MCP infrastructure by installing Automatic1111, confirming Ollama model access, and refining persona response behavior with Estra.
+    </p>
+
+    <p>
+      I made strong forward movement today on the MCP stack. A new repo for <code>aryncore-mcp</code> has been established to contain modular tools, handler scripts, and persona logic. This repo is now the backbone for my orchestrated LLM system. Ollama is functioning, models are available, and Stable Diffusion via Automatic1111 is in progress.
+    </p>
+
+    <hr />
+
+    <h2>Ollama Serve + Persona Orchestration</h2>
+    <p>
+      Ran the main entrypoint:
+    </p>
+    <pre><code>python3 -m backend.mcp_orchestrator</code></pre>
+    <p>
+      Confirmed Ollama is running and listening at <code><local ip>:11434</code>. Queried models using:
+    </p>
+    <pre><code>curl http://localhost:11434/api/tags</code></pre>
+    <p>
+      Models available include <code>mistral</code>, <code>llama3:8b-instruct</code>, and <code>codellama</code>. Received LLM error during persona interaction due to a transient connection issue. Verified it was not firewall-related (UFW inactive).
+    </p>
+
+    <hr />
+
+    <h2>SSH and Port Forwarding</h2>
+    <p>
+      Attempted to forward Ollama’s port over SSH:
+    </p>
+    <pre><code>ssh -L 11434:localhost:11434 user@remote</code></pre>
+    <p>
+      Port already in use locally. Confirmed status:
+    </p>
+    <pre><code>ss -tuln | grep 11434</code></pre>
+
+    <hr />
+
+    <h2>Estra Persona Enhancement</h2>
+    <p>
+      Estra now prompts the user with a mission-oriented questionnaire. Planning to introduce a persistent memory prefix for each response. Will prototype using hardcoded headers, then migrate to a dynamic prefix injection per LLM response.
+    </p>
+
+    <hr />
+
+    <h2>Automatic1111 Stable Diffusion Setup</h2>
+    <p>
+      No previous installation found. Followed setup instructions:
+    </p>
+    <pre><code>
+sudo apt install wget git python3 python3-venv libgl1 libglib2.0-0
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
+cd stable-diffusion-webui
+mkdir -p models/Stable-diffusion/
+bash webui.sh
+    </code></pre>
+    <p>
+      For LAN access, use:
+    </p>
+    <pre><code>COMMANDLINE_ARGS="--listen" bash webui.sh</code></pre>
+
+    <hr />
+
+    <h2>Next Actions</h2>
+    <ul>
+      <li>Link Automatic1111 to image-gen workflow inside persona handler.</li>
+      <li>Set up a persistent prefix injection system for Estra.</li>
+      <li>Create systemd service to launch Automatic1111 on boot.</li>
+      <li>Extend MCP's dashboard to reflect active Ollama and image-gen nodes.</li>
+    </ul>
+
+    <hr />
+
+    <p>
+      Repository: <a href="https://github.com/skyevault/aryncore-mcp">skyevault/aryncore-mcp</a>
+    </p>
+
+    <p class="prompt">> Written and deployed by Lorelei Noble</p>
+    <p><a href="/blog">Back to DevLogs</a></p>
+
+    <hr />
+  </body>
+</html>
