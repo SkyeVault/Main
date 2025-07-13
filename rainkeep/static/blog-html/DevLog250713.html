@@ -1,0 +1,225 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250713 – Ubuntu Rebuild & MCP Toolchain Checkpoint</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250713 – Ubuntu Rebuild & MCP Toolchain Checkpoint</h1>
+    <span class="prompt">> Log Date: 2025-07-13</span>
+    <p class="excerpt">
+      After a deep partition cleanup, I’ve rebuilt my environment from scratch with a fresh Ubuntu 22 install, new disk structure, and clean installs of all core tools under the Aryncore MCP project.
+    </p>
+
+    <p>
+      The last few weeks were spent reclaiming a new hard drive after partition corruption. I reformatted, reinstalled Ubuntu 22.04, and built back up my full toolchain from zero. All core agents are now checkpointed by a single script: <code>250705start.sh</code> located in <code>scripts/</code> of the <a href="https://github.com/skyevault/aryncore-mcp">aryncore-mcp repo</a>. This devlog marks the first successful checkpoint since the rebuild.  In the process of cleaning out my hard drive, I also lost access to the email login at arynwood@protonmail.com, so i will share a new email address soon.
+
+
+    </p>
+
+    <hr />
+
+    <h2>Toolchain Validation Script</h2>
+    <p>
+      The checkpoint script validates and optionally launches the following components:
+    </p>
+
+    <ul>
+      <li><strong>Ollama</strong>: confirmed live with multiple models loaded</li>
+      <li><strong>A1111 (Stable Diffusion WebUI)</strong>: running in Docker on port 7860</li>
+      <li><strong>Whisper</strong>: detects local venv, reports missing installs</li>
+      <li><strong>Tortoise TTS</strong>: validates directory presence</li>
+      <li><strong>SadTalker</strong>: test run attempted, failed due to missing <code>librosa</code></li>
+      <li><strong>Chatterbox</strong>: not installed yet</li>
+      <li><strong>AnimateDiff</strong>: import test successful</li>
+    </ul>
+
+    <pre><code>./scripts/250705start.sh</code></pre>
+
+    <hr />
+
+    <h3>Screenshot: Toolchain Check Output</h3>
+    <img src="/static/uploads/250713_toolchain_status.png" alt="Toolchain Check Screenshot" style="max-width:100%;" />
+
+    <hr />
+
+    <h2>Next Steps</h2>
+    <p>
+      From here, I’m shifting toward building the actual user interface. This will be a web UI served from the Forge that lets me:
+    </p>
+
+    <ul>
+      <li>Talk to agents (LLMs, tools, personas)</li>
+      <li>Trigger n8n automations across systems</li>
+      <li>Queue video/audio/text transformations</li>
+      <li>Checkpoint and monitor GPU loads</li>
+    </ul>
+
+    <p>
+      This work will expand into multi-agent chatroom logic with command bindings to Docker, TTS, Stable Diffusion, and animation tools. Prometheus will be hooked into the same UI for observability.
+    </p>
+
+    <hr />
+
+    <p>
+      All systems green except for a missing Python dependency in SadTalker. One line fix:
+    </p>
+
+    <pre><code>pip install librosa</code></pre>
+
+    <hr />
+
+    <p>Signed,<br />Lorelei Noble</p>
+    <p><a href="/blog">← Back to DevLogs</a></p>
+
+  </body>
+</html>
