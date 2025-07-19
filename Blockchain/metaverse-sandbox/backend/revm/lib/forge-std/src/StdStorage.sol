@@ -427,47 +427,4 @@ library stdStorage {
                         vm.toString(maxVal)
                     )
                 )
-            );
-        }
-        bytes32 curVal = vm.load(who, bytes32(data.slot));
-        bytes32 valToSet = stdStorageSafe.getUpdatedSlotValue(curVal, uint256(set), data.offsetLeft, data.offsetRight);
-
-        vm.store(who, bytes32(data.slot), valToSet);
-
-        (bool success, bytes32 callResult) = stdStorageSafe.callTarget(self);
-
-        if (!success || callResult != set) {
-            vm.store(who, bytes32(data.slot), curVal);
-            revert("stdStorage find(StdStorage): Failed to write value.");
-        }
-        clear(self);
-    }
-
-    function read_bytes32(StdStorage storage self) internal returns (bytes32) {
-        return stdStorageSafe.read_bytes32(self);
-    }
-
-    function read_bool(StdStorage storage self) internal returns (bool) {
-        return stdStorageSafe.read_bool(self);
-    }
-
-    function read_address(StdStorage storage self) internal returns (address) {
-        return stdStorageSafe.read_address(self);
-    }
-
-    function read_uint(StdStorage storage self) internal returns (uint256) {
-        return stdStorageSafe.read_uint(self);
-    }
-
-    function read_int(StdStorage storage self) internal returns (int256) {
-        return stdStorageSafe.read_int(self);
-    }
-
-    function parent(StdStorage storage self) internal returns (uint256, bytes32) {
-        return stdStorageSafe.parent(self);
-    }
-
-    function root(StdStorage storage self) internal returns (uint256) {
-        return stdStorageSafe.root(self);
-    }
-}
+           
