@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>DevLog 250722 — Full System + Git Remote Fix</title>
+    <title>DevLog 250722 — Nomachine Kitchen Table Workstation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       :root {
@@ -14,113 +15,95 @@
         --border: #2e254e;
         --note: #888;
       }
-
-```
-  body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: 'Courier New', monospace;
-    padding: 2rem;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-
-  h1 {
-    color: var(--accent);
-    text-shadow: 0 0 2px var(--accent);
-    margin-top: 4rem;
-  }
-
-  h2, h3 {
-    color: var(--accent);
-    text-shadow: 1px 1px 0 var(--border);
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  a {
-    color: var(--link);
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: var(--hover);
-    text-decoration: underline;
-  }
-
-  pre {
-    background-color: var(--box);
-    padding: 1rem;
-    overflow-x: auto;
-    border-left: 3px solid var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  code {
-    font-family: 'Courier New', monospace;
-    color: var(--text);
-  }
-
-  .prompt {
-    color: var(--note);
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 1rem;
-  }
-
-  .menu-toggle {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    background: var(--box);
-    border: 1px solid var(--border);
-    color: var(--link);
-    font-size: 1rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    cursor: pointer;
-    z-index: 1001;
-  }
-
-  .menu-box {
-    display: none;
-    position: absolute;
-    top: 3.5rem;
-    left: 1rem;
-    background: var(--box);
-    border: 1px solid var(--border);
-    padding: 1rem;
-    z-index: 1000;
-    box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
-  }
-
-  .menu-box.show {
-    display: block;
-  }
-
-  .menu-box ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .menu-box li {
-    margin-bottom: 0.75rem;
-  }
-
-  .menu-box a {
-    color: var(--link);
-    text-decoration: none;
-  }
-
-  .menu-box a:hover {
-    color: var(--hover);
-    text-decoration: underline;
-  }
-</style>
-```
-
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+      .menu-box.show {
+        display: block;
+      }
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
   </head>
 
   <body>
@@ -139,103 +122,83 @@
         <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
       </ul>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
 
-```
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('menuToggle');
-    const box = document.getElementById('menuBox');
+    <h1>DevLog 250722 — Nomachine Kitchen Table Workstation</h1>
+    <span class="prompt">> Log Date: 2025-07-22</span>
+    <p class="excerpt">
+      After rebuilding my MCP system from scratch, I now have a GPU-powered workstation accessible from the kitchen table thanks to Nomachine, turning everyday downtime into development time.
+    </p>
 
-    toggle.addEventListener('click', () => {
-      box.classList.toggle('show');
-    });
+    <p>
+      After recovering from a full system crash, I reinstalled everything from the ground up. I used this as a chance to clean house—fresh Ubuntu 24.04, streamlined tool folders, and a better remote workflow. I can now control my GPU workstation from the kitchen using Nomachine, which lets me work on Blender scenes or test code from my MacBook or iPad.
+    </p>
 
-    document.addEventListener('click', (e) => {
-      if (!box.contains(e.target) && e.target !== toggle) {
-        box.classList.remove('show');
-      }
-    });
-  });
-</script>
+    <h2>Nomachine Success After Remote Woes</h2>
+    <p>
+      I tried Sunshine and Moonlight first, but ran into compatibility problems with macOS 12 and inconsistent behavior from other third-party tools. Nomachine solved that immediately—it offers a full remote desktop, hardware acceleration, and file sharing. Latency is low enough to sculpt in Blender with my iPad + Apple Pencil.
+    </p>
 
-<h1>DevLog 250722 — Full System + Git Remote Fix</h1>
-<span class="prompt">&gt; Log Date: 2025-07-22</span>
-<p class="excerpt">
-  What seemed like a slow month turned into a foundational shift in how I work—thanks to a rebuilt system, Nomachine setup, and Git remote hygiene.
-</p>
+    <p>
+      I installed the Nomachine server on Ubuntu and connected via the app from macOS and iOS. I set up a static LAN IP and opened port 4000. The connection was smooth, and now my devices all tie into the same 3D printing and animation workstation.
+    </p>
 
-<p>
-  Today’s work was about restoring access and rebuilding smarter. I reinstalled everything after a crash, and instead of just recovering, I upgraded: a fresh Ubuntu 24 setup, clean start script, and multi-device control over my GPU workstation.
-</p>
+    <h2>System Rebuild: Ubuntu 24 + Dev Tools</h2>
+    <pre><code># Ubuntu 24.04 fresh install
+# NVIDIA drivers (535) reinstalled
+# Ollama, Whisper, A1111, Tortoise TTS, SadTalker restored
+# Nomachine server + clients configured
+# aryncore-mcp/scripts/250705start.sh updated
+    </code></pre>
 
-<h2>Nomachine Workstation from the Kitchen Table</h2>
-<p>
-  I can now remote into my tower from the kitchen using Nomachine. Moonlight failed due to macOS 12 incompatibility. Nomachine succeeded where others didn't, enabling access from both my MacBook and iPad. Blender sculpting with an Apple Pencil is now in scope.
-</p>
-
-<h2>System Rebuild Summary</h2>
-<pre><code># Fresh install of Ubuntu 24.04
-```
-
-# Installed GPU drivers (NVIDIA 535)
-
-# Reinstalled Ollama, Whisper, A1111, SadTalker, Tortoise TTS
-
-# Refactored start script at aryncore-mcp/scripts/250705start.sh
-
-# Installed Nomachine server
-
-# Enabled access from iPad and MacBook
-
-```
-</code></pre>
-
-<h2>Git Push + Submodule Fix</h2>
-<p>
-  I ran into a broken submodule error from Netlify due to an old reference to <code>stable-diffusion-v1</code>. I removed it, cleaned up <code>.gitmodules</code>, and committed the changes.
-</p>
-
-<pre><code>git rm --cached ArynCore/docker/stable-diffusion/stable-diffusion-v1
-```
-
+    <h2>Git Submodule Crash Fix</h2>
+    <p>
+      My Netlify build was failing due to a broken submodule path:
+    </p>
+    <pre><code>fatal: No url found for submodule path 'ArynCore/docker/stable-diffusion/stable-diffusion-v1'</code></pre>
+    <p>
+      I removed the faulty submodule, cleaned the repo, and committed the change:
+    </p>
+    <pre><code>
+git rm -f ArynCore/docker/stable-diffusion/stable-diffusion-v1
 rm -rf .git/modules/ArynCore/docker/stable-diffusion/stable-diffusion-v1
-rm .gitmodules </code></pre>
+git commit -am "Remove broken submodule"
+git push origin main
+    </code></pre>
 
-```
-<p>Pushed back to GitHub. Netlify builds now pass.</p>
+    <h2>GitHub Remote URL Updated</h2>
+    <p>
+      GitHub moved my repository to a capitalized path. I updated the remote to prevent future warnings:
+    </p>
+    <pre><code>git remote set-url origin https://github.com/SkyeVault/Main.git</code></pre>
+    <p>Then confirmed it:</p>
+    <pre><code>
+git remote -v
+origin  https://github.com/SkyeVault/Main.git (fetch)
+origin  https://github.com/SkyeVault/Main.git (push)
+    </code></pre>
 
-<h2>Check Git Remote URL</h2>
-<p>
-  GitHub notified me that the repository location changed. To stop the redirect warnings, I updated the origin:
-</p>
+    <hr />
 
-<pre><code>git remote set-url origin https://github.com/SkyeVault/Main.git
-```
+    <p>
+      With my system restored and Nomachine in place, I’m now operating the MCP and Blender workflows from the kitchen table—an unassuming but powerful evolution in my day-to-day development rhythm.
+    </p>
 
-</code></pre>
-
-```
-<p>Verified with:</p>
-
-<pre><code>git remote -v
-```
-
-</code></pre>
-
-```
-<p>Expected output:</p>
-<pre><code>origin  https://github.com/SkyeVault/Main.git (fetch)
-```
-
-origin  [https://github.com/SkyeVault/Main.git](https://github.com/SkyeVault/Main.git) (push) </code></pre>
-
-```
-<p>
-  That completes the cleanup. All repos point to the right place. Everything compiles. Blender is ready. This was a deep sync day.
-</p>
-
-<p>Signed, <br /> Lorelei Noble</p>
-```
-
+    <p>Signed, <br /> Lorelei Noble</p>
+    <p><a href="/blog">Back to DevLogs</a></p>
+    <hr />
   </body>
 </html>
