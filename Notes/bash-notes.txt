@@ -1,0 +1,87 @@
+
+==============================
+🐧 Bash & Shell Scripting Cheat Sheet
+==============================
+
+🔢 File Descriptors
+-------------------
+0 = stdin   (keyboard/input)
+1 = stdout  (screen/output)
+2 = stderr  (error messages)
+
+🔁 Redirection
+--------------
+command > file        # Redirect stdout (overwrite)
+command 1> file       # Same as above
+command >> file       # Append stdout
+command 2> file       # Redirect stderr
+command > file 2>&1   # Redirect both stdout and stderr to file
+command 2>&1 > file   # Careful: order matters
+
+/dev/stdin            # Virtual file for stdin
+/dev/stdout           # Virtual file for stdout
+/dev/stderr           # Virtual file for stderr
+
+🧱 Compound Commands
+---------------------
+cmd1 | cmd2           # Pipe output to next command
+(cmd)                 # Run in subshell
+cmd1 && cmd2          # Run cmd2 ONLY if cmd1 succeeds
+cmd1 || cmd2          # Run cmd2 ONLY if cmd1 fails
+cmd1 ; cmd2           # Run both regardless
+
+📤 Special Characters
+---------------------
+{}     # Brace expansion / lists
+~      # Home directory shortcut ($HOME)
+$      # Variable or command substitution
+`cmd`  # Command substitution (old style)
+$(cmd) # Command substitution (modern, nestable)
+$(( )) # Arithmetic expansion
+[]     # Test conditions or wildcards
+
+🛡️ Escape & Quote Rules
+------------------------
+\       # Escape next character
+'...'    # Literal: no expansion
+"..."    # Expand $, ``, and 
+Examples:
+echo $HOME        # Show home path
+echo \$HOME       # Show literal "$HOME"
+echo '$HOME'      # Same
+echo "$HOME"      # Expand to home dir
+
+⚙️ Other Special Characters
+---------------------------
+&       # Background task or FD reference
+#       # Comment
+* ?     # Wildcards
+!       # History expansion
+
+🧮 Arithmetic in Bash
+----------------------
+x=3
+
+echo $x + 1             # Shows "3 + 1" (no math)
+echo $(expr $x + 1)     # = 4 (older way)
+echo $((x + 1))         # = 4 (modern way) ✅
+
+Command substitution examples:
+echo "Shell: $(which bash)"
+ls -l $(which emacs)
+
+tee command:
+foobar | tee output.txt        # See + save output
+foobar 2>&1 | tee output.txt   # See + save stdout+stderr
+
+📊 Pipeline Behavior
+---------------------
+Each pipe | creates a new shell process.
+
+Avoid:
+cat nofile | grep string 2>errs      ❌
+cat nofile 2>&1 | grep string >errs  ❌
+
+Use:
+cat nofile 2>errors | grep string    ✅
+
