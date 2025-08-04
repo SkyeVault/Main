@@ -1,21 +1,21 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8cbde920-cd5b-4822-bfce-4a41dc7e7e70/deploy-status)](https://app.netlify.com/sites/rainkeep/deploys)
-# Rainkeep — Arynwood Terminal
+# Rainkeep @ Arynwood Terminal
 
-**Rainkeep** is the codebase for [Arynwood.com](https://arynwood.com), a terminal-inspired website documenting the creation of decentralized tools, blockchain infrastructure, and open-source digital craftsmanship.
+**Rainkeep** is the codebase for [Arynwood.com](https://arynwood.com), a terminal-inspired website documenting the creation of decentralized tools, blockchain infrastructure, and open-source information.
 
-Arynwood is the public-facing interface of a larger creative and technical endeavor — blending development, storytelling, and system-building into a transparent workflow anyone can follow.
+Arynwood is the public-facing interface of a larger creative and technical endeavor blending development, storytelling, and system-building into a transparent workflow anyone can follow.
 
 ---
 
 ## What is Arynwood?
 
-Arynwood is a personal codename for a creative studio and digital frontier. It's the home of:
+Arynwood is a personal codename for a creative studio and digital frontier created by Lorelei Noble. It's the home of:
 
-- **DevLogs** — Daily technical entries written as HTML blog posts  
-- **On-Chain Experiments** — Smart contracts deployed to Polygon Amoy testnet  
-- **Art and Metaverse Projects** — Custom 2D and 3D environments fully hosted on chain  
-- **Creative Code** — Integrations of digital paintings, glasswork, woodworking, and software  
-- **Ethical Infrastructure** — A commitment to transparency, privacy, and dignity in digital systems
+- **DevLogs** - Daily technical entries written as HTML blog posts  
+- **On-Chain Experiments** - Smart contracts deployed to Polygon Amoy testnet  
+- **Art and Metaverse Projects** - Custom 2D and 3D environments fully hosted on chain  
+- **Creative Code** - Integrations of digital paintings, glasswork, woodworking, and software  
+- **Ethical Infrastructure** - A commitment to transparency, privacy, and dignity in digital systems
 
 ---
 
@@ -23,10 +23,10 @@ Arynwood is a personal codename for a creative studio and digital frontier. It's
 
 The `rainkeep` folder contains:
 
-- `static/blog-html/` – Terminal-styled HTML blog posts (DevLog format)  
-- `src/pages/blog/index.astro` – Auto-generated blog index listing all logs  
-- `styles/` – Minimal CSS and typography tailored to terminal aesthetics  
-- `README.md` – This file  
+- `static/blog-html/` - Terminal-styled HTML blog posts (DevLog format)  
+- `src/pages/blog/index.astro` - Blog index listing all logs  
+- `styles/` - Minimal CSS and typography tailored to terminal aesthetics  
+- `README.md` - You are here.
 
 The site is served via Netlify and optionally mirrored to IPFS for decentralized access.
 
@@ -38,12 +38,3 @@ All work is done in public. You can view the source code and logs as the project
 
 **GitHub:** [github.com/skyevault/main/tree/main/rainkeep](https://github.com/skyevault/main/tree/main/rainkeep)  
 **Live Site:** [arynwood.com](https://arynwood.com)
-
----
-
-## Philosophy
-
-> Code is a form of art. Transparency is a form of trust.  
-> Arynwood is where both converge — in the open, one line at a time.
-
----
