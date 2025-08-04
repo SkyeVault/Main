@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250803 - Linux Monitoring, Server Assessment, and Applied Practice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding-top: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250803 - Linux Monitoring, Server Assessment, and Applied Practice</h1>
+    <span class="prompt">> Log Date: 2025-08-02</span>
+    <p class="excerpt">
+      Today’s Linux monitoring session was inspired by my Coursera coursework and the realization that my unattended Aryncore MCP server deserved a proper health audit.
+    </p>
+
+    <p>
+      I used `htop`, `ps`, and `systemctl` to evaluate load, memory, services, and rogue processes, then killed off a stale `node` instance hogging CPU. This practical check-in helped bridge the gap between academic shell concepts and my real-world infrastructure.
+    </p>
+
+    <hr />
+
+    <h2>Running Processes & Load</h2>
+    <pre><code>top</code></pre>
+    <p>Moderate background load observed (1.8+). Docker and Prometheus behaving as expected. A rogue `node` process stood out.</p>
+
+    <pre><code>ps aux --sort=-%cpu | head -n 20</code></pre>
+    <p>Used to confirm the source of CPU drain. Docker, Prometheus, and a high-spike `node` instance.</p>
+
+    <pre><code>ps aux --sort=-%mem | head -n 20</code></pre>
+    <p>Memory bloat traced to GUI layers like LightDM and Unity — not essential for SSH-only usage.</p>
+
+    <hr />
+
+    <h2>Service Check</h2>
+    <pre><code>systemctl list-units --type=service --state=running</code></pre>
+    <p>System services healthy. No signs of stuck units.</p>
+
+    <h3>Optional Thermal Tools</h3>
+    <pre><code>sudo apt install lm-sensors
+sudo sensors-detect
+sensors</code></pre>
+    <p>Collected hardware temps for future dashboarding.</p>
+
+    <hr />
+
+    <h2>Troubleshooting & Cleanup</h2>
+    <pre><code>sudo apt install nemo
+nemo &</code></pre>
+    <p>Swapped out buggy Nautilus for Nemo GUI — file manager works again under X11.</p>
+
+    <pre><code>ollama list</code></pre>
+    <p>Verified local models; Ollama was not the source of the drain.</p>
+
+    <pre><code>kill -9 &lt;PID&gt;</code></pre>
+    <p>Killed off the rogue `node` process, restoring CPU equilibrium.</p>
+
+    <hr />
+
+    <h2>Reflection</h2>
+    <p>
+      This kind of live system evaluation is a critical aspect of running AI toolchains and container-based infrastructure. Lightweight GUI tools should be replaced on the server. Future improvements could include `glances`, `netdata`, and a basic audit script.
+    </p>
+
+    <p>
+      Signed: Lorelei Noble<br />
+      <a href="/blog">Back to DevLogs</a>
+    </p>
+
+    <hr />
+  </body>
+</html>
