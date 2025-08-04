@@ -13,8 +13,9 @@ Arynwood is a personal codename for a creative studio and digital frontier creat
 
 - **DevLogs** - Daily technical entries written as HTML blog posts  
 - **On-Chain Experiments** - Smart contracts deployed to Polygon Amoy testnet  
-- **Art and Metaverse Projects** - Custom 2D and 3D environments fully hosted on chain  
-- **Creative Code** - Integrations of digital paintings, glasswork, woodworking, and software  
+- **Art and Metaverse Projects** - Custom 2D and 3D environments fully hosted on chain
+- **Tutorials and Labs** - Notes and Labs for Linux, Python, AWS, smart contracts and more
+- **Creative Code** - Integrations of digital paintings, glasswork, 3D printing, and software  
 - **Ethical Infrastructure** - A commitment to transparency, privacy, and dignity in digital systems
 
 ---
