@@ -33,11 +33,11 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
     or return to the <a href="/">Arynwood Terminal</a>.
   </p>
 
-  <h1>Technical Insight — Building the Arynwood Bot</h1>
+  <h1>Technical Insight - Building the Arynwood Bot</h1>
 
   <p>
     This project started with a simple goal: to understand what makes a chatbot feel alive.
-    Using the free tier on Hugging Face, I worked with the Zephyr-7B-Beta model — lightweight enough to experiment with,
+    Using the free tier on Hugging Face, I worked with the Zephyr-7B-Beta model - lightweight enough to experiment with,
     but still powerful enough to hold a real conversation.
   </p>
 
@@ -48,14 +48,14 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
 
   <p>
     Temperature controls how much randomness the bot uses. Higher values make it more creative and unpredictable; lower values
-    make it more logical and focused. Top-p sampling affects how many possible next words the bot can choose from — balancing
+    make it more logical and focused. Top-p sampling affects how many possible next words the bot can choose from - balancing
     between creativity and precision. Max new tokens determines how much text the model is allowed to generate in a single response,
     helping it avoid memory crashes on small servers.
   </p>
 
   <p>
     Inside the <code>app.py</code> file, I built a custom interface with sliders for these controls so every conversation could be
-    shaped in real-time — without touching the core logic. By tuning the system message, I could alter the bot’s tone and internal
+    shaped in real-time - without touching the core logic. By tuning the system message, I could alter the bot’s tone and internal
     assumptions without needing to retrain it.
   </p>
 
@@ -65,7 +65,7 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
   </p>
 
   <p>
-    This version of Veylan is a prototype. I plan to expand the work by hosting multiple local bots — each adapted for coding,
+    This version of Veylan is a prototype. I plan to expand the work by hosting multiple local bots - each adapted for coding,
     writing, and research. Everything begins here: one deployment, one custom prompt, and one core question about intelligence.
   </p>
 </HamburgerNav>
