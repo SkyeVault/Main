@@ -181,7 +181,6 @@
 <p>I encountered a container restart issue due to permissions:</p>
 
 <pre><code>~/tools/matomo$ docker-compose restart
-```
 
 Restarting matomo\_matomo\_1 ... error
 Restarting matomo\_db\_1     ... error
@@ -189,7 +188,6 @@ Restarting matomo\_db\_1     ... error
 ERROR: for matomo\_db\_1  Cannot restart container ... permission denied
 ERROR: for matomo\_matomo\_1  Cannot restart container ... permission denied</code></pre>
 
-```
 <p>
   This appears related to AppArmor policy interference with Snap-based Docker. I'll resolve it by removing Docker from Snap and reinstalling via apt. But not today, today is reserved for coursework.
 </p>
