@@ -1,174 +1,162 @@
-// WoodworkingLayout.astro
+---
 const { title, showFrame = true } = Astro.props;
-------------------------------------------------
+---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
     <style is:global>
       :root {
-        /* Sleek, futuristic, dark aesthetic */
         --primary-bg: #0d0f1c;
         --secondary-bg: #161822;
         --accent-bg: #1f2233;
+        --text-primary: #e5e5f0;
+        --text-secondary: #a3a3c2;
+        --text-muted: #6f6f8f;
+        --brand-primary: #8c63ff;
+        --brand-secondary: #5b3cc4;
+        --brand-accent: #b48eff;
+        --surface-card: #1a1c2d;
+        --surface-elevated: #22243a;
+        --surface-border: #2e3045;
+        --surface-divider: #3d3f5c;
+        --shadow-light: rgba(0, 0, 0, 0.1);
+        --shadow-medium: rgba(0, 0, 0, 0.2);
+        --shadow-strong: rgba(0, 0, 0, 0.3);
+        --shadow-brand: rgba(140, 99, 255, 0.4);
+        --gradient-brand: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        --text-xs: 0.75rem;
+        --text-sm: 0.875rem;
+        --text-base: 1rem;
+        --text-lg: 1.25rem;
+        --text-xl: 1.5rem;
+        --text-2xl: 2rem;
+        --text-3xl: 2.5rem;
+        --border-radius: 0.5rem;
+      }
 
-```
-    --text-primary: #e5e5f0;
-    --text-secondary: #a3a3c2;
-    --text-muted: #6f6f8f;
+      body {
+        margin: 0;
+        background: var(--primary-bg);
+        color: var(--text-primary);
+        font-family: 'Space Grotesk', sans-serif;
+        line-height: 1.6;
+        font-size: var(--text-base);
+        min-height: 100vh;
+      }
 
-    --brand-primary: #8c63ff; /* Electric violet */
-    --brand-secondary: #5b3cc4;
-    --brand-accent: #b48eff;
+      h1, h2, h3, h4 {
+        font-family: 'Fira Code', monospace;
+        font-weight: 700;
+        color: var(--brand-accent);
+        margin-top: var(--space-xl);
+        margin-bottom: var(--space-md);
+      }
 
-    --surface-card: #1a1c2d;
-    --surface-elevated: #22243a;
-    --surface-border: #2e3045;
-    --surface-divider: #3d3f5c;
+      a {
+        color: var(--brand-primary);
+        text-decoration: none;
+      }
 
-    --shadow-light: rgba(0, 0, 0, 0.1);
-    --shadow-medium: rgba(0, 0, 0, 0.2);
-    --shadow-strong: rgba(0, 0, 0, 0.3);
-    --shadow-brand: rgba(140, 99, 255, 0.4);
+      a:hover {
+        text-decoration: underline;
+        color: var(--brand-accent);
+      }
 
-    --gradient-brand: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: var(--space-lg);
+      }
 
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-    --space-2xl: 3rem;
+      .gallery-frame {
+        background: var(--surface-card);
+        padding: var(--space-2xl);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--surface-border);
+        box-shadow: 0 0 10px var(--shadow-brand);
+      }
 
-    --text-xs: 0.75rem;
-    --text-sm: 0.875rem;
-    --text-base: 1rem;
-    --text-lg: 1.25rem;
-    --text-xl: 1.5rem;
-    --text-2xl: 2rem;
-    --text-3xl: 2.5rem;
+      .menu-toggle {
+        background: var(--surface-elevated);
+        color: var(--brand-accent);
+        border: 1px solid var(--surface-border);
+        padding: 0.5rem 1rem;
+        font-family: 'Fira Code', monospace;
+        cursor: pointer;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 999;
+      }
 
-    --border-radius: 0.5rem;
-  }
+      .menu-box {
+        position: fixed;
+        top: 3.5rem;
+        right: 1rem;
+        background: var(--surface-card);
+        border: 1px solid var(--surface-border);
+        padding: var(--space-md);
+        display: none;
+        z-index: 998;
+      }
 
-  body {
-    margin: 0;
-    background: var(--primary-bg);
-    color: var(--text-primary);
-    font-family: 'Space Grotesk', sans-serif;
-    line-height: 1.6;
-    font-size: var(--text-base);
-    min-height: 100vh;
-  }
+      .menu-box.show {
+        display: block;
+      }
 
-  h1, h2, h3, h4 {
-    font-family: 'Fira Code', monospace;
-    font-weight: 700;
-    color: var(--brand-accent);
-    margin-top: var(--space-xl);
-    margin-bottom: var(--space-md);
-  }
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-  a {
-    color: var(--brand-primary);
-    text-decoration: none;
-  }
+      .menu-box li {
+        margin-bottom: var(--space-sm);
+      }
 
-  a:hover {
-    text-decoration: underline;
-    color: var(--brand-accent);
-  }
+      .menu-box a {
+        color: var(--text-secondary);
+        transition: 0.2s;
+      }
 
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: var(--space-lg);
-  }
+      .menu-box a:hover {
+        color: var(--brand-accent);
+      }
 
-  .gallery-frame {
-    background: var(--surface-card);
-    padding: var(--space-2xl);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--surface-border);
-    box-shadow: 0 0 10px var(--shadow-brand);
-  }
+      footer {
+        margin-top: var(--space-2xl);
+        text-align: center;
+        color: var(--text-muted);
+        font-size: var(--text-sm);
+        border-top: 1px solid var(--surface-divider);
+        padding: var(--space-lg);
+      }
+    </style>
 
-  .menu-toggle {
-    background: var(--surface-elevated);
-    color: var(--brand-accent);
-    border: 1px solid var(--surface-border);
-    padding: 0.5rem 1rem;
-    font-family: 'Fira Code', monospace;
-    cursor: pointer;
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 999;
-  }
-
-  .menu-box {
-    position: fixed;
-    top: 3.5rem;
-    right: 1rem;
-    background: var(--surface-card);
-    border: 1px solid var(--surface-border);
-    padding: var(--space-md);
-    display: none;
-    z-index: 998;
-  }
-
-  .menu-box.show {
-    display: block;
-  }
-
-  .menu-box ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .menu-box li {
-    margin-bottom: var(--space-sm);
-  }
-
-  .menu-box a {
-    color: var(--text-secondary);
-    transition: 0.2s;
-  }
-
-  .menu-box a:hover {
-    color: var(--brand-accent);
-  }
-
-  footer {
-    margin-top: var(--space-2xl);
-    text-align: center;
-    color: var(--text-muted);
-    font-size: var(--text-sm);
-    border-top: 1px solid var(--surface-divider);
-    padding: var(--space-lg);
-  }
-</style>
-
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u = "https://track.arynwood.com/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
-```
-
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u = "https://track.arynwood.com/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
   </head>
 
   <body>
@@ -183,47 +171,42 @@ const { title, showFrame = true } = Astro.props;
       </ul>
     </nav>
 
-```
-<div class="container">
-  {showFrame ? (
-    <article class="gallery-frame">
-      <main>
-        <h1>{title}</h1>
-        <slot />
-      </main>
-    </article>
-  ) : (
-    <main>
-      <h1>{title}</h1>
-      <slot />
-    </main>
-  )}
-</div>
+    <div class="container">
+      {showFrame ? (
+        <article class="gallery-frame">
+          <main>
+            <h1>{title}</h1>
+            <slot />
+          </main>
+        </article>
+      ) : (
+        <main>
+          <h1>{title}</h1>
+          <slot />
+        </main>
+      )}
+    </div>
 
-<script is:global>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('menuToggle');
-    const box = document.getElementById('menuBox');
+    <script is:global>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
 
-    toggle.addEventListener('click', () => {
-      box.classList.toggle('show');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!box.contains(e.target) && e.target !== toggle) {
-        box.classList.remove('show');
-      }
-    });
-  });
-</script>
-
-<footer>
-  <div class="container">
-    <p>&copy; 2025 Arynwood Design. All rights reserved.</p>
-    <p>Handcrafted in Bucks County, Pennsylvania</p>
-  </div>
-</footer>
-```
-
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Arynwood Design. All rights reserved.</p>
+        <p>Handcrafted in Bucks County, Pennsylvania</p>
+      </div>
+    </footer>
   </body>
 </html>
