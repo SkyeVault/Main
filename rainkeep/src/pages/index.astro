@@ -65,7 +65,7 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
 
   <div class="terminal-screen" id="terminal">
     <div class="output">$ <span class="prompt">whoami</span></div>
-    <div class="output">Lorelei Noble — full-stack developer, artist, architect of Arynwood.</div>
+    <div class="output">Lorelei Noble - full-stack developer, artist, architect of Arynwood.</div>
 
     <div class="output">To get started, type <span class="prompt">help</span></div>
     <div class="output">or try commands like:</div>
@@ -91,7 +91,6 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
     function getFortune() {
       const fortunes = [
         "A bug is just an undocumented feature.",
-        "The glass is half full... of lavender code.",
         "Push with confidence. Debug with grace.",
         "You are exactly where you need to compile."
       ];
@@ -103,7 +102,7 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
         case 'help':
           return 'Available commands: whoami, projects, blog, contact, artwork, robot, chat, sudo, ls, cd .., clear, exit, cat, fortune';
         case 'whoami':
-          return 'Lorelei Noble — full-stack developer, artist, architect of Arynwood.';
+          return 'Lorelei Noble - full-stack developer, artist, architect of Arynwood.';
         case 'projects':
           return '<a href="/projects">Spotify Playlist Maker</a>, <a href="/projects">NFT Collection</a>, <a href="/gallery3d">3D Metaverse Gallery</a>, <a href="/robot">Arynwood Robot</a>';
         case 'robot':
@@ -129,7 +128,7 @@ import HamburgerNav from '../layouts/HamburgerNav.astro';
           return 'Closing session... just kidding. You live here now.';
         case 'cat':
         case 'cat lorelei.txt':
-          return 'Lorelei Noble: Full-stack developer, artist, and code conjurer. Learn more: <a href="/lorelei">/lorelei</a>';
+          return 'Lorelei Noble: Full-stack developer, artist, and code architect. Learn more: <a href="/lorelei">/lorelei</a>';
         case 'fortune':
           return getFortune();
         default:
