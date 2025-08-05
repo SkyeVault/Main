@@ -10,153 +10,146 @@ const { title, showFrame = true } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
     <style is:global>
       :root {
-        --brand-primary: #4e5a65; /* muted steel */
-    --brand-secondary: #2c3e50;
-    --brand-accent: #778899; /* cool grey */
+        --bg: #0d0f0f;
+        --text: #e0dfdb;
+        --muted: #777;
+        --accent: #88846f;
+        --iron: #4e4e4e;
+        --wood-dark: #2c2b28;
+        --wood-medium: #3e3d37;
+        --wood-light: #5c5a4e;
+        --border: #2a2a2a;
 
-    --surface-card: #181a1b;
-    --surface-elevated: #202224;
-    --surface-border: #2e2e2e;
-    --surface-divider: #3a3a3a;
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
 
-    --shadow-light: rgba(0, 0, 0, 0.1);
-    --shadow-medium: rgba(0, 0, 0, 0.25);
-    --shadow-strong: rgba(0, 0, 0, 0.35);
-    --shadow-brand: rgba(119, 136, 153, 0.35);
+        --text-xs: 0.75rem;
+        --text-sm: 0.875rem;
+        --text-base: 1rem;
+        --text-lg: 1.25rem;
+        --text-xl: 1.5rem;
+        --text-2xl: 2rem;
 
-    --gradient-brand: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+        --radius: 4px;
+        --shadow: rgba(0, 0, 0, 0.35);
+      }
 
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-    --space-2xl: 3rem;
+      body {
+        margin: 0;
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Space Grotesk', sans-serif;
+        line-height: 1.6;
+        font-size: var(--text-base);
+        min-height: 100vh;
+      }
 
-    --text-xs: 0.75rem;
-    --text-sm: 0.875rem;
-    --text-base: 1rem;
-    --text-lg: 1.25rem;
-    --text-xl: 1.5rem;
-    --text-2xl: 2rem;
-    --text-3xl: 2.5rem;
+      h1, h2, h3 {
+        font-family: 'Fira Code', monospace;
+        font-weight: 600;
+        color: var(--accent);
+        margin-top: var(--space-xl);
+        margin-bottom: var(--space-md);
+      }
 
-    --border-radius: 0.25rem;
-  }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
 
-  body {
-    margin: 0;
-    background: var(--primary-bg);
-    color: var(--text-primary);
-    font-family: 'Space Grotesk', sans-serif;
-    line-height: 1.6;
-    font-size: var(--text-base);
-    min-height: 100vh;
-  }
+      a:hover {
+        color: var(--text);
+        text-decoration: underline;
+      }
 
-  h1, h2, h3, h4 {
-    font-family: 'Fira Code', monospace;
-    font-weight: 700;
-    color: var(--brand-accent);
-    margin-top: var(--space-xl);
-    margin-bottom: var(--space-md);
-  }
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: var(--space-lg);
+      }
 
-  a {
-    color: var(--brand-primary);
-    text-decoration: none;
-  }
+      .gallery-frame {
+        background: var(--wood-dark);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: var(--space-2xl);
+        box-shadow: 0 0 10px var(--shadow);
+      }
 
-  a:hover {
-    text-decoration: underline;
-    color: var(--brand-accent);
-  }
+      .menu-toggle {
+        background: var(--iron);
+        color: var(--text);
+        border: none;
+        padding: 0.5rem 1rem;
+        font-family: 'Fira Code', monospace;
+        cursor: pointer;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 999;
+      }
 
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: var(--space-lg);
-  }
+      .menu-box {
+        position: fixed;
+        top: 3.5rem;
+        right: 1rem;
+        background: var(--wood-medium);
+        border: 1px solid var(--border);
+        padding: var(--space-md);
+        display: none;
+        z-index: 998;
+      }
 
-  .gallery-frame {
-    background: var(--surface-card);
-    padding: var(--space-2xl);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--surface-border);
-    box-shadow: 0 0 10px var(--shadow-brand);
-  }
+      .menu-box.show {
+        display: block;
+      }
 
-  .menu-toggle {
-    background: var(--surface-elevated);
-    color: var(--brand-accent);
-    border: 1px solid var(--surface-border);
-    padding: 0.5rem 1rem;
-    font-family: 'Fira Code', monospace;
-    cursor: pointer;
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 999;
-  }
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-  .menu-box {
-    position: fixed;
-    top: 3.5rem;
-    right: 1rem;
-    background: var(--surface-card);
-    border: 1px solid var(--surface-border);
-    padding: var(--space-md);
-    display: none;
-    z-index: 998;
-  }
+      .menu-box li {
+        margin-bottom: var(--space-sm);
+      }
 
-  .menu-box.show {
-    display: block;
-  }
+      .menu-box a {
+        color: var(--muted);
+      }
 
-  .menu-box ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+      .menu-box a:hover {
+        color: var(--text);
+      }
 
-  .menu-box li {
-    margin-bottom: var(--space-sm);
-  }
+      footer {
+        margin-top: var(--space-2xl);
+        text-align: center;
+        color: var(--muted);
+        font-size: var(--text-sm);
+        border-top: 1px solid var(--border);
+        padding: var(--space-lg);
+      }
+    </style>
 
-  .menu-box a {
-    color: var(--text-secondary);
-    transition: 0.2s;
-  }
-
-  .menu-box a:hover {
-    color: var(--brand-accent);
-  }
-
-  footer {
-    margin-top: var(--space-2xl);
-    text-align: center;
-    color: var(--text-muted);
-    font-size: var(--text-sm);
-    border-top: 1px solid var(--surface-divider);
-    padding: var(--space-lg);
-  }
-</style>
-
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u = "https://track.arynwood.com/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u = "https://track.arynwood.com/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo -->
   </head>
 
   <body>
@@ -210,3 +203,4 @@ const { title, showFrame = true } = Astro.props;
     </footer>
   </body>
 </html>
+
