@@ -1,0 +1,217 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250805 Arynwood Dashboard is Live</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+```
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Courier New', monospace;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  h1 {
+    color: var(--accent);
+    text-shadow: 0 0 2px var(--accent);
+    margin-top: 4rem;
+  }
+
+  h2, h3 {
+    color: var(--accent);
+    text-shadow: 1px 1px 0 var(--border);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  a {
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--hover);
+    text-decoration: underline;
+  }
+
+  pre {
+    background-color: var(--box);
+    padding: 1rem;
+    overflow-x: auto;
+    border-left: 3px solid var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  code {
+    font-family: 'Courier New', monospace;
+    color: var(--text);
+  }
+
+  .prompt {
+    color: var(--note);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .menu-toggle {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: var(--box);
+    border: 1px solid var(--border);
+    color: var(--link);
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .menu-box {
+    display: none;
+    position: absolute;
+    top: 3.5rem;
+    left: 1rem;
+    background: var(--box);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+  }
+
+  .menu-box.show {
+    display: block;
+  }
+
+  .menu-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .menu-box li {
+    margin-bottom: 0.75rem;
+  }
+
+  .menu-box a {
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  .menu-box a:hover {
+    color: var(--hover);
+    text-decoration: underline;
+  }
+</style>
+```
+
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+```
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('menuToggle');
+    const box = document.getElementById('menuBox');
+
+    toggle.addEventListener('click', () => {
+      box.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!box.contains(e.target) && e.target !== toggle) {
+        box.classList.remove('show');
+      }
+    });
+  });
+</script>
+
+<h1>DevLog 250805 Arynwood Dashboard is Live</h1>
+<span class="prompt">> Log Date: 2025-08-04</span>
+<p class="excerpt">
+  I now have a dashboard running on <code>track.arynwood.com</code> to support my long-term monitoring goals across Aryncore. The system is operational, but troubleshooting is ongoing.
+</p>
+
+<p>
+  Today I successfully connected the local dashboard instance and it's quietly working in the background to help me build intuition about site and system behavior. Thanks to the Aryncore server, the backend quietly gathers indicators I’ll use later to deepen my understanding of traffic, automation feedback loops, and long-term system performance. This is the first step in understanding what visitors are doing, how often, and when.
+</p>
+
+<hr />
+
+<h2>Tracking System Notes</h2>
+<p>
+  The Matomo instance is self-hosted. It's accessed through <a href="http://track.arynwood.com" target="_blank">track.arynwood.com</a> and now embedded across the top 10 most visited sections of the site. I will expand to others manually until I convert to a layout system.
+</p>
+<p>
+  I opted to keep tracking language vague in the navigation and UI for the sake of design and clarity—what matters most is that the engine runs.
+</p>
+
+<hr />
+
+<h3>Current Error</h3>
+<p>I encountered a container restart issue due to permissions:</p>
+
+<pre><code>~/tools/matomo$ docker-compose restart
+```
+
+Restarting matomo\_matomo\_1 ... error
+Restarting matomo\_db\_1     ... error
+
+ERROR: for matomo\_db\_1  Cannot restart container ... permission denied
+ERROR: for matomo\_matomo\_1  Cannot restart container ... permission denied</code></pre>
+
+```
+<p>
+  This appears related to AppArmor policy interference with Snap-based Docker. I'll resolve it by removing Docker from Snap and reinstalling via apt. But not today, today is reserved for coursework.
+</p>
+
+<hr />
+
+<h2>Timeline-Based Logging</h2>
+<p>
+  I’m now managing this system with timeline-based logs and return points. When I return to this task, I’ll resume with either restarting the containers or reinstalling Docker fully. Everything else is stable and persistent.
+</p>
+
+<p>
+  This is the start of a deeper arc into cyber systems design, particularly how to monitor behavior, events, and interactions in secure, local-first environments.
+</p>
+
+<hr />
+<p>—Lorelei Noble</p>
+<p><a href="/blog">← Back to DevLogs</a></p>
+```
+
+  </body>
+</html>
