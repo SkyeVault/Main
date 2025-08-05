@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250804 – Stealth IP Tracking via Matomo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+      }
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DevLog 250804 – Stealth IP Tracking via Matomo</h1>
+    <span class="prompt">> Log Date: 2025-08-04</span>
+
+    <p class="excerpt">
+      I’ve successfully deployed a stealth IP tracking system using Matomo on my 24/7 Docker-based server, integrated it with Netlify, and exposed it securely under <a href="https://track.arynwood.com" target="_blank">track.arynwood.com</a>. This lays the foundation for deeper monitoring, analytics, and future cybersecurity insight within the Aryncore MCP.
+    </p>
+
+    <hr />
+
+    <h2>Context & Purpose</h2>
+    <p>
+      My goal was to set up an independent, self-hosted analytics platform that could track IP visits to my website without relying on third-party services. I needed stealth (cookie-less, local, HTTPS-secured), persistence (Docker), and customization for future automation and system alerts. This experiment also serves as my gateway into hands-on network monitoring and deeper cybersecurity learning.
+    </p>
+
+    <hr />
+
+    <h2>Installation Workflow</h2>
+
+    <h3>Docker Compose Setup</h3>
+    <pre><code>mkdir -p ~/tools/matomo
+cd ~/tools/matomo
+nano docker-compose.yml</code></pre>
+
+    <p>Used the official Matomo + MariaDB images:</p>
+    <pre><code>services:
+  matomo:
+    image: matomo
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: matomo_root
+      MYSQL_DATABASE: matomo
+      MYSQL_USER: matomo
+      MYSQL_PASSWORD: matomo_pass</code></pre>
+
+    <h3>Initial Web Setup</h3>
+    <p>
+      Accessed the container at <code>http://162.248.7.248:8080</code>, configured the superuser, and created the tracking profile for my Netlify site. Connection issues were solved by using <code>db</code> as the hostname and ensuring the password matched the Docker env vars.
+    </p>
+
+    <h3>Subdomain & SSL Setup</h3>
+    <ol>
+      <li>Created DNS A record: <code>track.arynwood.com → 162.248.7.248</code></li>
+      <li>Installed NGINX and Certbot on the server</li>
+      <li>Reverse proxied HTTPS traffic to local port 8080</li>
+      <li>Configured Let's Encrypt via <code>certbot --nginx -d track.arynwood.com</code></li>
+    </ol>
+
+    <h3>Trusted Host Fix</h3>
+    <p>Added this to <code>~/tools/matomo/matomo/config/config.ini.php</code>:</p>
+    <pre><code>[General]
+trusted_hosts[] = "track.arynwood.com"</code></pre>
+
+    <hr />
+
+    <h2>Embedding the Tracker</h2>
+    <p>I placed the Matomo tracking script inside my Astro layout’s <code>&lt;head&gt;</code> block. For now, I’ve manually added it to my top 10 blog posts and devlog template. Future blogs will inherit the tracker once I standardize on a global layout.</p>
+
+    <pre><code>&lt;script&gt;
+  var _paq = window._paq = window._paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.www.arynwood.com"]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+  (function() {
+    var u="https://track.arynwood.com/";
+    _paq.push(["setTrackerUrl", u + "matomo.php"]);
+    _paq.push(["setSiteId", "1"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
+    g.async=true; g.src=u+"matomo.js"; s.parentNode.insertBefore(g,s);
+  })();
+&lt;/script&gt;</code></pre>
+
+    <hr />
+
+    <h2>Reflection & Next Steps</h2>
+    <p>
+      Now that tracking is operational, I plan to learn Matomo as a full analytics and monitoring dashboard. I'll explore its role in security observability, request mapping, and how it fits within the larger picture of MCP-based surveillance, alerts, and behavioral logging. Matomo gives me a bridge between web analytics and deeper cybersecurity practices — including user fingerprinting, endpoint analysis, and request origin visibility.
+    </p>
+
+    <p>
+      I anticipate more refinement: tweaking the domain configs, segmenting traffic, and integrating Matomo events into n8n workflows. But for now, this is a huge milestone. I have a working, stealth-capable IP tracking layer under my full control.
+    </p>
+
+    <p>Signed, Lorelei Noble<br /><a href="/blog">Back to DevLogs</a></p>
+    <hr />
+  </body>
+</html>
