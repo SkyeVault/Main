@@ -1,3 +1,4 @@
+Can you fix this markdown guide that ChatGPT made for me? Remove emojis and make it more detailed and informative for a study guide
 # 🐧 Linux Tools for Developers – Study Guide
 
 > **Course:** Linux Tools for Developers (Linux Foundation)  
@@ -250,7 +251,7 @@ dpkg-deb --build mypackage/
 
 ---
 
-## 📚 Quick Reference – Command Flags
+## Quick Reference – Command Flags
 
 | Command | Common Flags | Purpose |
 |---------|--------------|---------|
@@ -262,5 +263,3 @@ dpkg-deb --build mypackage/
 | sed     | `'s/old/new/g'` | replace text |
 
 ---
-
-✅ **Final Tip:** Treat this as a *living doc*. Add real-world examples from your own projects — that’s how this becomes your personal Linux toolkit.
