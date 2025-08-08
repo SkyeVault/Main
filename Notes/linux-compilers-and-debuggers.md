@@ -1,4 +1,4 @@
-# 🛠 Compiling & Debugging in Linux — Beginner to Advanced Guide
+# Compiling & Debugging in Linux  Beginner to Advanced Guide
 
 ---
 
