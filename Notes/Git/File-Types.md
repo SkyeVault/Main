@@ -1,7 +1,7 @@
-# Understanding GitHub File Extensions
+# File Extensions
 
 ## Introduction
-GitHub supports various file types for **code, documentation, and configurations**. Each file extension has a specific purpose. This guide explains the most common file types used in GitHub repositories.
+Git supports various file types for **code, documentation, and configurations**. Each file extension has a specific purpose. This guide explains the most common file types used in GitHub repositories.
 
 ---
 
