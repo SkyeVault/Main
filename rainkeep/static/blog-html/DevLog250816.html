@@ -1,0 +1,261 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevLog 250816 – IPv6 Certification + Glue DNS Walkthrough</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0d0f1c;
+        --text: #c9c7ff;
+        --accent: #b48eff;
+        --link: #79b8ff;
+        --hover: #b48eff;
+        --box: #161822;
+        --border: #2e254e;
+        --note: #888;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: var(--accent);
+        text-shadow: 0 0 2px var(--accent);
+        margin-top: 4rem;
+      }
+
+      h2, h3 {
+        color: var(--accent);
+        text-shadow: 1px 1px 0 var(--border);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: var(--box);
+        padding: 1rem;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        color: var(--text);
+      }
+
+      .prompt {
+        color: var(--note);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        color: var(--link);
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-box {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background: var(--box);
+        border: 1px solid var(--border);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+      }
+
+      .menu-box.show {
+        display: block;
+      }
+
+      .menu-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-box li {
+        margin-bottom: 0.75rem;
+      }
+
+      .menu-box a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      .menu-box a:hover {
+        color: var(--hover);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="menu-box" id="menuBox">
+      <ul>
+        <li><a href="/">Terminal</a></li>
+        <li><a href="/classic">Classic View</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/chat">IRC Chatroom</a></li>
+        <li><a href="/blog">DevLogs</a></li>
+        <li><a href="/gallery3d">3D Gallery</a></li>
+        <li><a href="/syrenwork">2D Gallery</a></li>
+        <li><a href="/robot">Arynwood Robot</a></li>
+        <li><a href="/lorelei">About</a></li>
+        <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menuToggle');
+        const box = document.getElementById('menuBox');
+        toggle.addEventListener('click', () => {
+          box.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== toggle) {
+            box.classList.remove('show');
+          }
+        });
+      });
+    </script>
+
+    <h1>DevLog 250816 – IPv6 Certification + Glue DNS Walkthrough</h1>
+    <span class="prompt">> Log Date: 2025-08-16</span>
+
+    <p class="excerpt">
+      Today I passed the Hurricane Electric IPv6 certification through the Professional (Sage) level. This entry documents everything I did to build my own authoritative IPv6 DNS server from scratch, including tunnel config, glue record logic, and how I hacked BIND to behave long enough to pass.
+    </p>
+
+    <p>
+      This was one of those rare runs where every single part of the workflow was new, but nothing was opaque. I understood what I was doing. I didn't have to blindly copy/paste. From IPv6 routing to glue record delegation, this log walks through the full process with a self-hosted BIND server and tunnel from HE.net.
+    </p>
+
+    <hr />
+
+    <h2>System Overview</h2>
+    <ul>
+      <li><strong>Domain:</strong> arynwood.com</li>
+      <li><strong>Registrar:</strong> name.com</li>
+      <li><strong>Tunnel Broker:</strong> Hurricane Electric</li>
+      <li><strong>Host OS:</strong> Ubuntu 24.04 LTS</li>
+    </ul>
+
+    <hr />
+
+    <h2>Tunnel Creation</h2>
+    <p>After signing up at <a href="https://ipv6.he.net/certification/">https://ipv6.he.net/certification/</a>, I generated an IPv6 tunnel using their broker service.</p>
+    <ul>
+      <li>Client IPv6: <code>2001:470:b:1dd::2</code></li>
+      <li>Server IPv4: <code>216.66.80.30</code></li>
+      <li>Routed /64: <code>2001:470:b:1dd::/64</code></li>
+    </ul>
+
+    <p>Configured on server with:</p>
+    <pre><code>sudo ip tunnel add he-ipv6 mode sit remote 216.66.80.30 local [YOUR_IPV4] ttl 255
+sudo ip link set he-ipv6 up
+sudo ip addr add 2001:470:b:1dd::2/64 dev he-ipv6
+sudo ip route add ::/0 dev he-ipv6
+sudo sysctl -w net.ipv6.conf.all.forwarding=1</code></pre>
+
+    <hr />
+
+    <h2>BIND Glue Records & Zone File</h2>
+    <p>I manually constructed glue records for my authoritative nameserver <code>ns1.arynwood.com</code> which had to resolve with both an A and AAAA:</p>
+
+    <pre><code>$TTL 86400
+@ IN SOA ipv6.arynwood.com. lorelei.arynwood.com. (
+  2025081601 ; Serial
+  3600       ; Refresh
+  1800       ; Retry
+  1209600    ; Expire
+  86400 )    ; Negative Cache TTL
+
+@    IN  NS     ns1.arynwood.com.
+@    IN  AAAA   2001:470:b:1dd::248
+ns1  IN  A      162.248.7.248
+ns1  IN  AAAA   2001:470:b:1dd::248</code></pre>
+
+    <p>Zone defined in <code>/etc/bind/named.conf.local</code>:</p>
+    <pre><code>zone "ipv6.arynwood.com" {
+  type master;
+  file "/etc/bind/db.ipv6.arynwood.com";
+};</code></pre>
+
+    <hr />
+
+    <h2>Verification & Debugging</h2>
+    <p>Checked syntax and restarted BIND:</p>
+    <pre><code>sudo named-checkzone ipv6.arynwood.com /etc/bind/db.ipv6.arynwood.com
+sudo systemctl restart bind9</code></pre>
+
+    <p>Ran dig tests to verify A, AAAA, and NS:</p>
+    <pre><code>dig @localhost ipv6.arynwood.com AAAA
+dig @localhost ns1.arynwood.com A
+dig @localhost ns1.arynwood.com AAAA</code></pre>
+
+    <p>Passed glue and PTR test with HE.net. Reverse DNS remains handled by their GUI.</p>
+
+    <hr />
+
+    <h2>DNS Quiz Concepts</h2>
+    <ul>
+      <li><strong>Glue record:</strong> A or AAAA record inserted into the parent zone to allow recursive servers to resolve nameservers</li>
+      <li><strong>GHOST record:</strong> Another name for glue — a hint record that doesn’t belong to your zone</li>
+      <li><strong>COM/NET glue authority:</strong> <code>A.GTLD-SERVERS.net</code></li>
+      <li><strong>To request glue:</strong> You contact your registrar (not ARIN)</li>
+    </ul>
+
+    <hr />
+
+    <h2>Post-Cert Cleanup</h2>
+    <ul>
+      <li>Reverted Netlify DNS to get main site loading again</li>
+      <li>Left <code>ipv6.arynwood.com</code> delegated for future tests</li>
+      <li>PTRs managed through HE GUI for now (zero config, fully functional)</li>
+    </ul>
+
+    <hr />
+
+    <h2>Next Steps</h2>
+    <p>Eventually I’ll migrate the nameservers on <code>rainkeep</code> off Netlify and delegate my own NS to complete the move. Until then, this was a working IPv6 stack from raw tunnel to glue to authoritative zone file.</p>
+
+    <p><strong>Status:</strong> Certified Sage. DNS is mine now.</p>
+
+    <p>— Lorelei Noble</p>
+
+    <p><a href="/blog">← Back to DevLogs</a></p>
+  </body>
+</html>
