@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevLog 250817 — The Curious Case of the King's Oak Referrer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0d0f1c;
+      --text: #c9c7ff;
+      --accent: #b48eff;
+      --link: #79b8ff;
+      --hover: #b48eff;
+      --box: #161822;
+      --border: #2e254e;
+      --note: #888;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+      padding-top: 2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-bottom: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    h1 {
+      color: var(--accent);
+      text-shadow: 0 0 2px var(--accent);
+      margin-top: 4rem;
+    }
+
+    h2, h3 {
+      color: var(--accent);
+      text-shadow: 1px 1px 0 var(--border);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--hover);
+      text-decoration: underline;
+    }
+
+    pre {
+      background-color: var(--box);
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 3px solid var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      color: var(--text);
+    }
+
+    .prompt {
+      color: var(--note);
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: var(--box);
+      border: 1px solid var(--border);
+      color: var(--link);
+      font-size: 1rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .menu-box {
+      display: none;
+      position: absolute;
+      top: 3.5rem;
+      left: 1rem;
+      background: var(--box);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(181, 103, 218, 0.3);
+    }
+
+    .menu-box.show {
+      display: block;
+    }
+
+    .menu-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-box li {
+      margin-bottom: 0.75rem;
+    }
+
+    .menu-box a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    .menu-box a:hover {
+      color: var(--hover);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="menu-toggle" id="menuToggle">☰</button>
+  <div class="menu-box" id="menuBox">
+    <ul>
+      <li><a href="/">Terminal</a></li>
+      <li><a href="/classic">Classic View</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/chat">IRC Chatroom</a></li>
+      <li><a href="/blog">DevLogs</a></li>
+      <li><a href="/gallery3d">3D Gallery</a></li>
+      <li><a href="/syrenwork">2D Gallery</a></li>
+      <li><a href="/robot">Arynwood Robot</a></li>
+      <li><a href="/lorelei">About</a></li>
+      <li><a href="mailto:loreleihnoble@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('menuToggle');
+      const box = document.getElementById('menuBox');
+
+      toggle.addEventListener('click', () => {
+        box.classList.toggle('show');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!box.contains(e.target) && e.target !== toggle) {
+          box.classList.remove('show');
+        }
+      });
+    });
+  </script>
+
+  <h1>DevLog 250817 — The Curious Case of the King's Oak Referrer</h1>
+  <span class="prompt">> Log Date: 250817</span>
+
+  <p class="excerpt">
+    A victory in cyber-tracking. Someone clicked a ghost link and woke the logs. This is how we traced a private site leak back to an unspoken link — and proved the value of reading your own server data.
+  </p>
+
+  <p>
+    Not long ago, the cozy corner of the internet where our woodworking portfolio quietly sat started acting suspicious. A private page. No shares. No mentions. And somehow... it got visited. By exactly the person we didn’t want seeing it.
+  </p>
+
+  <hr />
+
+  <h2>Scene 1: The Panic Before the Ping</h2>
+  <p>
+    No breadcrumbs. No social trail. We checked DNS, backlinks, bots. Nothing. It wasn’t public. So how did someone land on it like they were following a map we never drew?
+  </p>
+
+  <hr />
+
+  <h2>Scene 2: Installing the Bug</h2>
+  <p>
+    Matomo. Self-hosted, no fluff. Installed like a scalpel, not a net. We wanted to trace the steps. If there were any. Initially, just bots. Crawlers doing crawler things. Then a blip:
+  </p>
+
+  <pre><code>Referrer: portfolio site of a respected artist  
+Path: /woodworking  
+Device: Android, Chrome  
+Time on page: 0 seconds  
+Trust level: evaporating</code></pre>
+
+  <p>
+    The visitor came from a site we liked. One we’ve browsed before. One that... shouldn’t have had our link.
+  </p>
+
+  <hr />
+
+  <h2>Scene 3: The Unlikely Breadcrumb</h2>
+  <p>
+    The referring site — let’s call it King’s Oak — is tasteful, minimal. But Matomo doesn’t hallucinate. The traffic came from there. We searched the DOM. Nothing. No links in the HTML. No outbound references. Static scan said clean.
+  </p>
+
+  <p>
+    So we started thinking like code.
+  </p>
+
+  <p>
+    JavaScript. Modal galleries. Hover effects. Invisible spans. Dynamic anything. Some widget was quietly linking us behind the curtain.
+  </p>
+
+  <hr />
+
+  <h2>Scene 4: Digital Forensics</h2>
+  <p>
+    The steps became clear.
+  </p>
+
+  <ul>
+    <li>Someone visits the King’s Oak site.</li>
+    <li>A hidden or dynamic element points to our woodworking page.</li>
+    <li>They click. Or tap.</li>
+    <li>Matomo logs the hit. We get a referrer.</li>
+    <li>They copy the URL. They send it in an email.</li>
+    <li>Drama arrives in our inbox.</li>
+  </ul>
+
+  <p>
+    And that was the smoking gun. One invisible link. One chain reaction. One misrouted piece of family theater.
+  </p>
+
+  <hr />
+
+  <h2>Scene 5: Lessons from the Log</h2>
+  <ul>
+    <li>Matomo is surgical. Set it up early, not after the fire starts.</li>
+    <li>Referrer headers are better than gossip.</li>
+    <li>JavaScript links live outside grep’s jurisdiction.</li>
+    <li>Just because you didn’t publicize it doesn’t mean the internet didn’t.</li>
+    <li>Read your logs. Then read them again. Then believe them.</li>
+  </ul>
+
+  <hr />
+
+  <h2>Closing Remarks</h2>
+  <p>
+    We solved it quietly. No accusations. No confrontations. But the data doesn’t lie. The logs saw it all.
+  </p>
+
+  <p>
+    So here it is, documented in devlog form. A little too cryptic for outsiders. A little too obvious for insiders.
+  </p>
+
+  <p>
+    Referrer tracked. Mystery solved.  
+    Digital detective agency: active and always watching.
+  </p>
+
+  <hr />
+  <p><a href="/blog">← Back to DevLogs</a></p>
+
+</body>
+</html>
