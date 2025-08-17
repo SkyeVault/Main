@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>DevLog 250817 — The Curious Case of the King's Oak Referrer</title>
+  <title>DevLog 250817 — The Curious Case of the Referrer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
@@ -20,10 +20,7 @@
       background-color: var(--bg);
       color: var(--text);
       font-family: 'Courier New', monospace;
-      padding-top: 2rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-bottom: 2rem;
+      padding: 2rem;
       max-width: 600px;
       margin: 0 auto;
       line-height: 1.6;
@@ -158,105 +155,103 @@
     });
   </script>
 
-  <h1>DevLog 250817 — The Curious Case of the King's Oak Referrer</h1>
+  <h1>DevLog 250817 — The Curious Case of the Referrer</h1>
   <span class="prompt">> Log Date: 250817</span>
 
   <p class="excerpt">
-    A victory in cyber-tracking. Someone clicked a ghost link and woke the logs. This is how we traced a private site leak back to an unspoken link — and proved the value of reading your own server data.
+    A private link was accessed by someone who definitely wasn’t supposed to see it. I didn’t share it. No one did. This log is a digital crime scene report — and I caught the referrer.
   </p>
 
   <p>
-    Not long ago, the cozy corner of the internet where our woodworking portfolio quietly sat started acting suspicious. A private page. No shares. No mentions. And somehow... it got visited. By exactly the person we didn’t want seeing it.
+    A quiet little woodworking portfolio got a strange hit. The URL was never published. Not on socials. Not emailed. Not listed. But someone found it. And worse, that someone forwarded it to a family member I didn’t invite to the show.
   </p>
 
   <hr />
 
   <h2>Scene 1: The Panic Before the Ping</h2>
   <p>
-    No breadcrumbs. No social trail. We checked DNS, backlinks, bots. Nothing. It wasn’t public. So how did someone land on it like they were following a map we never drew?
+    No breadcrumbs. No search engine indexing. Just a link floating in the void... until it wasn’t.
+  </p>
+
+  <p>
+    I scanned logs. Scraped headers. Looked for browser fingerprints. It wasn’t a bot. It wasn’t a crawler. It was a real person, with real fingers, clicking on a page they weren’t meant to see.
   </p>
 
   <hr />
 
   <h2>Scene 2: Installing the Bug</h2>
   <p>
-    Matomo. Self-hosted, no fluff. Installed like a scalpel, not a net. We wanted to trace the steps. If there were any. Initially, just bots. Crawlers doing crawler things. Then a blip:
+    I dropped in Matomo. Local analytics. Not some surveillance script farmed out to Silicon Valley. Just raw data, parsed directly from server logs. Every ping. Every referrer. Every miss.
   </p>
 
-  <pre><code>Referrer: portfolio site of a respected artist  
+  <p>
+    At first, nothing. A few indexer ghosts. Then it came:
+  </p>
+
+  <pre><code>Referrer: an unrelated artist portfolio  
 Path: /woodworking  
 Device: Android, Chrome  
 Time on page: 0 seconds  
-Trust level: evaporating</code></pre>
+Bounce level: astronomical</code></pre>
 
   <p>
-    The visitor came from a site we liked. One we’ve browsed before. One that... shouldn’t have had our link.
+    That site shouldn’t have had my link. And yet the log was clear. Someone came in from that direction.
   </p>
 
   <hr />
 
   <h2>Scene 3: The Unlikely Breadcrumb</h2>
   <p>
-    The referring site — let’s call it King’s Oak — is tasteful, minimal. But Matomo doesn’t hallucinate. The traffic came from there. We searched the DOM. Nothing. No links in the HTML. No outbound references. Static scan said clean.
+    I ran curl. I ran grep. I read the DOM like it owed me money. No links found in the HTML.
   </p>
 
   <p>
-    So we started thinking like code.
+    So it had to be dynamic. Probably a JS gallery. A modal preview. Some interactive plugin.
   </p>
 
   <p>
-    JavaScript. Modal galleries. Hover effects. Invisible spans. Dynamic anything. Some widget was quietly linking us behind the curtain.
+    Somewhere in that site’s moving parts, my private link was quietly embedded. Maybe even unintentionally. But it was there.
   </p>
 
   <hr />
 
   <h2>Scene 4: Digital Forensics</h2>
-  <p>
-    The steps became clear.
-  </p>
-
   <ul>
-    <li>Someone visits the King’s Oak site.</li>
-    <li>A hidden or dynamic element points to our woodworking page.</li>
-    <li>They click. Or tap.</li>
-    <li>Matomo logs the hit. We get a referrer.</li>
-    <li>They copy the URL. They send it in an email.</li>
-    <li>Drama arrives in our inbox.</li>
+    <li>Someone finds the portfolio site.</li>
+    <li>A dynamic element loads a hidden or obscured link to my page.</li>
+    <li>They click. The server logs a visit with referrer data.</li>
+    <li>They copy the URL and send it to someone else.</li>
+    <li>That person sends it to someone I didn’t invite.</li>
+    <li>Drama arrives in the inbox.</li>
   </ul>
 
   <p>
-    And that was the smoking gun. One invisible link. One chain reaction. One misrouted piece of family theater.
+    Once I saw that referrer line in the logs, the entire timeline snapped into focus. Like someone flipping over puzzle pieces all at once.
   </p>
 
   <hr />
 
   <h2>Scene 5: Lessons from the Log</h2>
   <ul>
-    <li>Matomo is surgical. Set it up early, not after the fire starts.</li>
-    <li>Referrer headers are better than gossip.</li>
-    <li>JavaScript links live outside grep’s jurisdiction.</li>
-    <li>Just because you didn’t publicize it doesn’t mean the internet didn’t.</li>
-    <li>Read your logs. Then read them again. Then believe them.</li>
+    <li>Matomo is precise. Use it before the weird stuff starts.</li>
+    <li>Referrer headers are gold. Silent, digital witnesses.</li>
+    <li>JavaScript content lives outside static scan territory.</li>
+    <li>Just because something wasn’t shared doesn’t mean it stayed hidden.</li>
+    <li>Read the logs. The truth’s in there whether you want it or not.</li>
   </ul>
 
   <hr />
 
   <h2>Closing Remarks</h2>
   <p>
-    We solved it quietly. No accusations. No confrontations. But the data doesn’t lie. The logs saw it all.
+    No confrontation. No accusations. But I now know how it happened. And I won’t forget it.
   </p>
 
   <p>
-    So here it is, documented in devlog form. A little too cryptic for outsiders. A little too obvious for insiders.
-  </p>
-
-  <p>
-    Referrer tracked. Mystery solved.  
-    Digital detective agency: active and always watching.
+    Even the quietest links have echoes. This one made just enough noise to catch. Mystery logged. Leak confirmed. Case closed.
   </p>
 
   <hr />
   <p><a href="/blog">← Back to DevLogs</a></p>
-
 </body>
 </html>
