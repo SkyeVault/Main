@@ -134,5 +134,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ![Rust](https://img.shields.io/badge/Rust-Language-brown?style=flat-square&logo=rust)
 ![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)
+
 ![IPv6 Certification Badge for Arynwood](https://ipv6.he.net/certification/create_badge.php?pass_name=Arynwood&badge=1)
 
