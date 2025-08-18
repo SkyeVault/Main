@@ -190,7 +190,7 @@ chmod +x OrcaSlicer*.AppImage
 ## Aliases & Quality of Life
 
 ```bash
-alias server='ssh sayhiholly@162.248.7.248'
+alias server='ssh sayhi-----@162.248.7.248'
 alias ll='ls -lah'
 alias gs='git status'
 ```
