@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorelei Noble - Glass Artist | Newtown, Pennsylvania</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, 
+                #0f4c75 0%, 
+                #3282b8 25%, 
+                #2a9d8f 50%, 
+                #264653 75%, 
+                #1a1a2e 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+        }
+
+        .glass-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(52, 130, 184, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(42, 157, 143, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 60% 20%, rgba(184, 134, 11, 0.1) 0%, transparent 30%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .iridescent {
+            background: linear-gradient(45deg, 
+                rgba(255, 0, 150, 0.1),
+                rgba(0, 204, 255, 0.1),
+                rgba(128, 255, 0, 0.1),
+                rgba(255, 204, 0, 0.1),
+                rgba(255, 0, 150, 0.1));
+            background-size: 400% 400%;
+            animation: iridescent 8s ease-in-out infinite;
+        }
+
+        @keyframes iridescent {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        .logo-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #3282b8, #2a9d8f, #e9c46a, #f4a261);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(50, 130, 184, 0.5);
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .location {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .specialties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .specialty-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .specialty-tag:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            margin: 4rem 0;
+            padding: 3rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, #3282b8, #2a9d8f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, #3282b8, #2a9d8f);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #3282b8;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .classes-info {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .class-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .class-card {
+            padding: 2rem;
+            background: rgba(42, 157, 143, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(42, 157, 143, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+            background: rgba(42, 157, 143, 0.2);
+            box-shadow: 0 15px 30px rgba(42, 157, 143, 0.3);
+        }
+
+        .class-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2a9d8f;
+        }
+
+        .additional-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .additional-service {
+            padding: 1rem 2rem;
+            background: rgba(244, 162, 97, 0.1);
+            border: 1px solid rgba(244, 162, 97, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .additional-service:hover {
+            background: rgba(244, 162, 97, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(244, 162, 97, 0.3);
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            background: rgba(50, 130, 184, 0.3);
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+            background: rgba(42, 157, 143, 0.3);
+        }
+
+        .floating-element:nth-child(3) {
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+            background: rgba(233, 196, 106, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-title {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 2rem;
+                margin: 2rem 0;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specialties {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        .contact-info {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #3282b8;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-overlay"></div>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <div class="container">
+        <header class="glass iridescent">
+            <h1 class="logo-title">Lorelei Noble</h1>
+            <p class="subtitle">Glass Artist</p>
+            <p class="location">Newtown, Pennsylvania</p>
+            <div class="specialties">
+                <span class="specialty-tag">Stained Glass Templates</span>
+                <span class="specialty-tag">Custom Panels</span>
+                <span class="specialty-tag">Leaded Glass Techniques</span>
+                <span class="specialty-tag">Digital Studio Artist</span>
+            </div>
+        </header>
+
+        <section class="section glass" id="about">
+            <h2 class="section-title">About the Artist</h2>
+            <div class="about-content">
+                <p>With precision and technical skill honed over years of dedicated practice, Lorelei Noble brings both traditional craftsmanship and innovative digital studio techniques to the ancient art of glass working. Based in Newtown, Pennsylvania, she has collaborated with architects, designers, and builders to create stunning window designs and bespoke glass art elements that transform spaces with light and color.</p>
+                <br>
+                <p>Her work spans from classical leaded glass techniques to cutting-edge fusing and slumping methods, always maintaining the highest standards of artistry and technical excellence. Each piece reflects a deep understanding of how light interacts with glass to create moments of pure beauty.</p>
+            </div>
+        </section>
+
+        <section class="section glass" id="services">
+            <h2 class="section-title">Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Custom Window Designs</h3>
+                    <p>Collaborative projects with architects, designers, and builders to create stunning stained glass windows and panels that enhance any architectural space.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Leaded Glass Artwork</h3>
+                    <p>Traditional and contemporary leaded glass panels, incorporating time-honored techniques with modern design sensibilities.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Custom Lighting Solutions</h3>
+                    <p>Bespoke lighting fixtures and installations that combine functional illumination with artistic glass elements.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Installation Services</h3>
+                    <p>Professional installation and fitting services ensuring your glass artwork is properly secured and displayed to its full potential.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Memorial Art</h3>
+                    <p>Thoughtfully crafted memorial pieces that honor and celebrate loved ones through the timeless beauty of stained glass.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Digital Design Services</h3>
+                    <p>Cutting-edge digital studio techniques for design visualization, pattern creation, and technical drawings.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section glass" id="classes">
+            <h2 class="section-title">Classes & Workshops</h2>
+            <div class="classes-info">
+                <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem;">
+                    Learn the art of glass working through hands-on instruction with comprehensive classes, intensive workshops, and convenient online tutorials designed for all skill levels.
+                </p>
+                <div class="class-types">
+                    <div class="class-card">
+                        <h4>In-Person Workshops</h4>
+                        <p>Intensive hands-on learning experiences covering fundamental and advanced techniques in a fully equipped studio environment.</p>
+                    </div>
+                    <div class="class-card">
+                        <h4>Online Tutorials</h4>
+                        <p>Comprehensive video instruction series allowing you to learn at your own pace from anywhere in the world.</p>
+                    </div>
+                    <div class="class-card">
+                        <h4>Private Instruction</h4>
+                        <p>One-on-one mentoring sessions tailored to your specific interests and skill level for accelerated learning.</p>
+                    </div>
+                    <div class="class-card">
+                        <h4>Group Classes</h4>
+                        <p>Regular scheduled classes for beginners through advanced students, fostering a collaborative learning environment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section glass" id="more">
+            <h2 class="section-title">Additional Specialties</h2>
+            <div class="additional-services">
+                <div class="additional-service">
+                    <h4>Glass Fusing</h4>
+                    <p>Kiln-formed glass techniques creating unique textures and patterns</p>
+                </div>
+                <div class="additional-service">
+                    <h4>Slumping</h4>
+                    <p>Shaping glass over molds for dimensional architectural elements</p>
+                </div>
+                <div class="additional-service">
+                    <h4>Glass Jewelry</h4>
+                    <p>Wearable art pieces combining precious metals with glass elements</p>
+                </div>
+                <div class="additional-service">
+                    <h4>Furniture Integration</h4>
+                    <p>Custom glass elements incorporated into furniture design</p>
+                </div>
+                <div class="additional-service">
+                    <h4>Templates & Patterns</h4>
+                    <p>Professional-grade patterns and templates for glass artists</p>
+                </div>
+                <div class="additional-service">
+                    <h4>Restoration Work</h4>
+                    <p>Expert restoration of historic stained glass windows and panels</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-info glass">
+            <h3>Ready to Create Something Beautiful?</h3>
+            <p>Contact Lorelei Noble to discuss your custom glass art project, schedule a class, or learn more about available services.</p>
+            <p><strong>Serving Newtown, Pennsylvania and surrounding areas</strong></p>
+            <p>Professional consultations available for architects, designers, and contractors</p>
+        </section>
+    </div>
+</body>
+</html>
