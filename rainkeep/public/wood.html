@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Woodworking - Master Craftsman | Newtown, Pennsylvania</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, 
+                #2c1810 0%, 
+                #3e2723 25%, 
+                #4a2c2a 50%, 
+                #5d4037 75%, 
+                #3e2723 100%);
+            background-attachment: fixed;
+            color: #f5f5dc;
+            position: relative;
+        }
+
+        .wood-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 69, 19, 0.1) 2px,
+                    rgba(139, 69, 19, 0.1) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(101, 67, 33, 0.05) 0px,
+                    rgba(139, 69, 19, 0.05) 1px,
+                    transparent 1px,
+                    transparent 20px
+                );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(160, 82, 45, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 70%, rgba(101, 67, 33, 0.08) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .wood-panel {
+            background: linear-gradient(145deg, 
+                rgba(139, 69, 19, 0.15) 0%,
+                rgba(101, 67, 33, 0.1) 50%,
+                rgba(160, 82, 45, 0.12) 100%);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(160, 82, 45, 0.3);
+            border-radius: 12px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .wood-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(139, 69, 19, 0.05) 2%,
+                transparent 4%
+            );
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .carved-text {
+            background: linear-gradient(45deg, #d2b48c, #c8860d, #a0522d, #8b4513);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: woodGrain 4s ease-in-out infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        @keyframes woodGrain {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        header {
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-family: 'Times New Roman', serif;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #c8860d;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .location {
+            font-size: 1.1rem;
+            color: rgba(245, 245, 220, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .craft-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .craft-tag {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(145deg, rgba(139, 69, 19, 0.3), rgba(101, 67, 33, 0.2));
+            border: 1px solid rgba(160, 82, 45, 0.4);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .craft-tag:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(145deg, rgba(160, 82, 45, 0.4), rgba(139, 69, 19, 0.3));
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            margin: 4rem 0;
+            padding: 3.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(45deg, #a0522d, #c8860d);
+            border-radius: 2px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            text-align: center;
+            color: rgba(245, 245, 220, 0.95);
+            max-width: 900px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .service-card {
+            padding: 2.5rem;
+            background: linear-gradient(145deg, 
+                rgba(101, 67, 33, 0.2) 0%,
+                rgba(139, 69, 19, 0.15) 50%,
+                rgba(160, 82, 45, 0.1) 100%);
+            border: 2px solid rgba(160, 82, 45, 0.3);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent 0%,
+                rgba(139, 69, 19, 0.03) 1%,
+                transparent 2%
+            );
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: linear-gradient(145deg, 
+                rgba(160, 82, 45, 0.25) 0%,
+                rgba(139, 69, 19, 0.2) 50%,
+                rgba(101, 67, 33, 0.15) 100%);
+            border-color: rgba(200, 134, 13, 0.5);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: #c8860d;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .service-card p {
+            color: rgba(245, 245, 220, 0.9);
+            line-height: 1.7;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .specialty-card {
+            padding: 2rem;
+            background: linear-gradient(135deg, 
+                rgba(139, 69, 19, 0.2) 0%,
+                rgba(101, 67, 33, 0.15) 100%);
+            border: 2px solid rgba(160, 82, 45, 0.4);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, 
+                rgba(160, 82, 45, 0.25) 0%,
+                rgba(139, 69, 19, 0.2) 100%);
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.4);
+        }
+
+        .specialty-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #a0522d;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .restoration-highlight {
+            background: linear-gradient(135deg, 
+                rgba(139, 69, 19, 0.3) 0%,
+                rgba(160, 82, 45, 0.2) 100%);
+            border: 2px solid rgba(200, 134, 13, 0.4);
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .restoration-highlight h3 {
+            font-size: 2.2rem;
+            color: #c8860d;
+            margin-bottom: 1.5rem;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .floating-sawdust {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .sawdust-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(200, 134, 13, 0.3);
+            border-radius: 50%;
+            animation: drift 8s linear infinite;
+        }
+
+        .sawdust-particle:nth-child(1) {
+            top: 10%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .sawdust-particle:nth-child(2) {
+            top: 70%;
+            left: 85%;
+            animation-delay: 3s;
+        }
+
+        .sawdust-particle:nth-child(3) {
+            top: 40%;
+            left: 30%;
+            animation-delay: 6s;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.8rem;
+            }
+
+            .section {
+                padding: 2.5rem;
+                margin: 2.5rem 0;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .craft-tags {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 3.5rem 2.5rem;
+            margin: 4rem 0;
+            background: linear-gradient(145deg, 
+                rgba(139, 69, 19, 0.25) 0%,
+                rgba(101, 67, 33, 0.2) 100%);
+            border: 2px solid rgba(160, 82, 45, 0.4);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-section h3 {
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            color: #c8860d;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            color: rgba(245, 245, 220, 0.95);
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="wood-texture"></div>
+    <div class="grain-overlay"></div>
+    <div class="floating-sawdust">
+        <div class="sawdust-particle"></div>
+        <div class="sawdust-particle"></div>
+        <div class="sawdust-particle"></div>
+    </div>
+
+    <div class="container">
+        <header class="wood-panel">
+            <h1 class="main-title carved-text">Custom Woodworking</h1>
+            <p class="subtitle">Master Craftsman & Artist</p>
+            <p class="location">Newtown, Pennsylvania</p>
+            <div class="craft-tags">
+                <span class="craft-tag">Custom Cabinetry</span>
+                <span class="craft-tag">Barn Restoration</span>
+                <span class="craft-tag">Windows & Doors</span>
+                <span class="craft-tag">Building Carpenter</span>
+            </div>
+        </header>
+
+        <section class="section wood-panel" id="about">
+            <h2 class="section-title carved-text">About the Craftsman</h2>
+            <div class="about-content">
+                <p>Combining traditional woodworking artistry with modern precision, our master craftsman brings decades of experience to every project. From the delicate restoration of historic barns to the creation of bespoke cabinetry, each piece is crafted with meticulous attention to detail and an unwavering commitment to quality.</p>
+                <br>
+                <p>Working with both hand tools and modern equipment, we honor the time-tested techniques passed down through generations while embracing innovations that ensure durability and precision. Every grain tells a story, and every joint speaks to the integrity of true craftsmanship.</p>
+            </div>
+        </section>
+
+        <section class="section wood-panel" id="services">
+            <h2 class="section-title carved-text">Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Custom Cabinetry</h3>
+                    <p>Handcrafted kitchen cabinets, built-ins, and storage solutions tailored to your space and lifestyle. From traditional to contemporary designs, using premium hardwoods and time-honored joinery techniques.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Windows & Doors</h3>
+                    <p>Custom wooden windows and doors that combine beauty with functionality. Restoration of historic pieces and creation of new installations that match period details or modern aesthetics.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Building Carpentry</h3>
+                    <p>Structural carpentry services including framing, trim work, flooring, and architectural millwork. Precision craftsmanship for both residential and commercial construction projects.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Furniture Making</h3>
+                    <p>Bespoke furniture pieces designed and built to last generations. Tables, chairs, bookcases, and heirloom pieces crafted from carefully selected premium woods.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="restoration-highlight wood-panel">
+            <h3>Historic Barn Restoration</h3>
+            <p style="font-size: 1.15rem; line-height: 1.8; color: rgba(245, 245, 220, 0.95);">
+                Specializing in the preservation and restoration of historic barns and timber frame structures. We carefully assess, repair, and restore these architectural treasures using traditional techniques and period-appropriate materials, ensuring they stand strong for future generations while maintaining their historical integrity and character.
+            </p>
+        </div>
+
+        <section class="section wood-panel" id="specialties">
+            <h2 class="section-title carved-text">Specialties</h2>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <h4>Timber Framing</h4>
+                    <p>Traditional mortise and tenon joinery for structural and decorative timber work</p>
+                </div>
+                <div class="specialty-card">
+                    <h4>Architectural Millwork</h4>
+                    <p>Custom moldings, trim, and decorative elements that define architectural character</p>
+                </div>
+                <div class="specialty-card">
+                    <h4>Restoration Services</h4>
+                    <p>Expert repair and conservation of antique furniture and historic wooden structures</p>
+                </div>
+                <div class="specialty-card">
+                    <h4>Custom Built-ins</h4>
+                    <p>Space-maximizing storage solutions and integrated furniture designed for your home</p>
+                </div>
+                <div class="specialty-card">
+                    <h4>Hardwood Flooring</h4>
+                    <p>Installation and refinishing of solid hardwood floors using premium materials</p>
+                </div>
+                <div class="specialty-card">
+                    <h4>Fine Joinery</h4>
+                    <p>Precision hand-cut joints including dovetails, mortise and tenon, and complex angles</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section wood-panel">
+            <h3>Ready to Create Something Timeless?</h3>
+            <p>Contact us to discuss your custom woodworking project, restoration needs, or carpentry requirements.</p>
+            <p><strong>Serving Newtown, Pennsylvania and the greater Bucks County area</strong></p>
+            <p>Free consultations available for residential and commercial projects</p>
+            <p style="margin-top: 2rem; font-style: italic; color: #c8860d;">
+                "Where tradition meets craftsmanship, and every piece tells a story"
+            </p>
+        </section>
+    </div>
+</body>
+</html>
