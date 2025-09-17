@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bucks County Birdhouse Habitat Builder</title>
+  <style>
+    :root {
+      --primary-color: #2c5530;
+      --secondary-color: #8fbc8f;
+      --accent-color: #d4a574;
+      --text-dark: #2c3e50;
+      --text-light: #6c757d;
+      --background: #f8f9fa;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--background);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: var(--white);
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    .hero {
+      background: var(--secondary-color);
+      padding: 3rem 1rem;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .model-card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .model-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .model-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .model-number {
+      font-size: 0.9rem;
+      color: var(--accent-color);
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .species-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .species-tag {
+      background: var(--secondary-color);
+      color: var(--white);
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .spec-item {
+      background: var(--background);
+      padding: 0.3rem 0.5rem;
+      border-radius: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--primary-color);
+      color: var(--white);
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bucks County Birdhouse Habitat Builder</h1>
+    <nav>
+      <a href="#models">Models</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Artisan Birdhouses for Local Wildlife</h2>
+    <p>Crafted with care for 10 native birds of Bucks County, Pennsylvania</p>
+  </section>
+
+  <section id="models" class="container">
+    <div class="section-header">
+      <h2>Our Signature Series</h2>
+      <p>10 original models, each thoughtfully designed for a specific native bird species.</p>
+    </div>
+
+    <div class="models-grid">
+      <!-- Model 1 -->
+      <div class="model-card">
+        <h3>The Woodland Whisper</h3>
+        <div class="model-number">Model WW-1</div>
+        <div class="species-tags">
+          <span class="species-tag">Chickadee</span>
+          <span class="species-tag">Titmouse</span>
+          <span class="species-tag">House Wren</span>
+        </div>
+        <div class="specs-grid">
+          <div class="spec-item">Hole: 1.25"</div>
+          <div class="spec-item">Floor: 4×4"</div>
+          <div class="spec-item">Height: 8–10"</div>
+          <div class="spec-item">Wood: Cedar</div>
+          <div class="spec-item">Mount: 5–15 ft</div>
+          <div class="spec-item">Location: Forest Edge</div>
+        </div>
+      </div>
+
+      <!-- Model 2 -->
+      <div class="model-card">
+        <h3>The Meadow Muse</h3>
+        <div class="model-number">Model MM-2</div>
+        <div class="species-tags">
+          <span class="species-tag">Eastern Bluebird</span>
+        </div>
+        <div class="specs-grid">
+          <div class="spec-item">Hole: 1.5"</div>
+          <div class="spec-item">Floor: 5×5"</div>
+          <div class="spec-item">Height: 8–12"</div>
+          <div class="spec-item">Wood: Cedar</div>
+          <div class="spec-item">Mount: 4–6 ft</div>
+          <div class="spec-item">Location: Meadows</div>
+        </div>
+      </div>
+
+      <!-- Model 3 -->
+      <div class="model-card">
+        <h3>The Shrub Serenade</h3>
+        <div class="model-number">Model SS-3</div>
+        <div class="species-tags">
+          <span class="species-tag">Carolina Wren</span>
+          <span class="species-tag">House Wren</span>
+        </div>
+        <div class="specs-grid">
+          <div class="spec-item">Hole: 1.0–1.25"</div>
+          <div class="spec-item">Floor: 4×4"</div>
+          <div class="spec-item">Height: 6–8"</div>
+          <div class="spec-item">Wood: Pine</div>
+          <div class="spec-item">Mount: 5–10 ft</div>
+          <div class="spec-item">Location: Shrubs</div>
+        </div>
+      </div>
+
+      <!-- Model 4 -->
+      <div class="model-card">
+        <h3>The Trunk Atelier</h3>
+        <div class="model-number">Model TA-4</div>
+        <div class="species-tags">
+          <span class="species-tag">Downy Woodpecker</span>
+          <span class="species-tag">Nuthatch</span>
+        </div>
+        <div class="specs-grid">
+          <div class="spec-item">Hole: 1.25"</div>
+          <div class="spec-item">Floor: 4×4"</div>
+          <div class="spec-item">Height: 10–12"</div>
+          <div class="spec-item">Wood: Oak</div>
+          <div class="spec-item">Mount: 6–20 ft</div>
+          <div class="spec-item">Location: Tree Trunks</div>
+        </div>
+      </div>
+
+      <!-- Model 5 -->
+      <div class="model-card">
+        <h3>The Garden Sonata</h3>
+        <div class="model-number">Model GS-5</div>
+        <div class="species-tags">
+          <span class="species-tag">House Finch</span>
+        </div>
+        <div class="specs-grid">
+          <div class="spec-item">Hole: 2.0"</div>
+          <div class="spec-item">Floor: 5×5"</div>
+          <div class="spec-item">Height: 8–10"</div>
+          <div class="spec-item">Wood: Cedar</div>
+          <div class="spec-item">Mount: 8–12 ft</div>
+          <div class="spec-item">Location: Garden Areas</div>
+        </div>
+      </div>
+
+      <!-- Model 6 -->
+      <div class="model-card">
+        <h3>The Porch Poet</h3>
+        <div class="model-number">Model PP-6</div>
+        <div class="species-tags">
+          <span class="species-tag">American Robin</span>
+        </div>
+        <div class="specs-grid">
+          <div class="spec-item">Hole: Open Platform</div>
+          <div class="spec-item">Floor: 6×6"</div>
+          <div class="spec-item">Height: 3" Sides</div>
+          <div class="spec-item">Wood: Cedar</div>
+          <div class="spec-item">Mount: 6–15 ft</div>
+          <div class="spec-item">Location: Ledges</div>
+        </div>
+      </div>
+
+      <!-- Model 7 -->
+      <div class="model-card">
+        <h3>The Canopy Cathedral</h3>
+        <div class="model-number">Model CC-7</div>
+        <div class="species-tags">
+          <span class="species-tag">Pileated Woodpecker</span>
+        </div>
+        <div class="specs-grid">
+          <div class="spec-item">Hole: 2.5–3.0"</div>
+          <div class="spec-item">Floor: 7×7"</div>
+          <div class="spec-item">Height: 16–18"</div>
+          <div class="spec-item">Wood: Oak</div>
+          <div class="spec-item">Mount: 15–25 ft</div>
+          <div class="spec-item">Location: Large Trees</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Bucks County Birdhouse Habitat Builder</p>
+    <p>Crafted in Newtown, PA for native bird conservation</p>
+  </footer>
+</body>
+</html>
