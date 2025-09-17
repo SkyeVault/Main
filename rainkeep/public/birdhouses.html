@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucks County Birdhouse Habitat Builder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c5530;
+            --secondary-color: #8fbc8f;
+            --accent-color: #d4a574;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --background: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .bird-icon {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44,85,48,0.8), rgba(143,188,143,0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a7c59" width="1200" height="600"/><path fill="%235a8c69" d="M0 400c120-50 240-50 360 0s240 50 360 0 240-50 360 0 240 50 360 0v200H0z"/></svg>');
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Birdhouse Models Grid */
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .model-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .model-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: var(--secondary-color);
+        }
+
+        .model-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--background);
+        }
+
+        .model-icon {
+            font-size: 3rem;
+            margin-right: 1rem;
+        }
+
+        .model-info h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .model-number {
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .species-list {
+            background: var(--background);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .species-list h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .species-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .species-tag {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .spec-item {
+            padding: 0.5rem;
+            background: var(--background);
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .spec-label {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .price {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--background);
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* Specifications Table */
+        .specs-table {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--background);
+        }
+
+        th {
+            background: var(--primary-color);
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: var(--background);
+        }
+
+        /* Guidelines Section */
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .guideline-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .guideline-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .guideline-icon {
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .models-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="bird-icon">🏠</span>
+                    Bucks County Birdhouse Builder
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#models">Models</a></li>
+                        <li><a href="#specifications">Specifications</a></li>
+                        <li><a href="#guidelines">Guidelines</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Premium Birdhouses for Pennsylvania Wildlife</h1>
+            <p>Expertly crafted habitats designed specifically for Bucks County's native bird species</p>
+            <a href="#models" class="cta-button">Explore Our Models</a>
+        </div>
+    </section>
+
+    <section id="models">
+        <div class="container">
+            <div class="section-header">
+                <h2>Installation & Care Guidelines</h2>
+                <p>Expert tips for successful birdhouse placement and maintenance in Bucks County</p>
+            </div>
+
+            <div class="guidelines-grid">
+                <div class="guideline-card">
+                    <h3><span class="guideline-icon">🔨</span>Installation Tips</h3>
+                    <ul>
+                        <li><strong>Timing:</strong> Install February-March before breeding season</li>
+                        <li><strong>Orientation:</strong> Face entrance east/southeast, away from prevailing winds</li>
+                        <li><strong>Predator Guards:</strong> Use pole baffles, keep 5+ feet from jumping surfaces</li>
+                        <li><strong>Spacing:</strong> Same species houses 100+ yards apart</li>
+                        <li><strong>Drainage:</strong> Ensure proper drainage holes in floor</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <h3><span class="guideline-icon">🌡️</span>Climate Adaptations</h3>
+                    <ul>
+                        <li><strong>Insulation:</strong> 3/4" thick walls for Pennsylvania winters</li>
+                        <li><strong>Ventilation:</strong> Adequate airflow for humid summers</li>
+                        <li><strong>Sun Protection:</strong> Avoid harsh afternoon sun exposure</li>
+                        <li><strong>Weather Resistance:</strong> Slanted roof with 2-3" overhang</li>
+                        <li><strong>Materials:</strong> Cedar and cypress naturally weather-resistant</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <h3><span class="guideline-icon">🗓️</span>Seasonal Schedule</h3>
+                    <ul>
+                        <li><strong>February:</strong> Install/repair birdhouses</li>
+                        <li><strong>March-April:</strong> First broods begin nesting</li>
+                        <li><strong>May-July:</strong> Peak nesting season monitoring</li>
+                        <li><strong>August:</strong> Second broods, continued care</li>
+                        <li><strong>September-October:</strong> Clean out old nests</li>
+                        <li><strong>November-January:</strong> Maintenance and repairs</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <h3><span class="guideline-icon">🧹</span>Maintenance</h3>
+                    <ul>
+                        <li><strong>Weekly:</strong> Check for damage during nesting season</li>
+                        <li><strong>Monthly:</strong> Remove competing nests (sparrows, starlings)</li>
+                        <li><strong>Seasonally:</strong> Deep clean with mild bleach solution</li>
+                        <li><strong>Annually:</strong> Replace weathered components</li>
+                        <li><strong>Access:</strong> All models feature hinged cleaning doors</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <h3><span class="guideline-icon">🚫</span>Common Problems</h3>
+                    <ul>
+                        <li><strong>House Sparrows:</strong> Remove perches, use 1.25" holes</li>
+                        <li><strong>Starlings:</strong> 1.25" holes too small for entry</li>
+                        <li><strong>Predation:</strong> Install pole guards and proper spacing</li>
+                        <li><strong>Overheating:</strong> Provide shade and ventilation</li>
+                        <li><strong>Poor Drainage:</strong> Keep entrance holes clear</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <h3><span class="guideline-icon">🌿</span>Habitat Enhancement</h3>
+                    <ul>
+                        <li><strong>Native Plants:</strong> Provide natural food sources</li>
+                        <li><strong>Water Sources:</strong> Bird baths or shallow dishes</li>
+                        <li><strong>Nesting Materials:</strong> Leave natural materials nearby</li>
+                        <li><strong>Chemical-Free:</strong> Avoid pesticides and herbicides</li>
+                        <li><strong>Year-Round Care:</strong> Maintain habitat through all seasons</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Regional Ecosystem Guide for Bucks County</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div>
+                        <h4 style="color: var(--accent-color);">🌊 Wetland Areas</h4>
+                        <p>Delaware River corridors - Ideal for Tree Swallows and Red-winged Blackbirds</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-color);">🏡 Suburban Areas</h4>
+                        <p>Residential neighborhoods - Perfect for House Wrens, Chickadees, and Titmice</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-color);">🚜 Agricultural Land</h4>
+                        <p>Open farmland and pastures - Best for Eastern Bluebirds and Tree Swallows</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-color);">🌲 Forested Areas</h4>
+                        <p>Woodlands and parks - Ideal for Woodpeckers, Nuthatches, and woodland species</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact & Ordering</h2>
+                <p>Ready to create the perfect habitat for your local birds? Get in touch with our experts!</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-top: 2rem;">
+                <div style="text-align: center;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">📞 Phone Orders</h3>
+                    <p style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">(215) 555-BIRD</p>
+                    <p>Monday - Friday: 8AM - 6PM<br>Saturday: 9AM - 4PM</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">📧 Email</h3>
+                    <p style="font-size: 1.2rem; color: var(--accent-color);">info@bucksbirdhouses.com</p>
+                    <p>Custom orders and consultations<br>Response within 24 hours</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">📍 Location</h3>
+                    <p>Serving all of Bucks County<br>Doylestown, PA 18901</p>
+                    <p><strong>Free delivery</strong> within 15 miles<br><strong>Installation services</strong> available</p>
+                </div>
+            </div>
+
+            <div style="background: var(--background); padding: 2rem; border-radius: 15px; margin-top: 3rem; text-align: center;">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">🎯 Custom Orders Welcome!</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Need a specific design or have unique requirements? We create custom birdhouses tailored to your property and target species.</p>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <div style="background: var(--white); padding: 1rem; border-radius: 8px; min-width: 200px;">
+                        <strong>🏗️ Custom Designs</strong><br>
+                        <small>Unique specifications for special locations</small>
+                    </div>
+                    <div style="background: var(--white); padding: 1rem; border-radius: 8px; min-width: 200px;">
+                        <strong>📦 Bulk Orders</strong><br>
+                        <small>Discounts for schools and organizations</small>
+                    </div>
+                    <div style="background: var(--white); padding: 1rem; border-radius: 8px; min-width: 200px;">
+                        <strong>🔧 Installation</strong><br>
+                        <small>Professional mounting and setup service</small>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: var(--secondary-color); color: var(--white); padding: 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+                <h3 style="margin-bottom: 1rem;">🌟 Our Guarantee</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div>
+                        <strong>✅ Quality Materials</strong><br>
+                        <small>Premium cedar and oak construction</small>
+                    </div>
+                    <div>
+                        <strong>🛡️ 2-Year Warranty</strong><br>
+                        <small>Against defects and weather damage</small>
+                    </div>
+                    <div>
+                        <strong>🐦 Success Guarantee</strong><br>
+                        <small>Free consultation if birds don't nest</small>
+                    </div>
+                    <div>
+                        <strong>🌱 Eco-Friendly</strong><br>
+                        <small>Sustainable materials and practices</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Bucks County Birdhouse Habitat Builder. Proudly supporting Pennsylvania wildlife conservation.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Licensed • Insured • Member of Pennsylvania Audubon Society</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to model cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to cards
+        document.querySelectorAll('.model-card, .guideline-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Header scroll effect
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            } else if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scrolling down
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                header.style.transform = 'translateY(0)';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Add transition to header
+        header.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+    </script>
+</body>
+</html>>Our Birdhouse Models</h2>
+                <p>Each model is specifically designed and tested for the bird species native to our region. Choose from 7 carefully engineered models that accommodate multiple species.</p>
+            </div>
+
+            <div class="models-grid">
+                <!-- Model 1: Compact Cavity -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon">🐦</div>
+                        <div class="model-info">
+                            <h3>The Compact Cavity</h3>
+                            <span class="model-number">Model CC-1</span>
+                        </div>
+                    </div>
+                    <div class="species-list">
+                        <h4>Perfect For:</h4>
+                        <div class="species-tags">
+                            <span class="species-tag">House Wren</span>
+                            <span class="species-tag">Tree Swallow</span>
+                            <span class="species-tag">Chickadee</span>
+                            <span class="species-tag">Tufted Titmouse</span>
+                        </div>
+                    </div>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Entry Hole:</span> 1.25"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Floor:</span> 4×4"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Height:</span> 8-10"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Wood:</span> Cedar
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Mount Height:</span> 5-15 ft
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Location:</span> Woods/Yards
+                        </div>
+                    </div>
+                    <div class="price">
+                        <div class="price-tag">$45</div>
+                        <p>Includes mounting hardware</p>
+                    </div>
+                </div>
+
+                <!-- Model 2: Bluebird Special -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon">💙</div>
+                        <div class="model-info">
+                            <h3>The Bluebird Special</h3>
+                            <span class="model-number">Model BS-2</span>
+                        </div>
+                    </div>
+                    <div class="species-list">
+                        <h4>Perfect For:</h4>
+                        <div class="species-tags">
+                            <span class="species-tag">Eastern Bluebird</span>
+                        </div>
+                    </div>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Entry Hole:</span> 1.5"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Floor:</span> 5×5"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Height:</span> 8-12"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Wood:</span> Cedar
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Mount Height:</span> 4-6 ft
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Location:</span> Open Fields
+                        </div>
+                    </div>
+                    <div class="price">
+                        <div class="price-tag">$52</div>
+                        <p>With predator guard</p>
+                    </div>
+                </div>
+
+                <!-- Model 3: Wren Haven -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon">🎵</div>
+                        <div class="model-info">
+                            <h3>The Wren Haven</h3>
+                            <span class="model-number">Model WH-3</span>
+                        </div>
+                    </div>
+                    <div class="species-list">
+                        <h4>Perfect For:</h4>
+                        <div class="species-tags">
+                            <span class="species-tag">Carolina Wren</span>
+                            <span class="species-tag">House Wren</span>
+                        </div>
+                    </div>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Entry Hole:</span> 1.0-1.25"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Floor:</span> 4×4"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Height:</span> 6-8"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Wood:</span> Pine
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Mount Height:</span> 5-10 ft
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Location:</span> Near Shrubs
+                        </div>
+                    </div>
+                    <div class="price">
+                        <div class="price-tag">$38</div>
+                        <p>Compact design</p>
+                    </div>
+                </div>
+
+                <!-- Model 4: Woodpecker Workshop -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon">🔨</div>
+                        <div class="model-info">
+                            <h3>The Woodpecker Workshop</h3>
+                            <span class="model-number">Model WW-4</span>
+                        </div>
+                    </div>
+                    <div class="species-list">
+                        <h4>Perfect For:</h4>
+                        <div class="species-tags">
+                            <span class="species-tag">Downy Woodpecker</span>
+                            <span class="species-tag">White-breasted Nuthatch</span>
+                        </div>
+                    </div>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Entry Hole:</span> 1.25"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Floor:</span> 4×4"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Height:</span> 10-12"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Wood:</span> Oak
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Mount Height:</span> 6-20 ft
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Location:</span> Tree Trunks
+                        </div>
+                    </div>
+                    <div class="price">
+                        <div class="price-tag">$65</div>
+                        <p>Heavy-duty construction</p>
+                    </div>
+                </div>
+
+                <!-- Model 5: Finch Family -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon">🌻</div>
+                        <div class="model-info">
+                            <h3>The Finch Family</h3>
+                            <span class="model-number">Model FF-5</span>
+                        </div>
+                    </div>
+                    <div class="species-list">
+                        <h4>Perfect For:</h4>
+                        <div class="species-tags">
+                            <span class="species-tag">House Finch</span>
+                        </div>
+                    </div>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Entry Hole:</span> 2.0"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Floor:</span> 5×5"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Height:</span> 8-10"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Wood:</span> Cedar
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Mount Height:</span> 8-12 ft
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Location:</span> Near Homes
+                        </div>
+                    </div>
+                    <div class="price">
+                        <div class="price-tag">$48</div>
+                        <p>With optional perch</p>
+                    </div>
+                </div>
+
+                <!-- Model 6: Robin Platform -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon">🔴</div>
+                        <div class="model-info">
+                            <h3>The Robin Platform</h3>
+                            <span class="model-number">Model RP-6</span>
+                        </div>
+                    </div>
+                    <div class="species-list">
+                        <h4>Perfect For:</h4>
+                        <div class="species-tags">
+                            <span class="species-tag">American Robin</span>
+                            <span class="species-tag">Other Open Nesters</span>
+                        </div>
+                    </div>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Entry Hole:</span> Open Top
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Floor:</span> 6×6"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Height:</span> 3" sides
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Wood:</span> Cedar
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Mount Height:</span> 6-15 ft
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Location:</span> Sheltered areas
+                        </div>
+                    </div>
+                    <div class="price">
+                        <div class="price-tag">$35</div>
+                        <p>Open shelf design</p>
+                    </div>
+                </div>
+
+                <!-- Model 7: Giant's Den -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon">🦅</div>
+                        <div class="model-info">
+                            <h3>The Giant's Den</h3>
+                            <span class="model-number">Model GD-7</span>
+                        </div>
+                    </div>
+                    <div class="species-list">
+                        <h4>Perfect For:</h4>
+                        <div class="species-tags">
+                            <span class="species-tag">Pileated Woodpecker</span>
+                        </div>
+                    </div>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Entry Hole:</span> 2.5-3.0"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Floor:</span> 7×7"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Height:</span> 16-18"
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Wood:</span> Oak
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Mount Height:</span> 15-25 ft
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Location:</span> Large Trees
+                        </div>
+                    </div>
+                    <div class="price">
+                        <div class="price-tag">$125</div>
+                        <p>Professional installation available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="specifications">
+        <div class="container">
+            <div class="section-header">
+                <h2>Complete Specifications</h2>
+                <p>Detailed specifications for all native bird species in Bucks County</p>
+            </div>
+
+            <div class="specs-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bird Species</th>
+                            <th>Entry Hole (in)</th>
+                            <th>Floor Size (in)</th>
+                            <th>Height (in)</th>
+                            <th>Wood Type</th>
+                            <th>Mount Height (ft)</th>
+                            <th>Best Location</th>
+                            <th>Our Model</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Eastern Bluebird</strong></td>
+                            <td>1.5</td>
+                            <td>5×5</td>
+                            <td>8–12</td>
+                            <td>Cedar</td>
+                            <td>4–6</td>
+                            <td>Open fields, meadows</td>
+                            <td>BS-2</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tree Swallow</strong></td>
+                            <td>1.25</td>
+                            <td>4×4</td>
+                            <td>8–10</td>
+                            <td>Cedar</td>
+                            <td>6–15</td>
+                            <td>Near water, open areas</td>
+                            <td>CC-1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>House Wren</strong></td>
+                            <td>1.25</td>
+                            <td>4×4</td>
+                            <td>8–12</td>
+                            <td>Cedar/Pine</td>
+                            <td>5–15</td>
+                            <td>Forest edge, yards</td>
+                            <td>CC-1, WH-3</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Carolina Wren</strong></td>
+                            <td>1.0–1.25</td>
+                            <td>4×4</td>
+                            <td>6–8</td>
+                            <td>Pine</td>
+                            <td>5–10</td>
+                            <td>Near shrubs, dense vegetation</td>
+                            <td>WH-3</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Black-capped Chickadee</strong></td>
+                            <td>1.25</td>
+                            <td>4×4</td>
+                            <td>8–10</td>
+                            <td>Cedar</td>
+                            <td>5–15</td>
+                            <td>Dense foliage, wooded areas</td>
+                            <td>CC-1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tufted Titmouse</strong></td>
+                            <td>1.25</td>
+                            <td>4×4</td>
+                            <td>8–10</td>
+                            <td>Cedar</td>
+                            <td>6–12</td>
+                            <td>Deciduous woods</td>
+                            <td>CC-1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>White-breasted Nuthatch</strong></td>
+                            <td>1.25</td>
+                            <td>4×4</td>
+                            <td>8–10</td>
+                            <td>Oak</td>
+                            <td>6–20</td>
+                            <td>Tree trunks, wooded lots</td>
+                            <td>WW-4</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Downy Woodpecker</strong></td>
+                            <td>1.25</td>
+                            <td>4×4</td>
+                            <td>10–12</td>
+                            <td>Oak</td>
+                            <td>6–20</td>
+                            <td>Tree trunks, dead snags</td>
+                            <td>WW-4</td>
+                        </tr>
+                        <tr>
+                            <td><strong>House Finch</strong></td>
+                            <td>2.0</td>
+                            <td>5×5</td>
+                            <td>8–10</td>
+                            <td>Cedar</td>
+                            <td>8–12</td>
+                            <td>Eaves, porches</td>
+                            <td>FF-5</td>
+                        </tr>
+                        <tr>
+                            <td><strong>American Robin</strong></td>
+                            <td>Open Platform</td>
+                            <td>6×6</td>
+                            <td>3" sides</td>
+                            <td>Cedar</td>
+                            <td>6–15</td>
+                            <td>Ledges, tree branches</td>
+                            <td>RP-6</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pileated Woodpecker</strong></td>
+                            <td>2.5–3.0</td>
+                            <td>7×7</td>
+                            <td>16–18</td>
+                            <td>Oak</td>
+                            <td>15–25</td>
+                            <td>Large mature trees</td>
+                            <td>GD-7</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="guidelines">
+        <div class="container">
+            <div class="section-header">
+                <h2
