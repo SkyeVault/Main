@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainkeep Miniatures - Build Your Magical Village</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f3ed 0%, #e8ece5 100%);
+            color: #3d4a3e;
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(135deg, #9fb09a 0%, #b8c9b3 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "🌿";
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            top: -20px;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        header::after {
+            content: "🏡";
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            top: -20px;
+            right: 10%;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 0.5rem;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #f5f3ed;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 3px solid #d4c4a8;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #6b7d6a;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .emoji {
+            font-size: 2.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f9f7f0 0%, #ebe8de 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #c4b5a0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            border-color: #9fb09a;
+        }
+
+        .card h3 {
+            color: #6b7d6a;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            color: #5a6859;
+            font-size: 0.95rem;
+        }
+
+        .steps {
+            counter-reset: step;
+        }
+
+        .step {
+            counter-increment: step;
+            position: relative;
+            padding-left: 3rem;
+            margin: 1.5rem 0;
+        }
+
+        .step::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(135deg, #9fb09a 0%, #b8c9b3 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .price-item {
+            background: rgba(159, 176, 154, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px dashed #9fb09a;
+        }
+
+        .price-item strong {
+            color: #6b7d6a;
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #9fb09a 0%, #7d9178 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            margin: 2rem auto;
+            display: block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #7d9178 0%, #6b7d6a 100%);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7d6a;
+            background: rgba(255, 255, 255, 0.5);
+            margin-top: 3rem;
+            border-top: 3px solid #d4c4a8;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        ul li::before {
+            content: "🌱";
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏰 Rainkeep Miniatures 🏰</h1>
+        <p class="tagline">Build Your Own Magical Village</p>
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title"><span class="emoji">🛍️</span> Quick Shop</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Family Set</h3>
+                    <p>2–6 printed wood characters featuring your loved ones</p>
+                </div>
+                <div class="card">
+                    <h3>Grandparents & Extended Family</h3>
+                    <p>Bring the whole family into your village</p>
+                </div>
+                <div class="card">
+                    <h3>Friends Collection</h3>
+                    <p>Diverse children characters for endless play</p>
+                </div>
+                <div class="card">
+                    <h3>Pets & Creatures</h3>
+                    <p>Dogs, cats, unicorns, dragons & more magical friends</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><span class="emoji">🔧</span> How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>Choose Your Path</h3>
+                    <p>Select a pre-made set or upload custom photos for truly personalized characters</p>
+                </div>
+                <div class="step">
+                    <h3>Customize Everything</h3>
+                    <p>Pick character styles, block sizes, accessories, and bring your vision to life</p>
+                </div>
+                <div class="step">
+                    <h3>We Create Magic</h3>
+                    <p>Our artisans print, craft, and ship your unique set directly to your doorstep</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><span class="emoji">🎨</span> Custom Character Sets</h2>
+            <p style="text-align: center; margin-bottom: 1.5rem; font-size: 1.1rem;">Create characters that look just like you and your loved ones!</p>
+            <ul>
+                <li>Upload 1–10 photos of family, friends, or favorite characters</li>
+                <li>Select skin tone, hair color, and outfit styles</li>
+                <li>Choose block sizes (3.5", 4", or custom)</li>
+                <li>Pricing: $15–$20 per character</li>
+                <li>Turnaround: 2–3 weeks for careful handcrafting</li>
+            </ul>
+            <button class="cta-button">Start Creating</button>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><span class="emoji">📖</span> Storybook Builder</h2>
+            <p style="text-align: center; margin-bottom: 1.5rem;">Design the perfect backdrop for your miniature adventures</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Story Scenes</h3>
+                    <p>Bedroom, Kitchen, Magic School, Market, Forest Glade, Castle Hall & more</p>
+                </div>
+                <div class="card">
+                    <h3>Format Options</h3>
+                    <p>Laminated paper, Fabric yard, or Digital PDF downloads</p>
+                </div>
+                <div class="card">
+                    <h3>Add-Ons</h3>
+                    <p>Matching character stickers or companion blocks</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><span class="emoji">💰</span> Pricing</h2>
+            <div class="pricing-grid">
+                <div class="price-item">
+                    <strong>Pre-made Sets</strong>
+                    <p>$30–$45</p>
+                </div>
+                <div class="price-item">
+                    <strong>Custom Block</strong>
+                    <p>$15–$20 each</p>
+                </div>
+                <div class="price-item">
+                    <strong>Fabric Storybook</strong>
+                    <p>$38–$50/yard</p>
+                </div>
+                <div class="price-item">
+                    <strong>Sticker Sheet</strong>
+                    <p>$6</p>
+                </div>
+                <div class="price-item">
+                    <strong>Scene Backgrounds</strong>
+                    <p>$8–$12</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>✨ Handcrafted with love in our woodland workshop ✨</p>
+        <p style="margin-top: 1rem;">Where imagination meets craftsmanship</p>
+    </footer>
+</body>
+</html>
