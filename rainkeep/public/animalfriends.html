@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainkeep Animal Friends by Lorelei Noble</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif;
+            background: linear-gradient(135deg, #4DB8C4 0%, #F5A65B 100%);
+            color: #2C5F6F;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #E85D9A 0%, #F5A65B 50%, #4DB8C4 100%);
+            border-radius: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 8s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #FFF8E7;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            color: #2C5F6F;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .author {
+            font-size: 1.3em;
+            color: #FFF8E7;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-text h2 {
+            color: #E85D9A;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #2C5F6F;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #4DB8C4 0%, #E85D9A 100%);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            color: white;
+            font-size: 1.5em;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid #E85D9A;
+        }
+
+        .feature-card:nth-child(2) {
+            border-top-color: #F5A65B;
+        }
+
+        .feature-card:nth-child(3) {
+            border-top-color: #4DB8C4;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .feature-card h3 {
+            color: #2C5F6F;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-card li {
+            padding: 8px 0;
+            color: #2C5F6F;
+            font-size: 1.1em;
+        }
+
+        .feature-card li::before {
+            content: '🐾 ';
+            margin-right: 8px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #E85D9A 0%, #F5A65B 100%);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .cta-section p {
+            color: #FFF8E7;
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .button-primary {
+            background: white;
+            color: #E85D9A;
+        }
+
+        .button-primary:hover {
+            background: #FFF8E7;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .button-secondary {
+            background: #4DB8C4;
+            color: white;
+        }
+
+        .button-secondary:hover {
+            background: #3A9AA5;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .how-it-works {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .how-it-works h2 {
+            color: #4DB8C4;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #E85D9A, #F5A65B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2em;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .step h3 {
+            color: #2C5F6F;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .step p {
+            color: #2C5F6F;
+            font-size: 1.1em;
+        }
+
+        .related-books {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .related-books h2 {
+            color: #E85D9A;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .related-books p {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #2C5F6F;
+        }
+
+        .books-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .book-item {
+            background: linear-gradient(135deg, #4DB8C4, #E85D9A);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background: #2C5F6F;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        footer h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        footer a {
+            color: #F5A65B;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #E85D9A;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .subtitle {
+                font-size: 1.3em;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .button {
+                display: block;
+                margin: 10px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌈 RAINKEEP 🌈</h1>
+            <div class="subtitle">Animal Friends</div>
+            <div class="author">by Lorelei Noble</div>
+        </header>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>A Magical Fabric Book Adventure!</h2>
+                    <p>Discover the wonderful world of animals from six amazing habitats with this delightful fabric book designed for children.</p>
+                    <p>Perfect for learning, playing, and creative fun!</p>
+                    <p><strong>Cut, sew, and create your own magical animal friends!</strong></p>
+                </div>
+                <div class="image-placeholder">
+                    🦒🐘🐧🐠🦜🐍
+                    <br>
+                    Colorful Animal Characters Await!
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <h3>🌍 Six Habitats</h3>
+                <ul>
+                    <li>Savannah</li>
+                    <li>Arctic</li>
+                    <li>Farm</li>
+                    <li>Aquarium</li>
+                    <li>Rainforest</li>
+                    <li>Reptile House</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>✨ What's Included</h3>
+                <ul>
+                    <li>Adorable animal character cutouts</li>
+                    <li>Vibrant, engaging scenes</li>
+                    <li>Educational & fun designs</li>
+                    <li>Easy-to-follow layouts</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>🧵 Easy to Make</h3>
+                <ul>
+                    <li>Buy one yard of fabric</li>
+                    <li>Signature 42" fabric</li>
+                    <li>Simply cut and sew</li>
+                    <li>Create lasting memories</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Order</h3>
+                    <p>Purchase one yard of Signature 42" fabric from Spoonflower</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Cut</h3>
+                    <p>Follow the printed lines to cut out your fabric book pieces</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Sew</h3>
+                    <p>Stitch together your beautiful fabric book</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Enjoy!</h3>
+                    <p>Watch your child learn and play with their new animal friends</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Ready to Create Your Rainkeep Animal Friends Book?</h2>
+            <p>Get your fabric today and start your adventure!</p>
+            <a href="https://www.spoonflower.com/en/artists/fabric/20953072" class="button button-primary" target="_blank">🛒 Buy Fabric on Spoonflower</a>
+            <a href="https://www.arynwood.com/rainkeep" class="button button-secondary" target="_blank">🌟 Explore More Rainkeep Books</a>
+        </section>
+
+        <section class="related-books">
+            <h2>More Rainkeep Adventures</h2>
+            <p>Discover our complete collection of fabric books!</p>
+            <div class="books-list">
+                <div class="book-item">Rainkeep Village</div>
+                <div class="book-item">Rainkeep Places to Go</div>
+                <div class="book-item">Rainkeep Animal Friends</div>
+            </div>
+            <p style="margin-top: 30px;">
+                <a href="https://www.arynwood.com/rainkeep" class="button button-secondary" target="_blank">View All Rainkeep Books</a>
+            </p>
+        </section>
+
+        <footer>
+            <h3>Contact</h3>
+            <p>Have questions or want to share your creations?</p>
+            <p>Email: <a href="mailto:loreleihnoble@gmail.com">loreleihnoble@gmail.com</a></p>
+            <p style="margin-top: 20px; font-size: 0.9em;">© 2024 Lorelei Noble | Rainkeep Animal Friends</p>
+        </footer>
+    </div>
+</body>
+</html>
