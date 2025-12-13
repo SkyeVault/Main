@@ -98,7 +98,57 @@
             padding: 0;
             box-sizing: border-box;
         }
+/* Header character stickers (cute little guys) */
+.header-stickers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2; /* above header::before grid texture */
+}
 
+.header-stickers img {
+  position: absolute;
+  width: 170px;
+  height: auto;
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,0.22));
+  transform: rotate(-6deg);
+  opacity: 0.98;
+}
+
+.header-stickers .sticker-left {
+  left: 22px;
+  bottom: -10px;
+}
+
+.header-stickers .sticker-right {
+  right: 18px;
+  top: 18px;
+  transform: rotate(8deg);
+  width: 150px;
+}
+
+/* Keep header text above stickers */
+header h1,
+header .subtitle,
+header .author {
+  position: relative;
+  z-index: 3;
+}
+
+@media (max-width: 768px) {
+  .header-stickers img {
+    width: 120px;
+  }
+  .header-stickers .sticker-right {
+    width: 110px;
+    top: 12px;
+    right: 12px;
+  }
+  .header-stickers .sticker-left {
+    left: 12px;
+    bottom: -6px;
+  }
+}
         body {
             font-family: 'Georgia', 'Garamond', serif;
             background: linear-gradient(135deg, #8B9D77 0%, #C4B195 50%, #A89968 100%);
@@ -875,6 +925,31 @@
         }
     </style>
 </head>
+    <div class="header-stickers" aria-hidden="true">
+  <img
+    class="sticker-left"
+    src="https://raw.githubusercontent.com/SkyeVault/Main/main/rainkeep/public/Original_Family-1.png"
+    data-fallbacks="
+      /rainkeep/public/Original_Family-1.png |
+      https://github.com/SkyeVault/Main/raw/main/rainkeep/public/Original_Family-1.png |
+      https://github.com/SkyeVault/Main/blob/main/rainkeep/public/Original_Family-1.png?raw=1
+    "
+    alt=""
+    loading="eager"
+  />
+  <img
+    class="sticker-right"
+    src="https://raw.githubusercontent.com/SkyeVault/Main/main/rainkeep/public/Original_Family-2.png"
+    data-fallbacks="
+      /rainkeep/public/Original_Family-2.png |
+      https://github.com/SkyeVault/Main/raw/main/rainkeep/public/Original_Family-2.png |
+      https://github.com/SkyeVault/Main/blob/main/rainkeep/public/Original_Family-2.png?raw=1
+    "
+    alt=""
+    loading="eager"
+  />
+</div>
+
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
