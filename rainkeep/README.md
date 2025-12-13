@@ -3,7 +3,7 @@
 
 **Rainkeep** is the codebase for [Arynwood.com](https://arynwood.com), a terminal-inspired website documenting the creation of decentralized tools, blockchain infrastructure, and open-source information.
 
-**Rainkeep Miniatures** is a 2D and 3D digital art project that is entering the physical realm through print and sew fabrics, stickers, wooden toys, and dollhouse immersive creations.  The website for this collection is found at [Rainkeep] (https://www.arynwood.com/rainkeep)
+**Rainkeep Miniatures** is a 2D and 3D digital art project that is entering the physical realm through print and sew fabrics, stickers, wooden toys, and dollhouse immersive creations.  The website for this collection is found at https://www.arynwood.com/rainkeep
 
 Arynwood is the public-facing interface of a larger creative and technical endeavor blending development, storytelling, and system-building into a transparent workflow anyone can follow.
 
