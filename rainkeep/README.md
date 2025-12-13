@@ -3,6 +3,8 @@
 
 **Rainkeep** is the codebase for [Arynwood.com](https://arynwood.com), a terminal-inspired website documenting the creation of decentralized tools, blockchain infrastructure, and open-source information.
 
+**Rainkeep Miniatures** is a 2D and 3D digital art project that is entering the physical realm through print and sew fabrics, stickers, wooden toys, and dollhouse immersive creations.  The website for this collection is found at [Rainkeep] (https://www.arynwood.com/rainkeep)
+
 Arynwood is the public-facing interface of a larger creative and technical endeavor blending development, storytelling, and system-building into a transparent workflow anyone can follow.
 
 ---
@@ -12,8 +14,8 @@ Arynwood is the public-facing interface of a larger creative and technical endea
 Arynwood is a personal codename for a creative studio and digital frontier created by Lorelei Noble. It's the home of:
 
 - **DevLogs** - Daily technical entries written as HTML blog posts  
-- **On-Chain Experiments** - Smart contracts deployed to Polygon Amoy testnet  
-- **Art and Metaverse Projects** - Custom 2D and 3D environments fully hosted on chain
+- **On-Chain Experiments** - Smart contracts deployed to Polygon Amoy testnet  (update December 2025, testnet gallery is no longer supported by OpenSea.  On-chain projects will resume 
+- **Art and Metaverse Projects** - Custom 2D and 3D environments are evolving every day
 - **Tutorials and Labs** - Notes and Labs for Linux, Python, AWS, smart contracts and more
 - **Creative Code** - Integrations of digital paintings, glasswork, 3D printing, and software  
 - **Ethical Infrastructure** - A commitment to transparency, privacy, and dignity in digital systems
