@@ -106,6 +106,8 @@
             padding: 18px;
             box-shadow: 0 6px 25px rgba(0,0,0,0.35);
             border: 4px solid #6B5D45;
+            position: relative;
+            overflow: hidden;
         }
 
         .hero-image {
@@ -488,6 +490,92 @@
             text-decoration: underline;
         }
 
+        /* NEW: playful character stickers (header + body) */
+        .sticker {
+            position: absolute;
+            width: 130px;
+            height: auto;
+            z-index: 2;
+            opacity: 0.98;
+            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+            transform-origin: center;
+            pointer-events: none;
+        }
+
+        .sticker-left {
+            top: 16px;
+            left: 18px;
+            transform: rotate(-8deg);
+        }
+
+        .sticker-right {
+            bottom: 14px;
+            right: 18px;
+            transform: rotate(7deg);
+        }
+
+        .sticker-caption {
+            position: absolute;
+            z-index: 3;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(249, 246, 236, 0.92);
+            border: 2px solid rgba(107, 93, 69, 0.45);
+            color: #4A3E2A;
+            font-size: 0.95em;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+            pointer-events: none;
+        }
+
+        .sticker-caption-left {
+            top: 22px;
+            left: 160px;
+            transform: rotate(-2deg);
+        }
+
+        .sticker-caption-right {
+            bottom: 22px;
+            right: 165px;
+            transform: rotate(2deg);
+        }
+
+        .character-strip {
+            background: #F9F6EC;
+            border-radius: 25px;
+            padding: 22px 26px;
+            margin: 0 0 50px 0;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+            border: 4px solid #B5A582;
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .character-strip img {
+            width: 170px;
+            height: auto;
+            border-radius: 18px;
+            border: 4px solid #6B5D45;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+            transform: rotate(-2deg);
+            background: #fff;
+        }
+
+        .character-strip h2 {
+            color: #6B5D45;
+            font-size: 2.2em;
+            font-weight: normal;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .character-strip p {
+            font-size: 1.15em;
+            color: #4A3E2A;
+            line-height: 1.75;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.8em;
@@ -511,7 +599,7 @@
             }
 
             header {
-                padding: 50px 30px;
+                padding: 60px 25px;
             }
 
             .hero-section,
@@ -525,12 +613,47 @@
             .sew-instructions {
                 text-align: left;
             }
+
+            .sticker {
+                width: 95px;
+            }
+
+            .sticker-caption {
+                display: none;
+            }
+
+            .character-strip {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .character-strip img {
+                margin: 0 auto;
+                transform: rotate(-1deg);
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
+            <!-- NEW: header stickers (use raw GitHub URL so the image actually loads) -->
+            <img
+                src="https://raw.githubusercontent.com/SkyeVault/Main/main/rainkeep/public/Original_Family-1.png"
+                alt="Rainkeep character family"
+                class="sticker sticker-left"
+                loading="lazy"
+            />
+            <div class="sticker-caption sticker-caption-left">Meet the Rainkeep family</div>
+
+            <img
+                src="https://raw.githubusercontent.com/SkyeVault/Main/main/rainkeep/public/Original_Family-1.png"
+                alt="Rainkeep character family"
+                class="sticker sticker-right"
+                loading="lazy"
+            />
+            <div class="sticker-caption sticker-caption-right">Cut, sew, and play</div>
+
             <h1>RAINKEEP VILLAGE</h1>
             <div class="subtitle">Places to Go & Adventures Await</div>
             <div class="author">by Lorelei Noble</div>
@@ -576,8 +699,9 @@
                             <h3>Print + Sew Instructions</h3>
                             <ol>
                                 <li>Order <strong>1 yard</strong> printed on <strong>56&quot; Organic Cotton Sateen</strong>.</li>
-                                <li>When it arrives, <strong>cut out the pattern </strong> for each character and piece.</li>
-                                <li><strong>Trim corners</strong>, turn right-side out, and gently <strong>stuff</strong> the characters.</li>
+                                <li>When it arrives, <strong>cut out the pattern</strong> for each character and piece.</li>
+                                <li>Place matching pieces together, sew around edges (leave a small opening), then <strong>trim corners</strong>.</li>
+                                <li>Turn right-side out and gently <strong>stuff</strong> the characters.</li>
                                 <li>Close openings with a <strong>ladder stitch</strong> (or tight straight stitch) and enjoy your set.</li>
                             </ol>
                         </div>
@@ -588,6 +712,22 @@
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- NEW: playful body placement (small, “sticker” style strip) -->
+        <section class="character-strip">
+            <img
+                src="https://raw.githubusercontent.com/SkyeVault/Main/main/rainkeep/public/Original_Family-1.png"
+                alt="Rainkeep character family"
+                loading="lazy"
+            />
+            <div>
+                <h2>Make Your Own Little Cast</h2>
+                <p>
+                    Cut, sew, and bring the characters to life, then visit the companion tales page to start storytime.
+                    Want your own family set? Email me and we’ll make something special.
+                </p>
             </div>
         </section>
 
