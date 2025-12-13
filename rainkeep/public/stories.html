@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Companion Tales | Rainkeep Village</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
     * {
       margin: 0;
@@ -91,7 +92,53 @@
       letter-spacing: 1px;
     }
 
-    .intro-section {
+    /* NEW: playful header images */
+    .header-gallery {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-card {
+      width: min(220px, 38vw);
+      background: rgba(249, 246, 236, 0.22);
+      border: 2px solid rgba(244, 236, 216, 0.55);
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.20);
+      transform: rotate(-1deg);
+    }
+
+    .header-card:nth-child(2) {
+      transform: rotate(1.5deg);
+    }
+
+    .header-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      border: 3px solid #6B5D45;
+      background: #ffffff;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+    }
+
+    .header-card .cap {
+      margin-top: 8px;
+      color: #F4ECD8;
+      font-style: italic;
+      font-size: 1.02em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .intro-section,
+    .characters,
+    .stories-section,
+    .character-strip {
       background: #F9F6EC;
       border-radius: 25px;
       padding: 50px;
@@ -157,6 +204,7 @@
       font-family: 'Georgia', 'Garamond', serif;
       letter-spacing: 0.5px;
       text-align: center;
+      width: 100%;
     }
 
     .button-secondary {
@@ -167,7 +215,7 @@
 
     .button-secondary:hover {
       background: #F4ECD8;
-      transform: scale(1.06);
+      transform: scale(1.03);
       box-shadow: 0 10px 30px rgba(0,0,0,0.45);
     }
 
@@ -179,20 +227,93 @@
 
     .button-primary:hover {
       background: #7A8B6C;
-      transform: scale(1.06);
+      transform: scale(1.03);
       box-shadow: 0 10px 30px rgba(0,0,0,0.45);
     }
 
-    .characters {
-      background: #F9F6EC;
-      border-radius: 25px;
-      padding: 50px;
-      margin-bottom: 50px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.25);
-      border: 4px solid #B5A582;
+    /* NEW: story window (matches /rainkeep hero) */
+    .story-window {
+      background: linear-gradient(135deg, rgba(122, 139, 108, 0.22), rgba(168, 153, 104, 0.22));
+      border: 3px solid rgba(181, 165, 130, 0.75);
+      border-radius: 20px;
+      padding: 14px;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      position: relative;
     }
 
-    .characters h2 {
+    .story-window::after {
+      content: '';
+      position: absolute;
+      inset: 10px;
+      border-radius: 16px;
+      border: 2px dashed rgba(107, 93, 69, 0.25);
+      pointer-events: none;
+    }
+
+    .story-window img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+      background: #ffffff;
+      border: 3px solid #6B5D45;
+    }
+
+    .story-window .caption {
+      margin-top: 10px;
+      text-align: center;
+      color: #6B5D45;
+      font-style: italic;
+      font-size: 1.05em;
+      line-height: 1.5;
+    }
+
+    /* NEW: character strip (same as /rainkeep) */
+    .character-strip {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .character-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .character-images img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      border: 3px solid #6B5D45;
+      background: #fff;
+    }
+
+    .character-text h2 {
+      color: #6B5D45;
+      font-size: 2.4em;
+      margin-bottom: 18px;
+      font-weight: normal;
+    }
+
+    .character-text p {
+      font-size: 1.2em;
+      line-height: 1.75;
+      color: #4A3E2A;
+      margin-bottom: 14px;
+    }
+
+    .character-note {
+      font-style: italic;
+      color: #6B5D45;
+    }
+
+    .characters h2,
+    .stories-section h2 {
       color: #6B5D45;
       font-size: 2.4em;
       margin-bottom: 18px;
@@ -212,21 +333,8 @@
       font-weight: 600;
     }
 
-    .stories-section {
-      background: #F9F6EC;
-      border-radius: 25px;
-      padding: 50px;
-      margin-bottom: 50px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.25);
-      border: 4px solid #B5A582;
-    }
-
     .stories-section h2 {
-      color: #6B5D45;
-      font-size: 2.4em;
       margin-bottom: 25px;
-      font-weight: normal;
-      text-align: center;
     }
 
     ol.story-list {
@@ -324,7 +432,8 @@
 
       .intro-section,
       .characters,
-      .stories-section {
+      .stories-section,
+      .character-strip {
         padding: 35px 25px;
       }
 
@@ -341,23 +450,65 @@
       .story-title {
         margin-top: 6px;
       }
+
+      .character-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .character-images {
+        grid-template-columns: 1fr;
+      }
+
+      .header-card {
+        width: min(260px, 85vw);
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-
     <header>
       <h1>COMPANION TALES</h1>
       <div class="subtitle">Stories to Inspire the Imagination</div>
       <div class="author">Rainkeep Village Story Prompts</div>
+
+      <div class="header-gallery" aria-label="Example Rainkeep character sets">
+        <div class="header-card">
+          <img
+            src="https://raw.githubusercontent.com/SkyeVault/Main/main/rainkeep/public/Original_Family-4.png"
+            alt="Example Rainkeep family character set"
+            loading="lazy"
+          />
+          <div class="cap">Example family set</div>
+        </div>
+
+        <div class="header-card">
+          <img
+            src="https://raw.githubusercontent.com/SkyeVault/Main/main/rainkeep/public/Original_Family-3.png"
+            alt="Another example Rainkeep family character set"
+            loading="lazy"
+          />
+          <div class="cap">Another example set</div>
+        </div>
+      </div>
     </header>
 
     <section class="intro-section">
       <div class="intro-content">
 
         <div class="intro-text">
+          <div class="story-window">
+            <img
+              src="/Untitled_Artwork%2012.png"
+              alt="A glimpse into Rainkeep Village"
+              loading="lazy"
+            />
+            <div class="caption">
+              A tiny window into the world your child will explore.
+            </div>
+          </div>
+
           <h2>Cozy Story Prompts for Playtime</h2>
           <p>
             This page is a companion to the Rainkeep Village fabric book. Use these prompts as gentle starting points
@@ -379,7 +530,8 @@
         </div>
 
         <aside class="panel">
-        
+          <h3>Quick Links</h3>
+
           <a
             href="https://www.arynwood.com/rainkeep"
             class="button button-primary"
@@ -408,6 +560,36 @@
       </div>
     </section>
 
+    <section class="character-strip" aria-label="Custom family sets">
+      <div class="character-images">
+        <img
+          src="https://raw.githubusercontent.com/SkyeVault/Main/main/rainkeep/public/Original_Family-4.png"
+          alt="Example Rainkeep family character set"
+          loading="lazy"
+        />
+        <img
+          src="https://raw.githubusercontent.com/SkyeVault/Main/main/rainkeep/public/Original_Family-3.png"
+          alt="Another example Rainkeep family character set"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="character-text">
+        <h2>Your Family, in Rainkeep</h2>
+        <p>
+          These are example family sets from Rainkeep Village — designed to feel familiar,
+          gentle, and story-ready right out of the fabric.
+        </p>
+        <p>
+          Use this page to pick a story seed, set the characters into a scene, and let your child
+          steer the adventure.
+        </p>
+        <p class="character-note">
+          Want a set that looks like your own family? Email me and we’ll create a cast that feels like home.
+        </p>
+      </div>
+    </section>
+
     <section class="characters">
       <h2>Meet the Rainkeep Friends</h2>
       <p>
@@ -418,7 +600,7 @@
       <p>
         <strong>Family Characters</strong><br />
         • <strong>Selene (Mom)</strong> – the stained glass artist at Pebble &amp; Prism Glass Studio<br />
-        • <strong>Bram (Dad)</strong> – the gentle woodworker who carves toys and furniture
+        • <strong>Bram (Dad)</strong> – the gentle woodworker who carves toys and furniture<br />
         • <strong>Lyric</strong> – Selene and Bram's daughter who loves exploring the village<br />
         • <strong>Tuk</strong> – the loyal dachshund who follows them everywhere
       </p>
@@ -527,7 +709,7 @@
         <li>
           <h3 class="story-title">A Concert in the Music Room</h3>
           <p class="story-text">
-            Ivy plays one instrument, Mara plays another, and Tuk joins in with jingling tags. Choose which instruments
+            Ivy plays one instrument, Myra plays another, and Tuk joins in with jingling tags. Choose which instruments
             they try and what kind of concert they give for the grandparents.
           </p>
         </li>
@@ -560,7 +742,7 @@
           <h3 class="story-title">Tea Party for All the Grandparents</h3>
           <p class="story-text">
             Ivy and Myra plan a tea party. Decide which treats Granny Elen bakes, which flowers Pop Jasper brings,
-            what Nana Mira sews for the table, and which potion Grandpa Corwin shares.
+            what Nana Mona sews for the table, and which potion Grandpa Corwin shares.
           </p>
         </li>
 
@@ -655,7 +837,6 @@
         <a href="mailto:loreleihnoble@gmail.com">loreleihnoble@gmail.com</a>
       </p>
     </footer>
-
   </div>
 </body>
 </html>
