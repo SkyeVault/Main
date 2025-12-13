@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rainkeep Village by Lorelei Noble</title>
-
     <style>
         * {
             margin: 0;
@@ -13,7 +12,7 @@
         }
 
         body {
-            font-family: Georgia, Garamond, serif;
+            font-family: 'Georgia', 'Garamond', serif;
             background: linear-gradient(135deg, #8B9D77 0%, #C4B195 50%, #A89968 100%);
             color: #4A3E2A;
             line-height: 1.7;
@@ -32,27 +31,64 @@
             border-radius: 30px;
             margin-bottom: 50px;
             box-shadow: 0 12px 45px rgba(0,0,0,0.35);
+            position: relative;
+            overflow: hidden;
             border: 5px solid #6B5D45;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(255, 255, 255, 0.03) 50px,
+                    rgba(255, 255, 255, 0.03) 51px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(255, 255, 255, 0.02) 50px,
+                    rgba(255, 255, 255, 0.02) 51px
+                );
+            pointer-events: none;
         }
 
         h1 {
             font-size: 4em;
             color: #F4ECD8;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
             margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            font-weight: normal;
             letter-spacing: 3px;
         }
 
         .subtitle {
             font-size: 2.2em;
             color: #6B5D45;
-            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.6);
             margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
         }
 
         .author {
             font-size: 1.4em;
             color: #F4ECD8;
             font-style: italic;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
         }
 
         .hero-section {
@@ -64,6 +100,35 @@
             border: 4px solid #B5A582;
         }
 
+        .hero-media {
+            background: linear-gradient(135deg, #8B9D77 0%, #B5A582 100%);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.35);
+            border: 4px solid #6B5D45;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.30);
+        }
+
+        .hero-links {
+            margin-top: 18px;
+            text-align: center;
+        }
+
+        .custom-cta {
+            margin-top: 14px;
+            color: #F4ECD8;
+            font-style: italic;
+            font-size: 1.1em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+        }
+
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -72,53 +137,135 @@
         }
 
         .hero-text h2 {
+            color: #6B5D45;
             font-size: 2.8em;
             margin-bottom: 25px;
-            color: #6B5D45;
             font-weight: normal;
+            line-height: 1.3;
         }
 
         .hero-text p {
             font-size: 1.25em;
             margin-bottom: 18px;
+            color: #4A3E2A;
+            line-height: 1.8;
         }
 
-        .hero-media {
+        .hero-text p strong {
+            color: #6B5D45;
+        }
+
+        .image-placeholder {
             background: linear-gradient(135deg, #8B9D77 0%, #B5A582 100%);
             border-radius: 20px;
-            padding: 18px;
-            border: 4px solid #6B5D45;
+            padding: 30px;
             box-shadow: 0 6px 25px rgba(0,0,0,0.35);
-        }
-
-        .hero-image {
-            width: 100%;
-            border-radius: 14px;
-            display: block;
-        }
-
-        .hero-links {
             text-align: center;
-            margin-top: 18px;
+            color: #F4ECD8;
+            font-size: 1.6em;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #6B5D45;
+            font-style: italic;
         }
 
-        .custom-cta {
-            margin-top: 14px;
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: #F9F6EC;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 4px solid #B5A582;
+            border-top: 6px solid #7A8B6C;
+        }
+
+        .feature-card:nth-child(2) {
+            border-top-color: #A89968;
+        }
+
+        .feature-card:nth-child(3) {
+            border-top-color: #8B9D77;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.3);
+        }
+
+        .feature-card h3 {
+            color: #4A3E2A;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-card li {
+            padding: 10px 0;
+            color: #4A3E2A;
+            font-size: 1.15em;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .feature-card li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #7A8B6C;
+            font-size: 0.9em;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #7A8B6C 0%, #A89968 100%);
+            border-radius: 25px;
+            padding: 60px 50px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+            border: 5px solid #6B5D45;
+        }
+
+        .cta-section h2 {
             color: #F4ECD8;
-            font-style: italic;
-            font-size: 1.1em;
+            font-size: 2.8em;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            font-weight: normal;
+        }
+
+        .cta-section p {
+            color: #F9F6EC;
+            font-size: 1.4em;
+            margin-bottom: 35px;
+            line-height: 1.6;
         }
 
         .button {
             display: inline-block;
-            padding: 16px 42px;
-            font-size: 1.2em;
+            padding: 20px 50px;
+            font-size: 1.35em;
             font-weight: bold;
             text-decoration: none;
             border-radius: 50px;
-            margin: 10px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
             transition: all 0.3s ease;
+            margin: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+            font-family: 'Georgia', 'Garamond', serif;
+            letter-spacing: 0.5px;
         }
 
         .button-primary {
@@ -127,14 +274,117 @@
             border: 3px solid #6B5D45;
         }
 
-        .button-secondary {
-            background: #8B9D77;
-            color: #F4ECD8;
-            border: 3px solid #6B5D45;
+        .button-primary:hover {
+            background: #F4ECD8;
+            transform: scale(1.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.45);
         }
 
-        .button:hover {
-            transform: scale(1.06);
+        .how-it-works {
+            background: #F9F6EC;
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+            border: 4px solid #B5A582;
+        }
+
+        .how-it-works h2 {
+            color: #6B5D45;
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: normal;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 40px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #7A8B6C, #A89968);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.2em;
+            color: #F4ECD8;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.35);
+            border: 4px solid #6B5D45;
+        }
+
+        .step h3 {
+            color: #4A3E2A;
+            margin-bottom: 15px;
+            font-size: 1.7em;
+            font-weight: normal;
+        }
+
+        .step p {
+            color: #4A3E2A;
+            font-size: 1.15em;
+            line-height: 1.7;
+        }
+
+        .village-features {
+            background: #F9F6EC;
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+            border: 4px solid #B5A582;
+        }
+
+        .village-features h2 {
+            color: #6B5D45;
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: normal;
+        }
+
+        .village-features > p {
+            text-align: center;
+            font-size: 1.3em;
+            color: #4A3E2A;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .village-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .village-item {
+            background: linear-gradient(135deg, #8B9D77, #B5A582);
+            color: #F4ECD8;
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+            font-size: 1.3em;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+            border: 3px solid #6B5D45;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: 500;
+        }
+
+        .village-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
         }
 
         .related-books {
@@ -142,9 +392,65 @@
             border-radius: 25px;
             padding: 50px;
             margin-bottom: 50px;
-            border: 4px solid #B5A582;
             box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+            border: 4px solid #B5A582;
+        }
+
+        .related-books h2 {
+            color: #6B5D45;
+            font-size: 2.8em;
             text-align: center;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+
+        .related-books p {
+            text-align: center;
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            color: #4A3E2A;
+            line-height: 1.7;
+        }
+
+        .button-secondary {
+            background: #8B9D77;
+            color: #F4ECD8;
+            border: 3px solid #6B5D45;
+        }
+
+        .button-secondary:hover {
+            background: #7A8B6C;
+            transform: scale(1.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+        }
+
+        /* NEW: small instruction panel styling (matches your palette) */
+        .sew-instructions {
+            margin-top: 22px;
+            padding: 18px 18px;
+            border-radius: 16px;
+            background: rgba(249, 246, 236, 0.18);
+            border: 2px solid rgba(244, 236, 216, 0.55);
+            text-align: left;
+        }
+
+        .sew-instructions h3 {
+            color: #F4ECD8;
+            font-weight: normal;
+            font-size: 1.35em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+        }
+
+        .sew-instructions ol {
+            margin-left: 18px;
+            color: #F4ECD8;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
+        .sew-instructions li {
+            margin-bottom: 8px;
         }
 
         footer {
@@ -153,115 +459,242 @@
             text-align: center;
             padding: 40px;
             border-radius: 25px;
+            margin-top: 50px;
             border: 4px solid #6B5D45;
             box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+        }
+
+        footer h3 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        footer p {
+            line-height: 1.8;
+            margin-bottom: 10px;
         }
 
         footer a {
             color: #C4B195;
             text-decoration: none;
+            font-size: 1.25em;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            color: #B5A582;
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-
             h1 {
-                font-size: 2.6em;
+                font-size: 2.8em;
             }
 
             .subtitle {
                 font-size: 1.5em;
             }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .button {
+                display: block;
+                margin: 15px auto;
+            }
+
+            header {
+                padding: 50px 30px;
+            }
+
+            .hero-section,
+            .how-it-works,
+            .village-features,
+            .related-books,
+            .cta-section {
+                padding: 35px 25px;
+            }
+
+            .sew-instructions {
+                text-align: left;
+            }
         }
     </style>
 </head>
-
 <body>
-<div class="container">
+    <div class="container">
+        <header>
+            <h1>RAINKEEP VILLAGE</h1>
+            <div class="subtitle">Places to Go & Adventures Await</div>
+            <div class="author">by Lorelei Noble</div>
+        </header>
 
-    <header>
-        <h1>RAINKEEP VILLAGE</h1>
-        <div class="subtitle">Places to Go & Adventures Await</div>
-        <div class="author">by Lorelei Noble</div>
-    </header>
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Step Into a Charming Storybook World</h2>
+                    <p>Explore the enchanting Rainkeep Village where cozy cottages, magical characters, and delightful adventures come to life in fabric form.</p>
+                    <p>A timeless fabric book that sparks imagination and creative play for children of all ages.</p>
+                    <p><strong>Create your own village filled with wonder and whimsy.</strong></p>
+                </div>
 
-    <section class="hero-section">
-        <div class="hero-content">
+                <div class="hero-media">
+                    <img
+                        src="https://garden.spoonflower.com/c/20946787/i/l/dEpJQIGk6n3Xdog0_jPbP38i5H-u9yW7rsMyuPQSj0Mz1k8ULM7dTTM/20946787.png?w=1440"
+                        alt="Rainkeep Village characters"
+                        class="hero-image"
+                        loading="lazy"
+                    />
 
-            <div class="hero-text">
-                <h2>Step Into a Charming Storybook World</h2>
-                <p>
-                    Explore Rainkeep Village where cozy cottages, magical characters,
-                    and imaginative adventures come to life in fabric form.
-                </p>
-                <p>
-                    A timeless play experience designed for storytelling, creativity,
-                    and shared moments.
-                </p>
+                    <div class="hero-links">
+                        <a
+                            href="https://www.arynwood.com/stories"
+                            class="button button-secondary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Companion Tales Printable Page
+                        </a>
+
+                        <a
+                            href="https://www.spoonflower.com/en/fabric/20946787?sku=fbty-pf-yd-f104"
+                            class="button button-primary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Order the Fabric on Spoonflower
+                        </a>
+
+                        <div class="sew-instructions">
+                            <h3>Print + Sew Instructions</h3>
+                            <ol>
+                                <li>Order <strong>1 yard</strong> printed on <strong>56&quot; Organic Cotton Sateen</strong>.</li>
+                                <li>When it arrives, <strong>cut along the printed outlines</strong> for each character and piece.</li>
+                                <li>Place matching fronts/backs together (right sides facing), then <strong>sew around edges</strong>, leaving a small opening.</li>
+                                <li><strong>Trim corners</strong>, turn right-side out, and gently <strong>stuff</strong> the characters.</li>
+                                <li>Close openings with a <strong>ladder stitch</strong> (or tight straight stitch) and enjoy your set.</li>
+                            </ol>
+                        </div>
+
+                        <p class="custom-cta">
+                            Contact me for a custom family of characters.
+                        </p>
+                    </div>
+                </div>
+
             </div>
+        </section>
 
-            <div class="hero-media">
-                <img
-                    src="https://garden.spoonflower.com/c/20946787/i/l/dEpJQIGk6n3Xdog0_jPbP38i5H-u9yW7rsMyuPQSj0Mz1k8ULM7dTTM/20946787.png?w=1440"
-                    alt="Rainkeep Village characters"
-                    class="hero-image"
-                    loading="lazy"
-                />
+        <section class="features">
+            <div class="feature-card">
+                <h3>Village Life</h3>
+                <ul>
+                    <li>Charming cottages and homes</li>
+                    <li>Village shops and market</li>
+                    <li>Town square gathering places</li>
+                    <li>Cozy neighborhood scenes</li>
+                    <li>Winding pathways and bridges</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>Characters & Friends</h3>
+                <ul>
+                    <li>Whimsical village residents</li>
+                    <li>Fantasy characters and heroes</li>
+                    <li>Adorable animal companions</li>
+                    <li>Magical creatures and beings</li>
+                    <li>Families and community folk</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>Simple Creation</h3>
+                <ul>
+                    <li>One yard of fabric needed</li>
+                    <li>Premium 56" quality fabric</li>
+                    <li>Cut along printed lines</li>
+                    <li>Sew together with ease</li>
+                    <li>Hours of imaginative play</li>
+                </ul>
+            </div>
+        </section>
 
-                <div class="hero-links">
-                    <a
-                        href="https://www.arynwood.com/stories"
-                        class="button button-secondary"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Companion Tales Printable Page
-                    </a>
+        <section class="village-features">
+            <h2>Discover Places in Rainkeep Village</h2>
+            <p>Your fabric book includes delightful locations and characters to explore and bring to life:</p>
+            <div class="village-grid">
+                <div class="village-item">Cozy Cottages</div>
+                <div class="village-item">Forest Paths</div>
+                <div class="village-item">Village Festival</div>
+                <div class="village-item">Castle Dreams</div>
+                <div class="village-item">Wizard's Tower</div>
+                <div class="village-item">Unicorn Meadow</div>
+                <div class="village-item">Dragon's Lair</div>
+                <div class="village-item">Village Folk</div>
+                <div class="village-item">Market Square</div>
+                <div class="village-item">Stone Bridge</div>
+                <div class="village-item">Enchanted Gardens</div>
+                <div class="village-item">Starlit Evenings</div>
+            </div>
+        </section>
 
-                    <p class="custom-cta">
-                        Contact me for a custom family of characters.
-                    </p>
+        <section class="how-it-works">
+            <h2>How to Create Your Village</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Order</h3>
+                    <p>Purchase one yard of premium 56" fabric from Spoonflower</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Cut</h3>
+                    <p>Carefully cut out your village pieces following the printed lines</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Sew</h3>
+                    <p>Stitch together your enchanting fabric storybook</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Play</h3>
+                    <p>Watch your child's imagination soar in Rainkeep Village</p>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <section class="related-books">
-        <h2>More from Rainkeep</h2>
-
-        <a
-            href="https://www.arynwood.com/animalfriends"
-            class="button button-secondary"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Rainkeep Animal Friends
-        </a>
-
-        <a
-            href="https://www.arynwood.com/stories"
-            class="button button-secondary"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Companion Tales Printable Page
-        </a>
-    </section>
-
-    <footer>
-        <p>Email:
-            <a href="mailto:loreleihnoble@gmail.com">
-                loreleihnoble@gmail.com
+        <section class="cta-section">
+            <h2>Begin Your Rainkeep Village Adventure</h2>
+            <p>Bring the magic of this charming village to life with premium quality fabric.</p>
+            <a href="https://www.spoonflower.com/en/fabric/20946787?sku=fbty-pf-yd-f104" class="button button-primary" target="_blank" rel="noopener noreferrer">
+                Order Fabric on Spoonflower
             </a>
-        </p>
-        <p style="margin-top: 20px; font-size: 0.9em;">
-            © 2024 Lorelei Noble | Rainkeep Village
-        </p>
-    </footer>
+        </section>
 
-</div>
+        <section class="related-books">
+            <h2>Explore More Rainkeep Adventures</h2>
+            <p>Continue your journey through the magical world of Rainkeep with our companion fabric book.</p>
+            <p style="margin-top: 30px;">
+                <a href="https://www.arynwood.com/animalfriends" class="button button-secondary" target="_blank" rel="noopener noreferrer">Discover Rainkeep Animal Friends</a>
+            </p>
+            <p style="margin-top: 18px;">
+                <a href="https://www.arynwood.com/stories" class="button button-secondary" target="_blank" rel="noopener noreferrer">Companion Tales Printable Page</a>
+            </p>
+        </section>
+
+        <footer>
+            <h3>Get in Touch</h3>
+            <p>Questions about Rainkeep Village? Want to share your creation?</p>
+            <p>Email: <a href="mailto:loreleihnoble@gmail.com">loreleihnoble@gmail.com</a></p>
+            <p style="margin-top: 25px; font-size: 0.95em; opacity: 0.9;">© 2024 Lorelei Noble | Rainkeep Village</p>
+        </footer>
+    </div>
 </body>
 </html>
