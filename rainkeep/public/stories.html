@@ -2,59 +2,231 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Stories to Inspire the Imagination | Rainkeep Miniatures</title>
+  <title>Companion Tales | Rainkeep Village</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #faf7ff;
-      color: #2b1d33;
+    * {
       margin: 0;
       padding: 0;
-      line-height: 1.6;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', 'Garamond', serif;
+      background: linear-gradient(135deg, #8B9D77 0%, #C4B195 50%, #A89968 100%);
+      color: #4A3E2A;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
     header {
-      background: linear-gradient(135deg, #f4c9ff, #c8e8ff);
-      padding: 2.5rem 1.5rem;
+      text-align: center;
+      padding: 70px 40px;
+      background: linear-gradient(135deg, #7A8B6C 0%, #B5A582 50%, #8B9D77 100%);
+      border-radius: 30px;
+      margin-bottom: 50px;
+      box-shadow: 0 12px 45px rgba(0,0,0,0.35);
+      position: relative;
+      overflow: hidden;
+      border: 5px solid #6B5D45;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 50px,
+          rgba(255, 255, 255, 0.03) 50px,
+          rgba(255, 255, 255, 0.03) 51px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 50px,
+          rgba(255, 255, 255, 0.02) 50px,
+          rgba(255, 255, 255, 0.02) 51px
+        );
+      pointer-events: none;
+    }
+
+    h1 {
+      font-size: 3.6em;
+      color: #F4ECD8;
+      text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+      font-weight: normal;
+      letter-spacing: 3px;
+    }
+
+    .subtitle {
+      font-size: 1.9em;
+      color: #6B5D45;
+      text-shadow: 2px 2px 4px rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      font-style: italic;
+    }
+
+    .author {
+      font-size: 1.2em;
+      color: #F4ECD8;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+      letter-spacing: 1px;
+    }
+
+    .intro-section {
+      background: #F9F6EC;
+      border-radius: 25px;
+      padding: 50px;
+      margin-bottom: 50px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+      border: 4px solid #B5A582;
+    }
+
+    .intro-content {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 45px;
+      align-items: start;
+    }
+
+    .intro-text h2 {
+      color: #6B5D45;
+      font-size: 2.4em;
+      margin-bottom: 18px;
+      font-weight: normal;
+      line-height: 1.25;
+    }
+
+    .intro-text p {
+      font-size: 1.15em;
+      margin-bottom: 14px;
+      color: #4A3E2A;
+      line-height: 1.8;
+    }
+
+    .panel {
+      background: linear-gradient(135deg, #8B9D77 0%, #B5A582 100%);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.35);
+      border: 4px solid #6B5D45;
+      color: #F4ECD8;
+    }
+
+    .panel h3 {
+      font-size: 1.35em;
+      font-weight: normal;
+      margin-bottom: 12px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .panel p {
+      font-size: 1.05em;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 16px 42px;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      margin: 10px 0 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+      font-family: 'Georgia', 'Garamond', serif;
+      letter-spacing: 0.5px;
       text-align: center;
     }
 
-    header h1 {
-      margin: 0 0 0.5rem;
-      font-size: 2.2rem;
-      letter-spacing: 0.03em;
+    .button-secondary {
+      background: #F9F6EC;
+      color: #6B5D45;
+      border: 3px solid #6B5D45;
     }
 
-    header p {
-      max-width: 42rem;
-      margin: 0.5rem auto 0;
-      font-size: 1rem;
+    .button-secondary:hover {
+      background: #F4ECD8;
+      transform: scale(1.06);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
     }
 
-    main {
-      max-width: 900px;
-      margin: 2rem auto 3rem;
-      padding: 0 1.5rem;
+    .button-primary {
+      background: #8B9D77;
+      color: #F4ECD8;
+      border: 3px solid #6B5D45;
     }
 
-    h2 {
-      margin-top: 0;
-      font-size: 1.4rem;
+    .button-primary:hover {
+      background: #7A8B6C;
+      transform: scale(1.06);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
     }
 
     .characters {
-      background: #ffffff;
-      border-radius: 0.75rem;
-      padding: 1rem 1.25rem;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
+      background: #F9F6EC;
+      border-radius: 25px;
+      padding: 50px;
+      margin-bottom: 50px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+      border: 4px solid #B5A582;
     }
 
-    .characters strong {
-      display: inline-block;
-      margin-top: 0.4rem;
+    .characters h2 {
+      color: #6B5D45;
+      font-size: 2.4em;
+      margin-bottom: 18px;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    .characters p {
+      font-size: 1.15em;
+      color: #4A3E2A;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .characters p strong {
+      color: #6B5D45;
+      font-weight: 600;
+    }
+
+    .stories-section {
+      background: #F9F6EC;
+      border-radius: 25px;
+      padding: 50px;
+      margin-bottom: 50px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+      border: 4px solid #B5A582;
+    }
+
+    .stories-section h2 {
+      color: #6B5D45;
+      font-size: 2.4em;
+      margin-bottom: 25px;
+      font-weight: normal;
+      text-align: center;
     }
 
     ol.story-list {
@@ -66,83 +238,215 @@
 
     ol.story-list li {
       background: #ffffff;
-      border-radius: 0.9rem;
-      padding: 1rem 1.25rem 1.1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      border-radius: 22px;
+      padding: 26px 28px 26px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
       position: relative;
+      border: 3px solid rgba(181, 165, 130, 0.35);
     }
 
     ol.story-list li::before {
       counter-increment: story-counter;
       content: counter(story-counter);
       position: absolute;
-      top: 1rem;
-      left: 1rem;
-      width: 1.6rem;
-      height: 1.6rem;
+      top: 22px;
+      left: 22px;
+      width: 40px;
+      height: 40px;
       border-radius: 999px;
-      background: #f1dcff;
-      color: #3b214d;
-      font-size: 0.85rem;
+      background: linear-gradient(135deg, #7A8B6C, #A89968);
+      color: #F4ECD8;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
+      font-weight: 700;
+      box-shadow: 0 5px 16px rgba(0,0,0,0.18);
+      border: 3px solid #6B5D45;
     }
 
     .story-title {
-      margin: 0 0 0.25rem 2.2rem;
-      font-weight: 600;
-      font-size: 1rem;
+      margin: 0 0 10px 62px;
+      font-weight: normal;
+      font-size: 1.35em;
+      color: #4A3E2A;
+      line-height: 1.35;
     }
 
     .story-text {
-      margin: 0 0 0 2.2rem;
-      font-size: 0.95rem;
+      margin: 0 0 0 62px;
+      font-size: 1.1em;
+      color: #4A3E2A;
+      line-height: 1.8;
     }
 
     footer {
+      background: #4A3E2A;
+      color: #F4ECD8;
       text-align: center;
-      font-size: 0.8rem;
-      color: #6b5c7a;
-      padding: 1.5rem 1rem 2rem;
+      padding: 40px;
+      border-radius: 25px;
+      margin-top: 50px;
+      border: 4px solid #6B5D45;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+    }
+
+    footer p {
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+
+    footer a {
+      color: #C4B195;
+      text-decoration: none;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      color: #B5A582;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      h1 {
+        font-size: 2.7em;
+      }
+
+      .subtitle {
+        font-size: 1.45em;
+      }
+
+      .intro-content {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-section,
+      .characters,
+      .stories-section {
+        padding: 35px 25px;
+      }
+
+      .story-title,
+      .story-text {
+        margin-left: 0;
+      }
+
+      ol.story-list li::before {
+        position: static;
+        margin-bottom: 12px;
+      }
+
+      .story-title {
+        margin-top: 6px;
+      }
     }
   </style>
 </head>
-<body>
-  <header>
-    <h1>Stories to Inspire the Imagination</h1>
-    <p>
-      A companion page for Rainkeep Miniatures. Use these prompts as gentle starting
-      points for cozy, imaginative storytelling with your child. Mix, match, and change
-      any detail to make the stories your own.
-    </p>
-  </header>
 
-  <main>
+<body>
+  <div class="container">
+
+    <header>
+      <h1>COMPANION TALES</h1>
+      <div class="subtitle">Stories to Inspire the Imagination</div>
+      <div class="author">Rainkeep Village Story Prompts</div>
+    </header>
+
+    <section class="intro-section">
+      <div class="intro-content">
+
+        <div class="intro-text">
+          <h2>Cozy Story Prompts for Playtime</h2>
+          <p>
+            This page is a companion to the Rainkeep Village fabric book. Use these prompts as gentle starting points
+            for imaginative play, bedtime stories, and “let’s pretend” moments.
+          </p>
+          <p>
+            Mix, match, rename, and change anything. If your child wants the dog to be the wizard and the wizard to be
+            the baker, that’s the correct version.
+          </p>
+          <p>
+            Want a printable version? Use your browser’s Print option and select “Save as PDF.”
+          </p>
+
+          <a
+            href="https://www.arynwood.com/"
+            class="button button-secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Back to Arynwood
+          </a>
+        </div>
+
+        <aside class="panel">
+          <h3>Quick Links</h3>
+          <p>
+            Companion Tales live here:
+            <br />
+            <strong>/stories</strong>
+          </p>
+
+          <a
+            href="https://www.arynwood.com/rainkeepvillage"
+            class="button button-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Rainkeep Village
+          </a>
+
+          <a
+            href="https://www.arynwood.com/animalfriends"
+            class="button button-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Rainkeep Animal Friends
+          </a>
+
+          <p style="margin-top: 18px;">
+            For custom character sets, contact:
+            <br />
+            <strong>loreleihnoble@gmail.com</strong>
+          </p>
+        </aside>
+
+      </div>
+    </section>
+
     <section class="characters">
       <h2>Meet the Rainkeep Friends</h2>
       <p>
         These ideas are meant to work with the dolls and scenes in your Rainkeep fabric book.
         Feel free to rename anyone to match your family and your child’s imagination.
       </p>
-      <p><strong>Artists &amp; Makers</strong><br />
+
+      <p>
+        <strong>Artists &amp; Makers</strong><br />
         • <strong>Selene</strong> – the stained glass artist at Pebble &amp; Prism Glass Studio<br />
         • <strong>Bram</strong> – the gentle woodworker who carves toys and furniture
       </p>
-      <p><strong>Grandparents &amp; Their Shops</strong><br />
+
+      <p>
+        <strong>Grandparents &amp; Their Shops</strong><br />
         • <strong>Nana Mira</strong> – the seamstress who runs the fabric &amp; crochet studio<br />
         • <strong>Pop Jasper</strong> – the florist who fills the village with flowers<br />
         • <strong>Granny Elen</strong> – the baker who makes sweets at the deli &amp; café<br />
         • <strong>Grandpa Corwin</strong> – the alchemist who mixes potions and glowing tonics
       </p>
-      <p><strong>Magical Friends</strong><br />
+
+      <p>
+        <strong>Magical Friends</strong><br />
         • <strong>Wren</strong> – the village wizard<br />
         • <strong>Starbloom</strong> – the shimmering unicorn<br />
         • <strong>Lark</strong> &amp; <strong>Pippin</strong> – two curious little fairies
       </p>
-      <p><strong>Children &amp; Companion</strong><br />
+
+      <p>
+        <strong>Children &amp; Companion</strong><br />
         • <strong>Ivy</strong> – a brave little girl who loves adventures<br />
         • <strong>Mara</strong> – her imaginative friend who loves to help and plan<br />
         • <strong>Theo</strong> – a thoughtful friend who asks big questions<br />
@@ -150,241 +454,223 @@
       </p>
     </section>
 
-    <section>
+    <section class="stories-section">
       <h2>25 Story Seeds to Explore Together</h2>
+
       <ol class="story-list">
         <li>
-          <h3 class="story-title">1. The First Night in the Hobbit House</h3>
+          <h3 class="story-title">The First Night in the Hobbit House</h3>
           <p class="story-text">
-            Ivy and Mara arrive in Rainkeep for the very first time. Together you can
-            decide what they pack, which bed they choose, and how they feel as they fall
-            asleep under the stained glass windows in their new bedroom.
+            Ivy and Mara arrive in Rainkeep for the very first time. Together you can decide what they pack,
+            which bed they choose, and how they feel as they fall asleep under the stained glass windows in their
+            new bedroom.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">2. Pip the Dachshund’s Grand Tour</h3>
+          <h3 class="story-title">Pip the Dachshund’s Grand Tour</h3>
           <p class="story-text">
-            Pip decides to explore every room in the house. Move Pip from the bedroom,
-            to the kitchen, to the library and music room. What does Pip sniff, discover,
-            and accidentally knock over along the way?
+            Pip decides to explore every room in the house. Move Pip from the bedroom to the kitchen to the library
+            and music room. What does Pip sniff, discover, and accidentally knock over along the way?
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">3. Morning at Pebble &amp; Prism Glass Studio</h3>
+          <h3 class="story-title">Morning at Pebble &amp; Prism Glass Studio</h3>
           <p class="story-text">
-            Selene is working on a new stained glass window for the village library.
-            Ivy and Mara help choose the colors. Together, decide which shapes and
-            colors go into the window and who it’s secretly dedicated to.
+            Selene is working on a new stained glass window for the village library. Ivy and Mara help choose the
+            colors. Decide which shapes go into the window and who it’s secretly dedicated to.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">4. Bram’s Secret Toy Workshop</h3>
+          <h3 class="story-title">Bram’s Secret Toy Workshop</h3>
           <p class="story-text">
-            In the woodworking studio, Bram is carving a surprise toy. Ivy, Mara, and Theo
-            are allowed to sand, paint, or test secret drawers. What kind of toy is it:
-            an animal, a wagon, a puzzle, or something brand new?
+            In the woodworking studio, Bram is carving a surprise toy. Ivy, Mara, and Theo are allowed to sand,
+            paint, and test secret drawers. What kind of toy is it: an animal, a wagon, a puzzle, or something new?
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">5. Nana Mira’s Patchwork Cloak</h3>
+          <h3 class="story-title">Nana Mira’s Patchwork Cloak</h3>
           <p class="story-text">
-            In the fabric and crochet studio, Nana Mira is sewing a magical cloak using
-            tiny scraps from all over the village. Each patch can hold a memory or power:
-            courage, kindness, giggles, or bravery on road trips.
+            Nana Mira is sewing a magical cloak using tiny scraps from all over the village. Each patch can hold a
+            memory or power: courage, kindness, giggles, or bravery on road trips.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">6. Pop Jasper’s Flower Messages</h3>
+          <h3 class="story-title">Pop Jasper’s Flower Messages</h3>
           <p class="story-text">
-            Pop Jasper the florist teaches Ivy and Mara how each flower can send a
-            message. Together you can choose which flowers to send to the wizard, the
-            alchemist, or the grandparents and what those flowers mean.
+            Pop Jasper teaches Ivy and Mara how each flower can send a message. Choose which flowers to send to the
+            wizard, the alchemist, or the grandparents and what those flowers mean.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">7. Granny Elen’s Day at the Deli &amp; Sweet Shop</h3>
+          <h3 class="story-title">Granny Elen’s Day at the Deli &amp; Sweet Shop</h3>
           <p class="story-text">
-            Granny Elen needs helpers! Ivy, Mara, Theo, and Pip take orders in the cozy deli:
-            sandwiches, soup, and special pastries. Decide what the “Rainkeep Special” is
-            today and who gets the last cookie.
+            Granny Elen needs helpers. Ivy, Mara, Theo, and Pip take orders: soup, sandwiches, and special pastries.
+            Decide what the “Rainkeep Special” is today and who gets the last cookie.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">8. Potions with Grandpa Corwin</h3>
+          <h3 class="story-title">Potions with Grandpa Corwin</h3>
           <p class="story-text">
-            In the alchemist’s shop, Grandpa Corwin mixes safe, silly potions: giggle
-            drops, courage sprinkles, and sleep-tight tea. You and your child can choose
-            three potions and decide what gentle magic each one does.
+            Grandpa Corwin mixes safe, silly potions: giggle drops, courage sprinkles, and sleep-tight tea.
+            Choose three and decide what gentle magic each one does.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">9. Library Card Day</h3>
+          <h3 class="story-title">Library Card Day</h3>
           <p class="story-text">
-            Ivy and Mara visit the village library for their very first library cards.
-            Together you can decide which books they check out: a dragon story, a music
-            book, a map book, or a recipe book for Granny Elen.
+            Ivy and Mara visit the village library for their very first library cards. Decide which books they check out:
+            a dragon story, a music book, a map book, or a recipe book for Granny Elen.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">10. A Concert in the Music Room</h3>
+          <h3 class="story-title">A Concert in the Music Room</h3>
           <p class="story-text">
-            In the music room, Ivy plays one instrument, Mara plays another, and even
-            Pip joins in with jingling tags. Choose which instruments they try and what
-            kind of concert they give for the grandparents.
+            Ivy plays one instrument, Mara plays another, and Pip joins in with jingling tags. Choose which instruments
+            they try and what kind of concert they give for the grandparents.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">11. Wren the Wizard’s Lost Spell</h3>
+          <h3 class="story-title">Wren the Wizard’s Lost Spell</h3>
           <p class="story-text">
-            Wren misplaces an important spell page. Ivy, Mara, Theo, and the fairies Lark
-            and Pippin search the library, music room, and village shops to find it.
-            Decide where they look first and who finally spots the missing spell.
+            Wren misplaces an important spell page. Ivy, Mara, Theo, and the fairies search the library and village shops
+            to find it. Decide who spots the missing page first.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">12. Starbloom’s Shimmering Trail</h3>
+          <h3 class="story-title">Starbloom’s Shimmering Trail</h3>
           <p class="story-text">
-            Starbloom the unicorn trots through Rainkeep at night, leaving a faint
-            sparkling trail. Ivy and Mara follow it from the bedroom, out into the
-            village, and to a special surprise meeting place.
+            Starbloom trots through Rainkeep at night, leaving a faint sparkling trail. Ivy and Mara follow it from the
+            bedroom out into the village and to a special surprise meeting place.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">13. Market Day Mix-Up</h3>
+          <h3 class="story-title">Market Day Mix-Up</h3>
           <p class="story-text">
-            It’s market day on the village street. Flowers, bread, fabrics, and potions
-            all get mixed up! Your child can decide who accidentally takes the wrong
+            It’s market day. Flowers, bread, fabrics, and potions all get mixed up. Decide who accidentally takes the wrong
             basket and how Ivy and Mara help sort everything out.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">14. Tea Party for All the Grandparents</h3>
+          <h3 class="story-title">Tea Party for All the Grandparents</h3>
           <p class="story-text">
-            Ivy and Mara plan a tea party in the living room or garden. Decide which
-            treats Granny Elen bakes, which flowers Pop Jasper brings, what Nana Mira
-            sews for the table, and which potion Grandpa Corwin shares.
+            Ivy and Mara plan a tea party. Decide which treats Granny Elen bakes, which flowers Pop Jasper brings,
+            what Nana Mira sews for the table, and which potion Grandpa Corwin shares.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">15. Sleepover in the Glass Studio</h3>
+          <h3 class="story-title">Sleepover in the Glass Studio</h3>
           <p class="story-text">
-            During a special night, Ivy and Mara spread blankets in Pebble &amp; Prism
-            Glass Studio. Colored light from the windows paints the walls. What colors
-            do they see, and what gentle stories Selene tells at bedtime?
+            Ivy and Mara spread blankets in Pebble &amp; Prism Glass Studio. Colored light paints the walls.
+            What colors do they see, and what gentle stories does Selene tell at bedtime?
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">16. Road Trip: Forest Campfire</h3>
+          <h3 class="story-title">Road Trip: Forest Campfire</h3>
           <p class="story-text">
-            The whole family takes a road trip to the forest. Move the dolls to your
-            forest scene and decide who gathers sticks, who starts the campfire, and
-            which songs they sing under the stars.
+            The friends take a road trip to the forest. Decide who gathers sticks, who starts the campfire,
+            and which songs they sing under the stars.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">17. Road Trip: Mountain Overlook</h3>
+          <h3 class="story-title">Road Trip: Mountain Overlook</h3>
           <p class="story-text">
-            Ivy, Mara, and Theo drive up into the mountains with Bram. At the overlook,
-            they see the whole village far below. Together you can decide what they notice
-            from so high up and what small treasure they bring back.
+            Ivy, Mara, and Theo drive into the mountains. From the overlook, they see the village far below.
+            Decide what they notice from so high up and what small treasure they bring back.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">18. Road Trip: Beach Day</h3>
+          <h3 class="story-title">Road Trip: Beach Day</h3>
           <p class="story-text">
-            At the beach, Ivy and Mara collect shells, build a sandcastle for Pip, and
-            draw shapes in the sand for Starbloom to visit. Is the water calm or wavy?
-            Do they stay til sunset or come home for snacks?
+            At the beach, they collect shells, build a sandcastle for Pip, and draw shapes in the sand for Starbloom.
+            Is the water calm or wavy? Do they stay until sunset or head home for snacks?
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">19. Road Trip: Desert Caravan</h3>
+          <h3 class="story-title">Road Trip: Desert Caravan</h3>
           <p class="story-text">
-            The friends travel through a soft, golden desert. Maybe they meet a tiny
-            caravan, or they stop at a glowing oasis. You can decide what they pack for
-            the journey and what secret Ivy keeps tucked in her pocket.
+            The friends travel through a soft golden desert. Maybe they meet a tiny caravan, or stop at a glowing oasis.
+            Decide what they pack and what secret Ivy keeps tucked in her pocket.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">20. The Night the Lights Went Out</h3>
+          <h3 class="story-title">The Night the Lights Went Out</h3>
           <p class="story-text">
-            One evening, the lanterns in the village all flicker out. Ivy, Mara,
-            Wren, and the fairies carry candles from room to room, checking on the
-            shops. Together, you can decide how they bring the light back.
+            One evening, the lanterns flicker out. Ivy, Mara, Wren, and the fairies carry candles from room to room,
+            checking on the shops. Decide how they bring the light back.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">21. Pip’s Missing Collar Mystery</h3>
+          <h3 class="story-title">Pip’s Missing Collar Mystery</h3>
           <p class="story-text">
-            Pip’s collar goes missing! Ivy and Mara retrace his steps: the music room,
-            the deli, the library, and the glass studio. Your child can choose where
-            they look and which character finally finds the collar.
+            Pip’s collar goes missing. Ivy and Mara retrace his steps: the music room, the deli, the library, and the glass studio.
+            Decide where they look first and who finally finds it.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">22. A Day Off for the Grown-Ups</h3>
+          <h3 class="story-title">A Day Off for the Grown-Ups</h3>
           <p class="story-text">
-            All four grandparents and the artists take a day off. Ivy, Mara, and Theo
-            decide how to “run” the village: who bakes, who sews, who waters the plants,
-            and who stirs the pretend potions.
+            The grown-ups take a day off. Ivy, Mara, and Theo decide how to “run” the village:
+            who bakes, who sews, who waters the plants, and who stirs the pretend potions.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">23. The Library Sleep-In</h3>
+          <h3 class="story-title">The Library Sleep-In</h3>
           <p class="story-text">
-            Ivy and Mara are allowed to sleep in the library one night. They make a
-            bed of cushions and blankets. Which books do they read, and do the fairies
-            Lark and Pippin sneak in to listen to the stories?
+            Ivy and Mara are allowed to sleep in the library. They make a bed of cushions and blankets.
+            Which books do they read, and do the fairies sneak in to listen to the stories?
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">24. Music Room Talent Show</h3>
+          <h3 class="story-title">Music Room Talent Show</h3>
           <p class="story-text">
-            Everyone in Rainkeep prepares something small to share: a song, a joke, a
-            magic trick, a dance, or a new recipe. You and your child can decide what
-            each character’s “talent” is and who claps the loudest.
+            Everyone prepares something small to share: a song, a joke, a magic trick, a dance, or a new recipe.
+            Decide what each character’s “talent” is and who claps the loudest.
           </p>
         </li>
 
         <li>
-          <h3 class="story-title">25. Goodnight, Rainkeep</h3>
+          <h3 class="story-title">Goodnight, Rainkeep</h3>
           <p class="story-text">
-            At the end of a long day, Ivy and Mara visit each room to say goodnight:
-            to the glass studio, the shops, the library, the music room, and finally the
-            bedroom. Together you can choose one thing each character is grateful for
-            before the lights go out.
+            At the end of the day, Ivy and Mara visit each room to say goodnight: the glass studio, the shops,
+            the library, the music room, and finally the bedroom. Choose one thing each character is grateful for.
           </p>
         </li>
       </ol>
     </section>
-  </main>
 
-  <footer>
-    Use these prompts as a starting point and let your child lead.
-    There is no wrong way to tell a Rainkeep story.
-  </footer>
+    <footer>
+      <p>
+        Use these prompts as a starting point and let your child lead. There is no wrong way to tell a Rainkeep story.
+      </p>
+      <p style="margin-top: 12px;">
+        Questions or custom character sets:
+        <a href="mailto:loreleihnoble@gmail.com">loreleihnoble@gmail.com</a>
+      </p>
+    </footer>
+
+  </div>
 </body>
 </html>
