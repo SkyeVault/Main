@@ -31,7 +31,7 @@ README.md           # This file
 
 ## Devlog Engine (rainkeep)
 
-The rainkeep folder contains the custom blog system that powers [arynwood.com](https://arynwood.com). It is built using Astro and styled with a minimalist terminal-inspired aesthetic.
+The rainkeep folder contains the custom blog system that powers [rainkeep]((https://rainkeep.netlify.app/)). It is built using Astro and styled with a minimalist terminal-inspired aesthetic.
 
 - Blog posts are written in standalone HTML files
 - Currently building a 3d art gallery using Three.js at rainkeep/public/gallery3d
