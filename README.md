@@ -8,7 +8,7 @@
 This is the technical portfolio and development hub for Lorelei Noble. Projects include a 3D sandbox using Three.js, decentralized infrastructure, blockchain development, security automation, and Rust-based tooling.
 
 This repository supports:
-- Arynwood.com — a terminal-styled hub for projects and technical logs
+- [Arynwood.com](https://rainkeep.netlify.app/) — an archived netlify/astro project hub for technical logs
 - SkyeVault Ops — cloud and contract security research
 - On-Chain Metaverse — a 2D and 3D open metaverse experiment using decentralized storage and Ethereum-compatible contracts
 - Genesis — an NFT collection deployed to the Polygon testnet and stored on IPFS
@@ -22,7 +22,7 @@ Blockchain/         # Smart contracts, metaverse, NFT systems
 Notes/              # Personal knowledge base (AWS, Web3, Rust, etc.)
 Rust_Projects/      # Rust-based CLI tools and creative automation
 lib/                # OpenZeppelin contracts (referenced locally)
-rainkeep/           # Source for Arynwood devlog system (Astro)
+rainkeep/           # Source for devlog system (Astro)
 security/           # AWS security labs, firewall configs, SkyeVault Ops
 README.md           # This file
 ```
@@ -35,8 +35,6 @@ The rainkeep folder contains the custom blog system that powers [arynwood.com](h
 
 - Blog posts are written in standalone HTML files
 - Currently building a 3d art gallery using Three.js at rainkeep/public/gallery3d
-- New chatbot feature can be tested at arynwood.com/robot
-- New chatroom arynwood.com/chat
 - The site is deployed via Netlify
 - Source: `rainkeep/src/pages/blog/` and `rainkeep/static/blog-html/`
 
