@@ -8,7 +8,7 @@
 This is the technical portfolio and development hub for Lorelei Noble. Projects include a 3D sandbox using Three.js, decentralized infrastructure, blockchain development, security automation, and Rust-based tooling.
 
 This repository supports:
-- [Arynwood.com](https://rainkeep.netlify.app/) — an archived netlify/astro project hub for technical logs
+- [Rainkeep](https://rainkeep.netlify.app/) — an archived netlify/astro project hub for technical logs
 - SkyeVault Ops — cloud and contract security research
 - On-Chain Metaverse — a 2D and 3D open metaverse experiment using decentralized storage and Ethereum-compatible contracts
 - Genesis — an NFT collection deployed to the Polygon testnet and stored on IPFS
