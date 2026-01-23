@@ -5,7 +5,7 @@
 
 # Overview
 
-This is the technical portfolio and development hub for Lorelei Noble. Projects include a 3D sandbox using Three.js, decentralized infrastructure, blockchain development, security automation, and Rust-based tooling.
+This is the technical portfolio and development hub for Lorelei Noble. Projects include a 3D sandbox using Three.js, decentralized infrastructure, blockchain development, security automation, and Rust-based tooling. Although Arynwood.com is now self-hosted, my netlify blog is still active.  
 
 This repository supports:
 - [Rainkeep](https://rainkeep.netlify.app/) — an archived netlify/astro project hub for technical logs
