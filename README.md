@@ -68,7 +68,8 @@ My goal is to build expertise in:
 - Blockchain Development
 - Infrastructure automation
 - Scalable security architecture
-- 
+- Locally hosted AI training 
+ 
 ## Devlog Engine (rainkeep)
 
 The rainkeep folder contains the custom blog system that powers [rainkeep]((https://rainkeep.netlify.app/)). It is built using Astro and styled with a minimalist terminal-inspired aesthetic.
