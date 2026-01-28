@@ -1,7 +1,6 @@
 # Main Repository
 
 [![Rust CI](https://github.com/SkyeVault/Main/actions/workflows/ci.yml/badge.svg)](https://github.com/SkyeVault/Main/actions/workflows/ci.yml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8cbde920-cd5b-4822-bfce-4a41dc7e7e70/deploy-status)](https://app.netlify.com/sites/rainkeep/deploys)
 
 # Overview
 
@@ -26,49 +25,6 @@ rainkeep/           # Source for devlog system (Astro)
 security/           # AWS security labs, firewall configs, SkyeVault Ops
 README.md           # This file
 ```
-
----
-
-## Devlog Engine (rainkeep)
-
-The rainkeep folder contains the custom blog system that powers [rainkeep]((https://rainkeep.netlify.app/)). It is built using Astro and styled with a minimalist terminal-inspired aesthetic.
-
-- Blog posts are written in standalone HTML files
-- Currently building a 3d art gallery using Three.js at rainkeep/public/gallery3d
-- The site is deployed via Netlify
-- Source: `rainkeep/src/pages/blog/` and `rainkeep/static/blog-html/`
-
----
-
-## Featured Project: Original NFT Collection: Lorelei Noble Genesis
-
-- Hand-drawn original artwork converted into a NFT collection
-- Custom smart contract written in Solidity and deployed with Foundry (Rust)
-- Deployed to: Polygon Amoy Testnet (proof of concept)
-- Smart Contract Address: 0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783  
-- Hosted on IPFS: bafybeihdo27nu3iak7njllgpkmx3ra27mbazlrr444t4sdp46z3sn2v5ye  
-- OpenSea (Testnet): https://testnets.opensea.io/assets/amoy/0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783/
-
----
-
-## Technologies in Use
-
-### Blockchain and Web3
-- Three.js
-- Foundry and Solidity
-- IPFS, Web3.Storage
-- Polygon Amoy Testnet
-- Smart contract security best practices
-
-### Rust Tooling
-- CLI tools and scripting
-- Spotify Playlist Maker (published crate)
-- High-performance logic and automation
-
-### Cloud Security and Infrastructure
-- AWS IAM, GuardDuty, CloudTrail, WAF
-- Terraform and CloudFormation
-- GitHub Actions for CI/CD pipelines
 
 ---
 
@@ -112,6 +68,49 @@ My goal is to build expertise in:
 - Blockchain Development
 - Infrastructure automation
 - Scalable security architecture
+## Devlog Engine (rainkeep)
+
+The rainkeep folder contains the custom blog system that powers [rainkeep]((https://rainkeep.netlify.app/)). It is built using Astro and styled with a minimalist terminal-inspired aesthetic.
+
+- Blog posts are written in standalone HTML files
+- Currently building a 3d art gallery using Three.js at rainkeep/public/gallery3d
+- The site is deployed via Netlify
+- Source: `rainkeep/src/pages/blog/` and `rainkeep/static/blog-html/`
+
+---
+
+## Archived Project: Original NFT Collection: Lorelei Noble Genesis
+
+- Testnet is no longer supported by Polygon. This project is now considered an archive
+- Hand-drawn original artwork converted into a NFT collection
+- Custom smart contract written in Solidity and deployed with Foundry (Rust)
+- Deployed to: Polygon Amoy Testnet (proof of concept)
+- Smart Contract Address: 0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783  
+- Hosted on IPFS: bafybeihdo27nu3iak7njllgpkmx3ra27mbazlrr444t4sdp46z3sn2v5ye  
+- OpenSea (Testnet): https://testnets.opensea.io/assets/amoy/0x1C5ec3De32C1cA8e1da93A99c176fa0eF2711783/
+
+---
+
+## Technologies in Use
+
+### Blockchain and Web3
+- Three.js
+- Foundry and Solidity
+- IPFS, Web3.Storage
+- Polygon Amoy Testnet
+- Smart contract security best practices
+
+### Rust Tooling
+- CLI tools and scripting
+- Spotify Playlist Maker (published crate)
+- High-performance logic and automation
+
+### Cloud Security and Infrastructure
+- AWS IAM, GuardDuty, CloudTrail, WAF
+- Terraform and CloudFormation
+- GitHub Actions for CI/CD pipelines
+
+---
   
 ![GitHub Streak](https://streak-stats.demolab.com/?user=skyevault&theme=dark)
 
