@@ -4,10 +4,10 @@
 
 # Overview
 
-This is the technical portfolio and development hub for Lorelei Noble. Projects include a 3D sandbox using Three.js, decentralized infrastructure, blockchain development, security automation, and Rust-based tooling. Although Arynwood.com is now self-hosted, my netlify blog is still active.  
+This is the technical portfolio and development hub for Lorelei Noble. Projects include a 3D sandbox using Three.js, decentralized infrastructure, blockchain development, security automation, and Rust-based tooling. Arynwood.com is now self-hosted, but you will find that my netlify blog is still active and connected to a continuous deployment pipeline.  
 
 This repository supports:
-- [Rainkeep](https://rainkeep.netlify.app/) — an archived netlify/astro project hub for technical logs
+- [Rainkeep](https://rainkeep.netlify.app/) — a netlify/astro project hub for technical logs
 - SkyeVault Ops — cloud and contract security research
 - On-Chain Metaverse — a 2D and 3D open metaverse experiment using decentralized storage and Ethereum-compatible contracts
 - Genesis — an NFT collection deployed to the Polygon testnet and stored on IPFS
@@ -68,6 +68,7 @@ My goal is to build expertise in:
 - Blockchain Development
 - Infrastructure automation
 - Scalable security architecture
+- 
 ## Devlog Engine (rainkeep)
 
 The rainkeep folder contains the custom blog system that powers [rainkeep]((https://rainkeep.netlify.app/)). It is built using Astro and styled with a minimalist terminal-inspired aesthetic.
