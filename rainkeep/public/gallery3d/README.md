@@ -1,6 +1,6 @@
 # Arynwood 3D Gallery
 
-Welcome to the Arynwood 3D Gallery — a WebGL-powered, lavender-lit immersive art space built entirely with Three.js, vanilla HTML/JS/CSS, and no bundler. This lightweight virtual environment is deployed via Netlify and designed for creative Web3 storytelling, worldbuilding, and showcasing digital art.
+Welcome to the Arynwood 3D Gallery - a WebGL-powered, lavender-lit immersive art space built entirely with Three.js, vanilla HTML/JS/CSS, and no bundler. This lightweight virtual environment is deployed via Netlify and designed for creative Web3 storytelling, worldbuilding, and showcasing digital art.
 
 This project is part of Arynwood (https://arynwood.com) — an open-source educational ecosystem focused on blockchain, smart contracts, and metaverse tools for artists, developers, and educators.
 
