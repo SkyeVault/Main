@@ -37,10 +37,9 @@ This project:
 
 ## Deployment Instructions
 
-1. Clone the repo
-2. Deploy /gallery3d/ to any static host (Netlify, GitHub Pages, etc.)
-3. Ensure your site URL matches the base path (e.g. /gallery3d/)
-4. That’s it — no build step needed!
+1. Deploy /gallery3d/ to any static host (Netlify, GitHub Pages, etc.)
+2. Ensure your site URL matches the base path (e.g. /gallery3d/)
+3. That’s it — no build step needed!
 
 ## License
 
