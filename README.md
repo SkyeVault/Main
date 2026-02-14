@@ -108,8 +108,8 @@ The rainkeep folder contains the custom blog system that powers [rainkeep]((http
 - High-performance logic and automation
 
 ### Cloud Security and Infrastructure
-- AWS IAM, GuardDuty, CloudTrail, WAF
-- Terraform and CloudFormation
+- proxmox
+- Terraform and Ansible
 - GitHub Actions for CI/CD pipelines
 
 ---
